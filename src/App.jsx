@@ -1,7 +1,7 @@
-import React from "react";
-import Counter from "./counter";
-import store from "./app/store";
-import { Provider } from "react-redux";
+import React from 'react';
+import { Provider } from 'react-redux';
+import Counter from './counter';
+import store from './app/store';
 
 export default function App() {
   return (
