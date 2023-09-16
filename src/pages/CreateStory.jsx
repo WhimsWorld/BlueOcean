@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import StickyNavbar from './StickyNavbar';
+import StickyNavbar from '../components/StickyNavbar';
 
 export default function CreateStory() {
   return (
