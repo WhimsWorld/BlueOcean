@@ -1,8 +1,12 @@
 import React from "react";
+import Counter from "./counter";
+import store from "./app/store";
+import { Provider } from "react-redux";
 
 export default function App() {
   return (
-    <div className="relative grid min-h-[100vh] w-screen p-8 mt-8">
-    </div>
+    <Provider store={store}>
+      <Counter />
+    </Provider>
   );
 }
