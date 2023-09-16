@@ -1,4 +1,3 @@
-
 CREATE DATABASE whimsiworlddb;
 
 DROP TABLE IF EXISTS users, gifs, sounds, images, thumbnail_images, categories, stories, user_story_likes, characters, posts, users_in_story, chat, templates CASCADE;
