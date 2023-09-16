@@ -1,8 +1,8 @@
 import React from 'react';
 import { Provider } from 'react-redux';
-import Home from './features/Home';
-import store from './app/store';
-import StickyNavbar from './StickyNavbar';
+import Home from '../features/Home';
+import store from '../app/store';
+import StickyNavbar from '../components/StickyNavbar';
 
 export default function App() {
   return (

@@ -2,11 +2,11 @@ import React from 'react';
 import {
   createBrowserRouter,
 } from 'react-router-dom';
-import App from './App';
-import Login from './Login';
-import CreateStory from './CreateStory';
-import StoryBoard from './StoryBoard';
-import ErrorPage from './errorPage';
+import App from './pages/App';
+import Login from './pages/Login'
+import CreateStory from './pages/CreateStory';
+import StoryBoard from './pages/StoryBoard';
+import ErrorPage from './pages/errorPage';
 
 const router = createBrowserRouter([
   {
