@@ -7,13 +7,13 @@ CREATE TABLE users (
     username VARCHAR(32)
 );
 
-create TABLE gifs (
+CREATE TABLE gifs (
     gif_id SERIAL PRIMARY KEY,
     url TEXT,
     premium BOOLEAN
 );
 
-create TABLE sounds (
+CREATE TABLE sounds (
     sound_id SERIAL PRIMARY KEY,
     url TEXT,
     premium BOOLEAN
@@ -25,13 +25,13 @@ create TABLE images (
     premium BOOLEAN
 );
 
-create TABLE thumbnail_images (
+CREATE TABLE thumbnail_images (
     thumbnail_id SERIAL PRIMARY KEY,
     url TEXT,
     premium BOOLEAN
 );
 
-create TABLE categories (
+CREATE TABLE categories (
     cat_id SERIAL PRIMARY KEY,
     name VARCHAR(32)
 );
@@ -51,7 +51,7 @@ CREATE TABLE stories (
     date_updated TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
-create TABLE user_story_likes (
+CREATE TABLE user_story_likes (
     story_id INTEGER REFERENCES stories(story_id),
     user_id INTEGER REFERENCES users(user_id)
 );
@@ -79,12 +79,12 @@ CREATE TABLE posts (
     date_created TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
-create TABLE users_in_story (
+CREATE TABLE users_in_story (
     story_id INTEGER REFERENCES stories(story_id),
     user_id INTEGER REFERENCES users(user_id)
 );
 
-create TABLE chat (
+CREATE TABLE chat (
     message_id SERIAL PRIMARY KEY,
     user_id INTEGER REFERENCES users(user_id),
     story_id INTEGER REFERENCES stories(story_id),
@@ -92,7 +92,7 @@ create TABLE chat (
     date_created TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
-create TABLE templates (
+CREATE TABLE templates (
     description TEXT,
     main_image_id INTEGER REFERENCES images(image_id),
     thumbnail_id INTEGER REFERENCES thumbnail_images(thumbnail_id)
