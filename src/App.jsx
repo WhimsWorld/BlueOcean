@@ -5,8 +5,8 @@ import store from './app/store';
 
 export default function App() {
   return (
-    <Provider store={store}>
-      <Counter />
-    </Provider>
+      <Provider store={store}>
+        <Counter />
+      </Provider>
   );
 }
