@@ -10,7 +10,7 @@ import {
 } from '@material-tailwind/react';
 
 import React, { useState } from 'react';
-import { NavLink, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import { auth } from './utils/firebase';
 
