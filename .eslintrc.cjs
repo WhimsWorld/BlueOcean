@@ -4,7 +4,7 @@ module.exports = {
         "es2021": true,
         "node": true
     },
-    "extends": ["airbnb", "airbnb/hooks"],
+    "extends": ["airbnb", "airbnb/hooks", "react-app", "react-app/jest"],
     "overrides": [
         {
             "env": {
