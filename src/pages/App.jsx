@@ -1,14 +1,14 @@
 import React from 'react';
-import { Provider } from 'react-redux';
-import Home from '../features/Home';
-import store from '../app/store';
+import Leaderboard from '../components/Leaderboard';
+import StoryCard from '../components/StoryCard';
 import StickyNavbar from '../components/StickyNavbar';
 
 export default function App() {
   return (
-    <Provider store={store}>
+    <div>
       <StickyNavbar />
-      <Home />
-    </Provider>
+      <Leaderboard />
+      <StoryCard />
+    </div>
   );
 }
