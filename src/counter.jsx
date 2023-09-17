@@ -10,7 +10,7 @@ function Counter() {
     <div>
       <p>Count: {count}</p>
       <button onClick={() => dispatch(increment())}>Increment</button>
-      <button onClick={() => dispatch(incrementByAmount(5))}>Increment by 5</button>
+      <button data-testid='increment5' onClick={() => dispatch(incrementByAmount(5))}>Increment by 5</button>
 
     </div>
   );
