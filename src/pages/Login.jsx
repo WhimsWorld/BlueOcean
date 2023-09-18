@@ -25,7 +25,7 @@ export default function Login() {
     console.log('tologin');
     await signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
-        // console.log('user', userCredential.user);
+        console.log('user', userCredential.user);
         navigate('/');
       })
       .catch((err) => {
