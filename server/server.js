@@ -19,11 +19,12 @@ async function createServer() {
 
   // Use vite's connect instance as middleware
   app.use(vite.middlewares);
+  app.use(express.json());
 
   // API Handlers
   app.get('/api/users', usersController.getAllUsers);
   app.get('/api/users/:userId', usersController.getUserById);
-  app.post('/api/users', express.json(), usersController.addUser);
+  app.post('/api/users', usersController.addUser);
 
   // select characters
   app.get('/api/characters', usersController.getCharacters);

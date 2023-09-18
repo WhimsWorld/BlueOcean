@@ -13,9 +13,9 @@ export const getUserById = async (userId) => {
   return result.rows[0];
 };
 
-export const addUser = async (username) => {
-  const query = 'INSERT INTO users (username) VALUES ($1) RETURNING *';
-  const values = [username];
+export const addUser = async (userId, username) => {
+  const query = 'INSERT INTO users (user_id, username) VALUES ($1, $2) RETURNING *';
+  const values = [userId, username];
   const result = await executeQuery(query, values);
   return result.rows[0];
 };
