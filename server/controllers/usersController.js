@@ -1,4 +1,5 @@
 import * as userModel from '../models/usersModel.js';
+import * as characterModel from '../models/characterModel.js';
 
 export const getAllUsers = async (req, res) => {
   try {
@@ -29,5 +30,32 @@ export const addUser = async (req, res) => {
     res.status(201).json(user);
   } catch (err) {
     res.status(500).send('Cannot add user.');
+  }
+};
+
+export const getCharacters = async (req, res) => {
+  try {
+    const characters = await characterModel.getAllCharacters();
+    res.json(characters);
+  } catch (err) {
+    res.status(500).send('Error retrieving characters.');
+  }
+};
+
+export const getCharactersByUserId = async (req, res) => {
+  try {
+    const characters = await characterModel.getCharactersByUserId(req.params.userId);
+    res.json(characters);
+  } catch (err) {
+    res.status(500).send('Error retrieving characters.');
+  }
+};
+
+export const addCharacter = async (req, res) => {
+  try {
+    const character = await characterModel.addCharacter(req.body);
+    res.status(201).json(character);
+  } catch (err) {
+    res.status(500).send('Cannot add character.');
   }
 };
