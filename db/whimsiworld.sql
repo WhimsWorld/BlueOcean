@@ -4,7 +4,8 @@ DROP TABLE IF EXISTS users, gifs, sounds, images, thumbnail_images, categories, 
 
 CREATE TABLE users (
     user_id SERIAL PRIMARY KEY,
-    username VARCHAR(32)
+    username VARCHAR(32),
+    premium BOOLEAN
 );
 
 CREATE TABLE categories (
