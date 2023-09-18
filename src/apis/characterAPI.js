@@ -35,7 +35,7 @@ const mockCharacter = [
 
 // respond mock data by default, will change back to respond real data when database is ready
 export const fetchCharactersByUserId = (userId) => axios.get(`/api/characters/user/${userId}`)
-  .then((response) => response.data)
+  .then((response) => mockCharacter)// response.data)
   .catch((error) => mockCharacter);
 
 export const addCharacterByUserId = () => {
