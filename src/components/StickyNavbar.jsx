@@ -6,7 +6,7 @@ import {
 
 function StickyNavbar() {
   return (
-    <Navbar className="sticky top-0 h-max max-w-full">
+    <Navbar className="sticky top-0 h-max z-10 max-w-full">
       <div className="flex items-center justify-center text-blue-gray-900">
         <Typography
           as="a"
@@ -42,6 +42,13 @@ function StickyNavbar() {
           className="mr-4 cursor-pointer py-1.5 font-medium"
         >
           Current Story
+        </Typography>
+        <Typography
+          as="a"
+          href="/Signup"
+          className="mr-4 cursor-pointer py-1.5 font-medium"
+        >
+          Sign Up
         </Typography>
       </div>
     </Navbar>
