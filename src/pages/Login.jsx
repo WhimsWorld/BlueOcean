@@ -22,7 +22,6 @@ export default function Login() {
 
   async function toLogin(e) {
     e.preventDefault();
-    console.log('tologin');
     await signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         // console.log('user', userCredential.user);
