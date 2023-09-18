@@ -7,33 +7,37 @@ CREATE TABLE users (
     username VARCHAR(32)
 );
 
+CREATE TABLE categories (
+    cat_id SERIAL PRIMARY KEY,
+    name VARCHAR(32)
+);
+
 CREATE TABLE gifs (
     gif_id SERIAL PRIMARY KEY,
+    category_id INTEGER REFERENCES categories(cat_id),
     url TEXT,
     premium BOOLEAN
 );
 
 CREATE TABLE sounds (
     sound_id SERIAL PRIMARY KEY,
+    category_id INTEGER REFERENCES categories(cat_id),
     url TEXT,
     premium BOOLEAN
 );
 
 create TABLE images (
     image_id SERIAL PRIMARY KEY,
+    category_id INTEGER REFERENCES categories(cat_id),
     url TEXT,
     premium BOOLEAN
 );
 
 CREATE TABLE thumbnail_images (
     thumbnail_id SERIAL PRIMARY KEY,
+    category_id INTEGER REFERENCES categories(cat_id),
     url TEXT,
     premium BOOLEAN
-);
-
-CREATE TABLE categories (
-    cat_id SERIAL PRIMARY KEY,
-    name VARCHAR(32)
 );
 
 CREATE TABLE stories (
@@ -95,5 +99,6 @@ CREATE TABLE chat (
 CREATE TABLE templates (
     description TEXT,
     main_image_id INTEGER REFERENCES images(image_id),
-    thumbnail_id INTEGER REFERENCES thumbnail_images(thumbnail_id)
+    thumbnail_id INTEGER REFERENCES thumbnail_images(thumbnail_id),
+    category_id INTEGER REFERENCES categories(cat_id)
 );
