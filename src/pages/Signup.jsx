@@ -10,8 +10,8 @@ import {
 } from '@material-tailwind/react';
 
 import React, { useState } from 'react';
-import { NavLink, useNavigate } from 'react-router-dom';
-import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
+import { useNavigate } from 'react-router-dom';
+import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../utils/firebase';
 
 export default function Signup() {
@@ -24,8 +24,12 @@ export default function Signup() {
     e.preventDefault();
     await createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
-        const { user } = userCredential;
-        console.log('user: ', userCredential);
+        console.log('user: ', userCredential.user.uid);
+        /**
+         * maybe use this as a way to story data about user. This will be a unique value per
+        individual user otherwise, how will we be able to keep track of individual
+        users info
+         */
         navigate('/login');
       // ...
       })
@@ -56,7 +60,7 @@ export default function Signup() {
       </CardBody>
       <CardFooter className="pt-0">
 
-        <Button variant="gradient" fullWidth onClick={toSubmit()}>
+        <Button variant="gradient" fullWidth onClick={ toSubmit }>
           Sign Up
         </Button>
         <Typography variant="small" className="mt-6 flex justify-center">
@@ -67,7 +71,7 @@ export default function Signup() {
             variant="small"
             color="blue-gray"
             className="ml-1 font-bold"
-            onClick={navigate('/login')}
+            onClick={() => navigate('/login')}
           >
             Sign in
           </Typography>
