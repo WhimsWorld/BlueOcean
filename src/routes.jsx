@@ -3,7 +3,8 @@ import {
   createBrowserRouter,
 } from 'react-router-dom';
 import App from './pages/App';
-import Login from './pages/Login'
+import Login from './pages/Login';
+import Signup from './pages/Signup';
 import CreateStory from './pages/CreateStory';
 import StoryBoard from './pages/StoryBoard';
 import ErrorPage from './pages/errorPage';
@@ -18,6 +19,11 @@ const router = createBrowserRouter([
   {
     path: '/login',
     element: <Login />,
+    errorElement: <ErrorPage />,
+  },
+  {
+    path: '/signup',
+    element: <Signup />,
     errorElement: <ErrorPage />,
   },
   {

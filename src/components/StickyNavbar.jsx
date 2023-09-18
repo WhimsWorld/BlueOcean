@@ -24,6 +24,13 @@ function StickyNavbar() {
         </Typography>
         <Typography
           as="a"
+          href="/signup"
+          className="mr-4 cursor-pointer py-1.5 font-medium"
+        >
+          Signup
+        </Typography>
+        <Typography
+          as="a"
           href="/createStory"
           className="mr-4 cursor-pointer py-1.5 font-medium"
         >

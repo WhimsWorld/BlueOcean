@@ -1,14 +1,22 @@
 import React from 'react';
-import { Provider } from 'react-redux';
-import Home from '../features/Home';
-import store from '../app/store';
+import Leaderboard from '../components/homecomponents/Leaderboard';
+import StoryCard from '../components/homecomponents/StoryCard';
 import StickyNavbar from '../components/StickyNavbar';
+import Filter from '../components/homecomponents/Filter';
+import Search from '../components/homecomponents/Search';
+import Mystories from '../components/homecomponents/Mystories';
+import Categories from '../components/homecomponents/Categories';
 
 export default function App() {
   return (
-    <Provider store={store}>
+    <div>
       <StickyNavbar />
-      <Home />
-    </Provider>
+      <Categories />
+      <Mystories />
+      <Filter />
+      <Search />
+      <Leaderboard />
+      <StoryCard />
+    </div>
   );
 }
