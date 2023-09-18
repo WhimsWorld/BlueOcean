@@ -5,7 +5,7 @@ DROP TABLE IF EXISTS users, gifs, sounds, images, thumbnail_images, categories, 
 CREATE TABLE users (
     user_id VARCHAR(64) PRIMARY KEY,
     username VARCHAR(32),
-    premium BOOLEAN
+    premium BOOLEAN DEFAULT FALSE
 );
 
 CREATE TABLE categories (
