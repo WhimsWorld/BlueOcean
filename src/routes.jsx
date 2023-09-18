@@ -8,7 +8,6 @@ import Signup from './pages/Signup';
 import CreateStory from './pages/CreateStory';
 import StoryBoard from './pages/StoryBoard';
 import ErrorPage from './pages/errorPage';
-import Signup from './pages/Signup';
 
 const router = createBrowserRouter([
   {
@@ -35,11 +34,6 @@ const router = createBrowserRouter([
     path: '/storyBoard',
     element: <StoryBoard />,
     errorElement: <errorPage />,
-  },
-  {
-    path: '/signup',
-    element: <Signup />,
-    errorElement: <errorElement />
   },
 ]);
 
