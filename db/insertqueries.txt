@@ -1,14 +1,15 @@
 -- INSERT INTO users with premium values
-INSERT INTO users (username, premium)
+INSERT INTO users (user_id, username, premium)
 VALUES
-    ('user1', FALSE),
-    ('user2', FALSE),
-    ('user3', FALSE),
-    ('user4', FALSE),
-    ('user5', TRUE),
-    ('user6', TRUE),
-    ('user7', TRUE),
-    ('user8', TRUE);
+    ('user1_id', 'user1', FALSE),
+    ('user2_id', 'user2', FALSE),
+    ('user3_id', 'user3', FALSE),
+    ('user4_id', 'user4', FALSE),
+    ('user5_id', 'user5', TRUE),
+    ('user6_id', 'user6', TRUE),
+    ('user7_id', 'user7', TRUE),
+    ('user8_id', 'user8', TRUE);
+
 
 -- Insert data into the categories table
 INSERT INTO categories (name) VALUES
@@ -21,10 +22,10 @@ INSERT INTO categories (name) VALUES
 -- Insert thumbnail images
 INSERT INTO thumbnail_images (category_id, url, premium)
 VALUES
-    (1, 'https://ibb.co/1ZjLQRQ', FALSE),  -- GIF URL for High Fantasy
-    (2, 'https://ibb.co/ZKc8pFS', FALSE),  -- GIF URL for Mystical Forest
-    (3, 'https://ibb.co/x20Vd3k', FALSE),  -- GIF URL for Pirates Cove Adventure
-    (4, 'https://ibb.co/M5x0sWN', FALSE);  -- GIF URL for Steampunk Cityscape
+    (1, 'https://i.ibb.co/D8MFLRK/HFsticker8.png', FALSE),  -- GIF URL for High Fantasy
+    (2, 'https://i.ibb.co/jDxkDnT/MFsticker5.png', FALSE),  -- GIF URL for Mystical Forest
+    (3, 'https://i.ibb.co/LxrVxV1/PCsticker3.png', FALSE),  -- GIF URL for Pirates Cove Adventure
+    (4, 'https://i.ibb.co/Y8wpGvr/SCsticker4.png', FALSE);  -- GIF URL for Steampunk Cityscape
 
 
 -- Insert data into the images table for High Fantasy
@@ -191,33 +192,29 @@ INSERT INTO images (category_id, url, premium) VALUES
     (5, 'https://i.ibb.co/1bm61Jc/036.png', FALSE),
     (5, 'https://i.ibb.co/jJCCpGy/037.png', FALSE);
 
-  -- Insert data into the stories table with matching thumbnail URLs
+-- Insert data into the stories table with matching thumbnail URLs
 INSERT INTO stories (created_by_user_id, category_id, narrator_id, main_image_id, thumbnail_id, title, summary, max_characters, date_created, date_updated)
 VALUES
-  (1, 1, 1, (SELECT image_id FROM images WHERE category_id = 1 ORDER BY RANDOM() LIMIT 1),
-      (SELECT thumbnail_id FROM thumbnail_images WHERE category_id = 1),
-      'Fantasy Story 1', 'This is the first story.', 8, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-  (2, 2, 2, (SELECT image_id FROM images WHERE category_id = 2 ORDER BY RANDOM() LIMIT 1),
-      (SELECT thumbnail_id FROM thumbnail_images WHERE category_id = 2),
-      'Forest Story 2', 'This is the second story.', 8, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-  (3, 3, 3, (SELECT image_id FROM images WHERE category_id = 3 ORDER BY RANDOM() LIMIT 1),
-      (SELECT thumbnail_id FROM thumbnail_images WHERE category_id = 3),
-      'Pirates Story 3', 'This is the third story.', 8, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-  (4, 4, 4, (SELECT image_id FROM images WHERE category_id = 4 ORDER BY RANDOM() LIMIT 1),
-      (SELECT thumbnail_id FROM thumbnail_images WHERE category_id = 4),
-      'Steampunk Story 4', 'This is the fourth story.', 8, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
+  ('user1_id', 1, 'user1_id', (SELECT image_id FROM images WHERE category_id = 1 ORDER BY RANDOM() LIMIT 1),
+      (SELECT thumbnail_id FROM thumbnail_images WHERE category_id = 1), 'Fantasy Story 1', 'This is the first story.', 8, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+  ('user2_id', 2, 'user2_id', (SELECT image_id FROM images WHERE category_id = 2 ORDER BY RANDOM() LIMIT 1),
+      (SELECT thumbnail_id FROM thumbnail_images WHERE category_id = 2), 'Forest Story 2', 'This is the second story.', 8, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+  ('user3_id', 3, 'user3_id', (SELECT image_id FROM images WHERE category_id = 3 ORDER BY RANDOM() LIMIT 1),
+      (SELECT thumbnail_id FROM thumbnail_images WHERE category_id = 3), 'Pirates Story 3', 'This is the third story.', 8, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+  ('user4_id', 4, 'user4_id', (SELECT image_id FROM images WHERE category_id = 4 ORDER BY RANDOM() LIMIT 1),
+      (SELECT thumbnail_id FROM thumbnail_images WHERE category_id = 4), 'Steampunk Story 4', 'This is the fourth story.', 8, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
 
 -- Insert data into the characters table
 INSERT INTO characters (story_id, user_id, image_id, name, strength, weakness, backstory)
 VALUES
-    (1, 1, (SELECT image_id FROM images WHERE category_id = 5 AND premium = TRUE LIMIT 1), 'Character 1', 'Strength 1', 'Weakness 1', 'Backstory 1'),
-    (2, 2, (SELECT image_id FROM images WHERE category_id = 5 AND premium = TRUE LIMIT 1), 'Character 2', 'Strength 2', 'Weakness 2', 'Backstory 2'),
-    (3, 3, (SELECT image_id FROM images WHERE category_id = 5 AND premium = TRUE LIMIT 1), 'Character 3', 'Strength 3', 'Weakness 3', 'Backstory 3'),
-    (4, 4, (SELECT image_id FROM images WHERE category_id = 5 AND premium = TRUE LIMIT 1), 'Character 4', 'Strength 4', 'Weakness 4', 'Backstory 4'),
-    (1, 5, (SELECT image_id FROM images WHERE category_id = 5 AND premium = FALSE LIMIT 1), 'Character 5', 'Strength 5', 'Weakness 5', 'Backstory 5'),
-    (2, 6, (SELECT image_id FROM images WHERE category_id = 5 AND premium = FALSE LIMIT 1), 'Character 6', 'Strength 6', 'Weakness 6', 'Backstory 6'),
-    (3, 7, (SELECT image_id FROM images WHERE category_id = 5 AND premium = FALSE LIMIT 1), 'Character 7', 'Strength 7', 'Weakness 7', 'Backstory 7'),
-    (4, 8, (SELECT image_id FROM images WHERE category_id = 5 AND premium = FALSE LIMIT 1), 'Character 8', 'Strength 8', 'Weakness 8', 'Backstory 8');
+    (1, 'user1_id', (SELECT image_id FROM images WHERE category_id = 5 AND premium = TRUE LIMIT 1), 'Character 1', 'Strength 1', 'Weakness 1', 'Backstory 1'),
+    (2, 'user2_id', (SELECT image_id FROM images WHERE category_id = 5 AND premium = TRUE LIMIT 1), 'Character 2', 'Strength 2', 'Weakness 2', 'Backstory 2'),
+    (3, 'user3_id', (SELECT image_id FROM images WHERE category_id = 5 AND premium = TRUE LIMIT 1), 'Character 3', 'Strength 3', 'Weakness 3', 'Backstory 3'),
+    (4, 'user4_id', (SELECT image_id FROM images WHERE category_id = 5 AND premium = TRUE LIMIT 1), 'Character 4', 'Strength 4', 'Weakness 4', 'Backstory 4'),
+    (1, 'user5_id', (SELECT image_id FROM images WHERE category_id = 5 AND premium = FALSE LIMIT 1), 'Character 5', 'Strength 5', 'Weakness 5', 'Backstory 5'),
+    (2, 'user6_id', (SELECT image_id FROM images WHERE category_id = 5 AND premium = FALSE LIMIT 1), 'Character 6', 'Strength 6', 'Weakness 6', 'Backstory 6'),
+    (3, 'user7_id', (SELECT image_id FROM images WHERE category_id = 5 AND premium = FALSE LIMIT 1), 'Character 7', 'Strength 7', 'Weakness 7', 'Backstory 7'),
+    (4, 'user8_id', (SELECT image_id FROM images WHERE category_id = 5 AND premium = FALSE LIMIT 1), 'Character 8', 'Strength 8', 'Weakness 8', 'Backstory 8');
 
 -- Insert data into the posts table
 INSERT INTO posts (story_id, char_id, gif_id, sound_id, narrator_image_id, narrator_post, content)
