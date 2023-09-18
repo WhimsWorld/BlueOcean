@@ -5,7 +5,7 @@ import express from 'express';
 import { createServer as createViteServer } from 'vite';
 
 // Controllers import
-import * as userController from './controllers/usersController.js';
+import * as usersController from './controllers/usersController.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -19,11 +19,17 @@ async function createServer() {
 
   // Use vite's connect instance as middleware
   app.use(vite.middlewares);
+  app.use(express.json());
 
   // API Handlers
-  app.get('/api/users', userController.getAllUsers);
-  app.get('/api/users/:userId', userController.getUserById);
-  app.post('/api/users', express.json(), userController.addUser);
+  app.get('/api/users', usersController.getAllUsers);
+  app.get('/api/users/:userId', usersController.getUserById);
+  app.post('/api/users', usersController.addUser);
+
+  // select characters
+  app.get('/api/characters', usersController.getCharacters);
+  app.get('/api/characters/user/:userId', usersController.getCharactersByUserId);
+  app.post('/api/characters', usersController.addCharacter);
 
   // Serve the index.html with SSR
   app.use('*', async (req, res, next) => {

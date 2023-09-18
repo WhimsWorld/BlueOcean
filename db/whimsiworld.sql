@@ -3,32 +3,9 @@ CREATE DATABASE whimsiworlddb;
 DROP TABLE IF EXISTS users, gifs, sounds, images, thumbnail_images, categories, stories, user_story_likes, characters, posts, users_in_story, chat, templates CASCADE;
 
 CREATE TABLE users (
-    user_id SERIAL PRIMARY KEY,
-    username VARCHAR(32)
-);
-
-CREATE TABLE gifs (
-    gif_id SERIAL PRIMARY KEY,
-    url TEXT,
-    premium BOOLEAN
-);
-
-CREATE TABLE sounds (
-    sound_id SERIAL PRIMARY KEY,
-    url TEXT,
-    premium BOOLEAN
-);
-
-create TABLE images (
-    image_id SERIAL PRIMARY KEY,
-    url TEXT,
-    premium BOOLEAN
-);
-
-CREATE TABLE thumbnail_images (
-    thumbnail_id SERIAL PRIMARY KEY,
-    url TEXT,
-    premium BOOLEAN
+    user_id VARCHAR(64) PRIMARY KEY,
+    username VARCHAR(32),
+    premium BOOLEAN DEFAULT FALSE
 );
 
 CREATE TABLE categories (
@@ -36,11 +13,39 @@ CREATE TABLE categories (
     name VARCHAR(32)
 );
 
+CREATE TABLE gifs (
+    gif_id SERIAL PRIMARY KEY,
+    category_id INTEGER REFERENCES categories(cat_id),
+    url TEXT,
+    premium BOOLEAN
+);
+
+CREATE TABLE sounds (
+    sound_id SERIAL PRIMARY KEY,
+    category_id INTEGER REFERENCES categories(cat_id),
+    url TEXT,
+    premium BOOLEAN
+);
+
+CREATE TABLE images (
+    image_id SERIAL PRIMARY KEY,
+    category_id INTEGER REFERENCES categories(cat_id),
+    url TEXT,
+    premium BOOLEAN
+);
+
+CREATE TABLE thumbnail_images (
+    thumbnail_id SERIAL PRIMARY KEY,
+    category_id INTEGER REFERENCES categories(cat_id),
+    url TEXT,
+    premium BOOLEAN
+);
+
 CREATE TABLE stories (
     story_id SERIAL PRIMARY KEY,
-    created_by_user_id INTEGER REFERENCES users(user_id),
+    created_by_user_id VARCHAR(64) REFERENCES users(user_id),
     category_id INTEGER REFERENCES categories(cat_id),
-    narrator_id INTEGER REFERENCES users(user_id),
+    narrator_id VARCHAR(64) REFERENCES users(user_id),
     main_image_id INTEGER REFERENCES images(image_id),
     thumbnail_id INTEGER REFERENCES thumbnail_images(thumbnail_id),
     like_count INTEGER DEFAULT 0 NOT NULL,
@@ -53,13 +58,13 @@ CREATE TABLE stories (
 
 CREATE TABLE user_story_likes (
     story_id INTEGER REFERENCES stories(story_id),
-    user_id INTEGER REFERENCES users(user_id)
+    user_id VARCHAR(64) REFERENCES users(user_id)
 );
 
 CREATE TABLE characters (
     char_id SERIAL PRIMARY KEY,
     story_id INTEGER REFERENCES stories(story_id),
-    user_id INTEGER REFERENCES users(user_id),
+    user_id VARCHAR(64) REFERENCES users(user_id),
     image_id INTEGER REFERENCES images(image_id),
     name VARCHAR(32),
     strength VARCHAR(32),
@@ -81,12 +86,12 @@ CREATE TABLE posts (
 
 CREATE TABLE users_in_story (
     story_id INTEGER REFERENCES stories(story_id),
-    user_id INTEGER REFERENCES users(user_id)
+    user_id VARCHAR(64) REFERENCES users(user_id)
 );
 
 CREATE TABLE chat (
     message_id SERIAL PRIMARY KEY,
-    user_id INTEGER REFERENCES users(user_id),
+    user_id VARCHAR(64) REFERENCES users(user_id),
     story_id INTEGER REFERENCES stories(story_id),
     data TEXT,
     date_created TIMESTAMP DEFAULT CURRENT_TIMESTAMP
@@ -95,5 +100,6 @@ CREATE TABLE chat (
 CREATE TABLE templates (
     description TEXT,
     main_image_id INTEGER REFERENCES images(image_id),
-    thumbnail_id INTEGER REFERENCES thumbnail_images(thumbnail_id)
+    thumbnail_id INTEGER REFERENCES thumbnail_images(thumbnail_id),
+    category_id INTEGER REFERENCES categories(cat_id)
 );
