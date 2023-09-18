@@ -15,7 +15,6 @@ export const { setCharacters } = characterSlice.actions;
 export const loadCharactersByUserId = (userId) => (dispatch) => {
   fetchCharactersByUserId(userId).then((data) => {
     dispatch(setCharacters(data));
-    console.log(data);
   });
 };
 
