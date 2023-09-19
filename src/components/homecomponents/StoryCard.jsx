@@ -1,4 +1,7 @@
 import React, { useState, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+
 import {
   Card,
   CardHeader,
@@ -8,26 +11,40 @@ import {
   Button,
   IconButton,
 } from '@material-tailwind/react';
+import { setStory } from '../../app/slices/storySlice';
 
 export default function StoryCard({ story }) {
-  const [image, setImage] = useState('');
+  const [liked, setLiked] = useState(false);
 
-  useEffect(() => {
-    setImage(story.url);
-    console.log(image);
-  }, [story]);
+  const storyId = story.story_id;
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const clickHandler = () => {
+    dispatch(setStory(storyId));
+    navigate('/storyBoard');
+  };
+
+  const likeClickHandler = () => {
+    if (liked) {
+      setLiked(false);
+    } else {
+      setLiked(true);
+    }
+  };
 
   return (
     <Card className="w-full max-w-[26rem] shadow-lg">
-      <CardHeader floated={false} color="blue-gray">
+      <CardHeader floated={false} color="grey">
         <img
-          src={image}
+          src={story.image_url}
           alt={story.title}
         />
         <div className="to-bg-black-10 absolute inset-0 h-full w-full bg-gradient-to-tr from-transparent via-transparent to-black/60 " />
         <IconButton
+          onClick={likeClickHandler}
           size="sm"
-          color="red"
+          color={liked ? 'red' : 'white'}
           variant="text"
           className="!absolute top-4 right-4 rounded-full"
         >
@@ -68,9 +85,16 @@ export default function StoryCard({ story }) {
         <Typography color="gray">
           {story.summary}
         </Typography>
+        <Typography color="gray">
+          {story.date_created}
+        </Typography>
       </CardBody>
       <CardFooter className="pt-3">
-        <Button size="lg" fullWidth={true}>
+        <Button
+          size="lg"
+          onClick={clickHandler}
+          fullWidth
+        >
           Read Story
         </Button>
       </CardFooter>

@@ -26,3 +26,9 @@ export const addCharacter = async (characterData) => {
   const result = await executeQuery(query, values);
   return result.rows[0];
 };
+
+export const getImages = async () => {
+  const query = 'SELECT url from images';
+  const result = await executeQuery(query);
+  return result.rows;
+};
