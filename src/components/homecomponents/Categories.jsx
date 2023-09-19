@@ -2,32 +2,23 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { List, ListItem, Card } from '@material-tailwind/react';
 
-export default function ListWithSelectedItem({
+export default function Categories({
   categories,
-  styleSel,
   setCategory,
   setCategories,
 }) {
   const selectHandler = (e) => {
     const selectedName = e.target.innerText;
-    if (e.target.name === 'All Categories') {
-      setCategory(null);
-    } else {
-      setCategory(e.target.name);
-    }
-    const tempCategories = categories;
-    for (let i = 0; i < tempCategories.length; i += 1) {
-      if (tempCategories[i].name === selectedName) {
-        tempCategories[i].selected = true;
-        tempCategories[i].style = 'red';
-      } else {
-        tempCategories[i].selected = false;
-        tempCategories[i].style = 'white';
-      }
-    }
-    tempCategories.push({name: 'test'});
-    setCategories(tempCategories);
-    console.log(categories);
+    setCategory(selectedName === 'All Categories' ? null : selectedName);
+    setCategories((prevCategories) => {
+      const updatedCategories = prevCategories.map((cat) => {
+        if (cat.cat_name === selectedName) {
+          return { ...cat, selected: true };
+        }
+        return { ...cat, selected: false };
+      });
+      return [...updatedCategories];
+    });
   };
 
   return (
@@ -35,45 +26,16 @@ export default function ListWithSelectedItem({
       <List>
         {categories.map((categoryEntry) => (
           <ListItem
-            style={{ background: categoryEntry.style }}
+            style={{ background: categoryEntry.selected ? 'grey' : 'white' }}
             selected={categoryEntry.selected}
-            name={categoryEntry.name}
-            key={categoryEntry.name}
+            name={categoryEntry.cat_name}
+            key={categoryEntry.cat_name}
             onClick={selectHandler}
           >
-            {categoryEntry.name}
+            {categoryEntry.cat_name}
           </ListItem>
         ))}
       </List>
     </Card>
   );
 }
-
-// const function ListWithSelectedItem({
-//   categories,
-//   setStories,
-//   filter,
-//   myStories,
-// }) {
-//   const [selected, setSelected] = React.useState(1);
-//   const setSelectedItem = (value) => setSelected(value);
-
-//   const selectHandler = () => {
-//     if ()
-//   }
-
-//   return (
-//     <Card className="w-96">
-//       <List>
-//         {categories.map((categoryEntry) => (
-//           <ListItem
-//             selected={selected === 1}
-//             onClick={() => {selectHandler} setSelectedItem(1)}
-//           >
-//             {categoryEntry.name}
-//           </ListItem>
-//         ))}
-//       </List>
-//     </Card>
-//   );
-// }
