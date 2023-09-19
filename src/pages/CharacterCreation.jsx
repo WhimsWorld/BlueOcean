@@ -17,7 +17,9 @@ import { onAuthStateChanged } from 'firebase/auth';
 import { auth } from '../utils/firebase';
 import StickyNavbar from '../components/StickyNavbar';
 
-export default function CharacterCreation() {
+// The storyBoardURL is so that when the character is created, We will be able to
+// redirect the user back to the specific story they created a character for.
+export default function CharacterCreation({ storyBoardURL }) {
   const navigate = useNavigate();
 
   const [name, setName] = useState('');
@@ -91,11 +93,6 @@ export default function CharacterCreation() {
             {/* This div is for basic background info */}
             <div className="mb-4 flex flex-col gap-6">
               <Input size="lg" label="Name" onChange={(e) => setName(e.target.value)} />
-              <Input size="lg" label="Choose character race" onChange={(e) => setRace(e.target.value)} />
-              <Textarea size="lg" label="Character Origin Story" type="text" onChange={(e) => setBackstory(e.target.value)} />
-            </div>
-            {/* This div is for character races */}
-            <div className="flex w-72 flex-col gap-6">
               <Select color="blue" label="Select Race">
                 <Option>Human</Option>
                 <Option>Elf</Option>
@@ -104,6 +101,10 @@ export default function CharacterCreation() {
                 <Option>Tiefling</Option>
                 <Option>Dragonborn</Option>
               </Select>
+            </div>
+            {/* This div is for character races */}
+            <div className="mb-4 flex flex-col gap-6">
+              <Textarea size="lg" label="Character Origin Story" type="text" onChange={(e) => setBackstory(e.target.value)} />
             </div>
             {/* This div is for character sex */}
             <div className="flex w-max gap-4">
