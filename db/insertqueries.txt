@@ -1,17 +1,17 @@
 -- INSERT INTO users with premium values
-INSERT INTO users (username, premium)
+INSERT INTO users (user_id, username, premium)
 VALUES
-    ('user1', FALSE),
-    ('user2', FALSE),
-    ('user3', FALSE),
-    ('user4', FALSE),
-    ('user5', TRUE),
-    ('user6', TRUE),
-    ('user7', TRUE),
-    ('user8', TRUE);
+    ('user1_id', 'user1', FALSE),
+    ('user2_id', 'user2', FALSE),
+    ('user3_id', 'user3', FALSE),
+    ('user4_id', 'user4', FALSE),
+    ('user5_id', 'user5', TRUE),
+    ('user6_id', 'user6', TRUE),
+    ('user7_id', 'user7', TRUE),
+    ('user8_id', 'user8', TRUE);
 
 -- Insert data into the categories table
-INSERT INTO categories (name) VALUES
+INSERT INTO categories (cat_name) VALUES
     ('High Fantasy'),
     ('Mystical Forest'),
     ('Pirates Cove Adventure'),
@@ -19,16 +19,16 @@ INSERT INTO categories (name) VALUES
     ('Misc');
 
 -- Insert thumbnail images
-INSERT INTO thumbnail_images (category_id, url, premium)
+INSERT INTO thumbnail_images (category_id, thumbnail_url, premium)
 VALUES
-    (1, 'https://ibb.co/1ZjLQRQ', FALSE),  -- GIF URL for High Fantasy
-    (2, 'https://ibb.co/ZKc8pFS', FALSE),  -- GIF URL for Mystical Forest
-    (3, 'https://ibb.co/x20Vd3k', FALSE),  -- GIF URL for Pirates Cove Adventure
-    (4, 'https://ibb.co/M5x0sWN', FALSE);  -- GIF URL for Steampunk Cityscape
+    (1, 'https://i.ibb.co/D8MFLRK/HFsticker8.png', FALSE),
+    (2, 'https://i.ibb.co/jDxkDnT/MFsticker5.png', FALSE),
+    (3, 'https://i.ibb.co/LxrVxV1/PCsticker3.png', FALSE),
+    (4, 'https://i.ibb.co/Y8wpGvr/SCsticker4.png', FALSE);
 
 
 -- Insert data into the images table for High Fantasy
-INSERT INTO images (category_id, url, premium) VALUES
+INSERT INTO images (category_id, image_url, premium) VALUES
     (1, 'https://i.ibb.co/jhsTf3f/MF1.png', TRUE),
     (1, 'https://i.ibb.co/sHKxLpF/MF2.png', FALSE),
     (1, 'https://i.ibb.co/4tt08Gq/MF3.png', FALSE),
@@ -36,7 +36,7 @@ INSERT INTO images (category_id, url, premium) VALUES
     (1, 'https://i.ibb.co/NVnhsKY/MF5.png', FALSE);
 
 -- Insert data into the gifs table for High Fantasy
-INSERT INTO gifs (category_id, url, premium) VALUES
+INSERT INTO gifs (category_id, gif_url, premium) VALUES
     (1, 'https://i.ibb.co/zhtsxC9/HFsticker2.png', TRUE),
     (1, 'https://i.ibb.co/J3Gs73M/HFsticker1.png', TRUE),
     (1, 'https://i.ibb.co/L0HSCVJ/HFsticker3.png', TRUE),
@@ -51,7 +51,7 @@ INSERT INTO gifs (category_id, url, premium) VALUES
     (1, 'https://i.ibb.co/3TGt6nN/HFsticker12.png', FALSE);
 
 -- Insert data into the sounds table for High Fantasy
-INSERT INTO sounds (category_id, url, premium) VALUES
+INSERT INTO sounds (category_id, sound_url, premium) VALUES
     (1, 'https://drive.google.com/file/d/1B87ZLqTN741x7cwK_iH8rFyvbjKY9uRo/view?usp=drive_link', TRUE),
     (1, 'https://drive.google.com/file/d/1IzUcTOo87HO1gUN1j6Yfu1mYZDGr9sHH/view?usp=drive_link', FALSE),
     (1, 'https://drive.google.com/file/d/1ih_I_1hHz4GGQVoBUQV-_Vw1QePNXow_/view?usp=drive_link', FALSE),
@@ -59,7 +59,7 @@ INSERT INTO sounds (category_id, url, premium) VALUES
     (1, 'https://drive.google.com/file/d/1ASIUblworfAZt0PPE5W3Lmpvo1scmQW8/view?usp=drive_link', FALSE);
 
 -- Insert data into the images table for Mystical Forest
-INSERT INTO images (category_id, url, premium) VALUES
+INSERT INTO images (category_id, image_url, premium) VALUES
     (2, 'https://i.ibb.co/jhsTf3f/MF1.png', TRUE),
     (2, 'https://i.ibb.co/sHKxLpF/MF2.png', FALSE),
     (2, 'https://i.ibb.co/4tt08Gq/MF3.png', FALSE),
@@ -67,7 +67,7 @@ INSERT INTO images (category_id, url, premium) VALUES
     (2, 'https://i.ibb.co/NVnhsKY/MF5.png', FALSE);
 
 -- Insert data into the gifs table for Mystical Forest
-INSERT INTO gifs (category_id, url, premium) VALUES
+INSERT INTO gifs (category_id, gif_url, premium) VALUES
     (2, 'https://i.ibb.co/kcCNGxP/Mfsticker12.png', TRUE),
     (2, 'https://i.ibb.co/92yTk1h/Mfsticker6.png', TRUE),
     (2, 'https://i.ibb.co/8dpBDDw/MFsticker1.png', TRUE),
@@ -82,7 +82,7 @@ INSERT INTO gifs (category_id, url, premium) VALUES
     (2, 'https://i.ibb.co/Y2TkzPB/MFsticker11.png', FALSE);
 
 -- Insert data into the sounds table for Mystical Forest
-INSERT INTO sounds (category_id, url, premium) VALUES
+INSERT INTO sounds (category_id, sound_url, premium) VALUES
     (2, 'https://drive.google.com/file/d/1FcHi95m5haLpmQTTO4yUrLK8feRbiYrW/view?usp=drive_link', TRUE),
     (2, 'https://drive.google.com/file/d/1Rm2DOuZStWjDajSlZZSf230PzAyoVsBp/view?usp=drive_link', FALSE),
     (2, 'https://drive.google.com/file/d/1CiM2Me5dtDu0RE2vNRxNqHKMYEuTdnCq/view?usp=drive_link', FALSE),
@@ -90,7 +90,7 @@ INSERT INTO sounds (category_id, url, premium) VALUES
     (2, 'https://drive.google.com/file/d/1YEtp6Q8ipO-wP7wYERAqdDHaX6GQ1vqs/view?usp=drive_link', FALSE);
 
 -- Insert data into the images table for Pirates Cove Adventure
-INSERT INTO images (category_id, url, premium) VALUES
+INSERT INTO images (category_id, image_url, premium) VALUES
     (3, 'https://i.ibb.co/phRKFP3/PC2.png', TRUE),
     (3, 'https://i.ibb.co/rk9L0m9/PC1.png', FALSE),
     (3, 'https://i.ibb.co/BP1NrSV/PC3.png', FALSE),
@@ -98,7 +98,7 @@ INSERT INTO images (category_id, url, premium) VALUES
     (3, 'https://i.ibb.co/2F6s9Br/PC5.png', FALSE);
 
 -- Insert data into the gifs table for Pirates Cove Adventure
-INSERT INTO gifs (category_id, url, premium) VALUES
+INSERT INTO gifs (category_id, gif_url, premium) VALUES
     (3, 'https://i.ibb.co/CwT5gMX/PCsticker1.png', TRUE),
     (3, 'https://i.ibb.co/3TqtQk3/Pcsticker8.png', TRUE),
     (3, 'https://i.ibb.co/CVGvvhK/PCsticker2.png', TRUE),
@@ -113,7 +113,7 @@ INSERT INTO gifs (category_id, url, premium) VALUES
     (3, 'https://i.ibb.co/dJ5NXYy/PCsticker12.png', FALSE);
 
 -- Insert data into the sounds table for Pirates Cove Adventure
-INSERT INTO sounds (category_id, url, premium) VALUES
+INSERT INTO sounds (category_id, sound_url, premium) VALUES
     (3, 'https://drive.google.com/file/d/1R7SMXNKqqjcG29ADvRKB2cxLNeCLQb_Q/view?usp=drive_link', TRUE),
     (3, 'https://drive.google.com/file/d/12qo0Al0EIfUZjIVG_DboKnRr31bQPAzG/view?usp=drive_link', FALSE),
     (3, 'https://drive.google.com/file/d/15OpYwhG7GkDAGddUyDpdFszoejt5J9PU/view?usp=drive_link', FALSE),
@@ -121,7 +121,7 @@ INSERT INTO sounds (category_id, url, premium) VALUES
     (3, 'https://drive.google.com/file/d/1cA70SxZZQf1qJHf8tCCqOitUCcdJ9Zyg/view?usp=drive_link', FALSE);
 
 -- Insert data into the images table for Steampunk Cityscape
-INSERT INTO images (category_id, url, premium) VALUES
+INSERT INTO images (category_id, image_url, premium) VALUES
     (4, 'https://i.ibb.co/BLb4Gr5/SC2.png', TRUE),
     (4, 'https://i.ibb.co/dmWM5S1/SC1.png', FALSE),
     (4, 'https://i.ibb.co/9cDPQsY/SC3.png', FALSE),
@@ -129,7 +129,7 @@ INSERT INTO images (category_id, url, premium) VALUES
     (4, 'https://i.ibb.co/GHwZM5L/SC5.png', FALSE);
 
 -- Insert data into the gifs table for Steampunk Cityscape
-INSERT INTO gifs (category_id, url, premium) VALUES
+INSERT INTO gifs (category_id, gif_url, premium) VALUES
     (4, 'https://i.ibb.co/Wp4J6qK/SCsticker1.png', TRUE),
     (4, 'https://i.ibb.co/vs1cn2d/SCsticker2.png', TRUE),
     (4, 'https://i.ibb.co/Q9ymCQp/SCsticker3.png', TRUE),
@@ -144,7 +144,7 @@ INSERT INTO gifs (category_id, url, premium) VALUES
     (4, 'https://i.ibb.co/ft9VVwW/SCsticker12.png', FALSE);
 
 -- Insert data into the sounds table for Steampunk Cityscape
-INSERT INTO sounds (category_id, url, premium) VALUES
+INSERT INTO sounds (category_id, sound_url, premium) VALUES
     (4, 'https://drive.google.com/file/d/1FM788V6aJC1O3cfVbotiZhMewMdZFtrl/view?usp=drive_link', TRUE),
     (4, 'https://drive.google.com/file/d/1wCNOIz0otHwe_ba1YyIxiZZAXeSy-Xpr/view?usp=drive_link', FALSE),
     (4, 'https://drive.google.com/file/d/10g-NzZS2ayVPdscdXby6M21P0hLrHZyr/view?usp=drive_link', FALSE),
@@ -152,7 +152,7 @@ INSERT INTO sounds (category_id, url, premium) VALUES
     (4, 'https://drive.google.com/file/d/1vT0hbUYQiVq7wg0-l8DPjNI27VZGoMZ9/view?usp=drive_link', FALSE);
 
 -- Insert data into the images table for Misc. (Character Images)
-INSERT INTO images (category_id, url, premium) VALUES
+INSERT INTO images (category_id, image_url, premium) VALUES
     (5, 'https://i.ibb.co/3Ry1t8t/001.png', TRUE),
     (5, 'https://i.ibb.co/1bm61Jc/002.png', TRUE),
     (5, 'https://i.ibb.co/jJCCpGy/003.png', TRUE),
@@ -194,52 +194,48 @@ INSERT INTO images (category_id, url, premium) VALUES
   -- Insert data into the stories table with matching thumbnail URLs
 INSERT INTO stories (created_by_user_id, category_id, narrator_id, main_image_id, thumbnail_id, title, summary, max_characters, date_created, date_updated)
 VALUES
-  (1, 1, 1, (SELECT image_id FROM images WHERE category_id = 1 ORDER BY RANDOM() LIMIT 1),
-      (SELECT thumbnail_id FROM thumbnail_images WHERE category_id = 1),
-      'Fantasy Story 1', 'This is the first story.', 8, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-  (2, 2, 2, (SELECT image_id FROM images WHERE category_id = 2 ORDER BY RANDOM() LIMIT 1),
-      (SELECT thumbnail_id FROM thumbnail_images WHERE category_id = 2),
-      'Forest Story 2', 'This is the second story.', 8, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-  (3, 3, 3, (SELECT image_id FROM images WHERE category_id = 3 ORDER BY RANDOM() LIMIT 1),
-      (SELECT thumbnail_id FROM thumbnail_images WHERE category_id = 3),
-      'Pirates Story 3', 'This is the third story.', 8, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-  (4, 4, 4, (SELECT image_id FROM images WHERE category_id = 4 ORDER BY RANDOM() LIMIT 1),
-      (SELECT thumbnail_id FROM thumbnail_images WHERE category_id = 4),
-      'Steampunk Story 4', 'This is the fourth story.', 8, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
+  ('user1_id', 1, 'user1_id', (SELECT image_id FROM images WHERE category_id = 1 AND premium = FALSE ORDER BY RANDOM() LIMIT 1),
+      (SELECT thumbnail_id FROM thumbnail_images WHERE category_id = 1), 'Fantasy Story 1', 'This is the first story.', 8, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+  ('user2_id', 2, 'user2_id', (SELECT image_id FROM images WHERE category_id = 2 AND premium = FALSE ORDER BY RANDOM() LIMIT 1),
+      (SELECT thumbnail_id FROM thumbnail_images WHERE category_id = 2), 'Forest Story 2', 'This is the second story.', 8, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+  ('user3_id', 3, 'user3_id', (SELECT image_id FROM images WHERE category_id = 3 AND premium = FALSE ORDER BY RANDOM() LIMIT 1),
+      (SELECT thumbnail_id FROM thumbnail_images WHERE category_id = 3), 'Pirates Story 3', 'This is the third story.', 8, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+  ('user4_id', 4, 'user4_id', (SELECT image_id FROM images WHERE category_id = 4 AND premium = FALSE ORDER BY RANDOM() LIMIT 1),
+      (SELECT thumbnail_id FROM thumbnail_images WHERE category_id = 4), 'Steampunk Story 4', 'This is the fourth story.', 8, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
 
 -- Insert data into the characters table
-INSERT INTO characters (story_id, user_id, image_id, name, strength, weakness, backstory)
+INSERT INTO characters (story_id, user_id, image_id, char_name, strength, weakness, backstory)
 VALUES
-    (1, 1, (SELECT image_id FROM images WHERE category_id = 5 AND premium = TRUE LIMIT 1), 'Character 1', 'Strength 1', 'Weakness 1', 'Backstory 1'),
-    (2, 2, (SELECT image_id FROM images WHERE category_id = 5 AND premium = TRUE LIMIT 1), 'Character 2', 'Strength 2', 'Weakness 2', 'Backstory 2'),
-    (3, 3, (SELECT image_id FROM images WHERE category_id = 5 AND premium = TRUE LIMIT 1), 'Character 3', 'Strength 3', 'Weakness 3', 'Backstory 3'),
-    (4, 4, (SELECT image_id FROM images WHERE category_id = 5 AND premium = TRUE LIMIT 1), 'Character 4', 'Strength 4', 'Weakness 4', 'Backstory 4'),
-    (1, 5, (SELECT image_id FROM images WHERE category_id = 5 AND premium = FALSE LIMIT 1), 'Character 5', 'Strength 5', 'Weakness 5', 'Backstory 5'),
-    (2, 6, (SELECT image_id FROM images WHERE category_id = 5 AND premium = FALSE LIMIT 1), 'Character 6', 'Strength 6', 'Weakness 6', 'Backstory 6'),
-    (3, 7, (SELECT image_id FROM images WHERE category_id = 5 AND premium = FALSE LIMIT 1), 'Character 7', 'Strength 7', 'Weakness 7', 'Backstory 7'),
-    (4, 8, (SELECT image_id FROM images WHERE category_id = 5 AND premium = FALSE LIMIT 1), 'Character 8', 'Strength 8', 'Weakness 8', 'Backstory 8');
+    (1, 'user1_id', (SELECT image_id FROM images WHERE category_id = 5 AND premium = FALSE LIMIT 1), 'Character 1', 'Strength 1', 'Weakness 1', 'Backstory 1'),
+    (2, 'user2_id', (SELECT image_id FROM images WHERE category_id = 5 AND premium = FALSE LIMIT 1), 'Character 2', 'Strength 2', 'Weakness 2', 'Backstory 2'),
+    (3, 'user3_id', (SELECT image_id FROM images WHERE category_id = 5 AND premium = FALSE LIMIT 1), 'Character 3', 'Strength 3', 'Weakness 3', 'Backstory 3'),
+    (4, 'user4_id', (SELECT image_id FROM images WHERE category_id = 5 AND premium = FALSE LIMIT 1), 'Character 4', 'Strength 4', 'Weakness 4', 'Backstory 4'),
+    (1, 'user5_id', (SELECT image_id FROM images WHERE category_id = 5 AND premium = TRUE LIMIT 1), 'Character 5', 'Strength 5', 'Weakness 5', 'Backstory 5'),
+    (2, 'user6_id', (SELECT image_id FROM images WHERE category_id = 5 AND premium = TRUE LIMIT 1), 'Character 6', 'Strength 6', 'Weakness 6', 'Backstory 6'),
+    (3, 'user7_id', (SELECT image_id FROM images WHERE category_id = 5 AND premium = TRUE LIMIT 1), 'Character 7', 'Strength 7', 'Weakness 7', 'Backstory 7'),
+    (4, 'user8_id', (SELECT image_id FROM images WHERE category_id = 5 AND premium = TRUE LIMIT 1), 'Character 8', 'Strength 8', 'Weakness 8', 'Backstory 8');
 
 -- Insert data into the posts table
-INSERT INTO posts (story_id, char_id, gif_id, sound_id, narrator_image_id, narrator_post, content)
+INSERT INTO posts (story_id, created_by_user_id, char_id, gif_id, sound_id, narrator_image_id, narrator_post, content)
 VALUES
-    (1, 1, (SELECT gif_id FROM gifs WHERE category_id = 1 AND premium = FALSE LIMIT 1),
+    (1, 'user1_id', 1, (SELECT gif_id FROM gifs WHERE category_id = 1 AND premium = FALSE LIMIT 1),
     (SELECT sound_id FROM sounds WHERE category_id = 1 AND premium = FALSE LIMIT 1),
     (SELECT image_id FROM images WHERE category_id = 1 AND premium = FALSE LIMIT 1), TRUE, 'This is the first post with narrator.'),
-    (2, 2, (SELECT gif_id FROM gifs WHERE category_id = 2 AND premium = FALSE LIMIT 1),
+    (2, 'user2_id', 2, (SELECT gif_id FROM gifs WHERE category_id = 2 AND premium = FALSE LIMIT 1),
     (SELECT sound_id FROM sounds WHERE category_id = 2 AND premium = FALSE LIMIT 1),
     (SELECT image_id FROM images WHERE category_id = 2 AND premium = FALSE LIMIT 1), TRUE, 'This is the second post with narrator.'),
-    (3, 5, (SELECT gif_id FROM gifs WHERE category_id = 3 AND premium = TRUE LIMIT 1),
-    (SELECT sound_id FROM sounds WHERE category_id = 3 AND premium = TRUE LIMIT 1),
-    (SELECT image_id FROM images WHERE category_id = 3 AND premium = TRUE LIMIT 1), TRUE, 'This is the third post with narrator.'),
-    (4, 6, (SELECT gif_id FROM gifs WHERE category_id = 4 AND premium = TRUE LIMIT 1),
-    (SELECT sound_id FROM sounds WHERE category_id = 4 AND premium = TRUE LIMIT 1),
-    (SELECT image_id FROM images WHERE category_id = 4 AND premium = TRUE LIMIT 1), TRUE, 'This is the fourth post with narrator.'),
+    (3, 'user3_id', 3, (SELECT gif_id FROM gifs WHERE category_id = 3 AND premium = FALSE LIMIT 1),
+    (SELECT sound_id FROM sounds WHERE category_id = 3 AND premium = FALSE LIMIT 1),
+    (SELECT image_id FROM images WHERE category_id = 3 AND premium = FALSE LIMIT 1), TRUE, 'This is the third post with narrator.'),
+    (4, 'user4_id', 4, (SELECT gif_id FROM gifs WHERE category_id = 4 AND premium = TRUE LIMIT 1),
+    (SELECT sound_id FROM sounds WHERE category_id = 4 AND premium = FALSE LIMIT 1),
+    (SELECT image_id FROM images WHERE category_id = 4 AND premium = FALSE LIMIT 1), TRUE, 'This is the fourth post with narrator.'),
 
-    (1, 3, (SELECT gif_id FROM gifs WHERE category_id = 1 AND premium = FALSE LIMIT 1),
-    (SELECT sound_id FROM sounds WHERE category_id = 1 AND premium = FALSE LIMIT 1), NULL, FALSE, 'This is the first post without narrator.'),
-    (2, 4, (SELECT gif_id FROM gifs WHERE category_id = 2 AND premium = FALSE LIMIT 1),
-    (SELECT sound_id FROM sounds WHERE category_id = 2 AND premium = FALSE LIMIT 1), NULL, FALSE, 'This is the second post without narrator.'),
-    (3, 7, (SELECT gif_id FROM gifs WHERE category_id = 3 AND premium = TRUE LIMIT 1),
+    (1, 'user5_id', 5, (SELECT gif_id FROM gifs WHERE category_id = 1 AND premium = TRUE LIMIT 1),
+    (SELECT sound_id FROM sounds WHERE category_id = 1 AND premium = TRUE LIMIT 1), NULL, FALSE, 'This is the first post without narrator.'),
+    (2, 'user6_id', 6, (SELECT gif_id FROM gifs WHERE category_id = 2 AND premium = TRUE LIMIT 1),
+    (SELECT sound_id FROM sounds WHERE category_id = 2 AND premium = TRUE LIMIT 1), NULL, FALSE, 'This is the second post without narrator.'),
+    (3, 'user7_id', 7, (SELECT gif_id FROM gifs WHERE category_id = 3 AND premium = TRUE LIMIT 1),
     (SELECT sound_id FROM sounds WHERE category_id = 3 AND premium = TRUE LIMIT 1), NULL, FALSE, 'This is the third post without narrator.'),
-    (4, 8, (SELECT gif_id FROM gifs WHERE category_id = 4 AND premium = TRUE LIMIT 1),
+    (4, 'user8_id', 8, (SELECT gif_id FROM gifs WHERE category_id = 4 AND premium = TRUE LIMIT 1),
     (SELECT sound_id FROM sounds WHERE category_id = 4 AND premium = TRUE LIMIT 1), NULL, FALSE, 'This is the fourth post without narrator.');
