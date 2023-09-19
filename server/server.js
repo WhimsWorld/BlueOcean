@@ -36,6 +36,10 @@ async function createServer() {
   app.get('/api/stories', storiesController.getStories);
   app.get('/api/categories', storiesController.getCategories);
 
+  app.use('/api/*', (req, res, next) => {
+    res.status(404).send('Not Found');
+  });
+
   // Serve the index.html with SSR
   app.use('*', async (req, res, next) => {
     const url = req.originalUrl;
