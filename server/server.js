@@ -34,6 +34,9 @@ async function createServer() {
   app.get('/api/characters/user/:userId', usersController.getCharactersByUserId);
   app.post('/api/characters', usersController.addCharacter);
 
+  // character creation
+  app.get('/api/images', usersController.getImages)
+
   // select stories
   app.get('/api/stories', storiesController.getStories);
   app.get('/api/categories', storiesController.getCategories);
@@ -43,6 +46,9 @@ async function createServer() {
   app.use('/api/*', (req, res, next) => {
     res.status(404).send('Not Found');
   });
+
+  // used for character creation
+  app.get('/api/images', usersController.getImages);
 
   // Serve the index.html with SSR
   app.use('*', async (req, res, next) => {
