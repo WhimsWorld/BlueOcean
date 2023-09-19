@@ -10,34 +10,34 @@ CREATE TABLE users (
 
 CREATE TABLE categories (
     cat_id SERIAL PRIMARY KEY,
-    name VARCHAR(32)
+    cat_name VARCHAR(32)
 );
 
 CREATE TABLE gifs (
     gif_id SERIAL PRIMARY KEY,
     category_id INTEGER REFERENCES categories(cat_id),
-    url TEXT,
+    gif_url TEXT,
     premium BOOLEAN
 );
 
 CREATE TABLE sounds (
     sound_id SERIAL PRIMARY KEY,
     category_id INTEGER REFERENCES categories(cat_id),
-    url TEXT,
+    sound_url TEXT,
     premium BOOLEAN
 );
 
 CREATE TABLE images (
     image_id SERIAL PRIMARY KEY,
     category_id INTEGER REFERENCES categories(cat_id),
-    url TEXT,
+    image_url TEXT,
     premium BOOLEAN
 );
 
 CREATE TABLE thumbnail_images (
     thumbnail_id SERIAL PRIMARY KEY,
     category_id INTEGER REFERENCES categories(cat_id),
-    url TEXT,
+    thumbnail_url TEXT,
     premium BOOLEAN
 );
 
@@ -66,7 +66,7 @@ CREATE TABLE characters (
     story_id INTEGER REFERENCES stories(story_id),
     user_id VARCHAR(64) REFERENCES users(user_id),
     image_id INTEGER REFERENCES images(image_id),
-    name VARCHAR(32),
+    char_name VARCHAR(32),
     strength VARCHAR(32),
     weakness VARCHAR(32),
     backstory TEXT
@@ -75,6 +75,7 @@ CREATE TABLE characters (
 CREATE TABLE posts (
     post_id SERIAL PRIMARY KEY,
     story_id INTEGER REFERENCES stories(story_id),
+    created_by_user_id VARCHAR(64) REFERENCES users(user_id),
     char_id INTEGER REFERENCES characters(char_id),
     gif_id INTEGER REFERENCES gifs(gif_id),
     sound_id INTEGER REFERENCES sounds(sound_id),
