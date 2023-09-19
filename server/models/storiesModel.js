@@ -105,4 +105,3 @@ export const getLeaderboard = async () => {
   }
   return response;
 };
-};
