@@ -19,14 +19,14 @@ export const getUserById = async (req, res) => {
       res.status(404).send('User not found.');
     }
   } catch (err) {
-    console.log(err);
     res.status(500).send('Error retrieving user.');
   }
 };
 
 export const addUser = async (req, res) => {
   try {
-    const user = await userModel.addUser(req.body.username);
+    const { user_id: userId, username } = req.body;
+    const user = await userModel.addUser(userId, username);
     res.status(201).json(user);
   } catch (err) {
     res.status(500).send('Cannot add user.');
