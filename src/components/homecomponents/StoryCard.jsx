@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   Card,
   CardHeader,
@@ -9,13 +9,20 @@ import {
   IconButton,
 } from '@material-tailwind/react';
 
-export default function StoryCard() {
+export default function StoryCard({ story }) {
+  const [image, setImage] = useState('');
+
+  useEffect(() => {
+    setImage(story.url);
+    console.log(image);
+  }, [story]);
+
   return (
     <Card className="w-full max-w-[26rem] shadow-lg">
       <CardHeader floated={false} color="blue-gray">
         <img
-          src="https://images.unsplash.com/photo-1499696010180-025ef6e1a8f9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80"
-          alt="ui/ux review check"
+          src={image}
+          alt={story.title}
         />
         <div className="to-bg-black-10 absolute inset-0 h-full w-full bg-gradient-to-tr from-transparent via-transparent to-black/60 " />
         <IconButton
@@ -37,7 +44,7 @@ export default function StoryCard() {
       <CardBody>
         <div className="mb-3 flex items-center justify-between">
           <Typography variant="h5" color="blue-gray" className="font-medium">
-            Wooden House, Florida
+            {story.title}
           </Typography>
           <Typography
             color="blue-gray"
@@ -55,17 +62,16 @@ export default function StoryCard() {
                 clipRule="evenodd"
               />
             </svg>
-            5.0
+            {story.like_count}
           </Typography>
         </div>
         <Typography color="gray">
-          Enter a freshly updated and thoughtfully furnished peaceful home
-          surrounded by ancient trees, stone walls, and open meadows.
+          {story.summary}
         </Typography>
       </CardBody>
       <CardFooter className="pt-3">
         <Button size="lg" fullWidth={true}>
-          Reserve
+          Read Story
         </Button>
       </CardFooter>
     </Card>
