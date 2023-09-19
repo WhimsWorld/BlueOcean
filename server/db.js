@@ -1,3 +1,5 @@
+/* eslint-disable import/prefer-default-export */
+
 import { config } from 'dotenv';
 import pg from 'pg';
 

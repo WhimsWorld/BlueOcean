@@ -1,15 +1,20 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Checkbox } from '@material-tailwind/react';
 
-export default function Mystories() {
-  const [storyState, setStoryState] = useState(false);
-
+export default function Mystories({ myStoriesFilter, showCheck, setMyStoriesFilter }) {
   const clickHandler = () => {
-    if (storyState) {
-      setStoryState(false);
+    if (myStoriesFilter) {
+      setMyStoriesFilter(false);
     } else {
-      setStoryState(true);
+      setMyStoriesFilter(true);
     }
   };
-  return <Checkbox label="My Stories" color="indigo" onClick={clickHandler} />;
+  return (
+    <Checkbox
+      label="My Stories"
+      color="indigo"
+      disabled={showCheck}
+      onClick={clickHandler}
+    />
+  );
 }

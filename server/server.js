@@ -5,7 +5,9 @@ import express from 'express';
 import { createServer as createViteServer } from 'vite';
 
 // Controllers import
+// eslint-disable-next-line import/extensions
 import * as usersController from './controllers/usersController.js';
+// eslint-disable-next-line import/extensions
 import * as storiesController from './controllers/storiesController.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -35,6 +37,8 @@ async function createServer() {
   // select stories
   app.get('/api/stories', storiesController.getStories);
   app.get('/api/categories', storiesController.getCategories);
+  app.get('/api/leaderboard', storiesController.getLeaderboard);
+  app.get('/api/search', storiesController.getSearch);
 
   // Serve the index.html with SSR
   app.use('*', async (req, res, next) => {
