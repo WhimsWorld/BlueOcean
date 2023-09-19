@@ -1,4 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import {
   List,
   Card,
@@ -9,77 +11,86 @@ import {
   ListItemSuffix,
   Avatar,
 } from '@material-tailwind/react';
+import { setStory } from '../../app/slices/storySlice';
 
-export default function Leaderboard() {
-  const list = [
-    {
-      title: 'A title',
-      description: 'Horror',
-      image: 'https://images.unsplash.com/photo-1551489186-cf8726f514f8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80',
-      count: 10,
-    },
-    {
-      title: 'A title',
-      description: 'Horror',
-      image: 'https://images.unsplash.com/photo-1551489186-cf8726f514f8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80',
-      count: 10,
-    },
-    {
-      title: 'A title',
-      description: 'Horror',
-      image: 'https://images.unsplash.com/photo-1551489186-cf8726f514f8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80',
-      count: 10,
-    },
-    {
-      title: 'A title',
-      description: 'Horror',
-      image: 'https://images.unsplash.com/photo-1551489186-cf8726f514f8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80',
-      count: 10,
-    },
-    {
-      title: 'A title with a ',
-      description: 'Horror',
-      image: 'https://images.unsplash.com/photo-1551489186-cf8726f514f8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80',
-      count: 10,
-    },
-    {
-      title: 'A title',
-      description: 'Horror',
-      image: 'https://images.unsplash.com/photo-1551489186-cf8726f514f8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80',
-      count: 10,
-    },
-  ];
+export default function Leaderboard({ leaderboard }) {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const clickHandler = (id) => {
+    dispatch(setStory(id));
+    navigate('/storyBoard');
+  };
+
+  const [popoverContent, setPopoverContent] = useState(null);
+  const [popoverPosition, setPopoverPosition] = useState({ top: 0, left: 0 });
+
+  const handleMouseEnter = (entry, event) => {
+    const content = (
+      <Typography variant="body2" color="blue-gray">
+        {entry.summary}
+      </Typography>
+    );
+
+    setPopoverContent(content);
+
+    const rect = event.target.getBoundingClientRect();
+    setPopoverPosition({
+      top: rect.top + 5 + window.scrollY,
+      left: 0,
+    });
+  };
+
+  const handleMouseLeave = () => {
+    setPopoverContent(null);
+  };
 
   return (
     <Card style={{ width: 250 }} className="w-96">
       <List>
-        {list.map(
-          (entry, i) => (
-            <ListItem>
-              <ListItemPrefix>
-                <Avatar variant="circular" alt="candice" src={entry.image} style={{ width: 43, height: 43 }} />
-              </ListItemPrefix>
-              <div>
-                <Typography variant="h6" color="blue-gray">
-                  {entry.title}
-                </Typography>
-                <Typography variant="small" color="gray" className="font-normal">
-                  {entry.description}
-                </Typography>
-              </div>
-              <ListItemSuffix>
-                  <Chip
-                    value={entry.count}
-                    variant="ghost"
-                    size="sm"
-                    className="rounded-full"
-                    // style={{left: 20}}
-                  />
-                </ListItemSuffix>
-            </ListItem>
-          ),
-        )}
+        {leaderboard.map((entry) => (
+          <ListItem
+            key={entry.story_id}
+            onClick={() => clickHandler(entry.story_id)}
+            onMouseEnter={(event) => handleMouseEnter(entry, event)}
+            onMouseLeave={handleMouseLeave}
+            className="relative"
+          >
+            <ListItemPrefix>
+              <Avatar
+                variant="circular"
+                alt="candice"
+                src={entry.thumbnail_url}
+                style={{ width: 43, height: 43 }}
+              />
+            </ListItemPrefix>
+
+            <div>
+              <Typography variant="h6" color="blue-gray">
+                {entry.title}
+              </Typography>
+            </div>
+            <ListItemSuffix>
+              <Chip
+                value={entry.like_count}
+                variant="ghost"
+                size="sm"
+                className="rounded-full"
+              />
+            </ListItemSuffix>
+          </ListItem>
+        ))}
       </List>
+      {popoverContent && (
+        <div
+          className="absolute bg-white shadow-lg rounded p-4 z-10"
+          style={{ ...popoverPosition }}
+          onMouseEnter={handleMouseEnter}
+          onMouseLeave={handleMouseLeave}
+        >
+          {popoverContent}
+        </div>
+      )}
     </Card>
   );
 }

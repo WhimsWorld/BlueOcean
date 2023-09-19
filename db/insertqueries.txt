@@ -192,37 +192,28 @@ INSERT INTO images (category_id, image_url, premium) VALUES
     (5, 'https://i.ibb.co/jJCCpGy/037.png', FALSE);
 
   -- Insert data into the stories table with matching thumbnail URLs
-<<<<<<< Updated upstream
-INSERT INTO stories (created_by_user_id, category_id, narrator_id, main_image_id, thumbnail_id, title, summary, max_characters, date_created, date_updated)
+
+INSERT INTO stories (created_by_user_id, category_id, narrator_id, main_image_id, thumbnail_id, like_count, title, summary, max_characters, date_created, date_updated)
 VALUES
   ('user1_id', 1, 'user1_id', (SELECT image_id FROM images WHERE category_id = 1 AND premium = FALSE ORDER BY RANDOM() LIMIT 1),
-      (SELECT thumbnail_id FROM thumbnail_images WHERE category_id = 1), 'Fantasy Story 1', 'This is the first story.', 8, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+      (SELECT thumbnail_id FROM thumbnail_images WHERE category_id = 1), 2, 'Fantasy Story 1', 'This is the first story.', 8, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
   ('user2_id', 2, 'user2_id', (SELECT image_id FROM images WHERE category_id = 2 AND premium = FALSE ORDER BY RANDOM() LIMIT 1),
-      (SELECT thumbnail_id FROM thumbnail_images WHERE category_id = 2), 'Forest Story 2', 'This is the second story.', 8, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+      (SELECT thumbnail_id FROM thumbnail_images WHERE category_id = 2), 100, 'Forest Story 2', 'This is the second story.', 8, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
   ('user3_id', 3, 'user3_id', (SELECT image_id FROM images WHERE category_id = 3 AND premium = FALSE ORDER BY RANDOM() LIMIT 1),
-      (SELECT thumbnail_id FROM thumbnail_images WHERE category_id = 3), 'Pirates Story 3', 'This is the third story.', 8, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-  ('user4_id', 4, 'user4_id', (SELECT image_id FROM images WHERE category_id = 4 AND premium = FALSE ORDER BY RANDOM() LIMIT 1),
-      (SELECT thumbnail_id FROM thumbnail_images WHERE category_id = 4), 'Steampunk Story 4', 'This is the fourth story.', 8, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
-=======
-INSERT INTO stories (created_by_user_id, category_id, narrator_id, main_image_id, thumbnail_id,  title, summary, max_characters, date_created, date_updated)
-VALUES
-  ('user1_id', 1, 'user1_id', (SELECT image_id FROM images WHERE category_id = 1 AND premium = FALSE ORDER BY RANDOM() LIMIT 1),
-      (SELECT thumbnail_id FROM thumbnail_images WHERE category_id = 1), 'Fantasy Story 1', 'This is the first story.', 8, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+      (SELECT thumbnail_id FROM thumbnail_images WHERE category_id = 3), 15, 'Pirates Story 3', 'This is the third story.', 8, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
   ('user3_id', 3, 'user3_id', (SELECT image_id FROM images WHERE category_id = 3 AND premium = FALSE ORDER BY RANDOM() LIMIT 1),
-      (SELECT thumbnail_id FROM thumbnail_images WHERE category_id = 3), 'Pirates Story 5', 'This is a story.', 8, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+      (SELECT thumbnail_id FROM thumbnail_images WHERE category_id = 3), 1000, 'Pirates Story 5', 'This is a story.', 8, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
   ('user4_id', 4, 'user4_id', (SELECT image_id FROM images WHERE category_id = 4 AND premium = FALSE ORDER BY RANDOM() LIMIT 1),
-      (SELECT thumbnail_id FROM thumbnail_images WHERE category_id = 4), 'Steampunk Story 6', 'This is another story.', 8, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+      (SELECT thumbnail_id FROM thumbnail_images WHERE category_id = 4), 20, 'Steampunk Story 6', 'This is another story.', 8, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
   ('user4_id', 4, 'user4_id', (SELECT image_id FROM images WHERE category_id = 4 AND premium = FALSE ORDER BY RANDOM() LIMIT 1),
-      (SELECT thumbnail_id FROM thumbnail_images WHERE category_id = 4),  'Steampunk Story 6', 'This is another story.', 8, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+      (SELECT thumbnail_id FROM thumbnail_images WHERE category_id = 4), 1, 'Steampunk Story 6', 'This is another story.', 8, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
   ('user4_id', 4, 'user4_id', (SELECT image_id FROM images WHERE category_id = 4 AND premium = FALSE ORDER BY RANDOM() LIMIT 1),
-      (SELECT thumbnail_id FROM thumbnail_images WHERE category_id = 4),  'Steampunk Story 6', 'This is another story.', 8, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+      (SELECT thumbnail_id FROM thumbnail_images WHERE category_id = 4), 2, 'Steampunk Story 6', 'This is another story.', 8, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
   ('user4_id', 4, 'user4_id', (SELECT image_id FROM images WHERE category_id = 4 AND premium = FALSE ORDER BY RANDOM() LIMIT 1),
-      (SELECT thumbnail_id FROM thumbnail_images WHERE category_id = 4),  'Steampunk Story 6', 'This is another story.', 8, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+      (SELECT thumbnail_id FROM thumbnail_images WHERE category_id = 4), 5, 'Steampunk Story 6', 'This is another story.', 8, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
   ('user4_id', 4, 'user4_id', (SELECT image_id FROM images WHERE category_id = 4 AND premium = FALSE ORDER BY RANDOM() LIMIT 1),
-      (SELECT thumbnail_id FROM thumbnail_images WHERE category_id = 4), 'Steampunk Story 6', 'This is another story.', 8, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+      (SELECT thumbnail_id FROM thumbnail_images WHERE category_id = 4), 1000, 'Steampunk Story 6', 'This is another story.', 8, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
   ('user4_id', 4, 'user4_id', (SELECT image_id FROM images WHERE category_id = 4 AND premium = FALSE ORDER BY RANDOM() LIMIT 1),
-      (SELECT thumbnail_id FROM thumbnail_images WHERE category_id = 4), 'Steampunk Story 6', 'This is another story.', 8, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
->>>>>>> Stashed changes
 
 -- Insert data into the characters table
 INSERT INTO characters (story_id, user_id, image_id, char_name, strength, weakness, backstory)

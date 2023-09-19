@@ -25,7 +25,10 @@ module.exports = {
   plugins: [
     'react',
   ],
+
   rules: {
     'react/prop-types': 0,
+    camelcase: 'off',
+    'no-underscore-dangle': 'off',
   },
 };
