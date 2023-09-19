@@ -105,3 +105,17 @@ export const getLeaderboard = async () => {
   }
   return response;
 };
+
+export const getStoryById = async (storyId) => {
+  const query = `
+    SELECT stories.*, images.image_url, categories.cat_name 
+    FROM stories
+    INNER JOIN images ON stories.main_image_id = images.image_id
+    INNER JOIN categories ON stories.category_id = categories.cat_id
+    WHERE stories.story_id = $1
+  `;
+
+  const values = [storyId];
+  const result = await executeQuery(query, values);
+  return result.rows[0];
+};
