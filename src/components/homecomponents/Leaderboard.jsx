@@ -19,6 +19,7 @@ export default function Leaderboard({ leaderboard }) {
 
   const clickHandler = (id) => {
     dispatch(setStory(id));
+    console.log(id);
     navigate('/storyBoard');
   };
 
