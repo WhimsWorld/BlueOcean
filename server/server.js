@@ -31,6 +31,9 @@ async function createServer() {
   app.get('/api/characters/user/:userId', usersController.getCharactersByUserId);
   app.post('/api/characters', usersController.addCharacter);
 
+  // used for character creation
+  app.get('/api/images', usersController.getImages);
+
   // Serve the index.html with SSR
   app.use('*', async (req, res, next) => {
     const url = req.originalUrl;

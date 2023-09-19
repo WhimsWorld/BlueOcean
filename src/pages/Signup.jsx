@@ -26,7 +26,7 @@ export default function Signup() {
     e.preventDefault();
     await createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
-        console.log('user', userCredential.user);
+        // console.log('user', userCredential.user);
         updateProfile(userCredential.user, {
           displayName: username,
         });

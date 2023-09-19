@@ -1,5 +1,5 @@
-import { initializeApp } from "firebase/app";
-import { getAuth } from "firebase/auth";
+import { initializeApp } from 'firebase/app';
+import { getAuth } from 'firebase/auth';
 import { getAnalytics, setUserProperties } from 'firebase/analytics';
 // https://firebase.google.com/docs/web/setup#available-libraries
 const firebaseConfig = {

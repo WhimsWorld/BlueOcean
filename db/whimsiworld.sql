@@ -1,5 +1,7 @@
 CREATE DATABASE whimsiworlddb;
 
+\c whimsiworlddb;
+-- above command automatically connects us to the database upon trying to import with \i
 DROP TABLE IF EXISTS users, gifs, sounds, images, thumbnail_images, categories, stories, user_story_likes, characters, posts, users_in_story, chat, templates CASCADE;
 
 CREATE TABLE users (

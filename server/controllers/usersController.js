@@ -59,3 +59,12 @@ export const addCharacter = async (req, res) => {
     res.status(500).send('Cannot add character.');
   }
 };
+
+export const getImages = async (req, res) => {
+  try {
+    const images = await characterModel.getImages();
+    res.send(images);
+  } catch (err) {
+    res.sendStatus(404);
+  }
+};
