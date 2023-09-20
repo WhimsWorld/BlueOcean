@@ -135,3 +135,5 @@ export default function StoryCard({
     </Card>
   );
 }
+
+const buttonBG = 'https://res.cloudinary.com/dnr41r1lq/image/upload/v1695229025/bronzetexture_cc3urf.webp';
