@@ -50,6 +50,7 @@ export const getCharactersByUserId = async (req, res) => {
 };
 
 export const addCharacter = async (req, res) => {
+  console.log('reqs are', req.body);
   try {
     const character = await characterModel.addCharacter(req.body);
     res.status(201).json(character);
