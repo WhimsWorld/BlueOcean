@@ -87,24 +87,27 @@ export default function App() {
             setCategories={setCategories}
           />
         </div>
-        <div className="item2 border-solid border-2 grid items-center content-baseline" style={{ backgroundColor: '#FAFAFA' }}>
+        <div className="item2 border-solid border-2 grid items-center content-baseline bg-contain" style={{ background: '#fbfbfb' }}>
           <Mystories
             showCheck={showCheck}
             myStoriesFilter={myStoriesFilter}
             isChecked={isChecked}
             setIsChecked={setIsChecked}
             setMyStoriesFilter={setMyStoriesFilter}
+            className="mr-5"
           />
-          <Filter setFilter={setFilter} />
-          <Search
-            category={category}
-            filter={filter}
-            myStoriesFilter={myStoriesFilter}
-            setIsChecked={setIsChecked}
-            setMyStoriesFilter={setMyStoriesFilter}
-            setNoCheck={setNoCheck}
-            setStories={setStories}
-          />
+          <div className="flex m-5">
+            <Filter setFilter={setFilter} />
+            <Search
+              category={category}
+              filter={filter}
+              myStoriesFilter={myStoriesFilter}
+              setIsChecked={setIsChecked}
+              setMyStoriesFilter={setMyStoriesFilter}
+              setNoCheck={setNoCheck}
+              setStories={setStories}
+            />
+          </div>
           {stories.map((story) => (
             <StoryCard
               story={story}
@@ -127,3 +130,4 @@ export default function App() {
 // imageURLs for background panels Categories and LeaderBoard
 const left = 'https://res.cloudinary.com/dnr41r1lq/image/upload/v1695191085/imgonline-com-ua-TextureSeamless-MkFWyZCWhQi_btfbva.png';
 const right = 'https://res.cloudinary.com/dnr41r1lq/image/upload/v1695192325/image_uot0j6.png';
+const storybg = 'https://res.cloudinary.com/dnr41r1lq/image/upload/v1695235263/paper2_kag1pb.jpg';
