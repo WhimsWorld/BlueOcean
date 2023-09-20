@@ -105,8 +105,8 @@ export default function StoryCreationForm() {
         title: title,
         summary: summary,
         max_characters: maxPlayers,
-      }).then((error) => {
-        return console.log(error);
+      }).then((res) => {
+        navigate(`/storyBoard/${res.data.story_id}`);
       });
     }
   };

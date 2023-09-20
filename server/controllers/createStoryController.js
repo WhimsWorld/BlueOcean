@@ -20,8 +20,8 @@ export const getAllThumbnailImages = async (req, res) => {
 
 export const addStory = async (req, res) => {
   try {
-    createStoryModel.createStory(req.body);
-    res.sendStatus(201);
+    const story = await createStoryModel.createStory(req.body);
+    res.json(story);
   } catch (err) {
     res.status(500).send('Error posting story');
   }
