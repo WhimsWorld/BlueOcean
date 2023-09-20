@@ -16,12 +16,18 @@ export default function App() {
   const [filter, setFilter] = useState('Top');
   const [leaderboard, setLeaderboard] = useState([]);
   const [showCheck, setNoCheck] = useState(false);
+  const [likedStories, setLikedStories] = useState({});
+  const [likeUpdate, setLikeUpdate] = useState('');
+  const [isChecked, setIsChecked] = useState(showCheck);
 
   useEffect(() => {
     axios.get('/api/leaderboard')
       .then((response) => {
         setLeaderboard(response.data);
       });
+  }, [likeUpdate]);
+
+  useEffect(() => {
     axios.get('/api/categories')
       .then((response) => {
         const tempCategories = response.data;
@@ -34,8 +40,24 @@ export default function App() {
         };
         tempCategories.unshift(all);
         setCategories(tempCategories);
-      });
+      })
+      .catch(() => {});
   }, []);
+
+  useEffect(() => {
+    const dataParams = {
+      params: {
+        userId: 'user3_id', //need to update this later
+      },
+    };
+    axios.get('api/likes', dataParams)
+      .then((response) => {
+        setLikedStories(response.data);
+      })
+      .catch(() => {});
+  }, []); //can i base this on a change of user in redux?
+
+  // const storyId = useSelector((state) => state.story.storyId);
 
   useEffect(() => {
     const dataParams = {
@@ -43,17 +65,15 @@ export default function App() {
         category,
         filter,
         myStoriesFilter,
-        userId: "user3_id", //need to update this later
+        userId: 'user3_id', //need to update this later
       },
     };
-
     axios.get('/api/stories', dataParams)
       .then((response) => {
         setStories(response.data);
-      });
-  }, [category, filter, myStoriesFilter]);
-  const left = 'https://res.cloudinary.com/dnr41r1lq/image/upload/v1695191085/imgonline-com-ua-TextureSeamless-MkFWyZCWhQi_btfbva.png';
-  const right = 'https://res.cloudinary.com/dnr41r1lq/image/upload/v1695192325/image_uot0j6.png';
+      })
+      .catch(() => {});
+  }, [category, filter, myStoriesFilter, likeUpdate]);
 
   return (
     <div>
@@ -71,16 +91,30 @@ export default function App() {
           <Mystories
             showCheck={showCheck}
             myStoriesFilter={myStoriesFilter}
+            isChecked={isChecked}
+            setIsChecked={setIsChecked}
             setMyStoriesFilter={setMyStoriesFilter}
           />
           <Filter setFilter={setFilter} />
           <Search
             category={category}
             filter={filter}
+            myStoriesFilter={myStoriesFilter}
+            setIsChecked={setIsChecked}
+            setMyStoriesFilter={setMyStoriesFilter}
             setNoCheck={setNoCheck}
             setStories={setStories}
           />
-          {stories.map((story) => <StoryCard story={story} key={story.story_id} />)}
+          {stories.map((story) => (
+            <StoryCard
+              story={story}
+              likedStories={likedStories}
+              likeUpdate={likeUpdate}
+              setLikeUpdate={setLikeUpdate}
+              setLikedStories={setLikedStories}
+              key={story.story_id}
+            />
+          ))}
         </div>
         <div className="item3 border-solid border-2 bg-auto" style={{ backgroundImage: `url(${right})` }}>
           <Leaderboard leaderboard={leaderboard} />
@@ -89,3 +123,7 @@ export default function App() {
     </div>
   );
 }
+
+// imageURLs for backgrounds
+const left = 'https://res.cloudinary.com/dnr41r1lq/image/upload/v1695191085/imgonline-com-ua-TextureSeamless-MkFWyZCWhQi_btfbva.png';
+const right = 'https://res.cloudinary.com/dnr41r1lq/image/upload/v1695192325/image_uot0j6.png';

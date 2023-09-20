@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import React from 'react';
 import { List, ListItem, Card } from '@material-tailwind/react';
 
 export default function Categories({

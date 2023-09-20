@@ -105,3 +105,95 @@ export const getLeaderboard = async () => {
   }
   return response;
 };
+
+export const getStoryById = async (storyId) => {
+  const query = `
+    SELECT stories.*, images.image_url, categories.cat_name
+    FROM stories
+    INNER JOIN images ON stories.main_image_id = images.image_id
+    INNER JOIN categories ON stories.category_id = categories.cat_id
+    WHERE stories.story_id = $1
+  `;
+
+  const values = [storyId];
+  const result = await executeQuery(query, values);
+  return result.rows[0];
+};
+
+export const getLikedStories = async (user) => {
+  const query = `
+    SELECT * FROM user_story_likes WHERE user_id = '${user}'
+  `;
+  const result = await executeQuery(query);
+  const response = {};
+  for (let i = 0; i < result.rows.length; i += 1) {
+    const storyId = result.rows[i].story_id;
+    response[storyId] = true;
+  }
+  return response;
+};
+
+export const postLikedStory = async (user, story) => {
+  const user_id = user;
+  const query = `
+  WITH inserted_row AS (
+    INSERT INTO user_story_likes (user_id, story_id)
+    VALUES ('${user_id}', ${story})
+    RETURNING user_id, story_id
+  ),
+  increment_like_count AS (
+    UPDATE stories
+    SET like_count = like_count + 1
+    WHERE story_id = ${story}
+    RETURNING story_id
+  )
+  SELECT ir.user_id, ir.story_id
+  FROM inserted_row ir
+  UNION ALL
+  SELECT usl.user_id, usl.story_id
+  FROM user_story_likes usl
+  JOIN users u ON usl.user_id = u.user_id
+  WHERE u.user_id = '${user_id}';
+
+`;
+
+  const result = await executeQuery(query);
+  const response = {};
+  for (let i = 0; i < result.rows.length; i += 1) {
+    const storyId = result.rows[i].story_id;
+    response[storyId] = true;
+  }
+  return response;
+};
+
+export const deleteLikedStory = async (user, story) => {
+  const user_id = user;
+  const query = `
+  WITH deleted_row AS (
+    DELETE FROM user_story_likes
+    WHERE user_id = '${user_id}' AND story_id = ${story}
+    RETURNING user_id, story_id
+  ),
+  decrement_like_count AS (
+    UPDATE stories
+    SET like_count = like_count - 1
+    WHERE story_id = ${story}
+    RETURNING story_id
+  )
+  SELECT dr.user_id, dr.story_id
+  FROM deleted_row dr
+  UNION ALL
+  SELECT usl.user_id, usl.story_id
+  FROM user_story_likes usl
+  JOIN users u ON usl.user_id = u.user_id
+  WHERE u.user_id = '${user_id}';
+
+    `;
+  const result = await executeQuery(query);
+  const response = {};
+  for (let i = 0; i < result.rows.length; i += 1) {
+    const storyId = result.rows[i].story_id;
+    response[storyId] = true;
+  }
+  return response;
+};

@@ -11,8 +11,11 @@ import {
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { signInWithEmailAndPassword } from 'firebase/auth';
+import { useDispatch, useSelector } from 'react-redux';
 import StickyNavbar from '../components/StickyNavbar';
 import { auth } from '../utils/firebase';
+import { setCurrentUser } from '../app/slices/userSlice';
+import store from '../app/store';
 
 export default function Login() {
   const navigate = useNavigate();
@@ -20,12 +23,20 @@ export default function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
+  const dispatch = useDispatch();
+  const currentUser = useSelector(state => state.user.user);
+
+  const handleLogin = async (userid) => {
+    await dispatch(setCurrentUser(userid));
+  };
+
   async function toLogin(e) {
     e.preventDefault();
     await signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         // console.log('user', userCredential.user);
-        navigate('/');
+        handleLogin(userCredential.user.uid);
+        navigate('/login');
       })
       .catch((err) => {
         const errorCode = err.code;
@@ -36,6 +47,7 @@ export default function Login() {
 
   return (
     <div>
+      {console.log('store', store.getState())}
       <StickyNavbar />
       <Card className="w-96">
         <CardHeader

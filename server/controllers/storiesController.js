@@ -52,3 +52,46 @@ export const getLeaderboard = async (req, res) => {
     res.status(500).send('Error retrieving stories.like_count');
   }
 };
+
+export const getStoryById = async (req, res) => {
+  const { storyId } = req.params;
+  console.log('Received storyId:', req.params.storyId);
+
+  try {
+    const story = await storiesModel.getStoryById(storyId);
+    res.json(story);
+  } catch (err) {
+    res.status(500).send('Error retrieving story.');
+  }
+};
+
+export const getLikedStories = async (req, res) => {
+  const { userId } = req.query;
+  try {
+    const liked = await storiesModel.getLikedStories(userId);
+    res.json(liked);
+  } catch (err) {
+    res.status(500).send('Error retriveiving liked stories');
+  }
+};
+
+export const postLikedStory = async (req, res) => {
+  const { userId, storyId } = req.body;
+
+  try {
+    const liked = await storiesModel.postLikedStory(userId, storyId);
+    res.json(liked);
+  } catch (err) {
+    res.status(500).send('Error retriveiving liked stories');
+  }
+};
+
+export const deleteLikedStory = async (req, res) => {
+  const { userId, storyId } = req.body;
+  try {
+    const liked = await storiesModel.deleteLikedStory(userId, storyId);
+    res.json(liked);
+  } catch (err) {
+    res.status(500).send('Error retriveiving liked stories');
+  }
+};
