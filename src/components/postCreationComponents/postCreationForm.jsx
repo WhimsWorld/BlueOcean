@@ -16,7 +16,7 @@ import {
 import { useSelector } from 'react-redux';
 import { auth } from '../../utils/firebase.js';
 
-function MenuWithScrollingContent({ setSelectedImage }) {
+function ImagesMenu({ setSelectedImage }) {
   const [images, setImages] = useState([]);
 
   useEffect(() => {
@@ -31,7 +31,7 @@ function MenuWithScrollingContent({ setSelectedImage }) {
       <MenuHandler>
         <Button>Select an Image</Button>
       </MenuHandler>
-      <MenuList classname="max-h-96">
+      <MenuList className="max-h-96">
         {images.map((image) => (<MenuItem key={image.image_id + image.image_url}><img onClick={() => setSelectedImage({ image_url: image.image_url, image_id: image.image_id, category_id: image.category_id })} alt="" src={image.image_url} /></MenuItem>))}
       </MenuList>
     </Menu>
@@ -53,13 +53,12 @@ function GifsMenu({ setSelectedGif }) {
       <MenuHandler>
         <Button>Select a Gif</Button>
       </MenuHandler>
-      <MenuList classname="max-h-96">
+      <MenuList className="max-h-96">
         {gifs.map((gif) => (<MenuItem key={gif.gif_id + gif.gif_url}><img onClick={() => setSelectedGif({ gif_url: gif.gif_url, gif_id: gif.gif_id, category_id: gif.category_id })} alt="" src={gif.gif_url} /></MenuItem>))}
       </MenuList>
     </Menu>
   );
 }
-
 
 function SoundsMenu({ setSelectedSound }) {
   const [sounds, setSounds] = useState([]);
@@ -67,7 +66,6 @@ function SoundsMenu({ setSelectedSound }) {
     axios.get('/api/postsounds')
       .then((res) => {
         setSounds(res.data);
-        console.log('did I get sound data', res.data);
       })
       .catch((err) => console.log(err));
   }, []);
@@ -76,7 +74,7 @@ function SoundsMenu({ setSelectedSound }) {
       <MenuHandler>
         <Button>Select a Sound</Button>
       </MenuHandler>
-      <MenuList>
+      <MenuList className="max-h-96">
         {sounds.map((sound) => (
           <MenuItem
             key={sound.sound_id}
@@ -101,24 +99,18 @@ export default function StoryCreationForm() {
   const [selectedSound, setSelectedSound] = useState({});
   const [selectedGif, setSelectedGif] = useState({});
   const storyId = useSelector((state) => state.story.storyId);
-  const [audio] = useState(new Audio());
   const userId = 'user1_id';
-
-  const playAudio = (soundUrl) => {
-    console.log('soundurl', soundUrl);
-    audio.src = soundUrl;
-    audio.play();
-  };
 
   let uid;
   let displayName;
+  fetchUser();
   async function fetchUser() {
     await onAuthStateChanged(auth, (user) => {
       if (user) {
         uid = user.uid;
         displayName = user.displayName;
-        console.log('uid', uid);
-        console.log('display name:', displayName);
+        // console.log('uid', uid);
+        // console.log('display name:', displayName);
       } else {
         navigate('/login');
       }
@@ -126,12 +118,6 @@ export default function StoryCreationForm() {
   }
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("this is the user", userId);
-    console.log("this is the story id", storyId);
-    console.log("this is the content", content);
-    console.log("this is the image id", selectedImage.image_id);
-    console.log("this is the sound id", selectedSound.sound_id);
-    console.log("this is the gif id", selectedGif.gif_id);
     if (content === '') {
       document.getElementById('setContent').focus();
     } else if (selectedImage.image_id === undefined) {
@@ -146,7 +132,13 @@ export default function StoryCreationForm() {
         sound_id: selectedSound.sound_id,
         gif_id: selectedGif.gif_id,
         content,
-      }).then((error) => console.log(error));
+      })
+        .then((response) => {
+          if (response.status === 201) {
+            navigate(`/storyBoard/${storyId}`);
+          }
+        })
+        .catch((error) => console.log(error));
     }
   };
   return (
@@ -157,12 +149,17 @@ export default function StoryCreationForm() {
       <form className="mt-8 mb-2 w-full max-w-screen-lg ">
         <div className="mb-4 flex flex-col gap-6">
           <Textarea variant="outlined" label="Content" value={content} onChange={(e) => setContent(e.target.value)} />
-          <MenuWithScrollingContent setSelectedImage={setSelectedImage} />
+          <ImagesMenu setSelectedImage={setSelectedImage} />
           {selectedImage.image_url !== '' ? <img alt="" src={selectedImage.image_url} /> : null}
           <GifsMenu setSelectedGif={setSelectedGif} />
           {selectedGif.gif_url !== '' ? <img alt="" src={selectedGif.gif_url} /> : null}
           <SoundsMenu setSelectedSound={setSelectedSound} />
-          {selectedSound.sound_url !== undefined ? <Button color="blue" type="button" onClick={() => playAudio(`https://docs.google.com/uc?export=open&id=${selectedSound.sound_url}`)}>Play Sound</Button> : null}
+          {selectedSound.sound_url !== undefined
+            ? (
+              <audio className="player" controls preload="none">
+                <source src={`https://docs.google.com/uc?export=open&id=${selectedSound.sound_url}`} type="audio/mp3" />
+              </audio>
+            ) : null}
         </div>
         <Button type="submit" className="mt-6 w-1/2 self-center" onClick={handleSubmit}>
           Create

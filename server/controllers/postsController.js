@@ -58,7 +58,6 @@ export const addPost = async (req, res) => {
   const imageId = req.body.main_image_id;
   const gifId = req.body.gif_id;
   const soundId = req.body.sound_id;
-  console.log("This is the sound id", soundId);
   const { content } = req.body;
   const narratorPost = false;
   try {
@@ -72,7 +71,7 @@ export const addPost = async (req, res) => {
       narratorPost,
       content,
     );
-    res.json(post);
+    res.sendStatus(201);
   } catch (err) {
     res.status(500).send('Error adding post.');
   }

@@ -24,7 +24,7 @@ export default function StoryBanner({ storyId }) {
 
   return (
     <Card className="w-full max-w-[26rem] shadow-lg">
-      <CardHeader floated={false} color="grey">
+      <CardHeader floated={false} color="gray">
         <img
           src={storyData.image_url}
           alt={storyData.title}

@@ -41,8 +41,8 @@ export default function StorySection() {
   return (
     <>
       <Button color="blue" type="button" onClick={() => clickHandler(storyId)}>Create Post</Button>
-      {posts.map((post) => (
-        <Card className="mt-6 w-96">
+      {posts.map((post, index) => (
+        <Card className="mt-6 w-96" key={post.post_id}>
           <CardBody>
             <Typography variant="h5" color="blue-gray" className="mb-2">
               By
