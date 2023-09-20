@@ -1,4 +1,5 @@
-CREATE DATABASE whimsiworlddb;
+SELECT 'CREATE DATABASE whimsiworlddb'
+WHERE NOT EXISTS (SELECT FROM pg_database WHERE datname = 'whimsiworlddb')\gexec
 
 \c whimsiworlddb;
 -- above command automatically connects us to the database upon trying to import with \i

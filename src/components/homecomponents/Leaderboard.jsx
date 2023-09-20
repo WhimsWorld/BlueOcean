@@ -19,17 +19,20 @@ export default function Leaderboard({ leaderboard }) {
 
   const clickHandler = (id) => {
     dispatch(setStory(id));
-    console.log(id);
-    navigate('/storyBoard');
+    navigate(`/storyBoard/${id}`);
   };
 
   const [popoverContent, setPopoverContent] = useState(null);
   const [popoverPosition, setPopoverPosition] = useState({ top: 0, left: 0 });
 
   const handleMouseEnter = (entry, event) => {
+    const summary = entry.summary.length > 200
+      ? entry.summary.slice(0, 200) + '...'
+      : entry.summary;
+
     const content = (
-      <Typography variant="body2" color="blue-gray">
-        {entry.summary}
+      <Typography variant="h6" color="blue-gray">
+        {summary}
       </Typography>
     );
 
@@ -47,7 +50,7 @@ export default function Leaderboard({ leaderboard }) {
   };
 
   return (
-    <Card style={{ width: 250 }} className="w-96">
+    <Card style={{ maxWidth: '250px' }} className="h-full rounded-none rounded-r-xl">
       <List>
         {leaderboard.map((entry) => (
           <ListItem
@@ -61,8 +64,10 @@ export default function Leaderboard({ leaderboard }) {
               <Avatar
                 variant="circular"
                 alt="candice"
-                src={entry.thumbnail_url}
-                style={{ width: 43, height: 43 }}
+                // src={entry.thumbnail_url}
+                src="https://res.cloudinary.com/dnr41r1lq/image/upload/v1695227750/whimsibubble_ch5qpw.png"
+                // className={`before:bg-${entry.thumbnail_url}`}
+                style={{ width: 50, height: 50, overflow: 'hidden', before: { content: entry.thumbnail_url, position: 'absolute' } }}
               />
             </ListItemPrefix>
 

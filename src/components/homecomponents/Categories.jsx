@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import React from 'react';
 import { List, ListItem, Card } from '@material-tailwind/react';
 
 export default function Categories({
@@ -22,11 +21,11 @@ export default function Categories({
   };
 
   return (
-    <Card className="w-96">
-      <List>
+    <Card className="rounded-none rounded-l-xl" style={{ maxWidth: '250px', justifySelf: 'flex-end' }}>
+      <List className="min-w-[0]">
         {categories.map((categoryEntry) => (
           <ListItem
-            style={{ background: categoryEntry.selected ? 'grey' : 'white' }}
+            style={{ background: categoryEntry.selected ? '#F4E3ED' : 'white' }}
             selected={categoryEntry.selected}
             name={categoryEntry.cat_name}
             key={categoryEntry.cat_name}

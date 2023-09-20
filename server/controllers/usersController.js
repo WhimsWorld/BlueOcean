@@ -24,13 +24,11 @@ export const getUserById = async (req, res) => {
 };
 
 export const addUser = async (req, res) => {
-  try {
-    const { user_id: userId, username } = req.body;
-    const user = await userModel.addUser(userId, username);
-    res.status(201).json(user);
-  } catch (err) {
-    res.status(500).send('Cannot add user.');
-  }
+  const userId = req.body.user_id;
+  const username = req.body.display_name;
+  userModel.addUser(userId, username)
+    .then(() => res.sendStatus(201))
+    .catch(() => res.sendStatus(500));
 };
 
 export const getCharacters = async (req, res) => {

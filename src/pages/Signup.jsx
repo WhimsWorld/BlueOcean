@@ -12,6 +12,7 @@ import {
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
+import axios from 'axios';
 import { auth } from '../utils/firebase';
 import StickyNavbar from '../components/StickyNavbar';
 
@@ -21,23 +22,23 @@ export default function Signup() {
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [uid, setUID] = useState('');
+  const addUser = (userID) => {
+    axios.post('/api/users', {
+      user_id: userID,
+      display_name: username,
+    })
+      .then(() => console.log('successful post'))
+      .catch((err) => console.log(err));
+  };
 
   async function toSubmit(e) {
     e.preventDefault();
     await createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
-        // console.log('user', userCredential.user);
-        updateProfile(userCredential.user, {
-          displayName: username,
-        });
-        /**
-         * maybe use this as a way to story data about user. This will be a unique value per
-        individual user otherwise, how will we be able to keep track of individual
-        users info
-         */
+        addUser(userCredential.user.uid);
         navigate('/login');
       })
-      .then((data) => console.log('data', data))
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
@@ -47,7 +48,7 @@ export default function Signup() {
   return (
     <div>
       <StickyNavbar />
-      <Card className="w-96">
+      <Card className="w-96" style={{margin: 'auto' }}>
         <CardHeader
           variant="gradient"
           color="blue"
