@@ -28,12 +28,14 @@ export default function LiveChat({ storyId }) {
   const handleSendMessage = () => {
     if (!userId) {
       navigate('/login');
+      return;
     }
     if (message.trim()) {
       dispatch(postMessage({ storyId, userId, data: message }));
       setMessage('');
     }
   };
+
   return (
     <Card className="mt-6 h-[30rem] w-96 items-center flex flex-col justify-between">
       <div className="chat-messages bg-white w-5/6 overflow-y-auto">

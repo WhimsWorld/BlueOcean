@@ -19,3 +19,10 @@ export const addUser = async (userId, username) => {
   const result = await executeQuery(query, values);
   return result.rows[0];
 };
+
+export const updateUserPremiumStatus = async (userId, premiumStatus) => {
+  const query = 'UPDATE users SET premium = $2 WHERE user_id = $1 RETURNING *';
+  const values = [userId, premiumStatus];
+  const result = await executeQuery(query, values);
+  return result.rows[0];
+};

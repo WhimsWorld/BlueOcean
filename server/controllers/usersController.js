@@ -66,3 +66,22 @@ export const getImages = async (req, res) => {
     res.sendStatus(404);
   }
 };
+
+export const updateUserPremiumStatus = async (req, res) => {
+  const { premium } = req.body; // Extract the premium value from request body
+
+  if (typeof premium !== 'boolean') {
+    return res.status(400).send('Invalid premium value. Expected a boolean.');
+  }
+
+  try {
+    const result = await userModel.updateUserPremiumStatus(req.params.userId, premium);
+    if (result) {
+      res.json({ message: `User premium status set to ${premium}.` });
+    } else {
+      res.status(404).send('User not found.');
+    }
+  } catch (err) {
+    res.status(500).send('Error updating user premium status.');
+  }
+};
