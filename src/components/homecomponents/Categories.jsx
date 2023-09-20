@@ -21,7 +21,8 @@ export default function Categories({
   };
 
   return (
-    <Card className="rounded-none rounded-l-xl" style={{ maxWidth: '250px', justifySelf: 'flex-end' }}>
+    <Card className="rounded-none rounded-l-xl" style={{ maxWidth: '250px', justifySelf: 'flex-end', backgroundImage: `url(${leftPanel})`, backgroundSize: 'auto', backgroundRepeat: 'round' }}>
+      <span className="self-center pt-5 pb-3">Categories</span>
       <List className="min-w-[0]">
         {categories.map((categoryEntry) => (
           <ListItem
@@ -38,3 +39,5 @@ export default function Categories({
     </Card>
   );
 }
+
+const leftPanel = 'https://res.cloudinary.com/dnr41r1lq/image/upload/v1695243090/paperLeft_uz9wcj.png';

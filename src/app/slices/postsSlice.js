@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { fetchPostsByStoryId } from '../../apis/postsAPI';
+import { fetchPostsByStoryId, addPost } from '../../apis/postsAPI';
 
 export const postsSlice = createSlice({
   name: 'posts',
@@ -16,5 +16,20 @@ export const fetchPostsById = (storyId) => (dispatch) => {
     dispatch(setPosts(data));
   });
 };
+
+// Async thunk to post a new chat message
+export const postMessage = createAsyncThunk(
+  'post/addPost',
+  async ({ storyId, userId, data }) => {
+    try {
+      console.log(storyId, userId, data);
+      const response = await addPost({ storyId, userId, data });
+      return response;
+    } catch (error) {
+      console.error('Error in addPost:', error);
+      return thunkAPI.rejectWithValue(error.response.data);
+    }
+  },
+);
 
 export default postsSlice.reducer;

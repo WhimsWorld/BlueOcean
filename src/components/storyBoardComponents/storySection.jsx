@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import {
   Card,
   CardBody,
@@ -11,9 +12,15 @@ import { fetchPostsById } from '../../app/slices/postsSlice';
 
 export default function StorySection() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const storyId = useSelector((state) => state.story.storyId);
   const posts = useSelector((state) => state.posts);
   const [audio] = useState(new Audio());
+
+  const clickHandler = (id) => {
+    navigate(`/createPost/${id}`);
+  };
+
   const playAudio = (soundUrl) => {
     audio.src = soundUrl;
     audio.play();
@@ -33,8 +40,9 @@ export default function StorySection() {
 
   return (
     <>
-      {posts.map((post) => (
-        <Card className="mt-6 w-96">
+      <Button color="blue" type="button" onClick={() => clickHandler(storyId)}>Create Post</Button>
+      {posts.map((post, index) => (
+        <Card className="mt-6 w-96" key={post.post_id}>
           <CardBody>
             <Typography variant="h5" color="blue-gray" className="mb-2">
               By

@@ -1,15 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import {
-  Textarea, Button, IconButton, Card, Chip,
+  Textarea, IconButton, Card, Chip,
 } from '@material-tailwind/react';
 import { useSelector, useDispatch } from 'react-redux';
+import Cookies from 'js-cookie';
+import { useNavigate } from 'react-router-dom';
 import { fetchChat, postMessage } from '../../app/slices/chatSlice';
 
 export default function LiveChat({ storyId }) {
   const [message, setMessage] = useState('');
-  const userId = 'user1_id';
-  // const storyId = useSelector((state) => state.story.storyId);
+  const userId = Cookies.get('userId');
   const chatMessages = useSelector((state) => state.chat.messages);
+  const navigate = useNavigate();
 
   const dispatch = useDispatch();
 
@@ -24,6 +26,10 @@ export default function LiveChat({ storyId }) {
   };
 
   const handleSendMessage = () => {
+    if (!userId) {
+      navigate('/login');
+      return;
+    }
     if (message.trim()) {
       dispatch(postMessage({ storyId, userId, data: message }));
       setMessage('');
@@ -31,24 +37,29 @@ export default function LiveChat({ storyId }) {
   };
 
   return (
-    <Card className="mt-6 h-1/2 w-96 items-center">
-      <div className="chat-messages">
+    <Card className="mt-6 h-[30rem] w-96 items-center flex flex-col justify-between">
+      <div className="chat-messages bg-white w-5/6 overflow-y-auto">
         {chatMessages.map((msg) => (
-          <div key={msg.message_id} className={`message ${msg.user_id === userId ? 'right' : 'left'}`}>
-            <div className="user">{msg.user_id}</div>
-            <div className="text">{msg.data}</div>
-            <div className="time">{new Date(msg.date_created).toLocaleTimeString()}</div>
+          <div key={msg.message_id} className={`${msg.user_id === userId ? 'ml-28' : 'ml-2'}`}>
+            <div className="user text-sm">
+              {msg.username}
+              {' '}
+              {new Date(msg.date_created).toLocaleTimeString()}
+            </div>
+            <div className={`${msg.user_id === userId ? 'bg-whimsipink ' : ''} border rounded-md m-1 p-2 px-4 w-44 text-black`}>
+              {msg.data}
+            </div>
           </div>
         ))}
       </div>
 
-      <div className="flex w-5/6 flex-row gap-2 rounded-[99px] border border-gray-900/10 bg-gray-900/5 p-2">
+      <div className="flex w-5/6 flex-row gap-2 my-4 rounded-[99px] border border-gray-900/10 bg-gray-900/5 p-2">
         <Textarea
           value={message}
           onChange={handleMessageChange}
           rows={1}
           resize
-          placeholder="Your Message"
+          placeholder="Share your thoughts..."
           className="min-h-full !border-0 focus:border-transparent "
           containerProps={{
             className: 'grid h-full',

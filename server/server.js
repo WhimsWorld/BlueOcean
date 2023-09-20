@@ -32,6 +32,7 @@ async function createServer() {
   app.get('/api/users', usersController.getAllUsers);
   app.get('/api/users/:userId', usersController.getUserById);
   app.post('/api/users', usersController.addUser);
+  app.patch('/api/users/:userId/premium', usersController.updateUserPremiumStatus);
 
   // select characters
   app.get('/api/characters', usersController.getCharacters);
@@ -58,10 +59,10 @@ async function createServer() {
 
   // story posts
   app.get('/api/posts/:storyId', postsController.getPosts);
-
-  // chat handlers
-  app.post('/api/chat', chatController.postMessage);
-  app.get('/api/chat/story/:storyId', chatController.getChatByStory);
+  app.get('/api/postsimages', postsController.getThemeImages);
+  app.get('/api/postsounds', postsController.getSounds);
+  app.get('/api/postsgifs', postsController.getGifs);
+  app.post('/api/posts', postsController.addPost);
 
   // chat handlers
   app.post('/api/chat', chatController.postMessage);
