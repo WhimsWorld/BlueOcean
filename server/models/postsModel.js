@@ -11,6 +11,5 @@ export const getPosts = async (storyId) => {
 
   const values = [storyId];
   const result = await executeQuery(query, values);
-  console.log(result.rows);
   return result.rows;
 };
