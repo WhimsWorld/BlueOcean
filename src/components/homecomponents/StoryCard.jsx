@@ -120,14 +120,14 @@ export default function StoryCard({
           {story.date_created}
         </Typography>
         <Typography color="gray">
-          {story.summary}
+          {story.summary.length > 150 ? `${story.summary.slice(0, 150)} ...` : story.summary}
         </Typography>
         <CardFooter className="p-2 self-end absolute" style={{ bottom: '5%' }}>
           <Button
             size="lg"
             onClick={clickHandler}
             fullWidth
-            style={{ backgroundImage: `url(${buttonBG})`, backgroundSize: 'cover' }}
+            style={{ backgroundImage: `url(${buttonBG})`, backgroundSize: 'auto', opacity: 0.8 }}
           >
             Read Story
           </Button>
