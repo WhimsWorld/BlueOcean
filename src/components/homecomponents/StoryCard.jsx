@@ -113,14 +113,14 @@ export default function StoryCard({
             </svg>
             {story.like_count}
           </Typography>
-          <Typography variant="h4" color="blue-gray" className="font-medium">
+          <Typography variant="h4" color="black" className="font-medium font-heading">
             {story.title}
           </Typography>
         </div>
         <Typography color="gray">
           {dateFormat(story.date_created)}
         </Typography>
-        <Typography color="gray">
+        <Typography color="gray" className="font-body">
           {story.summary.length > 150 ? `${story.summary.slice(0, 150)} ...` : story.summary}
         </Typography>
         <CardFooter className="p-2 self-end absolute" style={{ bottom: '5%' }}>

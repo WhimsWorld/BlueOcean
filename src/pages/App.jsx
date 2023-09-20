@@ -96,7 +96,7 @@ export default function App() {
             setMyStoriesFilter={setMyStoriesFilter}
             className="mr-5"
           />
-          <div className="flex m-5">
+          <div className="flex m-5 justify-evenly">
             <Filter setFilter={setFilter} />
             <Search
               category={category}
