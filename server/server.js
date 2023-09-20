@@ -9,7 +9,7 @@ import { createServer as createViteServer } from 'vite';
 import * as usersController from './controllers/usersController.js';
 // eslint-disable-next-line import/extensions
 import * as storiesController from './controllers/storiesController.js';
-
+import * as createStoryController from './controllers/createStoryController.js';
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 async function createServer() {
@@ -36,6 +36,11 @@ async function createServer() {
 
   // character creation
   app.get('/api/images', usersController.getImages);
+
+  // story creation
+  app.get('/api/storyimages', createStoryController.getAllThemeImages);
+  app.get('/api/storythumbnails', createStoryController.getAllThumbnailImages);
+  app.post('/api/stories', createStoryController.addStory);
 
   // select stories
   app.get('/api/stories', storiesController.getStories);
