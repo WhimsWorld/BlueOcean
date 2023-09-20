@@ -9,7 +9,11 @@ import { createServer as createViteServer } from 'vite';
 import * as usersController from './controllers/usersController.js';
 // eslint-disable-next-line import/extensions
 import * as storiesController from './controllers/storiesController.js';
+// eslint-disable-next-line import/extensions
+import * as chatController from './controllers/chatController.js';
+
 import * as createStoryController from './controllers/createStoryController.js';
+
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 async function createServer() {
@@ -48,6 +52,10 @@ async function createServer() {
   app.get('/api/leaderboard', storiesController.getLeaderboard);
   app.get('/api/search', storiesController.getSearch);
   app.get('/api/stories/:storyId', storiesController.getStoryById);
+
+  // chat handlers
+  app.post('/api/chat', chatController.postMessage);
+  app.get('/api/chat/story/:storyId', chatController.getChatByStory);
 
   app.use('/api/*', (req, res, next) => {
     res.status(404).send('Not Found');
