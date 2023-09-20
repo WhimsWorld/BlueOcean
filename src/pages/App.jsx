@@ -52,12 +52,14 @@ export default function App() {
         setStories(response.data);
       });
   }, [category, filter, myStoriesFilter]);
+  const left = 'https://res.cloudinary.com/dnr41r1lq/image/upload/v1695191085/imgonline-com-ua-TextureSeamless-MkFWyZCWhQi_btfbva.png';
+  const right = 'https://res.cloudinary.com/dnr41r1lq/image/upload/v1695192325/image_uot0j6.png';
 
   return (
     <div>
       <StickyNavbar />
       <div className="grid grid-cols-[25%_50%_25%]">
-        <div className="item1 border-solid border-2">
+        <div className="item1 border-solid border-2 bg-auto" style={{ backgroundImage: `url(${left})` }}>
           <Categories
             category={category}
             categories={categories}
@@ -80,7 +82,7 @@ export default function App() {
           />
           {stories.map((story) => <StoryCard story={story} key={story.story_id} />)}
         </div>
-        <div className="item3 border-solid border-2">
+        <div className="item3 border-solid border-2 bg-auto" style={{ backgroundImage: `url(${right})` }}>
           <Leaderboard leaderboard={leaderboard} />
         </div>
       </div>
