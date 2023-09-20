@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 import {
   Card,
@@ -13,12 +14,24 @@ import {
 } from '@material-tailwind/react';
 import { setStory } from '../../app/slices/storySlice';
 
-export default function StoryCard({ story }) {
-  const [liked, setLiked] = useState(false);
-
+export default function StoryCard({
+  story, likeUpdate,
+  likedStories,
+  setLikeUpdate,
+  setLikedStories,
+}) {
   const storyId = story.story_id;
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const [color, setColor] = useState(likedStories[story.story_id] ? 'red' : 'white');
+
+  useEffect(() => {
+    if (likedStories[story.story_id]) {
+      setColor('red');
+    } else {
+      setColor('white');
+    }
+  }, []);
 
   const clickHandler = () => {
     dispatch(setStory(storyId));
@@ -26,16 +39,37 @@ export default function StoryCard({ story }) {
   };
 
   const likeClickHandler = () => {
-    if (liked) {
-      setLiked(false);
+    const isLiked = color === 'red';
+
+    const data = {
+      storyId: story.story_id,
+      userId: 'user3_id', //need to update this later
+    };
+
+    if (isLiked) {
+      setColor('white');
+      axios
+        .delete('api/deletelike', { data })
+        .then((response) => {
+          setLikedStories(response.data);
+          setLikeUpdate((prev) => !prev); // Toggle the state
+        })
+        .catch(() => {});
     } else {
-      setLiked(true);
+      setColor('red');
+      axios
+        .post('api/postlike', data)
+        .then((response) => {
+          setLikedStories(response.data);
+          setLikeUpdate((prev) => !prev); // Toggle the state
+        })
+        .catch(() => {});
     }
   };
 
   return (
     <Card className="w-full max-w-[26rem] shadow-lg">
-      <CardHeader floated={false} color="grey">
+      <CardHeader floated={false}>
         <img
           src={story.image_url}
           alt={story.title}
@@ -44,7 +78,7 @@ export default function StoryCard({ story }) {
         <IconButton
           onClick={likeClickHandler}
           size="sm"
-          color={liked ? 'red' : 'white'}
+          color={color}
           variant="text"
           className="!absolute top-4 right-4 rounded-full"
         >
@@ -60,7 +94,7 @@ export default function StoryCard({ story }) {
       </CardHeader>
       <CardBody>
         <div className="mb-3 flex items-center justify-between">
-          <Typography variant="h5" color="blue-gray" className="font-medium">
+          <Typography variant="h4" color="blue-gray" className="font-medium">
             {story.title}
           </Typography>
           <Typography

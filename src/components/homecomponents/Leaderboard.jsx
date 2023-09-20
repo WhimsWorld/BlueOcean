@@ -19,17 +19,20 @@ export default function Leaderboard({ leaderboard }) {
 
   const clickHandler = (id) => {
     dispatch(setStory(id));
-    console.log(id);
-    navigate('/storyBoard');
+    navigate(`/storyBoard/${id}`);
   };
 
   const [popoverContent, setPopoverContent] = useState(null);
   const [popoverPosition, setPopoverPosition] = useState({ top: 0, left: 0 });
 
   const handleMouseEnter = (entry, event) => {
+    const summary = entry.summary.length > 200
+      ? entry.summary.slice(0, 200) + '...'
+      : entry.summary;
+
     const content = (
-      <Typography variant="body2" color="blue-gray">
-        {entry.summary}
+      <Typography variant="h6" color="blue-gray">
+        {summary}
       </Typography>
     );
 

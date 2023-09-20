@@ -192,28 +192,44 @@ INSERT INTO images (category_id, image_url, premium) VALUES
     (5, 'https://i.ibb.co/jJCCpGy/037.png', FALSE);
 
   -- Insert data into the stories table with matching thumbnail URLs
-INSERT INTO stories (created_by_user_id, category_id, narrator_id, main_image_id, thumbnail_id, like_count, title, summary, max_characters, date_created, date_updated)
+INSERT INTO stories (created_by_user_id, category_id, narrator_id, main_image_id, thumbnail_id, title, summary, max_characters, date_created, date_updated)
 VALUES
   ('user1_id', 1, 'user1_id', (SELECT image_id FROM images WHERE category_id = 1 AND premium = FALSE ORDER BY RANDOM() LIMIT 1),
-      (SELECT thumbnail_id FROM thumbnail_images WHERE category_id = 1), 2, 'Fantasy Story 1', 'This is the first story.', 8, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+      (SELECT thumbnail_id FROM thumbnail_images WHERE category_id = 1),  'Fantasy Story 1', 'This is the first story.', 8, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+('user1_id', 1, 'user1_id', (SELECT image_id FROM images WHERE category_id = 1 AND premium = FALSE ORDER BY RANDOM() LIMIT 1),
+      (SELECT thumbnail_id FROM thumbnail_images WHERE category_id = 1), 'Fantasy Story 3', 'In the mystical realm of Eloria, where magic flows through ancient forests and mythical creatures roam, a prophecy lies dormant, waiting for the one who will bring balance to a world teetering on the edge of darkness.
+
+Meet Lyara, a spirited young adventurer with a secret heritage she knows nothing about. When a cryptic map surfaces, revealing the existence of a long-lost artifact, Lyara embarks on a perilous quest to unearth the truth of her lineage and unlock her latent powers.
+
+"Echoes of Eloria: The Lost Heir" is an epic tale of self-discovery, friendship, and the eternal struggle between light and shadow. With every turn of the page, readers will be swept into a world where magic reigns supreme, and the power to change destiny lies within the heart of a young heroine. Embark on this enchanting adventure and let the echoes of Eloria ignite your imagination.', 8, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+('user1_id', 1, 'user1_id', (SELECT image_id FROM images WHERE category_id = 1 AND premium = FALSE ORDER BY RANDOM() LIMIT 1),
+      (SELECT thumbnail_id FROM thumbnail_images WHERE category_id = 1),  'Fantasy Story 2', 'In the mystical realm of Eloria, where magic flows through ancient forests and mythical creatures roam, a prophecy lies dormant, waiting for the one who will bring balance to a world teetering on the edge of darkness.
+
+Meet Lyara, a spirited young adventurer with a secret heritage she knows nothing about. When a cryptic map surfaces, revealing the existence of a long-lost artifact, Lyara embarks on a perilous quest to unearth the truth of her lineage and unlock her latent powers.
+
+Guided by an enigmatic mentor, Lyaras journey unravels a web of intrigue, betrayal, and forgotten realms. Along the way, she forges alliances with a fellowship of diverse characters—a brooding elven archer, a wise-cracking gnome tinkerer, and a gentle giant with a mysterious past.
+
+As they venture through enchanted forests, face mythical beasts, and decipher cryptic riddles, the group discovers that the fate of Eloria is intertwined with Lyaras own destiny. With the malevolent Shadowweaver threatening to plunge the realm into eternal darkness, Lyara must harness her latent abilities and unearth the truth before its too late.
+
+"Echoes of Eloria: The Lost Heir" is an epic tale of self-discovery, friendship, and the eternal struggle between light and shadow. With every turn of the page, readers will be swept into a world where magic reigns supreme, and the power to change destiny lies within the heart of a young heroine. Embark on this enchanting adventure and let the echoes of Eloria ignite your imagination.', 8, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
   ('user2_id', 2, 'user2_id', (SELECT image_id FROM images WHERE category_id = 2 AND premium = FALSE ORDER BY RANDOM() LIMIT 1),
-      (SELECT thumbnail_id FROM thumbnail_images WHERE category_id = 2), 100, 'Forest Story 2', 'This is the second story.', 8, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+      (SELECT thumbnail_id FROM thumbnail_images WHERE category_id = 2), 'Forest Story 1', 'This is the second story wfjeifjweiojewi jjfo iwjfiwejofiwej jfoiewiofwejiofwej joifewjoifjweoifjew  fwejiofjweiojfwe  ifjwofjweiof jw jfiewjofiwejoiefw jfiwejofwej .', 8, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
   ('user3_id', 3, 'user3_id', (SELECT image_id FROM images WHERE category_id = 3 AND premium = FALSE ORDER BY RANDOM() LIMIT 1),
-      (SELECT thumbnail_id FROM thumbnail_images WHERE category_id = 3), 15, 'Pirates Story 3', 'This is the third story.', 8, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+      (SELECT thumbnail_id FROM thumbnail_images WHERE category_id = 3),  'Pirates Story 1', 'This is thewefjioweiofjew fjioew jfoiwe jfoiwe jifoewjoifwjeoif we ofiwejiofwejofiewj fjoweijaiojw eiofjowe third story.', 8, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
   ('user3_id', 3, 'user3_id', (SELECT image_id FROM images WHERE category_id = 3 AND premium = FALSE ORDER BY RANDOM() LIMIT 1),
-      (SELECT thumbnail_id FROM thumbnail_images WHERE category_id = 3), 1000, 'Pirates Story 5', 'This is a story.', 8, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+      (SELECT thumbnail_id FROM thumbnail_images WHERE category_id = 3), 'Pirates Story 2', 'This is a story.', 8, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
   ('user4_id', 4, 'user4_id', (SELECT image_id FROM images WHERE category_id = 4 AND premium = FALSE ORDER BY RANDOM() LIMIT 1),
-      (SELECT thumbnail_id FROM thumbnail_images WHERE category_id = 4), 20, 'Steampunk Story 6', 'This is another story.', 8, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+      (SELECT thumbnail_id FROM thumbnail_images WHERE category_id = 4),  'Steampunk Story 1', 'This is another story.', 8, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
   ('user4_id', 4, 'user4_id', (SELECT image_id FROM images WHERE category_id = 4 AND premium = FALSE ORDER BY RANDOM() LIMIT 1),
-      (SELECT thumbnail_id FROM thumbnail_images WHERE category_id = 4), 1, 'Steampunk Story 6', 'This is another story.', 8, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+      (SELECT thumbnail_id FROM thumbnail_images WHERE category_id = 4), 'Steampunk Story 2', 'This is another story.', 8, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
   ('user4_id', 4, 'user4_id', (SELECT image_id FROM images WHERE category_id = 4 AND premium = FALSE ORDER BY RANDOM() LIMIT 1),
-      (SELECT thumbnail_id FROM thumbnail_images WHERE category_id = 4), 2, 'Steampunk Story 6', 'This is another story.', 8, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+      (SELECT thumbnail_id FROM thumbnail_images WHERE category_id = 4),  'Steampunk Story 6', 'This is another story.', 8, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
   ('user4_id', 4, 'user4_id', (SELECT image_id FROM images WHERE category_id = 4 AND premium = FALSE ORDER BY RANDOM() LIMIT 1),
-      (SELECT thumbnail_id FROM thumbnail_images WHERE category_id = 4), 5, 'Steampunk Story 6', 'This is another story.', 8, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+      (SELECT thumbnail_id FROM thumbnail_images WHERE category_id = 4), 'Steampunk Story 3', 'This is another story.', 8, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
   ('user4_id', 4, 'user4_id', (SELECT image_id FROM images WHERE category_id = 4 AND premium = FALSE ORDER BY RANDOM() LIMIT 1),
-      (SELECT thumbnail_id FROM thumbnail_images WHERE category_id = 4), 1000, 'Steampunk Story 6', 'This is another story.', 8, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+      (SELECT thumbnail_id FROM thumbnail_images WHERE category_id = 4), 'Steampunk Story 4', 'This is another story.', 8, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
   ('user4_id', 4, 'user4_id', (SELECT image_id FROM images WHERE category_id = 4 AND premium = FALSE ORDER BY RANDOM() LIMIT 1),
-      (SELECT thumbnail_id FROM thumbnail_images WHERE category_id = 4), 550, 'Steampunk Story 6', 'This is another story.', 8, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
+      (SELECT thumbnail_id FROM thumbnail_images WHERE category_id = 4),  'Steampunk Story 5 and how bout this for a title???', 'This is another story.', 8, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
 
 -- Insert data into the characters table
 INSERT INTO characters (story_id, user_id, image_id, char_name, strength, weakness, backstory)
