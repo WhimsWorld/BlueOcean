@@ -13,6 +13,7 @@ import {
   IconButton,
 } from '@material-tailwind/react';
 import { setStory } from '../../app/slices/storySlice';
+import dateFormat from '../../utils/dateFormat';
 
 export default function StoryCard({
   story, likeUpdate,
@@ -68,7 +69,7 @@ export default function StoryCard({
   };
 
   return (
-    <Card className="w-full flex-row p-2 mt-4 shadow-lg justify-between items-center justify-self-center bg-cover" style={{ width: '96%', backgroundImage: `url(${cardBG})`, clipPath: 'polygon(59% 2%, 68% 3%, 75% 0, 83% 2%, 90% 3%, 100% 0, 100% 16%, 100% 34%, 99% 53%, 98% 74%, 100% 100%, 83% 99%, 72% 96%, 63% 100%, 54% 96%, 44% 100%, 36% 100%, 30% 96%, 17% 98%, 7% 96%, 0 100%, 1% 71%, 0 43%, 1% 0, 9% 2%, 18% 0, 31% 3%, 48% 0)' }}>
+    <Card className="w-full flex-row p-2 mt-4 shadow-lg justify-between items-center justify-self-center bg-cover" style={{ width: '96%', backgroundImage: `url(${cardBG})`, clipPath: 'polygon(59% 2%, 68% 3%, 74% 0, 83% 2%, 90% 3%, 100% 0, 99% 16%, 100% 37%, 99% 53%, 98% 68%, 100% 100%, 83% 97%, 74% 97%, 63% 100%, 54% 96%, 44% 100%, 37% 98%, 28% 100%, 17% 100%, 7% 96%, 0 100%, 1% 71%, 0 43%, 1% 0, 4% 2%, 18% 0, 31% 3%, 48% 0)' }}>
       <CardHeader floated={false} style={{ height: '30%', width: '30%', margin: '2%' }}>
         <img
           src={story.image_url}
@@ -117,7 +118,7 @@ export default function StoryCard({
           </Typography>
         </div>
         <Typography color="gray">
-          {story.date_created}
+          {dateFormat(story.date_created)}
         </Typography>
         <Typography color="gray">
           {story.summary.length > 150 ? `${story.summary.slice(0, 150)} ...` : story.summary}
