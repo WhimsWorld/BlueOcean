@@ -63,10 +63,6 @@ async function createServer() {
   app.post('/api/chat', chatController.postMessage);
   app.get('/api/chat/story/:storyId', chatController.getChatByStory);
 
-  // chat handlers
-  app.post('/api/chat', chatController.postMessage);
-  app.get('/api/chat/story/:storyId', chatController.getChatByStory);
-
   app.use('/api/*', (req, res, next) => {
     res.status(404).send('Not Found');
   });
