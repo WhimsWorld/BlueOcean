@@ -9,7 +9,7 @@ export const getPosts = async (req, res) => {
   }
   try {
     const posts = await postsModel.getPosts(storyId);
-    res.json([posts]);
+    res.json(posts);
   } catch (err) {
     res.status(500).send('Error retrieving posts.');
   }

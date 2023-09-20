@@ -22,16 +22,25 @@ export default function StorySection() {
     }, 100);
   }, [storyId, dispatch, posts.length]);
 
+  useEffect(() => {
+    console.log('posts changed to ', posts);
+  }, [posts]);
+
   return (
-    <Card className="mt-6 w-96">
-      <CardBody>
-        <Typography variant="h5" color="blue-gray" className="mb-2">
-          Story Section
-          <audio className="player" controls preload="none">
-            <source src="" type="audio/mp3" />
-          </audio>
-        </Typography>
-      </CardBody>
-    </Card>
+    <>
+      {posts.map((post) => (
+        <Card className="mt-6 w-96">
+          <CardBody>
+            <Typography variant="h5" color="blue-gray" className="mb-2">
+              Story Section
+              {post.content}
+              <audio className="player" controls preload="none">
+                <source src={`https://docs.google.com/uc?export=open&id=${post.sound_url}`} type="audio/mp3" />
+              </audio>
+            </Typography>
+          </CardBody>
+        </Card>
+      ))}
+    </>
   );
 }
