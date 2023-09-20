@@ -22,8 +22,8 @@ export default function Categories({
   };
 
   return (
-    <Card className="w-96">
-      <List>
+    <Card>
+      <List className="min-w-[0]">
         {categories.map((categoryEntry) => (
           <ListItem
             style={{ background: categoryEntry.selected ? 'grey' : 'white' }}
