@@ -12,6 +12,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { useDispatch, useSelector } from 'react-redux';
+import Cookies from 'js-cookie';
 import StickyNavbar from '../components/StickyNavbar';
 import { auth } from '../utils/firebase';
 import { setCurrentUser } from '../app/slices/userSlice';
@@ -36,6 +37,7 @@ export default function Login() {
       .then((userCredential) => {
         // console.log('user', userCredential.user);
         handleLogin(userCredential.user.uid);
+        Cookies.set('userId', userCredential.user.uid, { expires: 1 });
         navigate('/login');
       })
       .catch((err) => {
@@ -47,7 +49,7 @@ export default function Login() {
 
   return (
     <div>
-      {console.log('store', store.getState())}
+      {console.log('cookies', Cookies.get('userId'))}
       <StickyNavbar />
       <Card className="w-96" style={{margin: 'auto' }}>
         <CardHeader
