@@ -35,7 +35,7 @@ async function createServer() {
   app.post('/api/characters', usersController.addCharacter);
 
   // character creation
-  app.get('/api/images', usersController.getImages)
+  app.get('/api/images', usersController.getImages);
 
   // story creation
   app.get('/api/storyimages', createStoryController.getAllThemeImages);
@@ -47,6 +47,7 @@ async function createServer() {
   app.get('/api/categories', storiesController.getCategories);
   app.get('/api/leaderboard', storiesController.getLeaderboard);
   app.get('/api/search', storiesController.getSearch);
+  app.get('/api/stories/:storyId', storiesController.getStoryById);
 
   app.use('/api/*', (req, res, next) => {
     res.status(404).send('Not Found');

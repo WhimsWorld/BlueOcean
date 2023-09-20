@@ -1,21 +1,32 @@
-// characterSlice.js
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { fetchStoryByStoryId } from '../../apis/storyAPI';
 
-export const storySlice = createSlice({
+// Async thunk to fetch the story by its ID
+export const fetchStoryById = createAsyncThunk(
+  'story/fetchStoryById',
+  async (storyId) => {
+    const data = await fetchStoryByStoryId(storyId);
+    return data;
+  },
+);
+
+const storySlice = createSlice({
   name: 'story',
-  initialState: [],
+  initialState: {
+    storyId: null,
+    storyData: null,
+  },
   reducers: {
-    setStory: (state, action) => action.payload,
+    setStory: (state, action) => {
+      state.storyId = action.payload;
+    },
+  },
+  extraReducers: (builder) => {
+    builder.addCase(fetchStoryById.fulfilled, (state, action) => {
+      state.storyData = action.payload;
+    });
   },
 });
 
 export const { setStory } = storySlice.actions;
-
-export const loadStoryByStoryId = (storyId) => (dispatch) => {
-  fetchStoryByStoryId(storyId).then((data) => {
-    dispatch(setStory(data));
-  });
-};
-
 export default storySlice.reducer;
