@@ -24,7 +24,6 @@ export default function Login() {
     e.preventDefault();
     await signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
-        // console.log('user', userCredential.user);
         Cookies.set('userId', userCredential.user.uid, { expires: 1 });
         navigate('/');
       })
