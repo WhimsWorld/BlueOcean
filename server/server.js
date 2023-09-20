@@ -32,6 +32,7 @@ async function createServer() {
   app.get('/api/users', usersController.getAllUsers);
   app.get('/api/users/:userId', usersController.getUserById);
   app.post('/api/users', usersController.addUser);
+  app.patch('/api/users/:userId/premium', usersController.updateUserPremiumStatus);
 
   // select characters
   app.get('/api/characters', usersController.getCharacters);
