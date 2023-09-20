@@ -24,10 +24,8 @@ export const getUserById = async (req, res) => {
 };
 
 export const addUser = async (req, res) => {
-  console.log('userid', req.body);
   const userId = req.body.user_id;
   const username = req.body.display_name;
-  // const { user_id: userId, username: display_name } = req.body;
   userModel.addUser(userId, username)
     .then(() => res.sendStatus(201))
     .catch(() => res.sendStatus(500));
