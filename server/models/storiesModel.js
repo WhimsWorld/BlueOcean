@@ -108,7 +108,7 @@ export const getLeaderboard = async () => {
 
 export const getStoryById = async (storyId) => {
   const query = `
-    SELECT stories.*, images.image_url, categories.cat_name 
+    SELECT stories.*, images.image_url, categories.cat_name
     FROM stories
     INNER JOIN images ON stories.main_image_id = images.image_id
     INNER JOIN categories ON stories.category_id = categories.cat_id
