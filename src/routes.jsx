@@ -9,6 +9,7 @@ import CreateStory from './pages/CreateStory';
 import StoryBoard from './pages/StoryBoard';
 import ErrorPage from './pages/errorPage';
 import CharacterCreation from './pages/CharacterCreation';
+import CreatePost from './pages/CreatePost';
 
 const router = createBrowserRouter([
   {
@@ -39,6 +40,11 @@ const router = createBrowserRouter([
   {
     path: '/characterCreation',
     element: <CharacterCreation />,
+    errorElement: <errorPage />,
+  },
+  {
+    path: '/createPost/:storyId',
+    element: <CreatePost />,
     errorElement: <errorPage />,
   },
 ]);
