@@ -13,11 +13,14 @@ import {
   MenuList,
   MenuItem,
 } from '@material-tailwind/react';
+import { useSelector } from 'react-redux';
 import { auth } from '../../utils/firebase.js';
+
 function MenuWithScrollingContent({ setSelectedImage }) {
   const [images, setImages] = useState([]);
+
   useEffect(() => {
-    axios.get('/api/storyimages')
+    axios.get('/api/postsimages')
       .then((res) => {
         setImages(res.data);
       })
@@ -26,46 +29,87 @@ function MenuWithScrollingContent({ setSelectedImage }) {
   return (
     <Menu>
       <MenuHandler>
-        <Button>Select a Theme</Button>
+        <Button>Select an Image</Button>
       </MenuHandler>
       <MenuList classname="max-h-96">
-        {images.map((image) => {
-          return (<MenuItem key={image.image_id + image.image_url}><img onClick={()=> setSelectedImage({image_url: image.image_url, image_id: image.image_id, category_id: image.category_id})} alt="" src={image.image_url} /></MenuItem>);
-        })}
+        {images.map((image) => (<MenuItem key={image.image_id + image.image_url}><img onClick={() => setSelectedImage({ image_url: image.image_url, image_id: image.image_id, category_id: image.category_id })} alt="" src={image.image_url} /></MenuItem>))}
       </MenuList>
     </Menu>
   );
 }
-function ThumbnailMenu({ setSelectedThumbnail }) {
-  const [images, setImages] = useState([]);
+
+function GifsMenu({ setSelectedGif }) {
+  const [gifs, setGifs] = useState([]);
+
   useEffect(() => {
-    axios.get('/api/storythumbnails')
+    axios.get('/api/postsgifs')
       .then((res) => {
-        setImages(res.data);
+        setGifs(res.data);
       })
       .catch((err) => console.log(err));
   }, []);
   return (
     <Menu>
       <MenuHandler>
-        <Button>Select a Thumbnail</Button>
+        <Button>Select a Gif</Button>
+      </MenuHandler>
+      <MenuList classname="max-h-96">
+        {gifs.map((gif) => (<MenuItem key={gif.gif_id + gif.gif_url}><img onClick={() => setSelectedGif({ gif_url: gif.gif_url, gif_id: gif.gif_id, category_id: gif.category_id })} alt="" src={gif.gif_url} /></MenuItem>))}
+      </MenuList>
+    </Menu>
+  );
+}
+
+
+function SoundsMenu({ setSelectedSound }) {
+  const [sounds, setSounds] = useState([]);
+  useEffect(() => {
+    axios.get('/api/postsounds')
+      .then((res) => {
+        setSounds(res.data);
+        console.log('did I get sound data', res.data);
+      })
+      .catch((err) => console.log(err));
+  }, []);
+  return (
+    <Menu>
+      <MenuHandler>
+        <Button>Select a Sound</Button>
       </MenuHandler>
       <MenuList>
-        {images.map((image) => {
-          return (<MenuItem key={image.thumbnail_id + image.thumbnail_url}><img onClick={()=> setSelectedThumbnail({thumbnail_url: image.thumbnail_url, thumbnail_id: image.thumbnail_id, category_id: image.category_id})} alt="" src={image.thumbnail_url} /></MenuItem>);
-        })}
+        {sounds.map((sound) => (
+          <MenuItem
+            key={sound.sound_id}
+            onClick={() => setSelectedSound({
+              sound_url: sound.sound_url,
+              sound_id:
+              sound.sound_id,
+              category_id: sound.category_id,
+            })}
+          >
+            {sound.sound_id}
+          </MenuItem>
+        ))}
       </MenuList>
     </Menu>
   );
 }
 export default function StoryCreationForm() {
   const navigate = useNavigate();
-  const [title, setTitle] = useState('');
-  const [summary, setSummary] = useState('');
-  const [maxPlayers, setMaxPlayers] = useState('');
+  const [content, setContent] = useState('');
   const [selectedImage, setSelectedImage] = useState({});
-  const [selectedThumbnail, setSelectedThumbnail] = useState({});
-  const [selectedCategory, setSelectedCategory] = useState('');
+  const [selectedSound, setSelectedSound] = useState({});
+  const [selectedGif, setSelectedGif] = useState({});
+  const storyId = useSelector((state) => state.story.storyId);
+  const [audio] = useState(new Audio());
+  const userId = 'user1_id';
+
+  const playAudio = (soundUrl) => {
+    console.log('soundurl', soundUrl);
+    audio.src = soundUrl;
+    audio.play();
+  };
+
   let uid;
   let displayName;
   async function fetchUser() {
@@ -82,32 +126,27 @@ export default function StoryCreationForm() {
   }
   const handleSubmit = (e) => {
     e.preventDefault();
-    fetchUser();
-    if (title === '') {
-      document.getElementById("setTitle").focus();
-    } else if (summary === '') {
-      document.getElementById("setSummary").focus();
-    } else if (maxPlayers === '') {
-      document.getElementById("selectPlayers").focus();
+    console.log("this is the user", userId);
+    console.log("this is the story id", storyId);
+    console.log("this is the content", content);
+    console.log("this is the image id", selectedImage.image_id);
+    console.log("this is the sound id", selectedSound.sound_id);
+    console.log("this is the gif id", selectedGif.gif_id);
+    if (content === '') {
+      document.getElementById('setContent').focus();
     } else if (selectedImage.image_id === undefined) {
-      document.getElementById("selectImage").focus();
-    } else if (selectedThumbnail.thumbnail_id === undefined) {
-      document.getElementById("selectThumbnail").focus();
-    } else if (selectedCategory === '') {
-      document.getElementById("selectCategory").focus();
+      document.getElementById('selectImage').focus();
+    } else if (selectedSound.sound_id === undefined) {
+      document.getElementById('selectSound').focus();
     } else {
-      axios.post('/api/stories', {
-        created_by_user_id: 'user1_id',
-        category_id: selectedCategory,
-        narrator_id: 'user1_id',
+      axios.post('/api/posts', {
+        created_by_user_id: userId,
+        story_id: storyId,
         main_image_id: selectedImage.image_id,
-        thumbnail_id: selectedThumbnail.thumbnail_id,
-        title: title,
-        summary: summary,
-        max_characters: maxPlayers,
-      }).then((error) => {
-        return console.log(error);
-      });
+        sound_id: selectedSound.sound_id,
+        gif_id: selectedGif.gif_id,
+        content,
+      }).then((error) => console.log(error));
     }
   };
   return (
@@ -117,13 +156,13 @@ export default function StoryCreationForm() {
       </Typography>
       <form className="mt-8 mb-2 w-full max-w-screen-lg ">
         <div className="mb-4 flex flex-col gap-6">
-          <Input size="lg" label="Title" value={title} onChange={(e) => setTitle(e.target.value)} />
-          <Textarea variant="outlined" label="Summary" value={summary} onChange={(e) => setSummary(e.target.value)} />
-          <Input type="number" label="Maximum Players" min="1" max="10" value={maxPlayers} onChange={(e) => setMaxPlayers(e.target.value)} />
+          <Textarea variant="outlined" label="Content" value={content} onChange={(e) => setContent(e.target.value)} />
           <MenuWithScrollingContent setSelectedImage={setSelectedImage} />
           {selectedImage.image_url !== '' ? <img alt="" src={selectedImage.image_url} /> : null}
-          <ThumbnailMenu setSelectedThumbnail={setSelectedThumbnail} />
-          <Input type="number" label="Select a Theme" min="1" max="5" value={selectedCategory} onChange={(e) => setSelectedCategory(e.target.value)} />
+          <GifsMenu setSelectedGif={setSelectedGif} />
+          {selectedGif.gif_url !== '' ? <img alt="" src={selectedGif.gif_url} /> : null}
+          <SoundsMenu setSelectedSound={setSelectedSound} />
+          {selectedSound.sound_url !== undefined ? <Button color="blue" type="button" onClick={() => playAudio(`https://docs.google.com/uc?export=open&id=${selectedSound.sound_url}`)}>Play Sound</Button> : null}
         </div>
         <Button type="submit" className="mt-6 w-1/2 self-center" onClick={handleSubmit}>
           Create
@@ -132,14 +171,3 @@ export default function StoryCreationForm() {
     </Card>
   );
 }
-// import { useNavigate } from 'react-router-dom';
-// import { onAuthStateChanged } from 'firebase/auth';
-// import { auth } from '../utils/firebase';
-// import StickyNavbar from '../components/StickyNavbar';
-
-// export default function SimpleRegistrationForm() {
-//   const navigate = useNavigate();
-
-//   const [storyTitle, setStoryTitle] = useState('');
-//   const [description, setDescription] = useState('');
-//   const [participants, setParticipants] = useState(1);

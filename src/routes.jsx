@@ -43,7 +43,7 @@ const router = createBrowserRouter([
     errorElement: <errorPage />,
   },
   {
-    path: '/createPost/:id',
+    path: '/createPost/:storyId',
     element: <CreatePost />,
     errorElement: <errorPage />,
   },

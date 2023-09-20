@@ -58,6 +58,9 @@ async function createServer() {
 
   // story posts
   app.get('/api/posts/:storyId', postsController.getPosts);
+  app.get('/api/postsimages', postsController.getThemeImages);
+  app.get('/api/postsounds', postsController.getSounds);
+  app.get('/api/postsgifs', postsController.getGifs);
   app.post('/api/posts', postsController.addPost);
 
   // chat handlers

@@ -18,7 +18,6 @@ export default function StorySection() {
   const [audio] = useState(new Audio());
 
   const clickHandler = (id) => {
-    console.log("this is id", id)
     navigate(`/createPost/${id}`);
   };
 
@@ -41,9 +40,8 @@ export default function StorySection() {
 
   return (
     <>
+      <Button color="blue" type="button" onClick={() => clickHandler(storyId)}>Create Post</Button>
       {posts.map((post) => (
-        <>
-        <Button color="blue" type="button" onClick={() => clickHandler(storyId)}>Create Post</Button>
         <Card className="mt-6 w-96">
           <CardBody>
             <Typography variant="h5" color="blue-gray" className="mb-2">
@@ -95,7 +93,6 @@ export default function StorySection() {
             </Typography>
           </CardBody>
         </Card>
-        </>
       ))}
     </>
   );
