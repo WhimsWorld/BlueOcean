@@ -58,7 +58,8 @@ async function createServer() {
 
   // story posts
   app.get('/api/posts/:storyId', postsController.getPosts);
-  
+  app.post('/api/posts', postsController.addPost);
+
   // chat handlers
   app.post('/api/chat', chatController.postMessage);
   app.get('/api/chat/story/:storyId', chatController.getChatByStory);

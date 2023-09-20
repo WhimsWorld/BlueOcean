@@ -42,3 +42,37 @@ export const getPosts = async (storyId) => {
   const result = await executeQuery(query, values);
   return result.rows;
 };
+
+export const getChars = async () => {
+  const query = 'SELECT * FROM characters';
+  const result = await executeQuery(query);
+  return result.rows;
+};
+
+export const getThemeImages = async () => {
+  const query = 'SELECT * FROM images';
+  const result = await executeQuery(query);
+  return result.rows;
+};
+
+export const getSounds = async () => {
+  const query = 'SELECT * FROM sounds';
+  const result = await executeQuery(query);
+  return result.rows;
+};
+
+export const getGifs = async () => {
+  const query = 'SELECT * FROM gifs';
+  const result = await executeQuery(query);
+  return result.rows;
+};
+
+export const addPost = async (storyId, userId, data) => {
+  const query = `INSERT INTO posts (story_id, created_by_user_id, char_id, gif_id, sound_id, narrator_image_id, narrator_post, content)
+  VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING *`;
+  const values = [storyId, userId, data.char_id,
+    data.gif_id, data.sound_id, data.narrator_image_id,
+    data.narrator_post, data.content];
+  const result = await executeQuery(query, values);
+  return result.rows[0];
+};
