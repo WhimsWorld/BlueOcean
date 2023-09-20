@@ -3,12 +3,16 @@ import { Input, Button } from '@material-tailwind/react';
 import axios from 'axios';
 
 export default function Search({
-  category, filter, setStories, setNoCheck,
+  category, filter, setStories, setNoCheck, myStoriesFilter, setMyStoriesFilter, setIsChecked,
 }) {
   const [search, setSearch] = React.useState('');
   const onChange = ({ target }) => {
     setNoCheck(true);
     setSearch(target.value);
+    if (!target.value) {
+      setNoCheck(false);
+    }
+    setIsChecked(false);
   };
   const submitHandler = () => {
     const dataParams = {

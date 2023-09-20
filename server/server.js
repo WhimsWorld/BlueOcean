@@ -43,6 +43,9 @@ async function createServer() {
   app.get('/api/leaderboard', storiesController.getLeaderboard);
   app.get('/api/search', storiesController.getSearch);
   app.get('/api/stories/:storyId', storiesController.getStoryById);
+  app.get('/api/likes', storiesController.getLikedStories);
+  app.post('/api/postlike', storiesController.postLikedStory);
+  app.delete('/api/deletelike', storiesController.deleteLikedStory);
 
   app.use('/api/*', (req, res, next) => {
     res.status(404).send('Not Found');
