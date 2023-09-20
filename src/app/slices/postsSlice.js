@@ -3,7 +3,7 @@ import { fetchPostsByStoryId } from '../../apis/postsAPI';
 
 // Async thunk to fetch the story by its ID
 export const fetchPostsById = createAsyncThunk(
-  'story/fetchPostsById',
+  'posts/fetchPostsById',
   async (storyId) => {
     const data = await fetchPostsByStoryId(storyId);
     return data;

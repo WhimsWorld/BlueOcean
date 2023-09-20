@@ -9,6 +9,8 @@ import { createServer as createViteServer } from 'vite';
 import * as usersController from './controllers/usersController.js';
 // eslint-disable-next-line import/extensions
 import * as storiesController from './controllers/storiesController.js';
+// eslint-disable-next-line import/extensions
+import * as postsController from './controllers/postsController.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -45,7 +47,7 @@ async function createServer() {
   app.get('/api/stories/:storyId', storiesController.getStoryById);
 
   // story posts
-  app.get('/api/posts/:storyId', postsController.getPostsById);
+  app.get('/api/posts/:storyId', postsController.getPosts);
 
   app.use('/api/*', (req, res, next) => {
     res.status(404).send('Not Found');

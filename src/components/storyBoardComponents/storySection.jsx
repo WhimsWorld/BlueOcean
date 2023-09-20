@@ -11,20 +11,13 @@ export default function StorySection() {
   const dispatch = useDispatch();
   const storyId = useSelector((state) => state.story.storyId);
   const storyData = useSelector((state) => state.story.storyData);
-
-    // get the posts for this storyID
-    const getPosts = () => {
-
-
-
-    }
-
+  const posts = useSelector((state) => state.posts.storyId);
 
   useEffect(() => {
     if (storyId) {
       dispatch(fetchStoryById(storyId));
     }
-  }, [dispatch, storyId]);
+  }, [dispatch, storyId, posts]);
 
 
 
@@ -34,6 +27,9 @@ export default function StorySection() {
       <CardBody>
         <Typography variant="h5" color="blue-gray" className="mb-2">
             Story Section
+            <img
+          src={posts[0].image_url}
+        />
             <audio className="player" controls preload="none">
               <source src= ""type="audio/mp3" />
             </audio>
