@@ -22,7 +22,7 @@ export default function StoryCard({ story }) {
 
   const clickHandler = () => {
     dispatch(setStory(storyId));
-    navigate('/storyBoard');
+    navigate(`/storyBoard/${storyId}`);
   };
 
   const likeClickHandler = () => {
