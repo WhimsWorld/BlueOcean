@@ -10,8 +10,8 @@ import * as usersController from './controllers/usersController.js';
 // eslint-disable-next-line import/extensions
 import * as storiesController from './controllers/storiesController.js';
 // eslint-disable-next-line import/extensions
+import * as postsController from './controllers/postsController.js';
 import * as chatController from './controllers/chatController.js';
-
 import * as createStoryController from './controllers/createStoryController.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -52,7 +52,13 @@ async function createServer() {
   app.get('/api/leaderboard', storiesController.getLeaderboard);
   app.get('/api/search', storiesController.getSearch);
   app.get('/api/stories/:storyId', storiesController.getStoryById);
+  app.get('/api/likes', storiesController.getLikedStories);
+  app.post('/api/postlike', storiesController.postLikedStory);
+  app.delete('/api/deletelike', storiesController.deleteLikedStory);
 
+  // story posts
+  app.get('/api/posts/:storyId', postsController.getPosts);
+  
   // chat handlers
   app.post('/api/chat', chatController.postMessage);
   app.get('/api/chat/story/:storyId', chatController.getChatByStory);
