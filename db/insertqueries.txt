@@ -52,11 +52,11 @@ INSERT INTO gifs (category_id, gif_url, premium) VALUES
 
 -- Insert data into the sounds table for High Fantasy
 INSERT INTO sounds (category_id, sound_url, premium) VALUES
-    (1, 'https://drive.google.com/file/d/1B87ZLqTN741x7cwK_iH8rFyvbjKY9uRo/view?usp=drive_link', TRUE),
-    (1, 'https://drive.google.com/file/d/1IzUcTOo87HO1gUN1j6Yfu1mYZDGr9sHH/view?usp=drive_link', FALSE),
-    (1, 'https://drive.google.com/file/d/1ih_I_1hHz4GGQVoBUQV-_Vw1QePNXow_/view?usp=drive_link', FALSE),
-    (1, 'https://drive.google.com/file/d/1ybk4Q_fAOFXrgVES1KM0X1H6QE4bSvIK/view?usp=drive_link', FALSE),
-    (1, 'https://drive.google.com/file/d/1ASIUblworfAZt0PPE5W3Lmpvo1scmQW8/view?usp=drive_link', FALSE);
+    (1, '1B87ZLqTN741x7cwK_iH8rFyvbjKY9uRo', TRUE),
+    (1, '1IzUcTOo87HO1gUN1j6Yfu1mYZDGr9sHH', FALSE),
+    (1, '1ih_I_1hHz4GGQVoBUQV-_Vw1QePNXow_', FALSE),
+    (1, '1ybk4Q_fAOFXrgVES1KM0X1H6QE4bSvIK', FALSE),
+    (1, '1ASIUblworfAZt0PPE5W3Lmpvo1scmQW8', FALSE);
 
 -- Insert data into the images table for Mystical Forest
 INSERT INTO images (category_id, image_url, premium) VALUES
@@ -83,11 +83,11 @@ INSERT INTO gifs (category_id, gif_url, premium) VALUES
 
 -- Insert data into the sounds table for Mystical Forest
 INSERT INTO sounds (category_id, sound_url, premium) VALUES
-    (2, 'https://drive.google.com/file/d/1FcHi95m5haLpmQTTO4yUrLK8feRbiYrW/view?usp=drive_link', TRUE),
-    (2, 'https://drive.google.com/file/d/1Rm2DOuZStWjDajSlZZSf230PzAyoVsBp/view?usp=drive_link', FALSE),
-    (2, 'https://drive.google.com/file/d/1CiM2Me5dtDu0RE2vNRxNqHKMYEuTdnCq/view?usp=drive_link', FALSE),
-    (2, 'https://drive.google.com/file/d/1jKYmUa9mbZX0c3Fg90TC8nCs2Nybxy33/view?usp=drive_link', FALSE),
-    (2, 'https://drive.google.com/file/d/1YEtp6Q8ipO-wP7wYERAqdDHaX6GQ1vqs/view?usp=drive_link', FALSE);
+    (2, '1FcHi95m5haLpmQTTO4yUrLK8feRbiYrW', TRUE),
+    (2, '1Rm2DOuZStWjDajSlZZSf230PzAyoVsBp', FALSE),
+    (2, '1CiM2Me5dtDu0RE2vNRxNqHKMYEuTdnCq', FALSE),
+    (2, '1jKYmUa9mbZX0c3Fg90TC8nCs2Nybxy33', FALSE),
+    (2, '1YEtp6Q8ipO-wP7wYERAqdDHaX6GQ1vqs', FALSE);
 
 -- Insert data into the images table for Pirates Cove Adventure
 INSERT INTO images (category_id, image_url, premium) VALUES
@@ -114,11 +114,11 @@ INSERT INTO gifs (category_id, gif_url, premium) VALUES
 
 -- Insert data into the sounds table for Pirates Cove Adventure
 INSERT INTO sounds (category_id, sound_url, premium) VALUES
-    (3, 'https://drive.google.com/file/d/1R7SMXNKqqjcG29ADvRKB2cxLNeCLQb_Q/view?usp=drive_link', TRUE),
-    (3, 'https://drive.google.com/file/d/12qo0Al0EIfUZjIVG_DboKnRr31bQPAzG/view?usp=drive_link', FALSE),
-    (3, 'https://drive.google.com/file/d/15OpYwhG7GkDAGddUyDpdFszoejt5J9PU/view?usp=drive_link', FALSE),
-    (3, 'https://drive.google.com/file/d/13yErebztrKxfYQJjDEjMV2rzOtrp1HUa/view?usp=drive_link', FALSE),
-    (3, 'https://drive.google.com/file/d/1cA70SxZZQf1qJHf8tCCqOitUCcdJ9Zyg/view?usp=drive_link', FALSE);
+    (3, '1R7SMXNKqqjcG29ADvRKB2cxLNeCLQb_Q', TRUE),
+    (3, '12qo0Al0EIfUZjIVG_DboKnRr31bQPAzG', FALSE),
+    (3, '15OpYwhG7GkDAGddUyDpdFszoejt5J9PU', FALSE),
+    (3, '13yErebztrKxfYQJjDEjMV2rzOtrp1HUa', FALSE),
+    (3, '1cA70SxZZQf1qJHf8tCCqOitUCcdJ9Zyg', FALSE);
 
 -- Insert data into the images table for Steampunk Cityscape
 INSERT INTO images (category_id, image_url, premium) VALUES
@@ -145,11 +145,11 @@ INSERT INTO gifs (category_id, gif_url, premium) VALUES
 
 -- Insert data into the sounds table for Steampunk Cityscape
 INSERT INTO sounds (category_id, sound_url, premium) VALUES
-    (4, 'https://drive.google.com/file/d/1FM788V6aJC1O3cfVbotiZhMewMdZFtrl/view?usp=drive_link', TRUE),
-    (4, 'https://drive.google.com/file/d/1wCNOIz0otHwe_ba1YyIxiZZAXeSy-Xpr/view?usp=drive_link', FALSE),
-    (4, 'https://drive.google.com/file/d/10g-NzZS2ayVPdscdXby6M21P0hLrHZyr/view?usp=drive_link', FALSE),
-    (4, 'https://drive.google.com/file/d/1a6eB_IcwR3EwPtPl2qzrVNSGOVbx2v5V/view?usp=drive_link', FALSE),
-    (4, 'https://drive.google.com/file/d/1vT0hbUYQiVq7wg0-l8DPjNI27VZGoMZ9/view?usp=drive_link', FALSE);
+    (4, '1FM788V6aJC1O3cfVbotiZhMewMdZFtrl', TRUE),
+    (4, '1wCNOIz0otHwe_ba1YyIxiZZAXeSy-Xpr', FALSE),
+    (4, '10g-NzZS2ayVPdscdXby6M21P0hLrHZyr', FALSE),
+    (4, '1a6eB_IcwR3EwPtPl2qzrVNSGOVbx2v5V', FALSE),
+    (4, '1vT0hbUYQiVq7wg0-l8DPjNI27VZGoMZ9', FALSE);
 
 -- Insert data into the images table for Other. (Character Images)
 INSERT INTO images (category_id, image_url, premium) VALUES
