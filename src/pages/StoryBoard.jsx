@@ -15,7 +15,7 @@ export default function StoryBoard() {
       <StickyNavbar />
       <div className="flex">
         <div id="left_column" className="flex-1">
-          <SelectCharacter />
+          <SelectCharacter storyId={storyId} />
           <ActNavigation />
         </div>
         <div id="mid_column" className="flex-1">
@@ -25,7 +25,6 @@ export default function StoryBoard() {
         <div id="right column" className="flex-1">
           <LiveChat storyId={storyId} />
         </div>
-
       </div>
     </div>
   );

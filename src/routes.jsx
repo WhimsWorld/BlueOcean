@@ -38,7 +38,7 @@ const router = createBrowserRouter([
     errorElement: <errorPage />,
   },
   {
-    path: '/characterCreation',
+    path: '/characterCreation/:storyId',
     element: <CharacterCreation />,
     errorElement: <errorPage />,
   },
