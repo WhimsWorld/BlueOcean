@@ -44,6 +44,9 @@ async function createServer() {
   app.get('/api/search', storiesController.getSearch);
   app.get('/api/stories/:storyId', storiesController.getStoryById);
 
+  // story posts
+  app.get('/api/posts/:storyId', postsController.getPostsById);
+
   app.use('/api/*', (req, res, next) => {
     res.status(404).send('Not Found');
   });
