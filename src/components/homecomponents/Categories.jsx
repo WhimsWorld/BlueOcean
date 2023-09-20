@@ -21,7 +21,7 @@ export default function Categories({
   };
 
   return (
-    <Card>
+    <Card className="rounded-none rounded-l-xl" style={{ maxWidth: '250px', justifySelf: 'flex-end' }}>
       <List className="min-w-[0]">
         {categories.map((categoryEntry) => (
           <ListItem

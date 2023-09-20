@@ -79,7 +79,7 @@ export default function App() {
     <div>
       <StickyNavbar />
       <div className="grid grid-cols-[25%_50%_25%]">
-        <div className="item1 border-solid border-2 bg-auto" style={{ backgroundImage: `url(${left})` }}>
+        <div className="item1 border-solid border-2 bg-auto grid" style={{ backgroundImage: `url(${left})` }}>
           <Categories
             category={category}
             categories={categories}
@@ -124,6 +124,6 @@ export default function App() {
   );
 }
 
-// imageURLs for backgrounds
+// imageURLs for background panels Categories and LeaderBoard
 const left = 'https://res.cloudinary.com/dnr41r1lq/image/upload/v1695191085/imgonline-com-ua-TextureSeamless-MkFWyZCWhQi_btfbva.png';
 const right = 'https://res.cloudinary.com/dnr41r1lq/image/upload/v1695192325/image_uot0j6.png';

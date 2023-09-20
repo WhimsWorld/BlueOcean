@@ -50,7 +50,7 @@ export default function Leaderboard({ leaderboard }) {
   };
 
   return (
-    <Card style={{ width: 250 }} className="w-96">
+    <Card style={{ maxWidth: '250px' }} className="h-full rounded-none rounded-r-xl">
       <List>
         {leaderboard.map((entry) => (
           <ListItem
