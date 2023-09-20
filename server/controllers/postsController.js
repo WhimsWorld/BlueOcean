@@ -52,13 +52,27 @@ export const getGifs = async (req, res) => {
 };
 
 export const addPost = async (req, res) => {
-  let storyId = null;
-  if (req.params.storyId) {
-    storyId = req.params.storyId;
-  }
+  const storyId = req.body.story_id;
+  const userId = req.body.created_by_user_id;
+  const charId = null;
+  const imageId = req.body.main_image_id;
+  const gifId = req.body.gif_id;
+  const soundId = req.body.sound_id;
+  console.log("This is the sound id", soundId);
+  const { content } = req.body;
+  const narratorPost = false;
   try {
-    const posts = await postsModel.addPost(storyId);
-    res.json("testing posts");
+    const post = await postsModel.addPost(
+      storyId,
+      userId,
+      charId,
+      gifId,
+      soundId,
+      imageId,
+      narratorPost,
+      content,
+    );
+    res.json(post);
   } catch (err) {
     res.status(500).send('Error adding post.');
   }
