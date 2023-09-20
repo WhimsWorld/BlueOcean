@@ -11,6 +11,8 @@ import * as usersController from './controllers/usersController.js';
 import * as storiesController from './controllers/storiesController.js';
 // eslint-disable-next-line import/extensions
 import * as postsController from './controllers/postsController.js';
+import * as chatController from './controllers/chatController.js';
+import * as createStoryController from './controllers/createStoryController.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -39,6 +41,11 @@ async function createServer() {
   // character creation
   app.get('/api/images', usersController.getImages);
 
+  // story creation
+  app.get('/api/storyimages', createStoryController.getAllThemeImages);
+  app.get('/api/storythumbnails', createStoryController.getAllThumbnailImages);
+  app.post('/api/stories', createStoryController.addStory);
+
   // select stories
   app.get('/api/stories', storiesController.getStories);
   app.get('/api/categories', storiesController.getCategories);
@@ -48,6 +55,10 @@ async function createServer() {
 
   // story posts
   app.get('/api/posts/:storyId', postsController.getPosts);
+  
+  // chat handlers
+  app.post('/api/chat', chatController.postMessage);
+  app.get('/api/chat/story/:storyId', chatController.getChatByStory);
 
   app.use('/api/*', (req, res, next) => {
     res.status(404).send('Not Found');
