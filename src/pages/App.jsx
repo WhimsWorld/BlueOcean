@@ -79,7 +79,7 @@ export default function App() {
     <div>
       <StickyNavbar />
       <div className="grid grid-cols-[25%_50%_25%]">
-        <div className="item1 border-solid border-2">
+        <div className="item1 border-solid border-2 bg-auto grid" style={{ backgroundImage: `url(${left})` }}>
           <Categories
             category={category}
             categories={categories}
@@ -87,7 +87,7 @@ export default function App() {
             setCategories={setCategories}
           />
         </div>
-        <div className="item2 border-solid border-2">
+        <div className="item2 border-solid border-2 grid items-center content-baseline" style={{ backgroundColor: '#FAFAFA' }}>
           <Mystories
             showCheck={showCheck}
             myStoriesFilter={myStoriesFilter}
@@ -116,10 +116,14 @@ export default function App() {
             />
           ))}
         </div>
-        <div className="item3 border-solid border-2">
+        <div className="item3 border-solid border-2 bg-auto" style={{ backgroundImage: `url(${right})` }}>
           <Leaderboard leaderboard={leaderboard} />
         </div>
       </div>
     </div>
   );
 }
+
+// imageURLs for background panels Categories and LeaderBoard
+const left = 'https://res.cloudinary.com/dnr41r1lq/image/upload/v1695191085/imgonline-com-ua-TextureSeamless-MkFWyZCWhQi_btfbva.png';
+const right = 'https://res.cloudinary.com/dnr41r1lq/image/upload/v1695192325/image_uot0j6.png';

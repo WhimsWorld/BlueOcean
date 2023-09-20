@@ -50,7 +50,7 @@ export default function Leaderboard({ leaderboard }) {
   };
 
   return (
-    <Card style={{ width: 250 }} className="w-96">
+    <Card style={{ maxWidth: '250px' }} className="h-full rounded-none rounded-r-xl">
       <List>
         {leaderboard.map((entry) => (
           <ListItem
@@ -64,8 +64,10 @@ export default function Leaderboard({ leaderboard }) {
               <Avatar
                 variant="circular"
                 alt="candice"
-                src={entry.thumbnail_url}
-                style={{ width: 43, height: 43 }}
+                // src={entry.thumbnail_url}
+                src="https://res.cloudinary.com/dnr41r1lq/image/upload/v1695227750/whimsibubble_ch5qpw.png"
+                // className={`before:bg-${entry.thumbnail_url}`}
+                style={{ width: 50, height: 50, overflow: 'hidden', before: { content: entry.thumbnail_url, position: 'absolute' } }}
               />
             </ListItemPrefix>
 
