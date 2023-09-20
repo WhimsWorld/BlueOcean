@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useLocation } from 'react-router-dom';
 import StickyNavbar from '../components/StickyNavbar';
 import SelectCharacter from '../components/storyBoardComponents/selectCharacter';
 import ActNavigation from '../components/storyBoardComponents/actNavigation';
@@ -7,6 +8,8 @@ import StorySection from '../components/storyBoardComponents/storySection';
 import LiveChat from '../components/storyBoardComponents/liveChat';
 
 export default function StoryBoard() {
+  const location = useLocation();
+  const storyId = location.pathname.split('/').pop();
   return (
     <div className="relative grid min-h-[100vh] w-screen p-8">
       <StickyNavbar />
@@ -16,11 +19,11 @@ export default function StoryBoard() {
           <ActNavigation />
         </div>
         <div id="mid_column" className="flex-1">
-          <StoryBanner />
+          <StoryBanner storyId={storyId} />
           <StorySection />
         </div>
         <div id="right column" className="flex-1">
-          <LiveChat />
+          <LiveChat storyId={storyId} />
         </div>
 
       </div>

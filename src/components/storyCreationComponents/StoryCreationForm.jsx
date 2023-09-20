@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { onAuthStateChanged } from 'firebase/auth';
 import axios from 'axios';
@@ -14,46 +14,17 @@ import {
   MenuItem,
 } from '@material-tailwind/react';
 import { auth } from '../../utils/firebase.js';
-function MenuWithScrollingContent({ setSelectedImage }) {
-  const [images, setImages] = useState([]);
-  useEffect(() => {
-    axios.get('/api/storyimages')
-      .then((res) => {
-        setImages(res.data);
-      })
-      .catch((err) => console.log(err));
-  }, []);
+
+function ThemeMenu() {
   return (
     <Menu>
       <MenuHandler>
         <Button>Select a Theme</Button>
       </MenuHandler>
-      <MenuList classname="max-h-96">
-        {images.map((image) => {
-          return (<MenuItem key={image.image_id + image.image_url}><img onClick={()=> setSelectedImage({image_url: image.image_url, image_id: image.image_id, category_id: image.category_id})} alt="" src={image.image_url} /></MenuItem>);
-        })}
-      </MenuList>
-    </Menu>
-  );
-}
-function ThumbnailMenu({ setSelectedThumbnail }) {
-  const [images, setImages] = useState([]);
-  useEffect(() => {
-    axios.get('/api/storythumbnails')
-      .then((res) => {
-        setImages(res.data);
-      })
-      .catch((err) => console.log(err));
-  }, []);
-  return (
-    <Menu>
-      <MenuHandler>
-        <Button>Select a Thumbnail</Button>
-      </MenuHandler>
       <MenuList>
-        {images.map((image) => {
-          return (<MenuItem key={image.thumbnail_id + image.thumbnail_url}><img onClick={()=> setSelectedThumbnail({thumbnail_url: image.thumbnail_url, thumbnail_id: image.thumbnail_id, category_id: image.category_id})} alt="" src={image.thumbnail_url} /></MenuItem>);
-        })}
+        <MenuItem>Menu Item 1 <img src="https://i.ibb.co/phRKFP3/PC2.png"></img></MenuItem>
+        <MenuItem>Menu Item 2</MenuItem>
+        <MenuItem>Menu Item 3</MenuItem>
       </MenuList>
     </Menu>
   );
@@ -64,9 +35,7 @@ export default function StoryCreationForm() {
   const [title, setTitle] = useState('');
   const [summary, setSummary] = useState('');
   const [maxPlayers, setMaxPlayers] = useState('');
-  const [selectedImage, setSelectedImage] = useState({});
-  const [selectedThumbnail, setSelectedThumbnail] = useState({});
-  const [selectedCategory, setSelectedCategory] = useState('');
+  const [selectedTheme, setSelectedTheme] = useState('');
   let uid;
   let displayName;
   async function fetchUser() {
