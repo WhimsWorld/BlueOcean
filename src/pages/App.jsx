@@ -87,7 +87,7 @@ export default function App() {
             setCategories={setCategories}
           />
         </div>
-        <div className="item2 border-solid border-2">
+        <div className="item2 border-solid border-2 grid items-center">
           <Mystories
             showCheck={showCheck}
             myStoriesFilter={myStoriesFilter}

@@ -25,7 +25,7 @@ export default function Categories({
       <List className="min-w-[0]">
         {categories.map((categoryEntry) => (
           <ListItem
-            style={{ background: categoryEntry.selected ? 'grey' : 'white' }}
+            style={{ background: categoryEntry.selected ? '#F4E3ED' : 'white' }}
             selected={categoryEntry.selected}
             name={categoryEntry.cat_name}
             key={categoryEntry.cat_name}
