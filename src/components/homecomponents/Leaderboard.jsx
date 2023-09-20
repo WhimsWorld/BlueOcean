@@ -50,7 +50,8 @@ export default function Leaderboard({ leaderboard }) {
   };
 
   return (
-    <Card style={{ maxWidth: '250px' }} className="h-full rounded-none rounded-r-xl">
+    <Card style={{ maxWidth: '250px', backgroundImage: `url(${rightPanel})`, backgroundRepeat: 'round' }} className="h-full rounded-none rounded-r-xl">
+      <span className="self-center pt-5">Leader Board</span>
       <List>
         {leaderboard.map((entry) => (
           <ListItem
@@ -58,17 +59,19 @@ export default function Leaderboard({ leaderboard }) {
             onClick={() => clickHandler(entry.story_id)}
             onMouseEnter={(event) => handleMouseEnter(entry, event)}
             onMouseLeave={handleMouseLeave}
-            className="relative"
+            className="relative bg-white"
           >
-            <ListItemPrefix>
+            <ListItemPrefix className="relative">
               <Avatar
                 variant="circular"
                 alt="candice"
-                // src={entry.thumbnail_url}
-                src="https://res.cloudinary.com/dnr41r1lq/image/upload/v1695227750/whimsibubble_ch5qpw.png"
+                src={entry.thumbnail_url}
+                // src="https://res.cloudinary.com/dnr41r1lq/image/upload/v1695227750/whimsibubble_ch5qpw.png"
                 // className={`before:bg-${entry.thumbnail_url}`}
-                style={{ width: 50, height: 50, overflow: 'hidden', before: { content: entry.thumbnail_url, position: 'absolute' } }}
+                // className={`after:content-[${entry.thumbnail_url}]`}
+                style={{ width: 50, height: 50, overflow: 'hidden' }}
               />
+              <div className="absolute h-full w-full inset-0" style={{ backgroundImage: `url(${entry.thumbnail_url})` }} />
             </ListItemPrefix>
 
             <div>
@@ -100,3 +103,5 @@ export default function Leaderboard({ leaderboard }) {
     </Card>
   );
 }
+
+const rightPanel = 'https://res.cloudinary.com/dnr41r1lq/image/upload/v1695244009/paperRight_bly8zj.png';
