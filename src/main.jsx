@@ -5,7 +5,7 @@ import { ThemeProvider } from '@material-tailwind/react';
 import { RouterProvider } from 'react-router-dom';
 import store from './app/store';
 import './index.css';
-import router from './routes.jsx';
+import router from './routes';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
@@ -16,4 +16,3 @@ ReactDOM.createRoot(document.getElementById('root')).render(
     </ThemeProvider> */}
   </React.StrictMode>,
 );
-

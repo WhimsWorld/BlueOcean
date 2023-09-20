@@ -76,7 +76,7 @@ export default function CharacterCreation({ storyBoardURL }) {
     if (e.target.checked < 3) {
       setTraits([traits, e.target.value]);
     }
-  }
+  };
 
   return (
     <div>

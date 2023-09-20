@@ -35,7 +35,7 @@ async function createServer() {
   app.post('/api/characters', usersController.addCharacter);
 
   // character creation
-  app.get('/api/images', usersController.getImages)
+  app.get('/api/images', usersController.getImages);
 
   // select stories
   app.get('/api/stories', storiesController.getStories);
