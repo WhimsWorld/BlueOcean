@@ -23,6 +23,25 @@ export default function SelectCharacter() {
             </ListItemPrefix>
             <div>
               <Typography variant="h6" color="blue-gray">{character.name}</Typography>
+
+              <div className="flex">
+                <Typography variant="small" color="gray" className="font-normal" style={{ width: '5rem' }}>
+                  strength:
+                </Typography>
+                <Typography variant="small" color="gray" className="font-normal">
+                  {character.strength}
+                </Typography>
+              </div>
+
+              <div className="flex">
+                <Typography variant="small" color="gray" className="font-normal" style={{ width: '5rem' }}>
+                  weakness:
+                </Typography>
+                <Typography variant="small" color="gray" className="font-normal">
+                  {character.weakness}
+                </Typography>
+              </div>
+
               <Typography variant="small" color="gray" className="font-normal">
                 {character.backstory}
               </Typography>

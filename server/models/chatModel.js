@@ -13,10 +13,11 @@ export const addMessage = async (userId, storyId, data) => {
 
 export const getMessagesByStoryId = async (storyId) => {
   const query = `
-    SELECT * 
+    SELECT chat.*, users.username 
     FROM chat 
-    WHERE story_id = $1 
-    ORDER BY date_created DESC;
+    INNER JOIN users ON chat.user_id = users.user_id
+    WHERE chat.story_id = $1 
+    ORDER BY chat.date_created ASC;
   `;
   const values = [storyId];
   const result = await executeQuery(query, values);
