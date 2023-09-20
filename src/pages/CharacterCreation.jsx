@@ -14,8 +14,10 @@ import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { onAuthStateChanged } from 'firebase/auth';
+import Cookies from 'js-cookie';
 import { auth } from '../utils/firebase';
 import StickyNavbar from '../components/StickyNavbar';
+import store from '../app/store';
 
 // The storyBoardURL is so that when the character is created, We will be able to
 // redirect the user back to the specific story they created a character for.
@@ -34,23 +36,9 @@ export default function CharacterCreation({ storyBoardURL }) {
   //     .then((imagesData) => setImages(imagesData.data))
   //     .catch(() => console.log('couldnt fetch images'));
   // }, []);
-
-  let uid;
-  let displayName;
-
-  async function fetchUser() {
-    await onAuthStateChanged(auth, (user) => {
-      if (user) {
-        uid = user.uid;
-        displayName = user.displayName;
-      } else {
-        navigate('/login');
-      }
-    });
-  }
+  console.log('cookies in characterCreation', Cookies.get('userId'));
 
   async function toPost() {
-    await fetchUser();
     axios.post('/api/characters', {
       user_uid: uid,
       username: displayName,
@@ -71,15 +59,22 @@ export default function CharacterCreation({ storyBoardURL }) {
     setCharacterIcon(e.target.src);
   }
 
+  const tempTraits = []
   const traitSelection = (e) => {
-    console.log('target', e.target.value);
-    if (e.target.checked < 3) {
-      setTraits([traits, e.target.value]);
+    console.log('traits', traits);
+    for (let i = 0; i < traits.length; i += 1) {
+      if (traits.includes(e.target.checked)) {
+        traits.splice(i, 0);
+        i -= 1;
+      } else {
+        traits.push(e.target.checked);
+      }
     }
   };
 
   return (
     <div>
+      {/* {console.log('traits', traits)} */}
       <StickyNavbar />
       <div style={{ display: 'flex', justifyContent: 'center' }}>
         <Card style={{ alignItems: 'center', width: '50%', margin: 'auto' }} color="transparent" shadow={false}>
