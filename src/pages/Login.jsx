@@ -49,7 +49,7 @@ export default function Login() {
     <div>
       {console.log('store', store.getState())}
       <StickyNavbar />
-      <Card className="w-96">
+      <Card className="w-96" style={{margin: 'auto' }}>
         <CardHeader
           variant="gradient"
           color="blue"

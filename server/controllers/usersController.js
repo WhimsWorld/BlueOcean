@@ -24,7 +24,8 @@ export const getUserById = async (req, res) => {
 };
 
 export const addUser = async (req, res) => {
-  const { user_id: userId, username } = req.body;
+  const userId = req.body.user_id;
+  const username = req.body.display_name;
   userModel.addUser(userId, username)
     .then(() => res.sendStatus(201))
     .catch(() => res.sendStatus(500));
