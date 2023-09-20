@@ -55,7 +55,6 @@ export const getLeaderboard = async (req, res) => {
 
 export const getStoryById = async (req, res) => {
   const { storyId } = req.params;
-  console.log('Received storyId:', req.params.storyId);
 
   try {
     const story = await storiesModel.getStoryById(storyId);
