@@ -87,7 +87,7 @@ export default function App() {
             setCategories={setCategories}
           />
         </div>
-        <div className="item2 border-solid border-2 grid items-center">
+        <div className="item2 border-solid border-2 grid items-center content-baseline" style={{ backgroundColor: '#FAFAFA' }}>
           <Mystories
             showCheck={showCheck}
             myStoriesFilter={myStoriesFilter}
