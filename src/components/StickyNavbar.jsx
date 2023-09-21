@@ -49,13 +49,15 @@ function StickyNavbar() {
         >
           Create Story
         </Typography>
-        <Typography
-          as="a"
-          href="/Signup"
-          className="mr-4 cursor-pointer py-1.5 font-medium"
-        >
-          Sign Up
-        </Typography>
+        {loggedIn ? <> </> : (
+          <Typography
+            as="a"
+            href="/Signup"
+            className="mr-4 cursor-pointer py-1.5 font-medium"
+          >
+            Sign Up
+          </Typography>
+        )}
       </div>
     </Navbar>
   );
