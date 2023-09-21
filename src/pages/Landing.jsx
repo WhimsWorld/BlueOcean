@@ -3,6 +3,7 @@ import Particles from 'react-particles';
 import { loadSlim } from 'tsparticles-slim';
 import { Button } from '@material-tailwind/react';
 import { useNavigate } from 'react-router-dom';
+import '../index.css';
 
 const preset = {
   name: 'Star',
@@ -64,20 +65,24 @@ export default function Landing() {
   const particlesLoaded = useCallback(async (container) => {
   }, []);
   return (
-    <div
-      className="w-full bg-center bg-cover h-screen flex items-center"
-      style={{
-        backgroundImage: "url('/landing.png')",
-      }}
-    >
-      <Particles
-        id="tsparticles"
-        init={particlesInit}
-        loaded={particlesLoaded}
-        options={preset}
-      />
-      <div className="flex items-center w-5/6 bg-none start-40 mx-auto">
-        <div className="max-w-2xl mb-8 start-40 left-40">
+    <div className="relative w-full h-screen">
+      <div
+        className="absolute top-0 left-0 w-screen h-screen bg-center bg-cover animate-zoomIn duration-1000"
+        style={{
+          backgroundImage: "url('/landing.png')",
+        }}
+      >
+        <Particles
+          id="tsparticles"
+          init={particlesInit}
+          loaded={particlesLoaded}
+          options={preset}
+        />
+      </div>
+
+      {/* Content */}
+      <div className="relative flex items-center h-full w-5/6 mx-auto">
+        <div className="max-w-2xl mb-8">
           <h1 className="text-4xl font-norican leading-snug tracking-tight text-white lg:text-4xl lg:leading-tight xl:text-6xl xl:leading-tight">
             WhimsWorld
           </h1>
