@@ -26,6 +26,7 @@ CREATE TABLE gifs (
 CREATE TABLE sounds (
     sound_id SERIAL PRIMARY KEY,
     category_id INTEGER REFERENCES categories(cat_id),
+    sound_name VARCHAR(32),
     sound_url TEXT,
     premium BOOLEAN
 );
