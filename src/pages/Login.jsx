@@ -39,7 +39,7 @@ export default function Login() {
   }
 
   return (
-    <div>
+    <div className="h-screen bg-cover" style={{backgroundImage: `url(${loginBg})`}}>
       <StickyNavbar />
       <Card className="w-96 m-auto">
         <CardHeader
@@ -81,3 +81,6 @@ export default function Login() {
     </div>
   );
 }
+
+//styling assets
+const loginBg = "https://i.ibb.co/6bsxsgR/pirate3-min.png";

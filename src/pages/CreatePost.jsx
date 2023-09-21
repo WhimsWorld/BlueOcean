@@ -103,17 +103,20 @@ export default function CreatePost() {
   };
 
   return (
-    <div style={{ backgroundImage: `url(${right})` }}>
+    <div className="h-100%" style={{ backgroundImage: `url(${right})` }}>
       <StickyNavbar loggedIn={loggedIn} setLoggedIn={setLoggedIn} />
-      <div style={{
-        display: 'flex', justifyContent: 'center', alignItems: 'center', maxWidth: '1000px', margin: '0 auto', minHeight: '100vh',
-      }}
+      <div
+        className="min-h-screen"
+        style={{
+          display: 'flex', justifyContent: 'center', alignItems: 'center', maxWidth: '1000px', margin: '0 auto', minHeight: '100vh',
+        }}
       >
         <Card
           color="transparent"
           className="w-2/3 mt-1 p-4 flex"
           style={{
             width: '100%',
+            height: '100%',
             display: 'flex',
             alignItems: 'center',
             background: `url(${cardBG})`,
@@ -202,7 +205,7 @@ export default function CreatePost() {
                 width: '350px',
               }}
               type="submit"
-              className="mt-6 w-1/2 self-center"
+              className="mt-6 mb-12 w-1/2 self-center"
               onClick={handleSubmit}
             >
               Continue the Story
