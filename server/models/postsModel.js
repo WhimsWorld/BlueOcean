@@ -117,7 +117,6 @@ export const getNarrator = async (storyid, userid) => {
       WHERE story_id = $1 AND narrator_id = $2
     ) AS is_narrator;
   `;
-
   const result = await executeQuery(query, [storyid, userid]);
   return result.rows[0].is_narrator;
 };
