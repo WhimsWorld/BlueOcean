@@ -19,7 +19,14 @@ export default function LiveChat({ storyId }) {
     if (storyId) {
       dispatch(fetchChat(storyId));
     }
+    // Set an interval to refresh chat messages every 15 seconds
+    const intervalId = setInterval(() => {
+      dispatch(fetchChat(storyId));
+    }, 15000);
+
+    return () => clearInterval(intervalId);
   }, [dispatch, storyId]);
+
   const handleMessageChange = (e) => {
     setMessage(e.target.value);
   };
@@ -37,20 +44,20 @@ export default function LiveChat({ storyId }) {
 
   return (
     <Card
-      className="h-full rounded-none rounded-r-xl"
+      className="h-full rounded-none rounded-r-xl px-2"
       style={{
         maxWidth: '320px', backgroundImage: `url(${rightPanel})`, backgroundRepeat: 'round', justifySelf: 'end',
       }}
     >
-      <div className="chat-messages w-5/6 overflow-y-auto">
+      <div className="chat-messages overflow-y-auto h-96 mt-8">
         {chatMessages.map((msg) => (
-          <div key={msg.message_id} className={`${msg.user_id === userId ? 'ml-auto' : ''}`}>
+          <div key={msg.message_id} className={`${msg.user_id === userId ? 'ml-16' : ''}`}>
             <div className="user text-sm ml-2">
               {msg.username}
               {' '}
               {new Date(msg.date_created).toLocaleTimeString()}
             </div>
-            <div className={`${msg.user_id === userId ? 'bg-whimsipink ' : ''} border rounded-md m-1 p-2 px-4 w-44 text-black`}>
+            <div className={`${msg.user_id === userId ? 'bg-whimsipink ' : 'bg-white'} border rounded-md m-1 p-2 px-4 w-44 text-black`}>
               {msg.data}
             </div>
           </div>
