@@ -41,7 +41,13 @@ export const addCharacter = async (characterData) => {
 };
 
 export const getImages = async () => {
-  const query = 'SELECT * from images';
+  const query = 'SELECT * from images WHERE category_id = 5';
+  const result = await executeQuery(query);
+  return result.rows;
+};
+
+export const getSounds = async () => {
+  const query = 'SELECT * from sounds WHERE category_id = 5';
   const result = await executeQuery(query);
   return result.rows;
 };
