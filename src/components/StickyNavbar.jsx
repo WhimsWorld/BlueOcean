@@ -19,7 +19,7 @@ function StickyNavbar({ loggedIn, setLoggedIn }) {
       <div className="flex items-center justify-center text-blue-gray-900">
         <Typography
           as="a"
-          href="/"
+          href="/home"
           className="mr-4 cursor-pointer py-1.5 font-medium"
         >
           Home
