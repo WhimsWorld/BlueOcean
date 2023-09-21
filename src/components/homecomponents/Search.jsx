@@ -38,7 +38,7 @@ export default function Search({
         label="Search"
         value={search}
         onChange={onChange}
-        icon="non'
+        icon="non"
         className="pr-20 min-w-0"
         containerProps={{
           className: 'min-w-[0]',
