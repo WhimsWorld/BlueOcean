@@ -7,6 +7,8 @@ export default withMT({
       heading: ['Karla', 'sans-serif'],
       body: ['Merriweather', 'sans-serif'],
       logo: ['Handlee', 'cursive'],
+      norican: ['Norican', 'cursive'],
+      poiret: ['Poiret One', 'cursive'],
     },
     extend: {
       animation: {
@@ -17,10 +19,6 @@ export default withMT({
           '0%, 100%': { transform: 'scale(1)' },
           '50%': { transform: 'scale(1.05)' },
         },
-      },
-      fontFamily: {
-        norican: ['Norican', 'cursive'],
-        poiret: ['Poiret One', 'cursive'],
       },
       colors: {
         whimsipink: '#F4E3ED',

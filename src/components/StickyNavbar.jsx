@@ -20,7 +20,7 @@ function StickyNavbar({ loggedIn, setLoggedIn }) {
         <Typography
           as="a"
           href="/"
-          className="cursor-pointer font-bold font-logo text-3xl text-whimsilightblue"
+          className="cursor-pointer font-bold font-norican text-3xl text-whimsilightblue"
         >
           WhimsiWorld
         </Typography>
@@ -71,4 +71,4 @@ function StickyNavbar({ loggedIn, setLoggedIn }) {
 
 export default StickyNavbar;
 
-const groupClass = 'mr-4 cursor-pointer py-1.5 font-medium font-heading bg-left-bottom bg-gradient-to-r from-whimsilightblue to-whimsilightblue bg-[length:0%_2px] bg-no-repeat hover:bg-[length:100%_2px] transition-all duration-500 ease-out active:bg-[length:100%_2px]';
+const groupClass = 'mr-4 cursor-pointer py-1.5 font-medium font-semibold font-poiret bg-left-bottom bg-gradient-to-r from-whimsilightblue to-whimsilightblue bg-[length:0%_2px] bg-no-repeat hover:bg-[length:100%_2px] transition-all duration-500 ease-out active:bg-[length:100%_2px]';
