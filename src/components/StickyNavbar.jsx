@@ -6,13 +6,12 @@ import {
 import Cookies from 'js-cookie';
 import { useNavigate } from 'react-router-dom';
 
-function StickyNavbar() {
+function StickyNavbar({ loggedIn, setLoggedIn }) {
   const navigate = useNavigate();
-  const [loggedIn, setIsLoggedIn] = useState(Cookies.get('userId'));
 
   const handleLogout = () => {
     Cookies.remove('userId');
-    setIsLoggedIn(Cookies.get('userId'));
+    setLoggedIn(Cookies.get('userId'));
   };
 
   return (
@@ -49,13 +48,15 @@ function StickyNavbar() {
         >
           Create Story
         </Typography>
-        <Typography
-          as="a"
-          href="/Signup"
-          className="mr-4 cursor-pointer py-1.5 font-medium"
-        >
-          Sign Up
-        </Typography>
+        {loggedIn ? <> </> : (
+          <Typography
+            as="a"
+            href="/Signup"
+            className="mr-4 cursor-pointer py-1.5 font-medium"
+          >
+            Sign Up
+          </Typography>
+        )}
       </div>
     </Navbar>
   );

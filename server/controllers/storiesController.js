@@ -2,7 +2,7 @@
 import * as storiesModel from '../models/storiesModel.js';
 
 export const getStories = async (req, res) => {
-  let catStory = null;
+  let catStory = null; // can rewrite as catStory = req.query.category || null;
   let user = null;
   if (req.query.category) {
     catStory = req.query.category;

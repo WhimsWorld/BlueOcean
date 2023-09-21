@@ -18,11 +18,9 @@ import Cookies from 'js-cookie';
 import { auth } from '../utils/firebase';
 import StickyNavbar from '../components/StickyNavbar';
 
-// The storyBoardURL is so that when the character is created, We will be able to
-// redirect the user back to the specific story they created a character for.
 export default function CharacterCreation({ storyBoardURL }) {
   const navigate = useNavigate();
-
+  const storyID = window.location.href.split('characterCreation/')[1];
   const [name, setName] = useState('');
   const [origin, setOrigin] = useState('');
   const [str, setStr] = useState([]);
@@ -44,6 +42,7 @@ export default function CharacterCreation({ storyBoardURL }) {
   async function toPost() {
     axios.post('/api/characters', {
       user_id: uid,
+      story_id: storyID,
       char_name: name,
       backstory: origin,
       characterRace: race,
@@ -78,6 +77,9 @@ export default function CharacterCreation({ storyBoardURL }) {
       setWeak((weak) => [...weak, e.target.value]);
     }
   };
+  const changeRace = (e) => {
+    setRace(e);
+  };
 
   return (
     <div>
@@ -94,7 +96,7 @@ export default function CharacterCreation({ storyBoardURL }) {
             {/* This div is for basic background info */}
             <div className="mb-4 flex flex-col gap-6">
               <Input size="lg" label="Name" onChange={(e) => setName(e.target.value)} />
-              <Select color="blue" label="Select Race">
+              <Select color="blue" label="Select Race" onChange={changeRace}>
                 <Option value="Human">Human</Option>
                 <Option value="Elf">Elf</Option>
                 <Option value="Orc">Orc</Option>

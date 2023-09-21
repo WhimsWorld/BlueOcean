@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useLocation } from 'react-router-dom';
+import Cookies from 'js-cookie';
 import StickyNavbar from '../components/StickyNavbar';
 import SelectCharacter from '../components/storyBoardComponents/selectCharacter';
 import ActNavigation from '../components/storyBoardComponents/actNavigation';
@@ -10,9 +11,10 @@ import LiveChat from '../components/storyBoardComponents/liveChat';
 export default function StoryBoard() {
   const location = useLocation();
   const storyId = location.pathname.split('/').pop();
+  const [loggedIn, setLoggedIn] = useState(Cookies.get('userId'));
   return (
     <div>
-      <StickyNavbar />
+      <StickyNavbar loggedIn={loggedIn} setLoggedIn={setLoggedIn} />
       <div className="grid grid-cols-[25%_50%_25%]">
         <div className="item1 border-solid border-2 bg-auto grid" style={{ backgroundImage: `url(${left})` }}>
           <SelectCharacter storyId={storyId} />
