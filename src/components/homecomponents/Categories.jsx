@@ -31,13 +31,20 @@ export default function Categories({
         backgroundRepeat: 'round',
       }}
     >
-      <span className="self-center pt-5 pb-3">Themes</span>
-      <List className="min-w-[0]">
-        {categories.map((categoryEntry) => (
+      <span className="self-center pt-5 pb-3 underline font-body font-2x">Themes</span>
+      <List className="min-w-[0] gap-3 font-poiret font-semibold">
+        {categories.map((categoryEntry, i) => (
           <ListItem
             className="rounded-none rounded-md"
             style={{
-              background: categoryEntry.selected ? '#F4E3ED' : '#101A4B', justifyContent: 'end', color: categoryEntry.selected ? '#101A4B' : '#F4E3ED', paddingLeft: '2rem', fontSize: '0.9rem', clipPath: 'polygon(0 0, 100% 0%, 100% 100%, 0 100%, 8% 50%)', border: '1px solid #101A4B',
+              background: categoryEntry.selected ? '#F4E3ED' : '#101A4B',
+              justifyContent: 'end',
+              color: categoryEntry.selected ? '#101A4B' : '#F4E3ED',
+              paddingLeft: '2rem',
+              fontSize: '0.9rem',
+              clipPath: 'polygon(0 0, 100% 0%, 100% 100%, 0 100%, 8% 50%)',
+              border: '1px solid #101A4B',
+              marginLeft: i % 2 === 0 ? '-30px' : '0',
             }}
             selected={categoryEntry.selected}
             name={categoryEntry.cat_name}
