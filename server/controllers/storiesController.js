@@ -66,6 +66,7 @@ export const getStoryById = async (req, res) => {
 
 export const getLikedStories = async (req, res) => {
   const { userId } = req.query;
+
   try {
     const liked = await storiesModel.getLikedStories(userId);
     res.json(liked);
