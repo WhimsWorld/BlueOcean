@@ -87,7 +87,7 @@ export default function App() {
   return (
     <div>
       <StickyNavbar loggedIn={loggedIn} setLoggedIn={setLoggedIn} />
-      <div className="grid grid-cols-[25%_50%_25%]">
+      <div className="grid grid-cols-[25%_50%_25%]" style={{ minHeight: '100vh' }}>
         <div className="item1 border-solid border-2 bg-auto grid" style={{ backgroundImage: `url(${left})` }}>
           <Categories
             category={category}
@@ -97,15 +97,17 @@ export default function App() {
           />
         </div>
         <div className="item2 border-solid border-2 grid items-center content-baseline bg-contain" style={{ background: '#fbfbfb' }}>
-          <Mystories
-            showCheck={showCheck}
-            myStoriesFilter={myStoriesFilter}
-            isChecked={isChecked}
-            setIsChecked={setIsChecked}
-            setMyStoriesFilter={setMyStoriesFilter}
-            className="mr-5"
-          />
-          <div className="flex m-5 justify-evenly">
+          {loggedIn ? (
+            <Mystories
+              showCheck={showCheck}
+              myStoriesFilter={myStoriesFilter}
+              isChecked={isChecked}
+              setIsChecked={setIsChecked}
+              setMyStoriesFilter={setMyStoriesFilter}
+              className="mr-5"
+            />
+          ) : null}
+          <div className="flex m-5">
             <Filter setFilter={setFilter} />
             <Search
               category={category}
