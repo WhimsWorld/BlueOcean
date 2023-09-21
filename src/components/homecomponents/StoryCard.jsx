@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import Cookies from 'js-cookie';
 
 import {
   Card,
@@ -19,6 +20,8 @@ export default function StoryCard({
   likedStories,
   setLikeUpdate,
   setLikedStories,
+  loggedIn,
+  setLoggedIn,
 }) {
   const storyId = story.story_id;
   const dispatch = useDispatch();
@@ -39,31 +42,35 @@ export default function StoryCard({
   };
 
   const likeClickHandler = () => {
-    const isLiked = color === 'red';
+    if (loggedIn) {
+      const isLiked = color === 'red';
 
-    const data = {
-      storyId: story.story_id,
-      userId: 'user3_id', //need to update this later
-    };
+      const data = {
+        storyId: story.story_id,
+        userId: loggedIn, // logged in contains info of user currently logged in
+      };
 
-    if (isLiked) {
-      setColor('white');
-      axios
-        .delete('api/deletelike', { data })
-        .then((response) => {
-          setLikedStories(response.data);
-          setLikeUpdate((prev) => !prev); // Toggle the state
-        })
-        .catch(() => {});
+      if (isLiked) {
+        setColor('white');
+        axios
+          .delete('api/deletelike', { data })
+          .then((response) => {
+            setLikedStories(response.data);
+            setLikeUpdate((prev) => !prev); // Toggle the state
+          })
+          .catch(() => {});
+      } else {
+        setColor('red');
+        axios
+          .post('api/postlike', data)
+          .then((response) => {
+            setLikedStories(response.data);
+            setLikeUpdate((prev) => !prev); // Toggle the state
+          })
+          .catch(() => {});
+      }
     } else {
-      setColor('red');
-      axios
-        .post('api/postlike', data)
-        .then((response) => {
-          setLikedStories(response.data);
-          setLikeUpdate((prev) => !prev); // Toggle the state
-        })
-        .catch(() => {});
+      navigate('/login');
     }
   };
 

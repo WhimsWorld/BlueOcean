@@ -4,6 +4,10 @@ export default withMT({
   content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
   theme: {
     extend: {
+      fontFamily: {
+        norican: ['Norican', 'cursive'],
+        poiret: ['Poiret One', 'cursive'],
+      },
       colors: {
         whimsipink: '#F4E3ED',
         whimsidarkblue: '#101A4B',

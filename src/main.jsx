@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { Provider } from 'react-redux';
-import { ThemeProvider } from '@material-tailwind/react';
 import { RouterProvider } from 'react-router-dom';
 import store from './app/store';
 import './index.css';

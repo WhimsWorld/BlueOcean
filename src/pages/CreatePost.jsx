@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { onAuthStateChanged } from 'firebase/auth';
@@ -12,6 +13,7 @@ import {
 } from '@material-tailwind/react';
 import { useSelector } from 'react-redux';
 import { auth } from '../utils/firebase';
+
 import StickyNavbar from '../components/StickyNavbar';
 import ImagesMenu from '../components/postCreationComponents/ImagesMenu';
 import GifsMenu from '../components/postCreationComponents/GifsMenu';
@@ -211,6 +213,7 @@ export default function CreatePost() {
             </Button>
           </div>
         </Card>
+
       </div>
     </div>
 

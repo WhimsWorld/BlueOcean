@@ -1,5 +1,6 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import Cookies from 'js-cookie';
 import {
   Card, List, ListItem, ListItemPrefix, Avatar, Typography,
 } from '@material-tailwind/react';
@@ -11,17 +12,23 @@ export default function SelectCharacter({ storyId }) {
   const navigate = useNavigate();
   const characters = useSelector((state) => state.characters);
 
+  const [loggedIn, setLoggedIn] = useState(Cookies.get('userId'));
   useEffect(() => {
     dispatch(loadCharactersByUserId(1));
   }, [dispatch]);
-
+  console.log('logged in outside of function', loggedIn);
   const handleCreateCharacter = () => {
-    navigate(`/characterCreation/${storyId}`);
+    console.log('logged in in selectChar', loggedIn);
+    if (loggedIn) {
+      navigate(`/characterCreation/${storyId}`);
+    } else {
+      navigate('/login');
+    }
   };
 
   return (
-    <Card className="w-96">
-      <List>
+    <Card className="rounded-none rounded-l-xl" style={{ maxWidth: '300px', justifySelf: 'flex-end', backgroundImage: `url(${leftPanel})`, backgroundSize: 'auto', backgroundRepeat: 'round' }}>
+      <List className="min-w-[0]">
         {characters.map((character) => (
           <ListItem key={character.char_id}>
             <ListItemPrefix>
@@ -55,8 +62,10 @@ export default function SelectCharacter({ storyId }) {
           </ListItem>
         ))}
       </List>
-      <button onClick={handleCreateCharacter}>Create Character</button>
+      <button onClick={() => handleCreateCharacter() }>Create Character</button>
 
     </Card>
   );
 }
+
+const leftPanel = 'https://res.cloudinary.com/dnr41r1lq/image/upload/v1695243090/paperLeft_uz9wcj.png';
