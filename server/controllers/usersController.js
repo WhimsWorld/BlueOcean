@@ -23,6 +23,15 @@ export const getUserById = async (req, res) => {
   }
 };
 
+export const getCharactersByStoryId = async (req, res) => {
+  try {
+    const characters = await characterModel.getCharactersByStoryId(req.params.storyId);
+    res.json(characters);
+  } catch (err) {
+    res.status(500).send('Error retrieving characters.');
+  }
+};
+
 export const addUser = async (req, res) => {
   const userId = req.body.user_id;
   const username = req.body.display_name;
