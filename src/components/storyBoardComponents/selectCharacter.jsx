@@ -16,6 +16,10 @@ export default function SelectCharacter({ storyId }) {
     dispatch(loadCharactersByUserId(storyId));
   }, [dispatch]);
 
+  function parseSWString(s) {
+    return s.replace(/^{|}$/g, '').split(',').map((item) => item.trim().replace(/^"|"$/g, ''));
+  }
+
   const handleCreateCharacter = () => {
     console.log('logged in in selectChar', loggedIn);
     if (loggedIn) {
@@ -27,7 +31,7 @@ export default function SelectCharacter({ storyId }) {
   };
   return (
     <Card
-      className="rounded-l-xl w-full max-w-md mx-auto"
+      className="rounded-none rounded-l-xl max-w-sm"
       style={{
         justifySelf: 'flex-end', backgroundImage: `url(${leftPanel})`, backgroundSize: 'auto', backgroundRepeat: 'round',
       }}
@@ -35,7 +39,7 @@ export default function SelectCharacter({ storyId }) {
       <List className="p-1 ">
 
         {characters.map((character) => (
-          <ListItem key={character.char_id}>
+          <ListItem key={character.char_id} className="bg-white rounded-lg mt-1 ml-1">
             <ListItemPrefix className="self-top">
               <Avatar variant="circular" alt={character.char_name} src={character.image_url} />
             </ListItemPrefix>
@@ -47,7 +51,7 @@ export default function SelectCharacter({ storyId }) {
                   <b>strength:</b>
                 </Typography>
                 <Typography variant="small" color="gray" className="font-normal">
-                  {character.strength}
+                  {parseSWString(character.strength)}
                 </Typography>
               </div>
 
@@ -56,7 +60,7 @@ export default function SelectCharacter({ storyId }) {
                   <b>weakness:</b>
                 </Typography>
                 <Typography variant="small" color="gray" className="font-normal">
-                  {character.weakness}
+                  {parseSWString(character.weakness)}
                 </Typography>
               </div>
               <Tooltip
@@ -71,9 +75,17 @@ export default function SelectCharacter({ storyId }) {
         ))}
       </List>
       <CardFooter className="pt-0">
-        <button onClick={() => handleCreateCharacter()}>Create Character</button>
+        <Button
+          fullWidth
+          onClick={() => handleCreateCharacter()}
+          style={{ backgroundImage: `url(${buttonBG})`, backgroundSize: 'auto', opacity: 0.8 }}
+        >
+          Create Character
+
+        </Button>
       </CardFooter>
     </Card>
   );
 }
 const leftPanel = 'https://res.cloudinary.com/dnr41r1lq/image/upload/v1695243090/paperLeft_uz9wcj.png';
+const buttonBG = 'https://res.cloudinary.com/dnr41r1lq/image/upload/v1695229025/bronzetexture_cc3urf.webp';
