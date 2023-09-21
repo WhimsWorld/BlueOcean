@@ -47,7 +47,7 @@ export default function App() {
   useEffect(() => {
     const dataParams = {
       params: {
-        userId: 'user3_id', //need to update this later
+        userId: 'user3_id', // need to update this later
       },
     };
     axios.get('api/likes', dataParams)
@@ -55,7 +55,7 @@ export default function App() {
         setLikedStories(response.data);
       })
       .catch(() => {});
-  }, []); //can i base this on a change of user in redux?
+  }, []); // can i base this on a change of user in redux?
 
   // const storyId = useSelector((state) => state.story.storyId);
 
@@ -65,7 +65,7 @@ export default function App() {
         category,
         filter,
         myStoriesFilter,
-        userId: 'user3_id', //need to update this later
+        userId: 'user3_id', // need to update this later
       },
     };
     axios.get('/api/stories', dataParams)
