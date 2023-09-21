@@ -17,13 +17,12 @@ import { onAuthStateChanged } from 'firebase/auth';
 import Cookies from 'js-cookie';
 import { auth } from '../utils/firebase';
 import StickyNavbar from '../components/StickyNavbar';
-import store from '../app/store';
 
 // The storyBoardURL is so that when the character is created, We will be able to
 // redirect the user back to the specific story they created a character for.
 export default function CharacterCreation({ storyBoardURL }) {
   const navigate = useNavigate();
-
+  const storyID = window.location.href.split('characterCreation/')[1];
   const [name, setName] = useState('');
   const [origin, setOrigin] = useState('');
   const [str, setStr] = useState([]);
@@ -32,6 +31,7 @@ export default function CharacterCreation({ storyBoardURL }) {
   const [sex, setSex] = useState('');
   const [characterIcon, setCharacterIcon] = useState('');
   const [images, setImages] = useState(['https://previews.123rf.com/images/aalbedouin/aalbedouin1801/aalbedouin180100599/93976760-personality-traits-icon-symbol-premium-quality-isolated-personal-character-element-in-trendy-style.jpg', 'https://previews.123rf.com/images/aalbedouin/aalbedouin1801/aalbedouin180100599/93976760-personality-traits-icon-symbol-premium-quality-isolated-personal-character-element-in-trendy-style.jpg', 'https://previews.123rf.com/images/aalbedouin/aalbedouin1801/aalbedouin180100599/93976760-personality-traits-icon-symbol-premium-quality-isolated-personal-character-element-in-trendy-style.jpg','https://previews.123rf.com/images/aalbedouin/aalbedouin1801/aalbedouin180100599/93976760-personality-traits-icon-symbol-premium-quality-isolated-personal-character-element-in-trendy-style.jpg', 'https://previews.123rf.com/images/aalbedouin/aalbedouin1801/aalbedouin180100599/93976760-personality-traits-icon-symbol-premium-quality-isolated-personal-character-element-in-trendy-style.jpg', 'https://previews.123rf.com/images/aalbedouin/aalbedouin1801/aalbedouin180100599/93976760-personality-traits-icon-symbol-premium-quality-isolated-personal-character-element-in-trendy-style.jpg', 'https://previews.123rf.com/images/aalbedouin/aalbedouin1801/aalbedouin180100599/93976760-personality-traits-icon-symbol-premium-quality-isolated-personal-character-element-in-trendy-style.jpg', 'https://previews.123rf.com/images/aalbedouin/aalbedouin1801/aalbedouin180100599/93976760-personality-traits-icon-symbol-premium-quality-isolated-personal-character-element-in-trendy-style.jpg', 'https://previews.123rf.com/images/aalbedouin/aalbedouin1801/aalbedouin180100599/93976760-personality-traits-icon-symbol-premium-quality-isolated-personal-character-element-in-trendy-style.jpg','https://previews.123rf.com/images/aalbedouin/aalbedouin1801/aalbedouin180100599/93976760-personality-traits-icon-symbol-premium-quality-isolated-personal-character-element-in-trendy-style.jpg', 'https://previews.123rf.com/images/aalbedouin/aalbedouin1801/aalbedouin180100599/93976760-personality-traits-icon-symbol-premium-quality-isolated-personal-character-element-in-trendy-style.jpg', 'https://previews.123rf.com/images/aalbedouin/aalbedouin1801/aalbedouin180100599/93976760-personality-traits-icon-symbol-premium-quality-isolated-personal-character-element-in-trendy-style.jpg']);
+
   useEffect(() => {
     axios.get('/api/images')
       .then((imagesData) => {
@@ -44,6 +44,7 @@ export default function CharacterCreation({ storyBoardURL }) {
   async function toPost() {
     axios.post('/api/characters', {
       user_id: uid,
+      story_id: storyID,
       char_name: name,
       backstory: origin,
       characterRace: race,
@@ -59,8 +60,6 @@ export default function CharacterCreation({ storyBoardURL }) {
 
   function mouseOver(e) {
     e.target.style.background = 'blue';
-    // console.log('image url', e.target.src);
-    // console.log('image id', e.target.id);
     setCharacterIcon(e.target.id);
   }
 
@@ -80,10 +79,12 @@ export default function CharacterCreation({ storyBoardURL }) {
       setWeak((weak) => [...weak, e.target.value]);
     }
   };
+  const changeRace = (e) => {
+    setRace(e);
+  };
 
   return (
     <div>
-      {/* {console.log('traits', traits)} */}
       <StickyNavbar />
       <div style={{ display: 'flex', justifyContent: 'center' }}>
         <Card style={{ alignItems: 'center', width: '50%', margin: 'auto' }} color="transparent" shadow={false}>
@@ -97,13 +98,14 @@ export default function CharacterCreation({ storyBoardURL }) {
             {/* This div is for basic background info */}
             <div className="mb-4 flex flex-col gap-6">
               <Input size="lg" label="Name" onChange={(e) => setName(e.target.value)} />
-              <Select color="blue" label="Select Race">
-                <Option>Human</Option>
-                <Option>Elf</Option>
-                <Option>Orc</Option>
-                <Option>Dwarf</Option>
-                <Option>Tiefling</Option>
-                <Option>Dragonborn</Option>
+              <Select color="blue" label="Select Race" onChange={changeRace}>
+                <Option value="Human">Human</Option>
+                <Option value="Elf">Elf</Option>
+                <Option value="Orc">Orc</Option>
+                <Option value="Dwarf">Dwarf</Option>
+                <Option value="Tiefling">Tiefling</Option>
+                <Option value="DragonBorn">Dragonborn</Option>
+                {/* {console.log('race', race)} */}
               </Select>
             </div>
             {/* This div is for character races */}
