@@ -70,6 +70,7 @@ CREATE TABLE characters (
     story_id INTEGER REFERENCES stories(story_id),
     user_id VARCHAR(64) REFERENCES users(user_id),
     image_id INTEGER REFERENCES images(image_id),
+    sound_id INTEGER REFERENCES sounds(sound_id),
     char_name VARCHAR(32),
     strength VARCHAR(32),
     weakness VARCHAR(32),
