@@ -45,7 +45,6 @@ function StickyNavbar({ loggedIn, setLoggedIn }) {
           as="a"
           onClick={() => (loggedIn ? navigate('/createStory') : navigate('/login'))}
           className="mr-4 cursor-pointer py-1.5 font-medium"
-          // onClick={loggedIn ? navigate('/createStory') : navigate('/login')}
         >
           Create Story
         </Typography>

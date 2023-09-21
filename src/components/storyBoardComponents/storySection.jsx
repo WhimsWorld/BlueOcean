@@ -28,7 +28,7 @@ export default function StorySection() {
     if (loggedIn) {
       navigate(`/createPost/${id}`);
     } else {
-      navigate('/login');
+      navigate(`/login/storyBoard/${storyId}`);
     }
   };
 
