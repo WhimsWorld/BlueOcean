@@ -17,6 +17,7 @@ import { onAuthStateChanged } from 'firebase/auth';
 import Cookies from 'js-cookie';
 import { auth } from '../utils/firebase';
 import StickyNavbar from '../components/StickyNavbar';
+import SoundsMenu from '../components/characterCreationComponents/SoundsMenuChars';
 
 export default function CharacterCreation({ storyBoardURL }) {
   const navigate = useNavigate();
@@ -26,9 +27,12 @@ export default function CharacterCreation({ storyBoardURL }) {
   const [str, setStr] = useState([]);
   const [weak, setWeak] = useState([]);
   const [race, setRace] = useState('');
-  const [sex, setSex] = useState('');
+  const [sex, setSex] = useState('male');
   const [characterIcon, setCharacterIcon] = useState('');
-  const [images, setImages] = useState(['https://previews.123rf.com/images/aalbedouin/aalbedouin1801/aalbedouin180100599/93976760-personality-traits-icon-symbol-premium-quality-isolated-personal-character-element-in-trendy-style.jpg', 'https://previews.123rf.com/images/aalbedouin/aalbedouin1801/aalbedouin180100599/93976760-personality-traits-icon-symbol-premium-quality-isolated-personal-character-element-in-trendy-style.jpg', 'https://previews.123rf.com/images/aalbedouin/aalbedouin1801/aalbedouin180100599/93976760-personality-traits-icon-symbol-premium-quality-isolated-personal-character-element-in-trendy-style.jpg','https://previews.123rf.com/images/aalbedouin/aalbedouin1801/aalbedouin180100599/93976760-personality-traits-icon-symbol-premium-quality-isolated-personal-character-element-in-trendy-style.jpg', 'https://previews.123rf.com/images/aalbedouin/aalbedouin1801/aalbedouin180100599/93976760-personality-traits-icon-symbol-premium-quality-isolated-personal-character-element-in-trendy-style.jpg', 'https://previews.123rf.com/images/aalbedouin/aalbedouin1801/aalbedouin180100599/93976760-personality-traits-icon-symbol-premium-quality-isolated-personal-character-element-in-trendy-style.jpg', 'https://previews.123rf.com/images/aalbedouin/aalbedouin1801/aalbedouin180100599/93976760-personality-traits-icon-symbol-premium-quality-isolated-personal-character-element-in-trendy-style.jpg', 'https://previews.123rf.com/images/aalbedouin/aalbedouin1801/aalbedouin180100599/93976760-personality-traits-icon-symbol-premium-quality-isolated-personal-character-element-in-trendy-style.jpg', 'https://previews.123rf.com/images/aalbedouin/aalbedouin1801/aalbedouin180100599/93976760-personality-traits-icon-symbol-premium-quality-isolated-personal-character-element-in-trendy-style.jpg','https://previews.123rf.com/images/aalbedouin/aalbedouin1801/aalbedouin180100599/93976760-personality-traits-icon-symbol-premium-quality-isolated-personal-character-element-in-trendy-style.jpg', 'https://previews.123rf.com/images/aalbedouin/aalbedouin1801/aalbedouin180100599/93976760-personality-traits-icon-symbol-premium-quality-isolated-personal-character-element-in-trendy-style.jpg', 'https://previews.123rf.com/images/aalbedouin/aalbedouin1801/aalbedouin180100599/93976760-personality-traits-icon-symbol-premium-quality-isolated-personal-character-element-in-trendy-style.jpg']);
+  const [images, setImages] = useState(['https://previews.123rf.com/images/aalbedouin/aalbedouin1801/aalbedouin180100599/93976760-personality-traits-icon-symbol-premium-quality-isolated-personal-character-element-in-trendy-style.jpg', 'https://previews.123rf.com/images/aalbedouin/aalbedouin1801/aalbedouin180100599/93976760-personality-traits-icon-symbol-premium-quality-isolated-personal-character-element-in-trendy-style.jpg', 'https://previews.123rf.com/images/aalbedouin/aalbedouin1801/aalbedouin180100599/93976760-personality-traits-icon-symbol-premium-quality-isolated-personal-character-element-in-trendy-style.jpg', 'https://previews.123rf.com/images/aalbedouin/aalbedouin1801/aalbedouin180100599/93976760-personality-traits-icon-symbol-premium-quality-isolated-personal-character-element-in-trendy-style.jpg', 'https://previews.123rf.com/images/aalbedouin/aalbedouin1801/aalbedouin180100599/93976760-personality-traits-icon-symbol-premium-quality-isolated-personal-character-element-in-trendy-style.jpg', 'https://previews.123rf.com/images/aalbedouin/aalbedouin1801/aalbedouin180100599/93976760-personality-traits-icon-symbol-premium-quality-isolated-personal-character-element-in-trendy-style.jpg', 'https://previews.123rf.com/images/aalbedouin/aalbedouin1801/aalbedouin180100599/93976760-personality-traits-icon-symbol-premium-quality-isolated-personal-character-element-in-trendy-style.jpg', 'https://previews.123rf.com/images/aalbedouin/aalbedouin1801/aalbedouin180100599/93976760-personality-traits-icon-symbol-premium-quality-isolated-personal-character-element-in-trendy-style.jpg', 'https://previews.123rf.com/images/aalbedouin/aalbedouin1801/aalbedouin180100599/93976760-personality-traits-icon-symbol-premium-quality-isolated-personal-character-element-in-trendy-style.jpg', 'https://previews.123rf.com/images/aalbedouin/aalbedouin1801/aalbedouin180100599/93976760-personality-traits-icon-symbol-premium-quality-isolated-personal-character-element-in-trendy-style.jpg', 'https://previews.123rf.com/images/aalbedouin/aalbedouin1801/aalbedouin180100599/93976760-personality-traits-icon-symbol-premium-quality-isolated-personal-character-element-in-trendy-style.jpg', 'https://previews.123rf.com/images/aalbedouin/aalbedouin1801/aalbedouin180100599/93976760-personality-traits-icon-symbol-premium-quality-isolated-personal-character-element-in-trendy-style.jpg']);
+  const [sounds, setSounds] = useState([]);
+  const [selectedSound, setSelectedSound] = useState({});
+  const [audio] = useState(new Audio());
 
   useEffect(() => {
     axios.get('/api/images')
@@ -37,6 +41,17 @@ export default function CharacterCreation({ storyBoardURL }) {
       })
       .catch(() => console.log('couldnt fetch images'));
   }, []);
+
+  useEffect(() => {
+    axios.get('/api/sounds')
+      .then((soundData) => {
+        setSounds(soundData.data);
+      })
+      .catch(() => console.log('couldnt fetch sounds'));
+  }, [sounds.length]);
+
+  useEffect(() => {
+  }, [selectedSound]);
 
   const uid = Cookies.get('userId');
   async function toPost() {
@@ -48,9 +63,9 @@ export default function CharacterCreation({ storyBoardURL }) {
       characterRace: race,
       characterSex: sex,
       image_id: characterIcon,
+      sound_id: selectedSound.sound_id,
       strength: str,
       weakness: weak,
-
     })
       .then(() => navigate(`/storyBoard/${storyID}`))
       .catch((err) => console.log(err));
@@ -60,7 +75,6 @@ export default function CharacterCreation({ storyBoardURL }) {
     e.target.style.background = 'blue';
     setCharacterIcon(e.target.id);
   }
-
 
   const chooseStrength = (e) => {
     if (str.includes(e.target.value)) {
@@ -79,6 +93,11 @@ export default function CharacterCreation({ storyBoardURL }) {
   };
   const changeRace = (e) => {
     setRace(e);
+  };
+
+  const playAudio = (soundUrl) => {
+    audio.src = soundUrl;
+    audio.play();
   };
 
   return (
@@ -112,13 +131,17 @@ export default function CharacterCreation({ storyBoardURL }) {
             </div>
             {/* This div is for character sex */}
             <div className="flex w-max gap-4">
-              <Radio name="color" color="teal" label="male" value="male" defaultChecked onClick={(e) => setSex(e.target.value)} />
+              <Radio name="color" color="green" label="male" value="male" defaultChecked onClick={(e) => setSex(e.target.value)} />
               <Radio name="color" color="green" label="female" value="female" onClick={(e) => setSex(e.target.value)} />
+              <Radio name="color" color="green" label="non-binary" value="non-binary" onClick={(e) => setSex(e.target.value)} />
+              <Radio name="color" color="green" label="other" value="other" onClick={(e) => setSex(e.target.value)} />
             </div>
             {/* This div is for character strengths ///// Need additional work on this section!! */}
             <div>
               <Typography color="gray" className="mt-1 font-normal">
-                Choose your Strengths <em>(Limit 2)</em>
+                Choose your Strengths
+                {' '}
+                <em>(Limit 2)</em>
               </Typography>
               <Checkbox label="Strength 1" value="Strength 1" color="purple" onClick={chooseStrength} />
               <Checkbox label="Strength 2" value="Strength 2" onClick={chooseStrength} />
@@ -129,7 +152,9 @@ export default function CharacterCreation({ storyBoardURL }) {
             {/* This div is for weaknesses */}
             <div>
               <Typography color="gray" className="mt-1 font-normal">
-                Choose your Weaknesses <em>(Limit 2)</em>
+                Choose your Weaknesses
+                {' '}
+                <em>(Limit 2)</em>
               </Typography>
               <Checkbox label="Weakness 1" value="Weakness 1" color="purple" onClick={chooseWeakness} />
               <Checkbox label="Weakness 2" value="Weakness 2" onClick={chooseWeakness} />
@@ -146,9 +171,22 @@ export default function CharacterCreation({ storyBoardURL }) {
                 </>
               ))}
             </div>
+            <div style={{ display: 'flex', flexDirection: 'column', width: '400px' }}>
+              <SoundsMenu style={{ marginLeft: '30px'}} sounds={sounds} setSelectedSound={setSelectedSound} />
+              <Button
+                size="md"
+                onClick={() => playAudio(`https://docs.google.com/uc?export=open&id=${selectedSound.sound_url}`)}
+                style={{
+                  backgroundImage: `url(${buttonBG})`, backgroundSize: 'auto', opacity: 0.8, marginTop: '20px',
+                }}
+              >
+                PLAY SOUND
+              </Button>
+              {selectedSound.sound_name}
+            </div>
             {/* Submit character */}
-            <Button className="mt-6" fullWidth onClick={() => toPost()}>
-              Create Character
+            <Button className="mt-6" style={{ backgroundImage: `url(${buttonBG})` }} fullWidth onClick={() => toPost()}>
+              CREATE CHARACTER
             </Button>
           </form>
         </Card>
@@ -157,5 +195,7 @@ export default function CharacterCreation({ storyBoardURL }) {
   );
 }
 
+//button bg
+const buttonBG = 'https://res.cloudinary.com/dnr41r1lq/image/upload/v1695229025/bronzetexture_cc3urf.webp';
 //background asset
 const characterCreationBg = "https://i.ibb.co/gyfRfm1/pirate-min.png"

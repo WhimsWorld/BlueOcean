@@ -77,6 +77,15 @@ export const getImages = async (req, res) => {
   }
 };
 
+export const getSounds = async (req, res) => {
+  try {
+    const sounds = await characterModel.getSounds();
+    res.send(sounds);
+  } catch (err) {
+    res.sendStatus(404);
+  }
+};
+
 export const updateUserPremiumStatus = async (req, res) => {
   const { premium } = req.body; // Extract the premium value from request body
 
