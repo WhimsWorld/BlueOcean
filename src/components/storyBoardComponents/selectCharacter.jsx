@@ -33,7 +33,10 @@ export default function SelectCharacter({ storyId }) {
     <Card
       className="rounded-none rounded-l-xl max-w-sm"
       style={{
-        justifySelf: 'flex-end', backgroundImage: `url(${leftPanel})`, backgroundSize: 'auto', backgroundRepeat: 'round',
+        justifySelf: 'flex-end',
+        backgroundImage: `url(${leftPanel})`,
+        backgroundSize: 'auto',
+        backgroundRepeat: 'round',
       }}
     >
       <List className="p-1 ">
