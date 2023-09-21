@@ -6,13 +6,12 @@ import {
 import Cookies from 'js-cookie';
 import { useNavigate } from 'react-router-dom';
 
-function StickyNavbar() {
+function StickyNavbar({ loggedIn, setLoggedIn }) {
   const navigate = useNavigate();
-  const [loggedIn, setIsLoggedIn] = useState(Cookies.get('userId'));
 
   const handleLogout = () => {
     Cookies.remove('userId');
-    setIsLoggedIn(Cookies.get('userId'));
+    setLoggedIn(Cookies.get('userId'));
   };
 
   return (
