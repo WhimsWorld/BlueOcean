@@ -86,11 +86,6 @@ export default function Leaderboard({ leaderboard }) {
                 size="sm"
                 className="rounded-full"
                 style={{ color: 'black', backgroundColor: '#7B8CDE' }}
-                // whimsipink: '#F4E3ED',
-                // whimsidarkblue: '#101A4B',
-                // whimsihotpink: '#DE369D',
-                // whimsilightblue: '#7B8CDE',
-                // whimsiorange: '#F9A03F',
               />
             </ListItemSuffix>
           </ListItem>
