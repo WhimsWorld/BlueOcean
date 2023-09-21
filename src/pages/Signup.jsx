@@ -48,11 +48,11 @@ export default function Signup() {
   return (
     <div>
       <StickyNavbar />
-      <Card className="w-96" style={{margin: 'auto' }}>
+      <Card className="w-96 m-auto">
         <CardHeader
           variant="gradient"
           color="blue"
-          className="mb-4 grid h-28 place-items-center"
+          className="my-4 grid h-28 place-items-center"
         >
           <Typography
             variant="h3"
