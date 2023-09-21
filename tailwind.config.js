@@ -6,6 +6,7 @@ export default withMT({
     fontFamily: {
       heading: ['Karla', 'sans-serif'],
       body: ['Merriweather', 'sans-serif'],
+      logo: ['Handlee', 'cursive'],
     },
     extend: {
       colors: {
