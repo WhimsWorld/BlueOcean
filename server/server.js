@@ -42,6 +42,7 @@ async function createServer() {
 
   // character creation
   app.get('/api/images', usersController.getImages);
+  app.get('/api/sounds', usersController.getSounds);
 
   // story creation
   app.get('/api/storyimages', createStoryController.getAllThemeImages);
@@ -71,9 +72,6 @@ async function createServer() {
   app.use('/api/*', (req, res, next) => {
     res.status(404).send('Not Found');
   });
-
-  // used for character creation
-  app.get('/api/images', usersController.getImages);
 
   // Serve the index.html with SSR
   app.use('*', async (req, res, next) => {
