@@ -38,11 +38,10 @@ export default function Search({
         label="Search"
         value={search}
         onChange={onChange}
-        className="pr-20"
-        icon="non"
-        style={{ appearance: 'none' }}
+        icon="non'
+        className="pr-20 min-w-0"
         containerProps={{
-          className: 'min-w-0',
+          className: 'min-w-[0]',
         }}
       />
       <Button

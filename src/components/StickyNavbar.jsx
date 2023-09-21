@@ -15,12 +15,21 @@ function StickyNavbar({ loggedIn, setLoggedIn }) {
     navigate('/home');
   };
   return (
-    <Navbar className="sticky top-0 h-max z-10 max-w-full">
-      <div className="flex items-center justify-center text-blue-gray-900">
+    <Navbar className="flex sticky top-0 h-max z-10 max-w-full pl-10 pr-10">
+      <div className="flex items-center justify-self-start">
         <Typography
           as="a"
           href="/"
-          className="mr-4 cursor-pointer py-1.5 font-medium"
+          className="cursor-pointer font-bold font-logo text-3xl text-whimsilightblue"
+        >
+          WhimsiWorld
+        </Typography>
+      </div>
+      <div className="flex items-center group text-blue-gray-900 transition-all duration-300 ease-in-out" style={{ paddingLeft: 'calc((100% - 40%)/2)' }}>
+        <Typography
+          as="a"
+          href="/"
+          className={groupClass}
         >
           Home
         </Typography>
@@ -28,7 +37,7 @@ function StickyNavbar({ loggedIn, setLoggedIn }) {
           <Typography
             as="a"
             onClick={handleLogout}
-            className="mr-4 cursor-pointer py-1.5 font-medium"
+            className={groupClass}
           >
             Logout
           </Typography>
@@ -36,30 +45,30 @@ function StickyNavbar({ loggedIn, setLoggedIn }) {
           <Typography
             as="a"
             onClick={() => navigate('/login')}
-            className="mr-4 cursor-pointer py-1.5 font-medium"
+            className={groupClass}
           >
             Login
           </Typography>
         )}
         <Typography
           as="a"
-          onClick={() => (loggedIn ? navigate('/createStory') : navigate('/login'))}
-          className="mr-4 cursor-pointer py-1.5 font-medium"
+          href="/createStory"
+          className={groupClass}
         >
           Create Story
         </Typography>
-        {loggedIn ? <> </> : (
-          <Typography
-            as="a"
-            href="/Signup"
-            className="mr-4 cursor-pointer py-1.5 font-medium"
-          >
-            Sign Up
-          </Typography>
-        )}
+        <Typography
+          as="a"
+          href="/Signup"
+          className={groupClass}
+        >
+          Sign Up
+        </Typography>
       </div>
     </Navbar>
   );
 }
 
 export default StickyNavbar;
+
+const groupClass = 'mr-4 cursor-pointer py-1.5 font-medium font-heading bg-left-bottom bg-gradient-to-r from-whimsilightblue to-whimsilightblue bg-[length:0%_2px] bg-no-repeat hover:bg-[length:100%_2px] transition-all duration-500 ease-out active:bg-[length:100%_2px]';
