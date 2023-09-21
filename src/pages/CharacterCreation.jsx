@@ -18,8 +18,6 @@ import Cookies from 'js-cookie';
 import { auth } from '../utils/firebase';
 import StickyNavbar from '../components/StickyNavbar';
 
-// The storyBoardURL is so that when the character is created, We will be able to
-// redirect the user back to the specific story they created a character for.
 export default function CharacterCreation({ storyBoardURL }) {
   const navigate = useNavigate();
   const storyID = window.location.href.split('characterCreation/')[1];
