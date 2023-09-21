@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate, useLocation } from 'react-router-dom';
+import Cookies from 'js-cookie';
 import {
   Card,
   CardBody,
@@ -9,6 +10,7 @@ import {
 
 } from '@material-tailwind/react';
 import { fetchPostsById } from '../../app/slices/postsSlice';
+import { fetchStoryById } from '../../app/slices/storySlice';
 
 export default function StorySection() {
   const location = useLocation();
@@ -17,6 +19,9 @@ export default function StorySection() {
   const storyId = location.pathname.split('/').pop();
   const posts = useSelector((state) => state.posts);
   const [audio] = useState(new Audio());
+  const [userLastPosted, setUserLastPosted] = useState(false);
+  const [userIsNarrator, setUserIsNarrator] = useState(false);
+  const storyData = useSelector((state) => state.story.storyData);
 
   const clickHandler = (id) => {
     navigate(`/createPost/${id}`);
@@ -34,32 +39,92 @@ export default function StorySection() {
     setTimeout(() => {
       fetchPosts();
     }, 100);
-  }, [storyId, dispatch, posts.length]);
+  }, [storyId, dispatch, posts]);
 
   useEffect(() => {
-  }, [posts]);
+    if (storyId) {
+      dispatch(fetchStoryById(storyId));
+    }
+  }, [dispatch, storyId]);
+
+  useEffect(() => {
+    // if last post was posted by logged in user, set userLastPosted to true
+    if (posts[posts.length - 1]?.created_by_user_id === Cookies.get('userId')) {
+      setUserLastPosted(true);
+    } else {
+      setUserLastPosted(false);
+    }
+    if (storyData?.created_by_user_id === Cookies.get('userId')) {
+      setUserIsNarrator(true);
+    } else {
+      setUserIsNarrator(false);
+    }
+  }, [posts, storyData?.created_by_user_id]);
 
   return (
     <>
       <div style={{ display: 'flex', justifyContent: 'center' }}>
-        <Button
-          size="lg"
-          onClick={() => clickHandler(storyId)}
-          style={{
-            color: 'black',
-            backgroundImage: `url(${buttonBG})`,
-            backgroundSize: 'auto',
-            opacity: '0.8',
-            width: '98%',
-          }}
-        >
-          Create Post
-        </Button>
+        {userLastPosted === false && userIsNarrator === false ? (
+          <Button
+            size="lg"
+            onClick={() => clickHandler(storyId)}
+            style={{
+              color: 'black',
+              backgroundImage: `url(${buttonBG})`,
+              backgroundSize: 'auto',
+              opacity: '0.8',
+              width: '98%',
+            }}
+          >
+            Create Character Post
+          </Button>
+        )
+          : (
+            <p>
+              Your character just went on an adventure.  Please wait until the next round to post again.
+            </p>
+          ) }
+        {userLastPosted === false && userIsNarrator === true ? (
+          <Button
+            size="lg"
+            onClick={() => clickHandler(storyId)}
+            style={{
+              color: 'black',
+              backgroundImage: `url(${buttonBG})`,
+              backgroundSize: 'auto',
+              opacity: '0.8',
+              width: '98%',
+            }}
+          >
+            Create Narrator or Character Post
+          </Button>
+        )
+          : (
+            null
+          ) }
+        {userLastPosted === true && userIsNarrator === true ? (
+          <Button
+            size="lg"
+            onClick={() => clickHandler(storyId)}
+            style={{
+              color: 'black',
+              backgroundImage: `url(${buttonBG})`,
+              backgroundSize: 'auto',
+              opacity: '0.8',
+              width: '98%',
+            }}
+          >
+            Create Narrator Post
+          </Button>
+        )
+          : (
+            null
+          ) }
       </div>
       {posts.map((post, index) => (
-        <div className="w-full flex-row p-2 mt-4 shadow-lg justify-between items-center justify-self-center bg-cover" style={{ width: '96%', backgroundImage: `url(${cardBG})`, clipPath: 'polygon(100% 2%, 68% 2%, 75% 0, 83% 2%, 90% 2%, 100% 0, 100% 16%, 100% 34%, 99% 53%, 98% 74%, 100% 100%, 83% 99%, 72% 98%, 63% 100%, 54% 98%, 44% 100%, 36% 100%, 30% 98%, 17% 99%, 7% 98%, 0 100%, 1% 71%, 0 43%, 1% 2%, 9% 2%, 18% 0, 31% 2%, 48% 0)' }}>
+        <div key={post.post_id} className="w-full flex-row p-2 mt-4 shadow-lg justify-between items-center justify-self-center bg-cover" style={{ width: '96%', backgroundImage: `url(${cardBG})`, clipPath: 'polygon(100% 2%, 68% 2%, 75% 0, 83% 2%, 90% 2%, 100% 0, 100% 16%, 100% 34%, 99% 53%, 98% 74%, 100% 100%, 83% 99%, 72% 98%, 63% 100%, 54% 98%, 44% 100%, 36% 100%, 30% 98%, 17% 99%, 7% 98%, 0 100%, 1% 71%, 0 43%, 1% 2%, 9% 2%, 18% 0, 31% 2%, 48% 0)' }}>
           <div style={{ display: 'flex', justifyContent: 'center' }}>
-            <Card className="mt-6 w-96" style={{ width: '96%', backgroundImage: `url(${cardBG})` }} key={post.post_id}>
+            <Card className="mt-6 w-96" style={{ width: '96%', backgroundImage: `url(${cardBG})` }}>
               <CardBody>
                 <Typography variant="h5" color="blue-gray" className="mb-2">
                   <div style={{ display: 'flex', justifyContent: 'center' }}>
@@ -72,23 +137,29 @@ export default function StorySection() {
                       )
                       : null}
                   </div>
-                  <div style={{ display: 'flex', justifyContent: 'center' }}>
-                    <p style={{ fontFamily: 'serif', marginBottom: '5px' }}>
-                      {post.char_name}
-                    </p>
-                  </div>
-                  <div style={{ display: 'flex', justifyContent: 'center' }}>
-                    <br />
-                    {post.char_image_url
-                      ? (
-                        <img
-                          src={post.char_image_url}
-                          alt={post.char_id}
-                          style={{ maxWidth: '100px', maxHeight: '100px' }}
-                        />
-                      )
-                      : null}
-                  </div>
+                  {post.narrator_post === false
+                    ? (
+                      <>
+                        <div style={{ display: 'flex', justifyContent: 'center' }}>
+                          <p style={{ fontFamily: 'serif', marginBottom: '5px' }}>
+                            {post.char_name}
+                          </p>
+                        </div>
+                        <div style={{ display: 'flex', justifyContent: 'center' }}>
+                          <br />
+                          {post.char_image_url
+                            ? (
+                              <img
+                                src={post.char_image_url}
+                                alt={post.char_id}
+                                style={{ maxWidth: '100px', maxHeight: '100px' }}
+                              />
+                            )
+                            : null}
+                        </div>
+                      </>
+                    ) : null }
+
                   <br />
                   <div style={{
                     fontFamily: 'serif',
