@@ -38,17 +38,18 @@ export default function Search({
         label="Search"
         value={search}
         onChange={onChange}
-        className="pr-20"
+        icon="non"
+        className="pr-20 min-w-0"
         containerProps={{
-          className: 'min-w-0',
+          className: 'min-w-[0]',
         }}
       />
       <Button
         size="sm"
-        color={search ? 'gray' : 'blue-gray'}
         disabled={!search}
         onClick={submitHandler}
         className="!absolute right-1 top-1 rounded"
+        style={{ backgroundColor: '#7B8CDE', color: 'black', fontWeight: 'bold', opacity: 1 }}
       >
         Search
       </Button>

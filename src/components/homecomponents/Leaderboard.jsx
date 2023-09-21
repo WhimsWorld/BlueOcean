@@ -26,17 +26,17 @@ export default function Leaderboard({ leaderboard }) {
   const [popoverPosition, setPopoverPosition] = useState({ top: 0, left: 0 });
 
   const handleMouseEnter = (entry, event) => {
-    const summary = entry.summary.length > 200
-      ? entry.summary.slice(0, 200) + '...'
-      : entry.summary;
-
-    const content = (
-      <Typography variant="h6" color="blue-gray">
-        {summary}
-      </Typography>
-    );
-
-    setPopoverContent(content);
+    if (entry.summary) {
+      const summary = entry.summary.length > 200
+        ? entry.summary.slice(0, 200) + '...'
+        : entry.summary;
+      const content = (
+        <Typography variant="h6" color="blue-gray">
+          {summary}
+        </Typography>
+      );
+      setPopoverContent(content);
+    }
 
     const rect = event.target.getBoundingClientRect();
     setPopoverPosition({
@@ -51,7 +51,7 @@ export default function Leaderboard({ leaderboard }) {
 
   return (
     <Card style={{ maxWidth: '250px', backgroundImage: `url(${rightPanel})`, backgroundRepeat: 'round' }} className="h-full rounded-none rounded-r-xl">
-      <span className="self-center pt-5">Leader Board</span>
+      <span className="self-center pt-5">All Time Top 10</span>
       <List>
         {leaderboard.map((entry) => (
           <ListItem
@@ -59,7 +59,8 @@ export default function Leaderboard({ leaderboard }) {
             onClick={() => clickHandler(entry.story_id)}
             onMouseEnter={(event) => handleMouseEnter(entry, event)}
             onMouseLeave={handleMouseLeave}
-            className="relative bg-white"
+            className="relative bg-white transition-colors duration-300 hover:bg-whimsipink"
+
           >
             <ListItemPrefix className="relative">
               <Avatar
@@ -73,7 +74,6 @@ export default function Leaderboard({ leaderboard }) {
               />
               <div className="absolute h-full w-full inset-0" style={{ backgroundImage: `url(${entry.thumbnail_url})` }} />
             </ListItemPrefix>
-
             <div>
               <Typography variant="h6" color="blue-gray">
                 {entry.title}
@@ -85,6 +85,7 @@ export default function Leaderboard({ leaderboard }) {
                 variant="ghost"
                 size="sm"
                 className="rounded-full"
+                style={{ color: 'black', backgroundColor: '#7B8CDE' }}
               />
             </ListItemSuffix>
           </ListItem>

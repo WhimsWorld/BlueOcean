@@ -101,10 +101,10 @@ export default function CharacterCreation({ storyBoardURL }) {
   };
 
   return (
-    <div>
+    <div className="h-max bg-cover bg-fixed" style={{backgroundImage: `url(${characterCreationBg})`}}>
       <StickyNavbar />
-      <div style={{ display: 'flex', justifyContent: 'center' }}>
-        <Card style={{ alignItems: 'center', width: '50%', margin: 'auto' }} color="transparent" shadow={false}>
+      <div className="" style={{ display: 'flex', justifyContent: 'center', height: '100%' }}>
+        <Card style={{ alignItems: 'center', width: '50%', margin: 'auto', height: 'max-content' }} color="transparent" shadow={false}>
           <Typography variant="h4" color="blue-gray">
             Character Creation
           </Typography>
@@ -195,4 +195,7 @@ export default function CharacterCreation({ storyBoardURL }) {
   );
 }
 
+//button bg
 const buttonBG = 'https://res.cloudinary.com/dnr41r1lq/image/upload/v1695229025/bronzetexture_cc3urf.webp';
+//background asset
+const characterCreationBg = "https://i.ibb.co/gyfRfm1/pirate-min.png"
