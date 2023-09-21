@@ -36,8 +36,13 @@ export default function LiveChat({ storyId }) {
   };
 
   return (
-    <Card className="mt-6 h-2/5 w-full items-center flex flex-col justify-between max-w-md mx-auto">
-      <div className="chat-messages bg-white w-5/6 h-5/6 overflow-y-auto flex flex-col justify-between">
+    <Card
+      className="h-full rounded-none rounded-r-xl"
+      style={{
+        maxWidth: '320px', backgroundImage: `url(${rightPanel})`, backgroundRepeat: 'round', justifySelf: 'end',
+      }}
+    >
+      <div className="chat-messages w-5/6 overflow-y-auto">
         {chatMessages.map((msg) => (
           <div key={msg.message_id} className={`${msg.user_id === userId ? 'ml-auto' : ''}`}>
             <div className="user text-sm ml-2">
@@ -91,3 +96,5 @@ export default function LiveChat({ storyId }) {
     </Card>
   );
 }
+
+const rightPanel = 'https://res.cloudinary.com/dnr41r1lq/image/upload/v1695244009/paperRight_bly8zj.png';

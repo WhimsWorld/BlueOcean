@@ -32,6 +32,7 @@ export default function SelectCharacter({ storyId }) {
       }}
     >
       <List className="p-1 ">
+
         {characters.map((character) => (
           <ListItem key={character.char_id}>
             <ListItemPrefix className="self-top">
