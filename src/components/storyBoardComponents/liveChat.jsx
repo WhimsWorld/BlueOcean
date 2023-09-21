@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import {
-  Textarea, IconButton, Card, Chip,
+  Textarea, IconButton, Card,
 } from '@material-tailwind/react';
 import { useSelector, useDispatch } from 'react-redux';
 import Cookies from 'js-cookie';
@@ -20,7 +20,6 @@ export default function LiveChat({ storyId }) {
       dispatch(fetchChat(storyId));
     }
   }, [dispatch, storyId]);
-
   const handleMessageChange = (e) => {
     setMessage(e.target.value);
   };
@@ -45,8 +44,8 @@ export default function LiveChat({ storyId }) {
     >
       <div className="chat-messages w-5/6 overflow-y-auto">
         {chatMessages.map((msg) => (
-          <div key={msg.message_id} className={`${msg.user_id === userId ? 'ml-28' : 'ml-2'}`}>
-            <div className="user text-sm">
+          <div key={msg.message_id} className={`${msg.user_id === userId ? 'ml-auto' : ''}`}>
+            <div className="user text-sm ml-2">
               {msg.username}
               {' '}
               {new Date(msg.date_created).toLocaleTimeString()}
@@ -81,7 +80,7 @@ export default function LiveChat({ storyId }) {
               viewBox="0 0 24 24"
               stroke="currentColor"
               strokeWidth={2}
-              className="h-5 w-5"
+              className="h-5 w-5 mr-4"
             >
               <path
                 strokeLinecap="round"

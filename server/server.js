@@ -37,6 +37,7 @@ async function createServer() {
   // select characters
   app.get('/api/characters', usersController.getCharacters);
   app.get('/api/characters/user/:userId', usersController.getCharactersByUserId);
+  app.get('/api/characters/:storyId', usersController.getCharactersByStoryId);
   app.post('/api/characters', usersController.addCharacter);
 
   // character creation
