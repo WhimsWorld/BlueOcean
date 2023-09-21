@@ -23,7 +23,7 @@ export default function StoryBanner({ storyId }) {
   if (!storyData) return null;
 
   return (
-    <div className="w-full flex-row p-2 mt-4 shadow-lg justify-between items-center justify-self-center bg-cover" style={{ width: '96%', backgroundImage: `url(${cardBG})`, clipPath: 'polygon(100% 2%, 68% 2%, 75% 0, 83% 2%, 90% 2%, 100% 0, 100% 16%, 100% 34%, 99% 53%, 98% 74%, 100% 100%, 83% 99%, 72% 98%, 63% 100%, 54% 98%, 44% 100%, 36% 100%, 30% 98%, 17% 99%, 7% 98%, 0 100%, 1% 71%, 0 43%, 1% 2%, 9% 2%, 18% 0, 31% 2%, 48% 0)' }}>
+    <div className="w-full flex-row p-2 mt-4 shadow-lg justify-between items-center justify-self-center bg-cover" style={{ display: 'flex', justifyContent: 'center', width: '98%', backgroundImage: `url(${cardBG})`, clipPath: 'polygon(100% 2%, 68% 2%, 75% 0, 83% 2%, 90% 2%, 100% 0, 100% 16%, 100% 34%, 99% 53%, 98% 74%, 100% 100%, 83% 99%, 72% 98%, 63% 100%, 54% 98%, 44% 100%, 36% 100%, 30% 98%, 17% 99%, 7% 98%, 0 100%, 1% 71%, 0 43%, 1% 2%, 9% 2%, 18% 0, 31% 2%, 48% 0)' }}>
       <Card className="w-full max-w-[26rem] shadow-lg" style={{ width: '96%', backgroundImage: `url(${cardBG})` }}>
         <CardHeader floated={false} color="gray">
           <img
@@ -70,11 +70,12 @@ export default function StoryBanner({ storyId }) {
               {storyData.like_count}
             </Typography>
           </div>
+          <div><a href="#recent">scroll to most recent post</a></div>
           <Typography color="gray">
             {storyData.summary}
           </Typography>
           <Typography color="gray">
-            {storyData.date_created}
+            {new Date(storyData.date_created).toLocaleString()}
           </Typography>
         </CardBody>
       </Card>
