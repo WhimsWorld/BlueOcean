@@ -25,7 +25,7 @@ export default function Login() {
     await signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         Cookies.set('userId', userCredential.user.uid, { expires: 1 });
-        navigate('/');
+        navigate('/home');
       })
       .catch((err) => {
         const errorCode = err.code;
