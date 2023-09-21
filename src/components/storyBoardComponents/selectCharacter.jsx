@@ -27,8 +27,8 @@ export default function SelectCharacter({ storyId }) {
   };
 
   return (
-    <Card className="w-96">
-      <List>
+    <Card className="rounded-none rounded-l-xl" style={{ maxWidth: '300px', justifySelf: 'flex-end', backgroundImage: `url(${leftPanel})`, backgroundSize: 'auto', backgroundRepeat: 'round' }}>
+      <List className="min-w-[0]">
         {characters.map((character) => (
           <ListItem key={character.char_id}>
             <ListItemPrefix>
@@ -67,3 +67,5 @@ export default function SelectCharacter({ storyId }) {
     </Card>
   );
 }
+
+const leftPanel = 'https://res.cloudinary.com/dnr41r1lq/image/upload/v1695243090/paperLeft_uz9wcj.png';
