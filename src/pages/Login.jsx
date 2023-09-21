@@ -69,7 +69,7 @@ export default function Login() {
               className="ml-1 font-bold"
               onClick={() => navigate('/signup')}
             >
-              Sign in
+              Sign up
             </Typography>
           </Typography>
         </CardFooter>
