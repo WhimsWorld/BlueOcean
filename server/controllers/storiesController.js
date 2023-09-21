@@ -2,7 +2,7 @@
 import * as storiesModel from '../models/storiesModel.js';
 
 export const getStories = async (req, res) => {
-  let catStory = null;
+  let catStory = null; // can rewrite as catStory = req.query.category || null;
   let user = null;
   if (req.query.category) {
     catStory = req.query.category;
@@ -66,6 +66,7 @@ export const getStoryById = async (req, res) => {
 
 export const getLikedStories = async (req, res) => {
   const { userId } = req.query;
+
   try {
     const liked = await storiesModel.getLikedStories(userId);
     res.json(liked);

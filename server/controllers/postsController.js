@@ -24,47 +24,34 @@ export const getChars = async (req, res) => {
   }
 };
 
-export const getThemeImages = async (req, res) => {
+export const getAllData = async (req, res) => {
+  const { storyid } = req.query;
   try {
-    const images = await postsModel.getThemeImages();
-    res.json(images);
+    const data = await postsModel.getAllData(storyid);
+    res.json(data);
   } catch (err) {
-    res.status(500).send('Error retrieving theme images.');
+    res.status(500).send('Error retrieving data.');
   }
 };
 
-export const getSounds = async (req, res) => {
+export const getNarrator = async (req, res) => {
+  const { storyid, userid } = req.query;
   try {
-    const sounds = await postsModel.getSounds();
-    res.json(sounds);
+    const data = await postsModel.getNarrator(storyid, userid);
+    res.json(data);
   } catch (err) {
-    res.status(500).send('Error retrieving sounds.');
-  }
-};
-
-export const getGifs = async (req, res) => {
-  try {
-    const gifs = await postsModel.getGifs();
-    res.json(gifs);
-  } catch (err) {
-    res.status(500).send('Error retrieving gifs.');
+    res.status(500).send('Error retrieving data.');
   }
 };
 
 export const addPost = async (req, res) => {
-  const storyId = req.body.story_id;
-  const userId = req.body.created_by_user_id;
-  const charId = null;
-  const imageId = req.body.main_image_id;
-  const gifId = req.body.gif_id;
-  const soundId = req.body.sound_id;
-  const { content } = req.body;
-  const narratorPost = false;
+  const {
+    story_id, created_by_user_id, imageId, gifId, soundId, narratorPost, content,
+  } = req.body;
   try {
-    const post = await postsModel.addPost(
-      storyId,
-      userId,
-      charId,
+    await postsModel.addPost(
+      story_id,
+      created_by_user_id,
       gifId,
       soundId,
       imageId,

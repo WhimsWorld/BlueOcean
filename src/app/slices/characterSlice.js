@@ -1,6 +1,6 @@
 // characterSlice.js
 import { createSlice } from '@reduxjs/toolkit';
-import { fetchCharactersByUserId } from '../../apis/characterAPI';
+import { fetchCharactersByUserId, fetchCharactersByStoryId } from '../../apis/characterAPI';
 
 export const characterSlice = createSlice({
   name: 'characters',
@@ -13,7 +13,7 @@ export const characterSlice = createSlice({
 export const { setCharacters } = characterSlice.actions;
 
 export const loadCharactersByUserId = (userId) => (dispatch) => {
-  fetchCharactersByUserId(userId).then((data) => {
+  fetchCharactersByStoryId(userId).then((data) => {
     dispatch(setCharacters(data));
   });
 };

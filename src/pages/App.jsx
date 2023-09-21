@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import Cookies from 'js-cookie';
 import Leaderboard from '../components/homecomponents/Leaderboard';
 import StoryCard from '../components/homecomponents/StoryCard';
 import StickyNavbar from '../components/StickyNavbar';
@@ -19,7 +20,9 @@ export default function App() {
   const [likedStories, setLikedStories] = useState({});
   const [likeUpdate, setLikeUpdate] = useState('');
   const [isChecked, setIsChecked] = useState(showCheck);
-
+  const [userID, setUserID] = useState(Cookies.get('userId'));
+  const [loggedIn, setLoggedIn] = useState(Cookies.get('userId')); // this will return a value if a user is logged in, otherwise, will be set to false
+  // fetches all leaderboard info?
   useEffect(() => {
     axios.get('/api/leaderboard')
       .then((response) => {
@@ -27,6 +30,7 @@ export default function App() {
       });
   }, [likeUpdate]);
 
+  // fetches all categories present to display for that the user can click on?
   useEffect(() => {
     axios.get('/api/categories')
       .then((response) => {
@@ -44,10 +48,11 @@ export default function App() {
       .catch(() => {});
   }, []);
 
+  // used to fetch all likes based on user. This prevents additional liking?
   useEffect(() => {
     const dataParams = {
       params: {
-        userId: 'user3_id', //need to update this later
+        userId: userID,
       },
     };
     axios.get('api/likes', dataParams)
@@ -55,17 +60,21 @@ export default function App() {
         setLikedStories(response.data);
       })
       .catch(() => {});
-  }, []); //can i base this on a change of user in redux?
+  }, []);
 
   // const storyId = useSelector((state) => state.story.storyId);
 
+  /*
+  fetches all stories based on user. this is what enables the my story button to work
+  and display all stories user has created?
+  */
   useEffect(() => {
     const dataParams = {
       params: {
         category,
         filter,
         myStoriesFilter,
-        userId: 'user3_id', //need to update this later
+        userId: userID, // need to update this later
       },
     };
     axios.get('/api/stories', dataParams)
@@ -77,7 +86,7 @@ export default function App() {
 
   return (
     <div>
-      <StickyNavbar />
+      <StickyNavbar loggedIn={loggedIn} setLoggedIn={setLoggedIn} />
       <div className="grid grid-cols-[25%_50%_25%]">
         <div className="item1 border-solid border-2 bg-auto grid" style={{ backgroundImage: `url(${left})` }}>
           <Categories
@@ -116,6 +125,8 @@ export default function App() {
               setLikeUpdate={setLikeUpdate}
               setLikedStories={setLikedStories}
               key={story.story_id}
+              loggedIn={loggedIn}
+              setLoggedIn={setLoggedIn}
             />
           ))}
         </div>

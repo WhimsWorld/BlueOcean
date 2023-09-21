@@ -9,6 +9,19 @@ export default withMT({
       logo: ['Handlee', 'cursive'],
     },
     extend: {
+      animation: {
+        zoomIn: 'zoomIn 20s infinite',
+      },
+      keyframes: {
+        zoomIn: {
+          '0%, 100%': { transform: 'scale(1)' },
+          '50%': { transform: 'scale(1.05)' },
+        },
+      },
+      fontFamily: {
+        norican: ['Norican', 'cursive'],
+        poiret: ['Poiret One', 'cursive'],
+      },
       colors: {
         whimsipink: '#F4E3ED',
         whimsidarkblue: '#101A4B',

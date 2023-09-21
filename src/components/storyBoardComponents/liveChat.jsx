@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import {
-  Textarea, IconButton, Card, Chip,
+  Textarea, IconButton, Card,
 } from '@material-tailwind/react';
 import { useSelector, useDispatch } from 'react-redux';
 import Cookies from 'js-cookie';
@@ -19,6 +19,12 @@ export default function LiveChat({ storyId }) {
     if (storyId) {
       dispatch(fetchChat(storyId));
     }
+    // Set an interval to refresh chat messages every 15 seconds
+    const intervalId = setInterval(() => {
+      dispatch(fetchChat(storyId));
+    }, 15000);
+
+    return () => clearInterval(intervalId);
   }, [dispatch, storyId]);
 
   const handleMessageChange = (e) => {
@@ -37,16 +43,21 @@ export default function LiveChat({ storyId }) {
   };
 
   return (
-    <Card className="mt-6 h-[30rem] w-96 items-center flex flex-col justify-between">
-      <div className="chat-messages bg-white w-5/6 overflow-y-auto">
+    <Card
+      className="h-full rounded-none rounded-r-xl px-2"
+      style={{
+        maxWidth: '320px', backgroundImage: `url(${rightPanel})`, backgroundRepeat: 'round', justifySelf: 'end',
+      }}
+    >
+      <div className="chat-messages overflow-y-auto h-96 mt-8">
         {chatMessages.map((msg) => (
-          <div key={msg.message_id} className={`${msg.user_id === userId ? 'ml-28' : 'ml-2'}`}>
-            <div className="user text-sm">
+          <div key={msg.message_id} className={`${msg.user_id === userId ? 'ml-16' : ''}`}>
+            <div className="user text-sm ml-2">
               {msg.username}
               {' '}
               {new Date(msg.date_created).toLocaleTimeString()}
             </div>
-            <div className={`${msg.user_id === userId ? 'bg-whimsipink ' : ''} border rounded-md m-1 p-2 px-4 w-44 text-black`}>
+            <div className={`${msg.user_id === userId ? 'bg-whimsipink ' : 'bg-white'} border rounded-md m-1 p-2 px-4 w-44 text-black`}>
               {msg.data}
             </div>
           </div>
@@ -76,7 +87,7 @@ export default function LiveChat({ storyId }) {
               viewBox="0 0 24 24"
               stroke="currentColor"
               strokeWidth={2}
-              className="h-5 w-5"
+              className="h-5 w-5 mr-4"
             >
               <path
                 strokeLinecap="round"
@@ -92,3 +103,5 @@ export default function LiveChat({ storyId }) {
     </Card>
   );
 }
+
+const rightPanel = 'https://res.cloudinary.com/dnr41r1lq/image/upload/v1695244009/paperRight_bly8zj.png';

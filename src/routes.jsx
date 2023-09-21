@@ -2,6 +2,7 @@ import React from 'react';
 import {
   createBrowserRouter,
 } from 'react-router-dom';
+import Landing from './pages/Landing';
 import App from './pages/App';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
@@ -14,11 +15,16 @@ import CreatePost from './pages/CreatePost';
 const router = createBrowserRouter([
   {
     path: '/',
+    element: <Landing />,
+    errorElement: <ErrorPage />,
+  },
+  {
+    path: '/home',
     element: <App />,
     errorElement: <ErrorPage />,
   },
   {
-    path: '/login',
+    path: '/login/*',
     element: <Login />,
     errorElement: <ErrorPage />,
   },
@@ -38,7 +44,7 @@ const router = createBrowserRouter([
     errorElement: <errorPage />,
   },
   {
-    path: '/characterCreation',
+    path: '/characterCreation/:storyId',
     element: <CharacterCreation />,
     errorElement: <errorPage />,
   },

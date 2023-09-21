@@ -48,7 +48,8 @@ export default function Search({
         color={search ? 'gray' : 'blue-gray'}
         disabled={!search}
         onClick={submitHandler}
-        className="!absolute right-1 top-1 rounded font-heading font-semibold text-sm"
+        className="!absolute right-1 top-1 rounded"
+        style={{ backgroundColor: '#98BAD5', color: 'black', fontWeight: 'bold' }}
       >
         Search
       </Button>

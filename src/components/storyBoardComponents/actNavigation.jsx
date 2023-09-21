@@ -9,7 +9,7 @@ import {
 
 export default function ActNavigation() {
   return (
-    <Card className="mt-6 w-96">
+    <Card className="mt-6 w-full max-w-md mx-auto">
       <CardBody>
         <Typography variant="h5" color="blue-gray" className="mb-2">
           Act Navigation

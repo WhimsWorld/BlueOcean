@@ -1,14 +1,23 @@
 import React, { useState } from 'react';
+import Cookies from 'js-cookie';
 import StickyNavbar from '../components/StickyNavbar';
 import StoryCreationForm from '../components/storyCreationComponents/StoryCreationForm';
 
 export default function CreateStory() {
+  const [loggedIn, setLoggedIn] = useState(Cookies.get('userId'));
+
   return (
-    <div>
-      <StickyNavbar />
+    <div className="h-screen bg-cover" style={{backgroundImage: `url(${storyCreationBg})`}}>
+      <StickyNavbar
+        loggedIn={loggedIn}
+        setLoggedIn={setLoggedIn}
+      />
       <div className="flex justify-center">
         <StoryCreationForm />
       </div>
     </div>
   );
 }
+
+//background asset
+const storyCreationBg = "https://i.ibb.co/f1j6Zbr/pirate2-min.png"

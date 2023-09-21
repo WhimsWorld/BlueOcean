@@ -51,12 +51,12 @@ INSERT INTO gifs (category_id, gif_url, premium) VALUES
     (1, 'https://i.ibb.co/3TGt6nN/HFsticker12.png', FALSE);
 
 -- Insert data into the sounds table for High Fantasy
-INSERT INTO sounds (category_id, sound_url, premium) VALUES
-    (1, '1B87ZLqTN741x7cwK_iH8rFyvbjKY9uRo', TRUE),
-    (1, '1IzUcTOo87HO1gUN1j6Yfu1mYZDGr9sHH', FALSE),
-    (1, '1ih_I_1hHz4GGQVoBUQV-_Vw1QePNXow_', FALSE),
-    (1, '1ybk4Q_fAOFXrgVES1KM0X1H6QE4bSvIK', FALSE),
-    (1, '1ASIUblworfAZt0PPE5W3Lmpvo1scmQW8', FALSE);
+INSERT INTO sounds (category_id, sound_name, sound_url, premium) VALUES
+    (1, 'Beast Growl', '1B87ZLqTN741x7cwK_iH8rFyvbjKY9uRo', TRUE),
+    (1, 'Flying Overhead', '1IzUcTOo87HO1gUN1j6Yfu1mYZDGr9sHH', FALSE),
+    (1, 'Heroic Embark', '1ih_I_1hHz4GGQVoBUQV-_Vw1QePNXow_', FALSE),
+    (1, 'Magic Ripple', '1ybk4Q_fAOFXrgVES1KM0X1H6QE4bSvIK', FALSE),
+    (1, 'Open Book', '1ASIUblworfAZt0PPE5W3Lmpvo1scmQW8', FALSE);
 
 -- Insert data into the images table for Mystical Forest
 INSERT INTO images (category_id, image_url, premium) VALUES
@@ -82,12 +82,12 @@ INSERT INTO gifs (category_id, gif_url, premium) VALUES
     (2, 'https://i.ibb.co/Y2TkzPB/MFsticker11.png', FALSE);
 
 -- Insert data into the sounds table for Mystical Forest
-INSERT INTO sounds (category_id, sound_url, premium) VALUES
-    (2, '1FcHi95m5haLpmQTTO4yUrLK8feRbiYrW', TRUE),
-    (2, '1Rm2DOuZStWjDajSlZZSf230PzAyoVsBp', FALSE),
-    (2, '1CiM2Me5dtDu0RE2vNRxNqHKMYEuTdnCq', FALSE),
-    (2, '1jKYmUa9mbZX0c3Fg90TC8nCs2Nybxy33', FALSE),
-    (2, '1YEtp6Q8ipO-wP7wYERAqdDHaX6GQ1vqs', FALSE);
+INSERT INTO sounds (category_id, sound_name, sound_url, premium) VALUES
+    (2, 'Angel Sparkle', '1FcHi95m5haLpmQTTO4yUrLK8feRbiYrW', TRUE),
+    (2, 'Deep Breath', '1Rm2DOuZStWjDajSlZZSf230PzAyoVsBp', FALSE),
+    (2, 'Ghost Swish', '1CiM2Me5dtDu0RE2vNRxNqHKMYEuTdnCq', FALSE),
+    (2, 'Jump Swish', '1jKYmUa9mbZX0c3Fg90TC8nCs2Nybxy33', FALSE),
+    (2, 'Magical Shimmer', '1YEtp6Q8ipO-wP7wYERAqdDHaX6GQ1vqs', FALSE);
 
 -- Insert data into the images table for Pirates Cove Adventure
 INSERT INTO images (category_id, image_url, premium) VALUES
@@ -113,12 +113,12 @@ INSERT INTO gifs (category_id, gif_url, premium) VALUES
     (3, 'https://i.ibb.co/dJ5NXYy/PCsticker12.png', FALSE);
 
 -- Insert data into the sounds table for Pirates Cove Adventure
-INSERT INTO sounds (category_id, sound_url, premium) VALUES
-    (3, '1R7SMXNKqqjcG29ADvRKB2cxLNeCLQb_Q', TRUE),
-    (3, '12qo0Al0EIfUZjIVG_DboKnRr31bQPAzG', FALSE),
-    (3, '15OpYwhG7GkDAGddUyDpdFszoejt5J9PU', FALSE),
-    (3, '13yErebztrKxfYQJjDEjMV2rzOtrp1HUa', FALSE),
-    (3, '1cA70SxZZQf1qJHf8tCCqOitUCcdJ9Zyg', FALSE);
+INSERT INTO sounds (category_id, sound_name, sound_url, premium) VALUES
+    (3, 'Cannon Fire', '1R7SMXNKqqjcG29ADvRKB2cxLNeCLQb_Q', TRUE),
+    (3, 'Coin Movement', '12qo0Al0EIfUZjIVG_DboKnRr31bQPAzG', FALSE),
+    (3, 'Ocean Ambience', '15OpYwhG7GkDAGddUyDpdFszoejt5J9PU', FALSE),
+    (3, 'Pirate Voice', '13yErebztrKxfYQJjDEjMV2rzOtrp1HUa', FALSE),
+    (3, 'Sword Impact', '1cA70SxZZQf1qJHf8tCCqOitUCcdJ9Zyg', FALSE);
 
 -- Insert data into the images table for Steampunk Cityscape
 INSERT INTO images (category_id, image_url, premium) VALUES
@@ -144,12 +144,12 @@ INSERT INTO gifs (category_id, gif_url, premium) VALUES
     (4, 'https://i.ibb.co/ft9VVwW/SCsticker12.png', FALSE);
 
 -- Insert data into the sounds table for Steampunk Cityscape
-INSERT INTO sounds (category_id, sound_url, premium) VALUES
-    (4, '1FM788V6aJC1O3cfVbotiZhMewMdZFtrl', TRUE),
-    (4, '1wCNOIz0otHwe_ba1YyIxiZZAXeSy-Xpr', FALSE),
-    (4, '10g-NzZS2ayVPdscdXby6M21P0hLrHZyr', FALSE),
-    (4, '1a6eB_IcwR3EwPtPl2qzrVNSGOVbx2v5V', FALSE),
-    (4, '1vT0hbUYQiVq7wg0-l8DPjNI27VZGoMZ9', FALSE);
+INSERT INTO sounds (category_id, sound_name, sound_url, premium) VALUES
+    (4, 'Bubbling Lab', '1FM788V6aJC1O3cfVbotiZhMewMdZFtrl', TRUE),
+    (4, 'Chitter', '1wCNOIz0otHwe_ba1YyIxiZZAXeSy-Xpr', FALSE),
+    (4, 'Mechanic Footsteps', '10g-NzZS2ayVPdscdXby6M21P0hLrHZyr', FALSE),
+    (4, 'Spring Switch', '1a6eB_IcwR3EwPtPl2qzrVNSGOVbx2v5V', FALSE),
+    (4, 'Tinker', '1vT0hbUYQiVq7wg0-l8DPjNI27VZGoMZ9', FALSE);
 
 -- Insert data into the images table for Other. (Character Images)
 INSERT INTO images (category_id, image_url, premium) VALUES
@@ -241,8 +241,7 @@ VALUES
     (1, 'user5_id', (SELECT image_id FROM images WHERE category_id = 5 AND premium = TRUE LIMIT 1), 'Character 5', 'Strength 5', 'Weakness 5', 'Backstory 5'),
     (2, 'user6_id', (SELECT image_id FROM images WHERE category_id = 5 AND premium = TRUE LIMIT 1), 'Character 6', 'Strength 6', 'Weakness 6', 'Backstory 6'),
     (3, 'user7_id', (SELECT image_id FROM images WHERE category_id = 5 AND premium = TRUE LIMIT 1), 'Character 7', 'Strength 7', 'Weakness 7', 'Backstory 7'),
-    (4, 'user8_id', (SELECT image_id FROM images WHERE category_id = 5 AND premium = TRUE LIMIT 1), 'Character 8', 'Strength 8', 'Weakness 8', 'Backstory 8'),
-    (4, 'user1_id', (SELECT image_id FROM images WHERE category_id = 5 AND premium = FALSE LIMIT 1), 'Character 9', 'Strength 9', 'Weakness 9', 'Backstory 9');
+    (4, 'user8_id', (SELECT image_id FROM images WHERE category_id = 5 AND premium = TRUE LIMIT 1), 'Character 8', 'Strength 8', 'Weakness 8', 'Backstory 8');
 
 -- Insert data into the posts table
 INSERT INTO posts (story_id, created_by_user_id, char_id, gif_id, sound_id, narrator_image_id, narrator_post, content)
@@ -271,5 +270,27 @@ VALUES
 
 
 
--- Insert data into the users_in_story table
-INSERT INTO users_in_story(story_id, user_id) VALUES (4, 'user1_id');
+-- Insert a long post into story_id 1
+    INSERT INTO posts (story_id, created_by_user_id, char_id, gif_id, sound_id, narrator_image_id, narrator_post, content)
+VALUES
+    (1, 'user5_id', 5, (SELECT gif_id FROM gifs WHERE category_id = 1 AND premium = TRUE LIMIT 1),
+    (SELECT sound_id FROM sounds WHERE category_id = 1 AND premium = TRUE LIMIT 1), NULL, FALSE,
+    'In the ancient land of Eldoria, where magic flowed like a river and mythical creatures roamed freely, a great prophecy was foretold. It spoke of a chosen one, a hero of unparalleled courage and wisdom, destined to rise in the darkest of times.
+
+    Eldoria had plunged into chaos as the forces of darkness, led by the malevolent sorcerer Malgrim, sought to envelop the realm in eternal night. His dark magic corrupted the very essence of the land, twisting forests into haunted groves and turning once-proud cities into ghostly ruins.
+
+    Amidst this turmoil, a young farm girl named Elara discovered an enchanted amulet hidden within the roots of the ancient Eldertree. The amulet pulsed with a radiant light, and when Elara touched it, she felt a surge of power course through her veins.
+
+    Unbeknownst to Elara, she was the chosen one of the prophecy, marked by destiny to wield the amulet''s magic. As she embarked on her journey, she encountered a diverse group of allies—a brave knight named Sir Cedric, a mischievous forest sprite named Puck, a wise old mage named Alaric, and a gentle giantess named Freya.
+
+    Together, they set out to vanquish the darkness and restore Eldoria to its former glory. Along their perilous journey, they faced countless challenges—battles with nightmarish creatures, riddles posed by ancient spirits, and tests of their loyalty and faith.
+
+    But through it all, Elara''s unwavering determination, Sir Cedric''s unyielding valor, Puck''s clever tricks, Alaric''s boundless knowledge, and Freya''s immense strength proved to be their greatest assets. With each triumph, they drew closer to confronting Malgrim.
+
+    At the heart of Eldoria, in the foreboding Castle Shadowmire, the final battle raged. The clash of magic and steel reverberated through the air as Elara faced off against Malgrim. It was a battle of light against darkness, hope against despair.
+
+    In the end, it was Elara''s indomitable spirit and the combined strength of her companions that overcame Malgrim''s malevolence. The amulet''s magic surged forth, banishing the darkness and restoring Eldoria to its former splendor.
+
+    The prophecy had been fulfilled, and Eldoria rejoiced. The land flourished once more, and peace returned to its inhabitants. Elara and her companions were celebrated as heroes, their names etched into the annals of Eldoria''s history.
+
+    But as the heroes basked in their victory, they knew that the world was vast, and new adventures awaited. With the amulet in hand, Elara gazed toward the horizon, ready to embark on new journeys and face new challenges, for the world was a place of endless wonder, and the hero''s journey never truly ended.');

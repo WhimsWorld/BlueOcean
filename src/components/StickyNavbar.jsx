@@ -1,10 +1,19 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   Navbar,
   Typography,
 } from '@material-tailwind/react';
+import Cookies from 'js-cookie';
+import { useNavigate } from 'react-router-dom';
 
-function StickyNavbar() {
+function StickyNavbar({ loggedIn, setLoggedIn }) {
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    Cookies.remove('userId');
+    setLoggedIn(Cookies.get('userId'));
+    navigate('/home');
+  };
   return (
     <Navbar className="flex sticky top-0 h-max z-10 max-w-full pl-10 pr-10">
       <div className="flex items-center justify-self-start">
@@ -24,13 +33,23 @@ function StickyNavbar() {
         >
           Home
         </Typography>
-        <Typography
-          as="a"
-          href="/login"
-          className={groupClass}
-        >
-          Login
-        </Typography>
+        {loggedIn ? (
+          <Typography
+            as="a"
+            onClick={handleLogout}
+            className={groupClass}
+          >
+            Logout
+          </Typography>
+        ) : (
+          <Typography
+            as="a"
+            onClick={() => navigate('/login')}
+            className={groupClass}
+          >
+            Login
+          </Typography>
+        )}
         <Typography
           as="a"
           href="/createStory"

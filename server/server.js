@@ -37,6 +37,7 @@ async function createServer() {
   // select characters
   app.get('/api/characters', usersController.getCharacters);
   app.get('/api/characters/user/:userId', usersController.getCharactersByUserId);
+  app.get('/api/characters/:storyId', usersController.getCharactersByStoryId);
   app.post('/api/characters', usersController.addCharacter);
 
   // character creation
@@ -59,9 +60,8 @@ async function createServer() {
 
   // story posts
   app.get('/api/posts/:storyId', postsController.getPosts);
-  app.get('/api/postsimages', postsController.getThemeImages);
-  app.get('/api/postsounds', postsController.getSounds);
-  app.get('/api/postsgifs', postsController.getGifs);
+  app.get('/api/getData', postsController.getAllData);
+  app.get('/api/getNarrator', postsController.getNarrator);
   app.post('/api/posts', postsController.addPost);
 
   // chat handlers
