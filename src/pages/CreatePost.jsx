@@ -115,18 +115,20 @@ export default function CreatePost() {
   };
 
   return (
-    <div style={{ backgroundImage: `url(${right})` }}>
+    <div className="h-100%" style={{ backgroundImage: `url(${right})` }}>
       <StickyNavbar />
-      <div style={{
-        display: 'flex', justifyContent: 'center', alignItems: 'center', maxWidth: '1000px', margin: '0 auto',
-      }}
+      <div
+        className="min-h-screen"
+        style={{
+          display: 'flex', justifyContent: 'center', alignItems: 'center', maxWidth: '1000px', margin: '0 auto',
+        }}
       >
         <Card
           color="transparent"
           className="w-2/3 mt-1 p-4 flex"
           style={{
             width: '100%',
-            height: '100vh',
+            height: '100%',
             display: 'flex',
             alignItems: 'center',
             background: `url(${cardBG})`,
@@ -206,7 +208,7 @@ export default function CreatePost() {
                 backgroundImage: `url(${buttonBG})`, backgroundSize: 'auto', opacity: 0.8, fontSize: '18px', color: 'white', width: '350px',
               }}
               type="submit"
-              className="mt-6 w-1/2 self-center"
+              className="mt-6 mb-12 w-1/2 self-center"
               onClick={handleSubmit}
             >
               Continue the Story
