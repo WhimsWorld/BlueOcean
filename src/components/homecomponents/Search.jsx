@@ -38,9 +38,9 @@ export default function Search({
         label="Search"
         value={search}
         onChange={onChange}
-        className="pr-20"
+        className="pr-20 min-w-0"
         containerProps={{
-          className: 'min-w-0',
+          className: 'min-w-[0]',
         }}
       />
       <Button
@@ -48,7 +48,7 @@ export default function Search({
         color={search ? 'gray' : 'blue-gray'}
         disabled={!search}
         onClick={submitHandler}
-        className="!absolute right-1 top-1 rounded"
+        className="!absolute right-1 top-1 rounded font-heading font-semibold text-sm"
       >
         Search
       </Button>
