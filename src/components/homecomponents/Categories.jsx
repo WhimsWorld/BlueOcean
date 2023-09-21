@@ -21,8 +21,17 @@ export default function Categories({
   };
 
   return (
-    <Card className="rounded-none rounded-l-xl" style={{ maxWidth: '250px', justifySelf: 'flex-end', backgroundImage: `url(${leftPanel})`, backgroundSize: 'auto', backgroundRepeat: 'round' }}>
-      <span className="self-center pt-5 pb-3">Categories</span>
+    <Card
+      className="rounded-none rounded-l-xl"
+      style={{
+        maxWidth: '250px',
+        justifySelf: 'flex-end',
+        backgroundImage: `url(${leftPanel})`,
+        backgroundSize: 'auto',
+        backgroundRepeat: 'round',
+      }}
+    >
+      <span className="self-center pt-5 pb-3">Themes</span>
       <List className="min-w-[0]">
         {categories.map((categoryEntry) => (
           <ListItem
