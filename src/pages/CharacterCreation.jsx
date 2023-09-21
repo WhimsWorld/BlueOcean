@@ -21,7 +21,6 @@ import StickyNavbar from '../components/StickyNavbar';
 export default function CharacterCreation({ storyBoardURL }) {
   const navigate = useNavigate();
   const storyID = window.location.href.split('characterCreation/')[1];
-  console.log('story id', storyID);
   const [name, setName] = useState('');
   const [origin, setOrigin] = useState('');
   const [str, setStr] = useState([]);

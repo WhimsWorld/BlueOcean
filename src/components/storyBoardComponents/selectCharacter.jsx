@@ -1,5 +1,6 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import Cookies from 'js-cookie';
 import {
   Card, List, ListItem, ListItemPrefix, Avatar, Typography,
 } from '@material-tailwind/react';
@@ -11,12 +12,18 @@ export default function SelectCharacter({ storyId }) {
   const navigate = useNavigate();
   const characters = useSelector((state) => state.characters);
 
+  const [loggedIn, setLoggedIn] = useState(Cookies.get('userId'));
   useEffect(() => {
     dispatch(loadCharactersByUserId(1));
   }, [dispatch]);
-
+  console.log('logged in outside of function', loggedIn);
   const handleCreateCharacter = () => {
-    navigate(`/characterCreation/${storyId}`);
+    console.log('logged in in selectChar', loggedIn);
+    if (loggedIn) {
+      navigate(`/characterCreation/${storyId}`);
+    } else {
+      navigate('/login');
+    }
   };
 
   return (
@@ -55,7 +62,7 @@ export default function SelectCharacter({ storyId }) {
           </ListItem>
         ))}
       </List>
-      <button onClick={handleCreateCharacter}>Create Character</button>
+      <button onClick={() => handleCreateCharacter() }>Create Character</button>
 
     </Card>
   );
