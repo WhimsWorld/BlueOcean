@@ -25,7 +25,8 @@ export default function SelectCharacter({ storyId }) {
     if (loggedIn) {
       navigate(`/characterCreation/${storyId}`);
     } else {
-      navigate('/login');
+      console.log('select character not logged in');
+      navigate(`/login/storyBoard/${storyId}`);
     }
   };
   return (

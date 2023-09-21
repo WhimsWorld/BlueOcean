@@ -19,13 +19,17 @@ export default function Login() {
   const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-
+  const path = window.location.href.split('login')[1];
   async function toLogin(e) {
     e.preventDefault();
     await signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         Cookies.set('userId', userCredential.user.uid, { expires: 1 });
-        navigate('/home');
+        if (path.length > 5) {
+          navigate(`${path}`);
+        } else {
+          navigate('/home');
+        }
       })
       .catch((err) => {
         const errorCode = err.code;
@@ -35,7 +39,7 @@ export default function Login() {
   }
 
   return (
-    <div>
+    <div className="h-screen bg-cover" style={{backgroundImage: `url(${loginBg})`}}>
       <StickyNavbar />
       <Card className="w-96 m-auto">
         <CardHeader
@@ -77,3 +81,6 @@ export default function Login() {
     </div>
   );
 }
+
+//styling assets
+const loginBg = "https://i.ibb.co/6bsxsgR/pirate3-min.png";

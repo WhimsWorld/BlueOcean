@@ -124,7 +124,7 @@ export default function StoryCreationForm() {
     }
   };
   return (
-    <Card color="transparent" className="w-2/3 mt-1 p-4 flex">
+    <Card className="w-2/3 mt-1 p-4 flex">
       <Typography variant="h4" color="blue-gray" className="self-center">
         Create a new Story
       </Typography>

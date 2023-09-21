@@ -7,7 +7,7 @@ export default function CreateStory() {
   const [loggedIn, setLoggedIn] = useState(Cookies.get('userId'));
 
   return (
-    <div>
+    <div className="h-screen bg-cover" style={{backgroundImage: `url(${storyCreationBg})`}}>
       <StickyNavbar
         loggedIn={loggedIn}
         setLoggedIn={setLoggedIn}
@@ -18,3 +18,6 @@ export default function CreateStory() {
     </div>
   );
 }
+
+//background asset
+const storyCreationBg = "https://i.ibb.co/f1j6Zbr/pirate2-min.png"

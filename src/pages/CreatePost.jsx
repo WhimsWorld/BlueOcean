@@ -108,7 +108,7 @@ export default function CreatePost() {
       <div
         className="min-h-screen"
         style={{
-          display: 'flex', justifyContent: 'center', alignItems: 'center', maxWidth: '1000px', margin: '0 auto',
+          display: 'flex', justifyContent: 'center', alignItems: 'center', maxWidth: '1000px', margin: '0 auto', minHeight: '100vh',
         }}
       >
         <Card
