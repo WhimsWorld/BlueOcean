@@ -19,13 +19,17 @@ export default function Login() {
   const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-
+  const path = window.location.href.split('login')[1];
   async function toLogin(e) {
     e.preventDefault();
     await signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         Cookies.set('userId', userCredential.user.uid, { expires: 1 });
-        navigate('/home');
+        if (path.length > 5) {
+          navigate(`${path}`);
+        } else {
+          navigate('/home');
+        }
       })
       .catch((err) => {
         const errorCode = err.code;
