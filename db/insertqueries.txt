@@ -301,12 +301,13 @@ VALUES
 INSERT INTO sounds (category_id, sound_name, sound_url, premium) VALUES
     (5, 'Mechanical Gears', '1BBZ5O3kfVJyaCNpcEcq61MnSB4wUZZg1', TRUE),
     (5, 'Mechanical Clicks', '12-COZfV6nHZGKBD7jAAaCk4lIz6aAcDl', TRUE),
+    (5, 'Spell', '15Osan_4KD17eXrpmvamTGf5n45E1b_IO', TRUE),
     (5, 'Wind Call', '1L_thXSaEM5rfhXEj4ioc_l_1_By0uZYq', TRUE),
     (5, 'Flute Call', '1IeSFAfeQTYqUDbICpbxMgQurdVVTXCdx', TRUE),
     (5, 'Laugh', '1sOMjz4zbXKlAfKB3ffjN36M8zrN6aXZv', TRUE),
     (5, 'Growl 1', '1UkMoFvV9sZwCvkcC8EGklVGarNAn--Qv', TRUE),
     (5, 'Growl 2', '1EbvftPAo3fY3maXptM6jG4wJF9XJ8QMM', TRUE),
-    (5, 'Roar', 'h1SQ78_R4kLgUIf2bQCNqxlt7RUMrpyTb4', TRUE),
+    (5, 'Roar', '1SQ78_R4kLgUIf2bQCNqxlt7RUMrpyTb4', TRUE),
     (5, 'Twinkle', '1QN9wwIj0wes6W0OtJdMhTLRIcjZ_ItlE', FALSE),
     (5, 'Hand Drum', '1ZgbPUBgmC6v3dNwEb_9Lz5fiGBx5hC0h', FALSE),
     (5, 'Axe', '1WRgJ-60CxCZy841EMgSzjJOfj3uUEKuV', FALSE),
@@ -314,6 +315,5 @@ INSERT INTO sounds (category_id, sound_name, sound_url, premium) VALUES
     (5, 'Shiver Me Timbers', '1E9zHOQsH1rkKJcWJBssGCx3rMgQrbRoE', FALSE),
     (5, 'Oh Arrrr', '1GOMT1L5c8r97FYoHe6JJQWlOblhxX-b0', FALSE),
     (5, 'Laugh', '1iKfSnWNt5usaiua32qZOSK7yjmz3hRoV', FALSE),
-    (5, 'Harp', '1RvLTzoCMhOB6aNEStdw9vT19mfKTVUwG', FALSE);
-
-1iKfSnWNt5usaiua32qZOSK7yjmz3hRoV
+    (5, 'Whistled Tune', '1iKfSnWNt5usaiua32qZOSK7yjmz3hRoV', FALSE),
+    (5, 'Harp', '1v-eRovTK689xAd8hQ0PdQLeK7r4lNvMJ', FALSE);

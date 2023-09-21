@@ -74,6 +74,8 @@ CREATE TABLE characters (
     char_name VARCHAR(32),
     strength VARCHAR(32),
     weakness VARCHAR(32),
+    char_race VARCHAR(32),
+    char_sex VARCHAR(32),
     backstory TEXT
 );
 

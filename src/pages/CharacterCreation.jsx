@@ -27,11 +27,11 @@ export default function CharacterCreation({ storyBoardURL }) {
   const [str, setStr] = useState([]);
   const [weak, setWeak] = useState([]);
   const [race, setRace] = useState('');
-  const [sex, setSex] = useState('');
+  const [sex, setSex] = useState('male');
   const [characterIcon, setCharacterIcon] = useState('');
   const [images, setImages] = useState(['https://previews.123rf.com/images/aalbedouin/aalbedouin1801/aalbedouin180100599/93976760-personality-traits-icon-symbol-premium-quality-isolated-personal-character-element-in-trendy-style.jpg', 'https://previews.123rf.com/images/aalbedouin/aalbedouin1801/aalbedouin180100599/93976760-personality-traits-icon-symbol-premium-quality-isolated-personal-character-element-in-trendy-style.jpg', 'https://previews.123rf.com/images/aalbedouin/aalbedouin1801/aalbedouin180100599/93976760-personality-traits-icon-symbol-premium-quality-isolated-personal-character-element-in-trendy-style.jpg', 'https://previews.123rf.com/images/aalbedouin/aalbedouin1801/aalbedouin180100599/93976760-personality-traits-icon-symbol-premium-quality-isolated-personal-character-element-in-trendy-style.jpg', 'https://previews.123rf.com/images/aalbedouin/aalbedouin1801/aalbedouin180100599/93976760-personality-traits-icon-symbol-premium-quality-isolated-personal-character-element-in-trendy-style.jpg', 'https://previews.123rf.com/images/aalbedouin/aalbedouin1801/aalbedouin180100599/93976760-personality-traits-icon-symbol-premium-quality-isolated-personal-character-element-in-trendy-style.jpg', 'https://previews.123rf.com/images/aalbedouin/aalbedouin1801/aalbedouin180100599/93976760-personality-traits-icon-symbol-premium-quality-isolated-personal-character-element-in-trendy-style.jpg', 'https://previews.123rf.com/images/aalbedouin/aalbedouin1801/aalbedouin180100599/93976760-personality-traits-icon-symbol-premium-quality-isolated-personal-character-element-in-trendy-style.jpg', 'https://previews.123rf.com/images/aalbedouin/aalbedouin1801/aalbedouin180100599/93976760-personality-traits-icon-symbol-premium-quality-isolated-personal-character-element-in-trendy-style.jpg', 'https://previews.123rf.com/images/aalbedouin/aalbedouin1801/aalbedouin180100599/93976760-personality-traits-icon-symbol-premium-quality-isolated-personal-character-element-in-trendy-style.jpg', 'https://previews.123rf.com/images/aalbedouin/aalbedouin1801/aalbedouin180100599/93976760-personality-traits-icon-symbol-premium-quality-isolated-personal-character-element-in-trendy-style.jpg', 'https://previews.123rf.com/images/aalbedouin/aalbedouin1801/aalbedouin180100599/93976760-personality-traits-icon-symbol-premium-quality-isolated-personal-character-element-in-trendy-style.jpg']);
   const [sounds, setSounds] = useState([]);
-  const [selectedSound, setSelectedSound] = useState('');
+  const [selectedSound, setSelectedSound] = useState({});
   const [audio] = useState(new Audio());
 
   useEffect(() => {
@@ -51,9 +51,6 @@ export default function CharacterCreation({ storyBoardURL }) {
   }, [sounds.length]);
 
   useEffect(() => {
-    console.log('selectedSound change:', selectedSound);
-    console.log('selectedSound id:', selectedSound.sound_id);
-    console.log(sex);
   }, [selectedSound]);
 
   const uid = Cookies.get('userId');
@@ -134,8 +131,10 @@ export default function CharacterCreation({ storyBoardURL }) {
             </div>
             {/* This div is for character sex */}
             <div className="flex w-max gap-4">
-              <Radio name="color" color="teal" label="male" value="male" defaultChecked onClick={(e) => setSex(e.target.value)} />
+              <Radio name="color" color="green" label="male" value="male" defaultChecked onClick={(e) => setSex(e.target.value)} />
               <Radio name="color" color="green" label="female" value="female" onClick={(e) => setSex(e.target.value)} />
+              <Radio name="color" color="green" label="non-binary" value="non-binary" onClick={(e) => setSex(e.target.value)} />
+              <Radio name="color" color="green" label="other" value="other" onClick={(e) => setSex(e.target.value)} />
             </div>
             {/* This div is for character strengths ///// Need additional work on this section!! */}
             <div>
