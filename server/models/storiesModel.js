@@ -187,7 +187,6 @@ export const deleteLikedStory = async (user, story) => {
   FROM user_story_likes usl
   JOIN users u ON usl.user_id = u.user_id
   WHERE u.user_id = '${user_id}';
-
     `;
   const result = await executeQuery(query);
   const response = {};

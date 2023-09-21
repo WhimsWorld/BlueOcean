@@ -5,7 +5,6 @@ import {
   CardFooter,
   Typography,
   Input,
-  Checkbox,
   Button,
 } from '@material-tailwind/react';
 import React, { useState } from 'react';
@@ -39,15 +38,23 @@ export default function Login() {
   }
 
   return (
-    <div className="h-screen bg-cover" style={{backgroundImage: `url(${loginBg})`}}>
+    <div className="h-screen bg-cover" style={{ backgroundImage: `url(${loginBg})` }}>
       <StickyNavbar />
-      <Card className="w-96 m-auto">
+      <Card
+        className="w-96 m-auto mt-48 "
+        style={{
+          backgroundImage: `url(${cardBG})`,
+          backgroundSize: 'cover',
+          backgroundRepeat: 'no-repeat',
+          backgroundPosition: 'center center',
+        }}
+      >
         <CardHeader
           variant="gradient"
-          color="blue"
           className="my-4 grid h-28 place-items-center"
+          style={{ backgroundImage: `url(${buttonBG})`, boxShadow: 'none' }}
         >
-          <Typography variant="h3" color="white">
+          <Typography variant="h3" color="white" className="font-logo" style={{ fontSize: '40px' }}>
             Login
           </Typography>
         </CardHeader>
@@ -59,8 +66,7 @@ export default function Login() {
           </div> */}
         </CardBody>
         <CardFooter className="pt-0">
-
-          <Button variant="gradient" fullWidth onClick={ toLogin }>
+          <Button variant="gradient" fullWidth onClick={ toLogin } className="font-logo text-md" style={{ backgroundImage: `url(${buttonBG})`, boxShadow: 'none'}}>
             Sign in
           </Button>
           <Typography variant="small" className="mt-6 flex justify-center">
@@ -83,4 +89,6 @@ export default function Login() {
 }
 
 //styling assets
-const loginBg = "https://i.ibb.co/6bsxsgR/pirate3-min.png";
+const loginBg = 'https://i.ibb.co/6bsxsgR/pirate3-min.png';
+const buttonBG = 'https://res.cloudinary.com/dnr41r1lq/image/upload/v1695229025/bronzetexture_cc3urf.webp';
+const cardBG = 'https://res.cloudinary.com/dnr41r1lq/image/upload/v1695235263/paper2_kag1pb.jpg';
