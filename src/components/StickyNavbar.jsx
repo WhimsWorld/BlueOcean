@@ -12,14 +12,14 @@ function StickyNavbar({ loggedIn, setLoggedIn }) {
   const handleLogout = () => {
     Cookies.remove('userId');
     setLoggedIn(Cookies.get('userId'));
+    navigate('/home');
   };
-
   return (
     <Navbar className="sticky top-0 h-max z-10 max-w-full">
       <div className="flex items-center justify-center text-blue-gray-900">
         <Typography
           as="a"
-          href="/home"
+          href="/"
           className="mr-4 cursor-pointer py-1.5 font-medium"
         >
           Home
@@ -43,8 +43,9 @@ function StickyNavbar({ loggedIn, setLoggedIn }) {
         )}
         <Typography
           as="a"
-          href="/createStory"
+          onClick={() => (loggedIn ? navigate('/createStory') : navigate('/login'))}
           className="mr-4 cursor-pointer py-1.5 font-medium"
+          // onClick={loggedIn ? navigate('/createStory') : navigate('/login')}
         >
           Create Story
         </Typography>

@@ -22,9 +22,14 @@ export default function StorySection() {
   const [userLastPosted, setUserLastPosted] = useState(false);
   const [userIsNarrator, setUserIsNarrator] = useState(false);
   const storyData = useSelector((state) => state.story.storyData);
+  const [loggedIn, setLoggedIn] = useState(Cookies.get('userId'));
 
   const clickHandler = (id) => {
-    navigate(`/createPost/${id}`);
+    if (loggedIn) {
+      navigate(`/createPost/${id}`);
+    } else {
+      navigate('/login');
+    }
   };
 
   const playAudio = (soundUrl) => {
