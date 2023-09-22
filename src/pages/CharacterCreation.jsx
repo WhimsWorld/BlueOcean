@@ -425,8 +425,8 @@ export default function CharacterCreation({ storyBoardURL }) {
           </Typography>
           <form className="mt-4 mb-2 max-w-screen-2xl sm:w-full lg:w-3/4 xl:w-2/3 mx-auto">
             <div className="mb-4 flex flex-col gap-6" style={{ margin: 'auto', width: '60%', marginBottom: '1em' }}>
-              <Input size="sm" label="Name" onChange={(e) => setName(e.target.value)} style={{ backgroundColor: 'white' }} />
-              <Select color="blue" label="Select Race" onChange={changeRace} style={{ backgroundColor: 'white' }}>
+              <Input color="indigo" size="sm" label="Name" onChange={(e) => setName(e.target.value)} style={{ backgroundColor: 'white' }} />
+              <Select color="indigo" label="Select Race" onChange={changeRace} style={{ backgroundColor: 'white' }}>
                 <Option value="Human">Human</Option>
                 <Option value="Elf">Elf</Option>
                 <Option value="Orc">Orc</Option>
@@ -436,7 +436,7 @@ export default function CharacterCreation({ storyBoardURL }) {
               </Select>
             </div>
             <div className="mb-4 flex flex-col gap-6">
-              <Textarea style={{ backgroundColor: 'white' }} size="lg" label="Character Origin Story" type="text" onChange={(e) => setOrigin(e.target.value)} />
+              <Textarea color="indigo" style={{ backgroundColor: 'white' }} size="lg" label="Character Origin Story" type="text" onChange={(e) => setOrigin(e.target.value)} />
             </div>
             <div className="flex w-max gap-4" style={{ margin: 'auto' }}>
               <Radio

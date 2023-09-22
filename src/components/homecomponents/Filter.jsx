@@ -15,6 +15,7 @@ export default function Filter({ setFilter }) {
         value={optionsState}
         onChange={changeHandler}
         label="Filter"
+        color="indigo"
       >
         <Option value="Top">Top</Option>
         <Option value="New">New</Option>
