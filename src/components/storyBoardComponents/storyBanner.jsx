@@ -120,14 +120,14 @@ export default function StoryBanner({ storyId }) {
               style={{ height: '50vh', width: '100%', borderRadius: '25px' }}
             />
           </div>
-          <Typography variant="h4" color="blue-gray" className="font-medium">
+          <Typography variant="h4" color="blue-gray" className="font-medium" style={{ fontFamily: 'serif' }}>
             {story.title}
           </Typography>
         </div>
         <Typography color="gray">
           {moment(story.date_created).format('MMM Do, YYYY')}
         </Typography>
-        <Typography color="gray" className="text-justify mb-8">
+        <Typography color="gray" className="text-justify mb-8" style={{ fontFamily: 'serif' }}>
           {story.summary}
         </Typography>
       </CardBody>
