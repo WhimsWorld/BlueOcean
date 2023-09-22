@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {
   Navbar,
   Typography,
@@ -20,21 +20,35 @@ function StickyNavbar({ loggedIn, setLoggedIn }) {
         <Typography
           as="a"
           href="/"
+          onClick={() => navigate('/')}
+          style={{ zIndex: 2 }}
           className="cursor-pointer font-bold font-norican text-3xl text-whimsilightblue"
         >
           WhimsiWorld
         </Typography>
       </div>
-      <div className="flex items-center group text-blue-gray-900 transition-all duration-300 ease-in-out" style={{ paddingLeft: 'calc((100% - 40%)/2)' }}>
+      <div className="flex items-center justify-center flex-grow" style={{ marginLeft: '-155px' }}> {/* Added marginLeft */}
         <Typography
+          style={{ fontSize: '20px', color: 'black' }} // Added color property to set text to black
           as="a"
-          href="/"
+          href="/home"
           className={groupClass}
         >
           Home
         </Typography>
         {loggedIn ? (
           <Typography
+            style={{ fontSize: '20px', color: 'black' }} // Added color property to set text to black
+            as="a"
+            href="/createStory"
+            className={groupClass}
+          >
+            Create Story
+          </Typography>
+        ) : null}
+        {loggedIn ? (
+          <Typography
+            style={{ fontSize: '20px', color: 'black' }} // Added color property to set text to black
             as="a"
             onClick={handleLogout}
             className={groupClass}
@@ -43,6 +57,7 @@ function StickyNavbar({ loggedIn, setLoggedIn }) {
           </Typography>
         ) : (
           <Typography
+            style={{ fontSize: '20px', color: 'black' }} // Added color property to set text to black
             as="a"
             onClick={() => navigate('/login')}
             className={groupClass}
@@ -50,20 +65,16 @@ function StickyNavbar({ loggedIn, setLoggedIn }) {
             Login
           </Typography>
         )}
-        <Typography
-          as="a"
-          href="/createStory"
-          className={groupClass}
-        >
-          Create Story
-        </Typography>
-        <Typography
-          as="a"
-          href="/Signup"
-          className={groupClass}
-        >
-          Sign Up
-        </Typography>
+        {!loggedIn ? (
+          <Typography
+            style={{ fontSize: '20px', color: 'black' }} // Added color property to set text to black
+            as="a"
+            href="/Signup"
+            className={groupClass}
+          >
+            Sign Up
+          </Typography>
+        ) : null}
       </div>
     </Navbar>
   );

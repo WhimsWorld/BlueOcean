@@ -15,9 +15,10 @@ export const getCharactersByUserId = async (userId) => {
 
 export const getCharactersByStoryId = async (storyId) => {
   const query = `
-    SELECT characters.*, images.image_url
+    SELECT characters.*, images.image_url, sounds.sound_url
     FROM characters
     LEFT JOIN images ON characters.image_id = images.image_id
+    LEFT JOIN sounds ON characters.sound_id = sounds.sound_id
     WHERE characters.story_id = $1;
   `;
   const values = [storyId];
@@ -28,20 +29,28 @@ export const getCharactersByStoryId = async (storyId) => {
 export const addCharacter = async (characterData) => {
   // console.log('charcter data', characterData);
   const {
-    story_id, user_id, image_id, char_name, strength, weakness, backstory,
+    story_id, user_id, image_id, sound_id, char_name, strength,
+    weakness, backstory, characterRace, characterSex,
   } = characterData;
   // const story_id = 1;
   const query = `
-    INSERT INTO characters (story_id, user_id, image_id, char_name, strength, weakness, backstory)
-    VALUES ($1, $2, $3, $4, $5, $6, $7)
+    INSERT INTO characters (story_id, user_id, image_id, sound_id, char_name, strength, weakness, backstory, char_race, char_sex)
+    VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)
     RETURNING *`;
-  const values = [story_id, user_id, image_id, char_name, strength, weakness, backstory];
+  const values = [story_id, user_id, image_id, sound_id, char_name, strength,
+    weakness, backstory, characterRace, characterSex];
   const result = await executeQuery(query, values);
   return result.rows[0];
 };
 
 export const getImages = async () => {
-  const query = 'SELECT * from images';
+  const query = 'SELECT * from images WHERE category_id = 5';
+  const result = await executeQuery(query);
+  return result.rows;
+};
+
+export const getSounds = async () => {
+  const query = 'SELECT * from sounds WHERE category_id = 5';
   const result = await executeQuery(query);
   return result.rows;
 };

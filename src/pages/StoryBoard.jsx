@@ -20,7 +20,7 @@ export default function StoryBoard() {
           <SelectCharacter storyId={storyId} />
           {/* <ActNavigation /> */}
         </div>
-        <div id="mid_column" className="flex-1">
+        <div id="mid_column" className="flex-1 border-solid border-2">
           <StoryBanner storyId={storyId} />
           <StorySection />
         </div>

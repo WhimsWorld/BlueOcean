@@ -90,6 +90,13 @@ export const getCategories = async () => {
   return result.rows;
 };
 
+export const getCategory = async (storyId) => {
+  const query = 'SELECT category_id FROM stories WHERE story_id = $1';
+  const values = [storyId];
+  const result = await executeQuery(query, values);
+  return result.rows[0];
+};
+
 export const getLeaderboard = async () => {
   const query = 'SELECT * FROM stories INNER JOIN thumbnail_images on thumbnail_images.thumbnail_id = stories.thumbnail_id ORDER BY like_count DESC';
   const result = await executeQuery(query);
@@ -187,7 +194,6 @@ export const deleteLikedStory = async (user, story) => {
   FROM user_story_likes usl
   JOIN users u ON usl.user_id = u.user_id
   WHERE u.user_id = '${user_id}';
-
     `;
   const result = await executeQuery(query);
   const response = {};

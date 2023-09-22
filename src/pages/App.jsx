@@ -60,14 +60,8 @@ export default function App() {
         setLikedStories(response.data);
       })
       .catch(() => {});
-  }, []);
+  }, [userID]);
 
-  // const storyId = useSelector((state) => state.story.storyId);
-
-  /*
-  fetches all stories based on user. this is what enables the my story button to work
-  and display all stories user has created?
-  */
   useEffect(() => {
     const dataParams = {
       params: {
@@ -82,7 +76,7 @@ export default function App() {
         setStories(response.data);
       })
       .catch(() => {});
-  }, [category, filter, myStoriesFilter, likeUpdate]);
+  }, [category, filter, myStoriesFilter, likeUpdate, userID]);
 
   return (
     <div>
@@ -143,4 +137,3 @@ export default function App() {
 // imageURLs for background panels Categories and LeaderBoard
 const left = 'https://res.cloudinary.com/dnr41r1lq/image/upload/v1695191085/imgonline-com-ua-TextureSeamless-MkFWyZCWhQi_btfbva.png';
 const right = 'https://res.cloudinary.com/dnr41r1lq/image/upload/v1695192325/image_uot0j6.png';
-const storybg = 'https://res.cloudinary.com/dnr41r1lq/image/upload/v1695235263/paper2_kag1pb.jpg';

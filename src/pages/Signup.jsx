@@ -5,7 +5,6 @@ import {
   CardFooter,
   Typography,
   Input,
-  Checkbox,
   Button,
 } from '@material-tailwind/react';
 
@@ -22,7 +21,6 @@ export default function Signup() {
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [uid, setUID] = useState('');
   const addUser = (userID) => {
     axios.post('/api/users', {
       user_id: userID,
@@ -46,15 +44,26 @@ export default function Signup() {
       });
   }
   return (
-    <div>
+    <div className="h-screen bg-cover" style={{ backgroundImage: `url(${loginBg})` }}>
       <StickyNavbar />
-      <Card className="w-96 m-auto">
+      <Card
+        className="w-96 m-auto mt-48 "
+        style={{
+          backgroundImage: `url(${cardBG})`,
+          backgroundSize: 'cover',
+          backgroundRepeat: 'no-repeat',
+          backgroundPosition: 'center center',
+        }}
+      >
         <CardHeader
           variant="gradient"
           color="blue"
           className="my-4 grid h-28 place-items-center"
+          style={{ backgroundImage: `url(${buttonBG})`, boxShadow: 'none' }}
         >
           <Typography
+            className="font-logo"
+            style={{ fontSize: '40px' }}
             variant="h3"
             color="white"
           >
@@ -82,11 +91,12 @@ export default function Signup() {
           />
         </CardBody>
         <CardFooter className="pt-0">
-
           <Button
             variant="gradient"
             fullWidth
+            className="font-logo text-md"
             onClick={toSubmit}
+            style={{ backgroundImage: `url(${buttonBG})`, boxShadow: 'none' }}
           >
             Sign Up
           </Button>
@@ -111,3 +121,7 @@ export default function Signup() {
     </div>
   );
 }
+
+const loginBg = 'https://i.ibb.co/6bsxsgR/pirate3-min.png';
+const buttonBG = 'https://res.cloudinary.com/dnr41r1lq/image/upload/v1695229025/bronzetexture_cc3urf.webp';
+const cardBG = 'https://res.cloudinary.com/dnr41r1lq/image/upload/v1695235263/paper2_kag1pb.jpg';
