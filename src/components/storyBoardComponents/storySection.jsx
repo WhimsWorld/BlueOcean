@@ -339,10 +339,6 @@ export default function StorySection() {
                           fontFamily: 'serif', marginBottom: '5px', marginTop: '5px', marginLeft: '10px', maxWidth: '150px',
                         }}
                         >
-                          by
-                          {' '}
-                          {username[index]}
-                          {' '}
                           on
                           {' '}
                           {dateFormat(post.date_created)}
