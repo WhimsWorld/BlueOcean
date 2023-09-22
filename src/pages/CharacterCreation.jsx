@@ -141,19 +141,19 @@ export default function CharacterCreation({ storyBoardURL }) {
   };
 
   const radioHandler = (e) => {
-    if (e.target.value === 'male') {
+    if (e.target.value === 'Male') {
       setRadioCheck1(true);
       setRadioCheck2(false);
       setRadioCheck3(false);
       setRadioCheck4(false);
       setSex(e.target.value);
-    } else if (e.target.value === 'female') {
+    } else if (e.target.value === 'Female') {
       setRadioCheck1(false);
       setRadioCheck2(true);
       setRadioCheck3(false);
       setRadioCheck4(false);
       setSex(e.target.value);
-    } else if (e.target.value === 'non-binary') {
+    } else if (e.target.value === 'Non-binary') {
       setRadioCheck1(false);
       setRadioCheck2(false);
       setRadioCheck3(true);
@@ -459,7 +459,7 @@ export default function CharacterCreation({ storyBoardURL }) {
               <Radio
                 id="Non-binary"
                 label="Non-binary"
-                value="nNon-binary"
+                value="Non-binary"
                 color="indigo"
                 checked={radioCheck3}
                 onClick={(e) => radioHandler(e)}
