@@ -60,7 +60,7 @@ export default function Login() {
             boxShadow: 'none',
           }}
         >
-          <Typography variant="h3" color="white" className="font-logo" style={{ fontSize: '48px' }}>
+          <Typography variant="h3" color="white" className="font-norican" style={{ fontSize: '48px' }}>
 
             Login
           </Typography>
@@ -71,6 +71,7 @@ export default function Login() {
           <Input
             label="Email"
             size="lg"
+            style={{ backgroundColor: 'white' }}
             onChange={
               (e) => setEmail(e.target.value)}
           />
@@ -78,6 +79,7 @@ export default function Login() {
             type="password"
             label="Password"
             size="lg"
+            style={{ backgroundColor: 'white' }}
             onChange={
               (e) => setPassword(e.target.value)}
           />
@@ -87,13 +89,12 @@ export default function Login() {
             variant="gradient"
             fullWidth
             onClick={ toLogin }
-            className="font-logo text-lg shadow-gray hover-shadow-sm hover:shadow-black hover:text-whimsiorange"
+            className="font-norican text-lg shadow-gray hover-shadow-sm hover:shadow-black hover:text-whimsiorange"
             style={{
               backgroundImage: `url(${buttonBG})`,
               backgroundSize: 'cover',
               backgroundRepeat: 'no-repeat',
               backgroundPosition: 'center center',
-
             }}
           >
             Sign in

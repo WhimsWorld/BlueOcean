@@ -68,7 +68,7 @@ export default function Signup() {
           }}
         >
           <Typography
-            className="font-logo"
+            className="font-norican"
             style={{ fontSize: '48px' }}
             variant="h3"
             color="white"
@@ -82,17 +82,20 @@ export default function Signup() {
           <Input
             label="Username"
             size="lg"
+            style={{ backgroundColor: 'white' }}
             onChange={(e) => setUsername(e.target.value)}
           />
           <Input
             label="Email"
             size="lg"
+            style={{ backgroundColor: 'white' }}
             onChange={(e) => setEmail(e.target.value)}
           />
           <Input
             label="Password"
             size="lg"
             type="password"
+            style={{ backgroundColor: 'white' }}
             onChange={(e) => setPassword(e.target.value)}
           />
         </CardBody>
@@ -101,7 +104,7 @@ export default function Signup() {
             variant="gradient"
             fullWidth
             onClick={toSubmit}
-            className="font-logo text-lg shadow-gray hover-shadow-sm hover:shadow-black hover:text-whimsiorange"
+            className="font-norican text-lg shadow-gray hover-shadow-sm hover:shadow-black hover:text-whimsiorange"
             style={{
               backgroundImage: `url(${buttonBG})`,
               backgroundSize: 'cover',
