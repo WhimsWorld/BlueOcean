@@ -3,11 +3,6 @@ const withMT = require('@material-tailwind/react/utils/withMT');
 export default withMT({
   content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
   theme: {
-    fontFamily: {
-      heading: ['Karla', 'sans-serif'],
-      body: ['Merriweather', 'sans-serif'],
-      logo: ['Handlee', 'cursive'],
-    },
     extend: {
       animation: {
         zoomIn: 'zoomIn 20s infinite',
@@ -19,6 +14,8 @@ export default withMT({
         },
       },
       fontFamily: {
+        heading: ['Karla', 'sans-serif'],
+        body: ['Merriweather', 'sans-serif'],
         norican: ['Norican', 'cursive'],
         poiret: ['Poiret One', 'cursive'],
         croissant: ['Croissant One', 'cursive'],

@@ -46,7 +46,7 @@ export default function SelectCharacter({ storyId }) {
         backgroundRepeat: 'round',
       }}
     >
-      <span className="self-center pt-5 pb-3">Characters</span>
+      <span className="self-center pt-5 pb-3 underline font-body font-2x">Characters</span>
       <List className="p-1 ">
 
         {characters.map((character) => (
@@ -121,7 +121,8 @@ export default function SelectCharacter({ storyId }) {
         <Button
           fullWidth
           onClick={() => handleCreateCharacter()}
-          style={{ backgroundImage: `url(${buttonBG})`, backgroundSize: 'auto', opacity: 0.8 }}
+          style={{ backgroundImage: `url(${buttonBG})`, backgroundSize: 'auto' }}
+          className="shadow-gray hover-shadow-sm hover:shadow-black hover:text-whimsiorange"
         >
           Create Character
 
@@ -131,4 +132,4 @@ export default function SelectCharacter({ storyId }) {
   );
 }
 const leftPanel = 'https://res.cloudinary.com/dnr41r1lq/image/upload/v1695243090/paperLeft_uz9wcj.png';
-const buttonBG = 'https://res.cloudinary.com/dnr41r1lq/image/upload/v1695229025/bronzetexture_cc3urf.webp';
+const buttonBG = 'https://res.cloudinary.com/dnr41r1lq/image/upload/v1695320647/button_mljj6c.png';

@@ -98,13 +98,12 @@ export default function StorySection() {
             size="lg"
             onClick={() => clickHandler(storyId)}
             style={{
-              color: 'black',
               backgroundImage: `url(${buttonBG})`,
-              backgroundSize: '150%',
-              opacity: '0.8',
+              backgroundSize: 'cover',
               width: '50%',
               margin: 'auto',
             }}
+            className="text-white shadow-gray hover-shadow-sm hover:shadow-black hover:text-whimsiorange"
           >
             Create Character Post
           </Button>
@@ -313,6 +312,6 @@ export default function StorySection() {
   );
 }
 
-const buttonBG = 'https://res.cloudinary.com/dnr41r1lq/image/upload/v1695229025/bronzetexture_cc3urf.webp';
+const buttonBG = 'https://res.cloudinary.com/dnr41r1lq/image/upload/v1695320647/button_mljj6c.png';
 const cardBG = 'https://res.cloudinary.com/dnr41r1lq/image/upload/v1695235263/paper2_kag1pb.jpg';
 const initialLetter = 'https://i.ibb.co/zsQsC1y/floral.png';
