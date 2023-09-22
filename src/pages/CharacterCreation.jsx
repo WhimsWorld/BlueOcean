@@ -31,7 +31,7 @@ export default function CharacterCreation({ storyBoardURL }) {
   const [images, setImages] = useState(['https://previews.123rf.com/images/aalbedouin/aalbedouin1801/aalbedouin180100599/93976760-personality-traits-icon-symbol-premium-quality-isolated-personal-character-element-in-trendy-style.jpg', 'https://previews.123rf.com/images/aalbedouin/aalbedouin1801/aalbedouin180100599/93976760-personality-traits-icon-symbol-premium-quality-isolated-personal-character-element-in-trendy-style.jpg', 'https://previews.123rf.com/images/aalbedouin/aalbedouin1801/aalbedouin180100599/93976760-personality-traits-icon-symbol-premium-quality-isolated-personal-character-element-in-trendy-style.jpg', 'https://previews.123rf.com/images/aalbedouin/aalbedouin1801/aalbedouin180100599/93976760-personality-traits-icon-symbol-premium-quality-isolated-personal-character-element-in-trendy-style.jpg', 'https://previews.123rf.com/images/aalbedouin/aalbedouin1801/aalbedouin180100599/93976760-personality-traits-icon-symbol-premium-quality-isolated-personal-character-element-in-trendy-style.jpg', 'https://previews.123rf.com/images/aalbedouin/aalbedouin1801/aalbedouin180100599/93976760-personality-traits-icon-symbol-premium-quality-isolated-personal-character-element-in-trendy-style.jpg', 'https://previews.123rf.com/images/aalbedouin/aalbedouin1801/aalbedouin180100599/93976760-personality-traits-icon-symbol-premium-quality-isolated-personal-character-element-in-trendy-style.jpg', 'https://previews.123rf.com/images/aalbedouin/aalbedouin1801/aalbedouin180100599/93976760-personality-traits-icon-symbol-premium-quality-isolated-personal-character-element-in-trendy-style.jpg', 'https://previews.123rf.com/images/aalbedouin/aalbedouin1801/aalbedouin180100599/93976760-personality-traits-icon-symbol-premium-quality-isolated-personal-character-element-in-trendy-style.jpg', 'https://previews.123rf.com/images/aalbedouin/aalbedouin1801/aalbedouin180100599/93976760-personality-traits-icon-symbol-premium-quality-isolated-personal-character-element-in-trendy-style.jpg', 'https://previews.123rf.com/images/aalbedouin/aalbedouin1801/aalbedouin180100599/93976760-personality-traits-icon-symbol-premium-quality-isolated-personal-character-element-in-trendy-style.jpg', 'https://previews.123rf.com/images/aalbedouin/aalbedouin1801/aalbedouin180100599/93976760-personality-traits-icon-symbol-premium-quality-isolated-personal-character-element-in-trendy-style.jpg']);
   const [sounds, setSounds] = useState([]);
   const [selectedSound, setSelectedSound] = useState(false);
-
+  const [backgroundURL, setBackgroundURL] = useState('');
   const [audio] = useState(new Audio());
   const [loggedIn, setLoggedIn] = useState(Cookies.get('userId'));
 
@@ -398,7 +398,7 @@ export default function CharacterCreation({ storyBoardURL }) {
 
   return (
 
-    <div className="h-max bg-cover bg-fixed" style={{ backgroundImage: `url(${characterCreationBg})`}}>
+    <div className="h-max bg-cover bg-fixed" style={{ backgroundImage: `url(${backgroundURL})`}}>
       <StickyNavbar loggedIn={loggedIn} setLoggedIn={setLoggedIn} />
       <div
         className="min-h-screen"
@@ -783,6 +783,9 @@ export default function CharacterCreation({ storyBoardURL }) {
 }
 
 const buttonBG = 'https://res.cloudinary.com/dnr41r1lq/image/upload/v1695320647/button_mljj6c.png';
-const characterCreationBg = 'https://i.ibb.co/gyfRfm1/pirate-min.png'
 const cardBG = 'https://res.cloudinary.com/dnr41r1lq/image/upload/v1695235263/paper2_kag1pb.jpg';
-
+const fantasyBG = 'https://i.ibb.co/5r2KVVz/cave-min.png';
+const forestBG = 'https://i.ibb.co/HdrwtLm/forest-min.png';
+const pirateBG = 'https://i.ibb.co/0j5zyGz/pirate-min.png';
+const steampunkBG = 'https://res.cloudinary.com/dnr41r1lq/image/upload/v1695192325/image_uot0j6.png';
+const cloudBG = 'https://res.cloudinary.com/dnr41r1lq/image/upload/v1695192325/image_uot0j6.png';
