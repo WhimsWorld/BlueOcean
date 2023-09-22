@@ -129,7 +129,7 @@ export default function CharacterCreation({ storyBoardURL }) {
   return (
     <div className="h-max bg-cover" style={{ backgroundImage: `url(${backgroundURL})` }}>
       <StickyNavbar />
-      <div className="" style={{ display: 'flex', justifyContent: 'center', height: '100%' }}>
+      <div className="" style={{ display: 'flex', justifyContent: 'center', padding: '5% 0' }}>
         <Card
           style={{
             alignItems: 'center', width: '50%', margin: 'auto', height: 'max-content',
@@ -140,14 +140,14 @@ export default function CharacterCreation({ storyBoardURL }) {
           <Typography variant="h4" color="blue-gray">
             Character Creation
           </Typography>
-          <Typography color="gray" className="mt-1 font-normal">
+          <Typography color="gray" className="mt-1 font-normal text-blue-gray-700">
             Design your character
           </Typography>
           <form className="mt-8 mb-2 w-80 max-w-screen-lg sm:w-96">
             {/* This div is for basic background info */}
             <div className="mb-4 flex flex-col gap-6">
-              <Input size="lg" label="Name" onChange={(e) => setName(e.target.value)} />
-              <Select color="blue" label="Select Race" onChange={changeRace}>
+              <Input size="lg" label="Name" onChange={(e) => setName(e.target.value)} style={groupStyle} className="outline-2" />
+              <Select color="blue" label="Select Race" onChange={changeRace} style={groupStyle} className="outline-2">
                 <Option value="Human">Human</Option>
                 <Option value="Elf">Elf</Option>
                 <Option value="Orc">Orc</Option>
@@ -159,14 +159,14 @@ export default function CharacterCreation({ storyBoardURL }) {
             </div>
             {/* This div is for character races */}
             <div className="mb-4 flex flex-col gap-6">
-              <Textarea size="lg" label="Character Origin Story" type="text" onChange={(e) => setOrigin(e.target.value)} />
+              <Textarea size="lg" label="Character Origin Story" type="text" onChange={(e) => setOrigin(e.target.value)} style={groupStyle} className="outline-2" />
             </div>
             {/* This div is for character sex */}
             <div className="flex w-max gap-4">
-              <Radio name="color" color="green" label="male" value="male" defaultChecked onClick={(e) => setSex(e.target.value)} />
-              <Radio name="color" color="green" label="female" value="female" onClick={(e) => setSex(e.target.value)} />
-              <Radio name="color" color="green" label="non-binary" value="non-binary" onClick={(e) => setSex(e.target.value)} />
-              <Radio name="color" color="green" label="other" value="other" onClick={(e) => setSex(e.target.value)} />
+              <Radio name="color" color="indigo" label="male" value="male" defaultChecked onClick={(e) => setSex(e.target.value)} />
+              <Radio name="color" color="indigo" label="female" value="female" onClick={(e) => setSex(e.target.value)} />
+              <Radio name="color" color="indigo" label="non-binary" value="non-binary" onClick={(e) => setSex(e.target.value)} />
+              <Radio name="color" color="indigo" label="other" value="other" onClick={(e) => setSex(e.target.value)} />
             </div>
             {/* This div is for character strengths ///// Need additional work on this section!! */}
             <div>
@@ -175,11 +175,11 @@ export default function CharacterCreation({ storyBoardURL }) {
                 {' '}
                 <em>(Limit 2)</em>
               </Typography>
-              <Checkbox label="Strength 1" value="Strength 1" color="purple" onClick={chooseStrength} />
-              <Checkbox label="Strength 2" value="Strength 2" onClick={chooseStrength} />
-              <Checkbox label="Strength 3" value="Strength 3" onClick={chooseStrength} />
-              <Checkbox label="Strength 4" value="Strength 4" onClick={chooseStrength} />
-              <Checkbox label="Strength 5" value="Strength 5" onClick={chooseStrength} />
+              <Checkbox label="Strength 1" value="Strength 1" color="indigo" onClick={chooseStrength} />
+              <Checkbox label="Strength 2" value="Strength 2" color="indigo" onClick={chooseStrength} />
+              <Checkbox label="Strength 3" value="Strength 3" color="indigo" onClick={chooseStrength} />
+              <Checkbox label="Strength 4" value="Strength 4" color="indigo" onClick={chooseStrength} />
+              <Checkbox label="Strength 5" value="Strength 5" color="indigo" onClick={chooseStrength} />
             </div>
             {/* This div is for weaknesses */}
             <div>
@@ -188,11 +188,11 @@ export default function CharacterCreation({ storyBoardURL }) {
                 {' '}
                 <em>(Limit 2)</em>
               </Typography>
-              <Checkbox label="Weakness 1" value="Weakness 1" color="purple" onClick={chooseWeakness} />
-              <Checkbox label="Weakness 2" value="Weakness 2" onClick={chooseWeakness} />
-              <Checkbox label="Weakness 3" value="Weakness 3" onClick={chooseWeakness} />
-              <Checkbox label="Weakness 4" value="Weakness 4" onClick={chooseWeakness} />
-              <Checkbox label="Weakness 5" value="Weakness 5" onClick={chooseWeakness} />
+              <Checkbox label="Weakness 1" value="Weakness 1" color="indigo" onClick={chooseWeakness} />
+              <Checkbox label="Weakness 2" value="Weakness 2" color="indigo" onClick={chooseWeakness} />
+              <Checkbox label="Weakness 3" value="Weakness 3" color="indigo" onClick={chooseWeakness} />
+              <Checkbox label="Weakness 4" value="Weakness 4" color="indigo" onClick={chooseWeakness} />
+              <Checkbox label="Weakness 5" value="Weakness 5" color="indigo" onClick={chooseWeakness} />
             </div>
             {/* This div is to render the character icons */}
             <div>
@@ -211,15 +211,16 @@ export default function CharacterCreation({ storyBoardURL }) {
                 size="md"
                 onClick={() => playAudio(`https://docs.google.com/uc?export=open&id=${selectedSound.sound_url}`)}
                 style={{
-                  backgroundImage: `url(${buttonBG})`, backgroundSize: 'auto', opacity: 0.8, marginTop: '20px',
+                  backgroundImage: `url(${buttonBG})`, backgroundSize: 'auto', marginTop: '20px', width: '45%',
                 }}
+                className="shadow-gray hover-shadow-sm hover:shadow-black hover:text-whimsiorange"
               >
                 PLAY SOUND
               </Button>
               {selectedSound.sound_name}
             </div>
             {/* Submit character */}
-            <Button className="mt-6" style={{ backgroundImage: `url(${buttonBG})` }} fullWidth onClick={() => toPost()}>
+            <Button className="mt-6 shadow-gray hover-shadow-sm hover:shadow-black hover:text-whimsiorange" style={{ backgroundImage: `url(${buttonBG})` }} halfWidth onClick={() => toPost()}>
               CREATE CHARACTER
             </Button>
           </form>
@@ -230,7 +231,7 @@ export default function CharacterCreation({ storyBoardURL }) {
 }
 
 // button bg
-const buttonBG = 'https://res.cloudinary.com/dnr41r1lq/image/upload/v1695229025/bronzetexture_cc3urf.webp';
+const buttonBG = 'https://res.cloudinary.com/dnr41r1lq/image/upload/v1695320647/button_mljj6c.png';
 // background asset
 
 const fantasyBG = 'https://i.ibb.co/5r2KVVz/cave-min.png';
@@ -238,3 +239,6 @@ const forestBG = 'https://i.ibb.co/HdrwtLm/forest-min.png';
 const pirateBG = 'https://i.ibb.co/0j5zyGz/pirate-min.png';
 const steampunkBG = 'https://res.cloudinary.com/dnr41r1lq/image/upload/v1695192325/image_uot0j6.png';
 const cloudBG = 'https://res.cloudinary.com/dnr41r1lq/image/upload/v1695192325/image_uot0j6.png';
+
+// group input field style
+const groupStyle = { backgroundColor: '#23305F', opacity: '70%', color: '#F0C0C5' };
