@@ -3,7 +3,6 @@ import { useLocation } from 'react-router-dom';
 import Cookies from 'js-cookie';
 import StickyNavbar from '../components/StickyNavbar';
 import SelectCharacter from '../components/storyBoardComponents/selectCharacter';
-import ActNavigation from '../components/storyBoardComponents/actNavigation';
 import StoryBanner from '../components/storyBoardComponents/storyBanner';
 import StorySection from '../components/storyBoardComponents/storySection';
 import LiveChat from '../components/storyBoardComponents/liveChat';

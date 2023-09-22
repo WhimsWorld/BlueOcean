@@ -139,11 +139,10 @@ export const addPost = async (
   content,
 ) => {
   const query = `
-    INSERT INTO posts (story_id, created_by_user_id, gif_id, sound_id, narrator_image_id, narrator_post, content)
-    VALUES ($1, $2, $3, $4, $5, $6, $7)
-    RETURNING *;
+  INSERT INTO posts (story_id, created_by_user_id, gif_id, sound_id, narrator_image_id, narrator_post, content)
+  VALUES ($1, $2, $3, $4, $5, $6, $7)
+  RETURNING *;
   `;
-
   const values = [storyId, userId, gifId, soundId, imageId, narratorPost, content];
   const response = await executeQuery(query, values);
 

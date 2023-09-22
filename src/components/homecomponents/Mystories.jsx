@@ -19,6 +19,7 @@ export default function Mystories({
       disabled={showCheck}
       checked={isChecked}
       onClick={clickHandler}
+      className="font-croissant"
       style={{ backgroundColor: isChecked ? '#101A4B  ' : 'white', border: isChecked ? 'none' : '' }}
     />
   );

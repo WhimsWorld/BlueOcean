@@ -17,8 +17,18 @@ export default function SoundsMenu({ sounds, setSelectedSound }) {
     <div style={{ width: '300px', margin: '0 auto' }}>
       <Menu>
         <MenuHandler>
-          <Button style={{
-            backgroundImage: `url(${buttonBG})`, backgroundSize: 'auto', opacity: 0.8, fontSize: '14px', color: 'white', width: '260px', marginLeft: '20px', marginTop: '20px',
+          <Button
+            className="font-croissant shadow-gray hover-shadow-sm hover:shadow-black"
+            style={{
+              backgroundImage: `url(${buttonBG})`,
+              backgroundSize: 'cover',
+              backgroundRepeat: 'no-repeat',
+              backgroundPosition: 'center center',
+              opacity: 0.8,
+              fontSize: '14px',
+              width: '260px',
+              marginLeft: '20px',
+              marginTop: '20px',
           }}
           >
             SELECT A SOUND
@@ -39,4 +49,4 @@ export default function SoundsMenu({ sounds, setSelectedSound }) {
   );
 }
 
-const buttonBG = 'https://res.cloudinary.com/dnr41r1lq/image/upload/v1695229025/bronzetexture_cc3urf.webp';
+const buttonBG = 'https://res.cloudinary.com/dnr41r1lq/image/upload/v1695320647/button_mljj6c.png';
