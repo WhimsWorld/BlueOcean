@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Cookies from 'js-cookie';
+import axios from 'axios';
 import {
   Card, List, ListItem, ListItemPrefix, Avatar, Typography, Button, CardFooter, Tooltip,
 } from '@material-tailwind/react';
@@ -13,10 +14,30 @@ export default function SelectCharacter({ storyId }) {
   const characters = useSelector((state) => state.characters);
   const [audio] = useState(new Audio());
   const [loggedIn, setLoggedIn] = useState(Cookies.get('userId'));
+  const [hasCharInStory, setHasCharInStory] = useState(false);
+  const [userID, setUserID] = useState(Cookies.get('userId'));
+
   useEffect(() => {
     dispatch(loadCharactersByUserId(storyId));
     console.log(characters);
   }, [dispatch]);
+  useEffect(() => {
+    const dataParams = {
+      params: {
+        storyID: storyId,
+        userID,
+      },
+    };
+    axios.get('/api/characters/story/user', dataParams)
+      .then((characterData) => {
+        if (characterData.data.char_id === undefined) {
+          setHasCharInStory(false);
+        } else {
+          setHasCharInStory(true);
+        }
+      })
+      .catch(() => console.log('couldnt fetch characters'));
+  }, [storyId, userID]);
 
   function parseSWString(s) {
     return s.replace(/^{|}$/g, '').split(',').map((item) => item.trim().replace(/^"|"$/g, ''));
@@ -46,7 +67,7 @@ export default function SelectCharacter({ storyId }) {
         backgroundRepeat: 'round',
       }}
     >
-      <span style={{fontSize: '20px'}} className="font-croissant self-center pt-5 pb-3 underline font-body">Characters</span>
+      <span style={{ fontSize: '20px' }} className="font-croissant self-center pt-5 pb-3 underline font-body">Characters</span>
       <List className="p-1 ">
 
         {characters.map((character) => (
@@ -118,16 +139,19 @@ export default function SelectCharacter({ storyId }) {
         ))}
       </List>
       <CardFooter className="pt-0">
-        <Button
+        {hasCharInStory ? null : (
+          <Button
           // fullWidth
           // variant="text"
-          onClick={() => handleCreateCharacter()}
-          style={{ backgroundImage: `url(${buttonBG})`, backgroundSize: 'auto' }}
-          className="shadow-gray hover-shadow-sm hover:shadow-black hover:text-whimsiorange"
-        >
-          Create Character
+            onClick={() => handleCreateCharacter()}
+            style={{ backgroundImage: `url(${buttonBG})`, backgroundSize: 'auto' }}
+            className="shadow-gray hover-shadow-sm hover:shadow-black hover:text-whimsiorange"
+          >
+            Create Character
 
-        </Button>
+          </Button>
+        )}
+
       </CardFooter>
     </Card>
   );

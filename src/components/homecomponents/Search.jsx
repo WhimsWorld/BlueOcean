@@ -40,6 +40,7 @@ export default function Search({
         onChange={onChange}
         icon="non"
         className="pr-20 min-w-0"
+        color="indigo"
         containerProps={{
           className: 'min-w-[0]',
         }}

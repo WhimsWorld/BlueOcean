@@ -199,6 +199,7 @@ export default function CreatePost() {
             <Textarea
               label="Content"
               value={content}
+              color="teal"
               onChange={(e) => setContent(e.target.value)}
               className="font-croissant"
               style={{ backgroundColor: 'white' }}
@@ -265,7 +266,11 @@ export default function CreatePost() {
             {switchState ? (
               <div style={{ height: isChecked ? '300px' : null }}>
                 {isChecked ? (
-                  <ImagesMenu images={images} setSelectedImage={setSelectedImage} />
+                  <ImagesMenu
+                    images={images}
+                    selectedImage={selectedImage}
+                    setSelectedImage={setSelectedImage}
+                  />
                 ) : null}
               </div>
             ) : null}
