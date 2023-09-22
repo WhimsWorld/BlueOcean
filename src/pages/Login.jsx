@@ -41,7 +41,7 @@ export default function Login() {
     <div className="h-screen bg-cover" style={{ backgroundImage: `url(${loginBg})` }}>
       <StickyNavbar />
       <Card
-        className="w-96 m-auto mt-48 "
+        className="w-96 m-auto mt-32 "
         style={{
           backgroundImage: `url(${cardBG})`,
           backgroundSize: 'cover',
@@ -52,9 +52,15 @@ export default function Login() {
         <CardHeader
           variant="gradient"
           className="my-4 grid h-28 place-items-center"
-          style={{ backgroundImage: `url(${buttonBG})`, boxShadow: 'none' }}
+          style={{
+            backgroundImage: `url(${buttonBG})`,
+            backgroundSize: 'cover',
+            backgroundRepeat: 'no-repeat',
+            backgroundPosition: 'center center',
+            boxShadow: 'none',
+          }}
         >
-          <Typography variant="h3" color="white" className="font-logo" style={{ fontSize: '40px' }}>
+          <Typography variant="h3" color="white" className="font-logo" style={{ fontSize: '48px' }}>
             Login
           </Typography>
         </CardHeader>
@@ -66,7 +72,18 @@ export default function Login() {
           </div> */}
         </CardBody>
         <CardFooter className="pt-0">
-          <Button variant="gradient" fullWidth onClick={ toLogin } className="font-logo text-md" style={{ backgroundImage: `url(${buttonBG})`, boxShadow: 'none'}}>
+          <Button
+            variant="gradient"
+            fullWidth
+            onClick={ toLogin }
+            className="font-logo text-lg shadow-gray hover-shadow-sm hover:shadow-black hover:text-whimsidarkblue"
+            style={{
+              backgroundImage: `url(${buttonBG})`,
+              backgroundSize: 'cover',
+              backgroundRepeat: 'no-repeat',
+              backgroundPosition: 'center center',
+            }}
+          >
             Sign in
           </Button>
           <Typography variant="small" className="mt-6 flex justify-center">
@@ -90,5 +107,5 @@ export default function Login() {
 
 //styling assets
 const loginBg = 'https://i.ibb.co/6bsxsgR/pirate3-min.png';
-const buttonBG = 'https://res.cloudinary.com/dnr41r1lq/image/upload/v1695229025/bronzetexture_cc3urf.webp';
+const buttonBG = 'https://res.cloudinary.com/dnr41r1lq/image/upload/v1695320647/button_mljj6c.png';
 const cardBG = 'https://res.cloudinary.com/dnr41r1lq/image/upload/v1695235263/paper2_kag1pb.jpg';

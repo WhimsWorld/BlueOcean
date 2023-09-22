@@ -49,7 +49,7 @@ export default function Search({
         disabled={!search}
         onClick={submitHandler}
         className="!absolute right-1 top-1 rounded"
-        style={{ backgroundColor: '#7B8CDE', color: 'black', fontWeight: 'bold', opacity: 1 }}
+        style={{ backgroundColor: '#101A4B', color: 'white', fontWeight: 'bold', opacity: 1 }}
       >
         Search
       </Button>

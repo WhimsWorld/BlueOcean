@@ -50,6 +50,7 @@ export default function App() {
 
   // used to fetch all likes based on user. This prevents additional liking?
   useEffect(() => {
+    console.log(userID);
     const dataParams = {
       params: {
         userId: userID,
