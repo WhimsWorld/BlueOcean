@@ -7,12 +7,14 @@ import {
   Typography,
   IconButton,
 } from '@material-tailwind/react';
+import moment from 'moment';
+import Cookies from 'js-cookie';
 import { fetchStoryById } from '../../app/slices/storySlice';
 
 export default function StoryBanner({ storyId }) {
   const dispatch = useDispatch();
   const [color, setColor] = useState('red');
-
+  const userID = Cookies.get('userId');
   const story = useSelector((state) => state.story.storyData);
 
   useEffect(() => {
@@ -53,7 +55,7 @@ export default function StoryBanner({ storyId }) {
   };
 
   return (
-    <Card className="w-full flex-row p-2 mt-4 shadow-lg justify-between items-center justify-self-center bg-cover" style={{ width: '96%', backgroundImage: `url(${cardBG})`, clipPath: 'polygon(59% 2%, 68% 3%, 75% 0, 83% 2%, 90% 3%, 100% 0, 100% 16%, 100% 34%, 99% 53%, 98% 74%, 100% 100%, 83% 99%, 72% 96%, 63% 100%, 54% 96%, 44% 100%, 36% 100%, 30% 96%, 17% 98%, 7% 96%, 0 100%, 1% 71%, 0 43%, 1% 0, 9% 2%, 18% 0, 31% 3%, 48% 0)' }}>
+    <Card className="w-full flex-row p-2 mt-4 shadow-lg justify-between items-center justify-self-center bg-cover mx-3 mt-5" style={{ width: '96%', backgroundImage: `url(${cardBG})`, clipPath: 'polygon(59% 2%, 68% 3%, 75% 0, 83% 2%, 90% 3%, 100% 0, 100% 16%, 100% 34%, 99% 53%, 98% 74%, 100% 100%, 83% 99%, 72% 96%, 63% 100%, 54% 96%, 44% 100%, 36% 100%, 30% 96%, 17% 98%, 7% 96%, 0 100%, 1% 71%, 0 43%, 1% 0, 9% 2%, 18% 0, 31% 3%, 48% 0)' }}>
 
       <CardBody className="flex flex-col p-2 self-start w-5/6 mx-auto mt-4">
         <div className="flex flex-col">
@@ -66,16 +68,17 @@ export default function StoryBanner({ storyId }) {
               viewBox="0 0 24 24"
               fill="currentColor"
               className="-mt-0.5 h-5 w-5 text-whimsiorange"
-
             >
               <path d="M11.645 20.91l-.007-.003-.022-.012a15.247 15.247 0 01-.383-.218 25.18 25.18 0 01-4.244-3.17C4.688 15.36 2.25 12.174 2.25 8.25 2.25 5.322 4.714 3 7.688 3A5.5 5.5 0 0112 5.052 5.5 5.5 0 0116.313 3c2.973 0 5.437 2.322 5.437 5.25 0 3.925-2.438 7.111-4.739 9.256a25.175 25.175 0 01-4.244 3.17 15.247 15.247 0 01-.383.219l-.022.012-.007.004-.003.001a.752.752 0 01-.704 0l-.003-.001z" />
             </svg>
             {story.like_count}
           </Typography>
-          <div>
+          <div className="pb-20">
             <img
               src={story.image_url}
               alt={story.title}
+              className="h-96 object-contain m-0 object-cover"
+              style={{height: '50vh', width: '100%', borderRadius: '25px' }}
             />
           </div>
           <Typography variant="h4" color="blue-gray" className="font-medium">
@@ -83,7 +86,7 @@ export default function StoryBanner({ storyId }) {
           </Typography>
         </div>
         <Typography color="gray">
-          {story.date_created}
+          {moment(story.date_created).format('MMM Do, YYYY')}
         </Typography>
         <Typography color="gray" className="text-justify mb-8">
           {story.summary}
