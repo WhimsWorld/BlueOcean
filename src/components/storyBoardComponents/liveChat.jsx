@@ -49,7 +49,7 @@ export default function LiveChat({ storyId }) {
         maxWidth: '320px', backgroundImage: `url(${rightPanel})`, backgroundRepeat: 'round', justifySelf: 'end',
       }}
     >
-      <div className="chat-messages overflow-y-auto h-96 mt-8" style={{border: '1px solid rgba(131, 105, 83, 0.1)', borderRadius: '25px'}}>
+      <div className="chat-messages overflow-y-auto h-96 mt-8" style={{border: '1px solid rgba(131, 105, 83, 0.2)', borderRadius: '25px', background: 'rgba(255, 255, 255, 0.6)'}}>
         {chatMessages.map((msg) => (
           <div key={msg.message_id} className={`${msg.user_id === userId ? 'ml-16' : ''}`}>
             <div className="user text-sm ml-2">
