@@ -1,3 +1,16 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+#specialParagraph::first-letter {
+  font-size: 2rem;
+  font-weight: bold;
+  width: 40px;
+  height: 40px;
+  color: #333;
+  background-image: url('https://i.ibb.co/zsQsC1y/floral.png');
+  background-size: contain; 
+  padding: 5px; 
+  display: inline-block; 
+  border: 2px;
+  border-color: black;
+}
