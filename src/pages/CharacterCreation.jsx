@@ -98,8 +98,7 @@ export default function CharacterCreation({ storyBoardURL }) {
       .catch((err) => console.log(err));
   }
 
-  function mouseOver(e) {
-    e.target.style.background = 'blue';
+  function avatarClickHandler(e) {
     setCharacterIcon(e.target.id);
   }
 
@@ -199,8 +198,10 @@ export default function CharacterCreation({ storyBoardURL }) {
             <div>
               {images && images.map((image, index) => (
                 <>
-                  {index % 6 === 0 && <br />}
-                  <Avatar src={image.image_url} id={image.image_id} alt="avatar" size="lg" onClick={(e) => mouseOver(e)} key={index} />
+                  {index % 5 === 0 && <br />}
+                  {characterIcon == image.image_id
+                    ? <Avatar src={image.image_url} id={image.image_id} alt="avatar" className="border border-green-500 shadow-xl shadow-green-900/20 ring-4 ring-green-500/30"size="xl" style={{ cursor: 'pointer' }} onClick={(e) => avatarClickHandler(e)} key={image.image_id} />
+                    : <Avatar src={image.image_url} id={image.image_id} alt="avatar" size="xl" style={{ cursor: 'pointer' }} onClick={(e) => avatarClickHandler(e)} key={image.image_id} /> }
                 </>
               ))}
             </div>
@@ -231,8 +232,9 @@ export default function CharacterCreation({ storyBoardURL }) {
 // button bg
 const buttonBG = 'https://res.cloudinary.com/dnr41r1lq/image/upload/v1695229025/bronzetexture_cc3urf.webp';
 // background asset
+
 const fantasyBG = 'https://i.ibb.co/5r2KVVz/cave-min.png';
 const forestBG = 'https://i.ibb.co/HdrwtLm/forest-min.png';
 const pirateBG = 'https://i.ibb.co/0j5zyGz/pirate-min.png';
-const steampunkBG = '';
+const steampunkBG = 'https://res.cloudinary.com/dnr41r1lq/image/upload/v1695192325/image_uot0j6.png';
 const cloudBG = 'https://res.cloudinary.com/dnr41r1lq/image/upload/v1695192325/image_uot0j6.png';

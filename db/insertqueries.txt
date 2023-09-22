@@ -186,10 +186,7 @@ INSERT INTO images (category_id, image_url, premium) VALUES
     (5, 'https://i.ibb.co/gds82g4/031.png', FALSE),
     (5, 'https://i.ibb.co/2SFGfxC/032.png', FALSE),
     (5, 'https://i.ibb.co/R9hm19m/033.png', FALSE),
-    (5, 'https://i.ibb.co/J74NDdQ/034.png', FALSE),
-    (5, 'https://i.ibb.co/3Ry1t8t/035.png', FALSE),
-    (5, 'https://i.ibb.co/1bm61Jc/036.png', FALSE),
-    (5, 'https://i.ibb.co/jJCCpGy/037.png', FALSE);
+    (5, 'https://i.ibb.co/J74NDdQ/034.png', FALSE);
 
   -- Insert data into the stories table with matching thumbnail URLs
 INSERT INTO stories (created_by_user_id, category_id, narrator_id, main_image_id, thumbnail_id, title, summary, max_characters, date_created, date_updated)
