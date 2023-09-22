@@ -24,10 +24,6 @@ LEFT JOIN
 ON
   posts.sound_id = sounds.sound_id
 LEFT JOIN
-  sounds AS char_sounds
-ON
-  posts.char_id = char_sounds.sound_id
-LEFT JOIN
   gifs
 ON
   posts.gif_id = gifs.gif_id
@@ -35,6 +31,10 @@ LEFT JOIN
   characters
 ON
   posts.char_id = characters.char_id
+LEFT JOIN
+  sounds AS char_sounds
+ON
+  characters.sound_id = char_sounds.sound_id
 LEFT JOIN
   images AS char_images
 ON

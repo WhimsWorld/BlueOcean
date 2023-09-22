@@ -21,6 +21,7 @@ export default function StorySection() {
   const storyId = location.pathname.split('/').pop();
   const posts = useSelector((state) => state.posts);
   const [audio] = useState(new Audio());
+  const [audio2] = useState(new Audio());
   const [userLastPosted, setUserLastPosted] = useState(false);
   const [userIsNarrator, setUserIsNarrator] = useState(false);
   const storyData = useSelector((state) => state.story.storyData);
@@ -57,6 +58,11 @@ export default function StorySection() {
     audio.play();
   };
 
+  const playAudio2 = (soundUrl) => {
+    audio2.src = soundUrl;
+    audio2.play();
+  };
+
   useEffect(() => {
     const fetchPosts = async () => {
       dispatch(fetchPostsById(storyId));
@@ -64,7 +70,6 @@ export default function StorySection() {
     setTimeout(() => {
       fetchPosts();
     }, 100);
-    console.log("these are posts", posts)
   }, [storyId, dispatch, posts.length]);
 
   useEffect(() => {
@@ -195,6 +200,7 @@ export default function StorySection() {
                                   alt={post.char_id}
                                   style={{ maxWidth: '100px', maxHeight: '100px' }}
                                   size="l"
+                                  onClick={() => playAudio2(`https://docs.google.com/uc?export=open&id=${post.char_sound_url}`)}
                                 />
                               )
                               : null}
