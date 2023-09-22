@@ -24,7 +24,7 @@ VALUES
     (1, 'https://i.ibb.co/D8MFLRK/HFsticker8.png', FALSE),
     (2, 'https://i.ibb.co/jDxkDnT/MFsticker5.png', FALSE),
     (3, 'https://i.ibb.co/LxrVxV1/PCsticker3.png', FALSE),
-    (4, 'https://i.ibb.co/Y8wpGvr/SCsticker4.png', FALSE);
+    (4, 'https://i.ibb.co/Pz9zjQw/SCsticker5.png', FALSE);
 
 
 -- Insert data into the images table for High Fantasy
