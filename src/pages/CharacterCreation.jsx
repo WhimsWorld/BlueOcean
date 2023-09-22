@@ -32,6 +32,7 @@ export default function CharacterCreation({ storyBoardURL }) {
   const [images, setImages] = useState(['https://previews.123rf.com/images/aalbedouin/aalbedouin1801/aalbedouin180100599/93976760-personality-traits-icon-symbol-premium-quality-isolated-personal-character-element-in-trendy-style.jpg', 'https://previews.123rf.com/images/aalbedouin/aalbedouin1801/aalbedouin180100599/93976760-personality-traits-icon-symbol-premium-quality-isolated-personal-character-element-in-trendy-style.jpg', 'https://previews.123rf.com/images/aalbedouin/aalbedouin1801/aalbedouin180100599/93976760-personality-traits-icon-symbol-premium-quality-isolated-personal-character-element-in-trendy-style.jpg', 'https://previews.123rf.com/images/aalbedouin/aalbedouin1801/aalbedouin180100599/93976760-personality-traits-icon-symbol-premium-quality-isolated-personal-character-element-in-trendy-style.jpg', 'https://previews.123rf.com/images/aalbedouin/aalbedouin1801/aalbedouin180100599/93976760-personality-traits-icon-symbol-premium-quality-isolated-personal-character-element-in-trendy-style.jpg', 'https://previews.123rf.com/images/aalbedouin/aalbedouin1801/aalbedouin180100599/93976760-personality-traits-icon-symbol-premium-quality-isolated-personal-character-element-in-trendy-style.jpg', 'https://previews.123rf.com/images/aalbedouin/aalbedouin1801/aalbedouin180100599/93976760-personality-traits-icon-symbol-premium-quality-isolated-personal-character-element-in-trendy-style.jpg', 'https://previews.123rf.com/images/aalbedouin/aalbedouin1801/aalbedouin180100599/93976760-personality-traits-icon-symbol-premium-quality-isolated-personal-character-element-in-trendy-style.jpg', 'https://previews.123rf.com/images/aalbedouin/aalbedouin1801/aalbedouin180100599/93976760-personality-traits-icon-symbol-premium-quality-isolated-personal-character-element-in-trendy-style.jpg', 'https://previews.123rf.com/images/aalbedouin/aalbedouin1801/aalbedouin180100599/93976760-personality-traits-icon-symbol-premium-quality-isolated-personal-character-element-in-trendy-style.jpg', 'https://previews.123rf.com/images/aalbedouin/aalbedouin1801/aalbedouin180100599/93976760-personality-traits-icon-symbol-premium-quality-isolated-personal-character-element-in-trendy-style.jpg', 'https://previews.123rf.com/images/aalbedouin/aalbedouin1801/aalbedouin180100599/93976760-personality-traits-icon-symbol-premium-quality-isolated-personal-character-element-in-trendy-style.jpg']);
   const [sounds, setSounds] = useState([]);
   const [selectedSound, setSelectedSound] = useState({});
+  const [backgroundURL, setBackgroundURL] = useState('');
   const [audio] = useState(new Audio());
 
   useEffect(() => {
@@ -41,6 +42,32 @@ export default function CharacterCreation({ storyBoardURL }) {
       })
       .catch(() => console.log('couldnt fetch images'));
   }, []);
+
+  useEffect(() => {
+    const dataParams = {
+      params: {
+        storyID,
+      },
+    };
+    axios.get('/api/category', dataParams)
+      .then((categoryData) => {
+        if (categoryData.data.category_id === 1) {
+          setBackgroundURL(fantasyBG);
+        } else if (categoryData.data.category_id === 2) {
+          setBackgroundURL(forestBG);
+        } else if (categoryData.data.category_id === 3) {
+          setBackgroundURL(pirateBG);
+        } else if (categoryData.data.category_id === 4) {
+          setBackgroundURL(cloudBG);
+        } else {
+          setBackgroundURL(cloudBG);
+        }
+      })
+      .catch(() => console.log('couldnt fetch category'));
+  }, [storyID]);
+
+  useEffect(() => {
+  }, [backgroundURL]);
 
   useEffect(() => {
     axios.get('/api/sounds')
@@ -101,10 +128,16 @@ export default function CharacterCreation({ storyBoardURL }) {
   };
 
   return (
-    <div className="h-max bg-cover bg-fixed" style={{backgroundImage: `url(${characterCreationBg})`}}>
+    <div className="h-max bg-cover" style={{ backgroundImage: `url(${backgroundURL})` }}>
       <StickyNavbar />
       <div className="" style={{ display: 'flex', justifyContent: 'center', height: '100%' }}>
-        <Card style={{ alignItems: 'center', width: '50%', margin: 'auto', height: 'max-content' }} color="transparent" shadow={false}>
+        <Card
+          style={{
+            alignItems: 'center', width: '50%', margin: 'auto', height: 'max-content',
+          }}
+          color="transparent"
+          shadow={false}
+        >
           <Typography variant="h4" color="blue-gray">
             Character Creation
           </Typography>
@@ -172,7 +205,7 @@ export default function CharacterCreation({ storyBoardURL }) {
               ))}
             </div>
             <div style={{ display: 'flex', flexDirection: 'column', width: '400px' }}>
-              <SoundsMenu style={{ marginLeft: '30px'}} sounds={sounds} setSelectedSound={setSelectedSound} />
+              <SoundsMenu style={{ marginLeft: '30px' }} sounds={sounds} setSelectedSound={setSelectedSound} />
               <Button
                 size="md"
                 onClick={() => playAudio(`https://docs.google.com/uc?export=open&id=${selectedSound.sound_url}`)}
@@ -195,7 +228,11 @@ export default function CharacterCreation({ storyBoardURL }) {
   );
 }
 
-//button bg
+// button bg
 const buttonBG = 'https://res.cloudinary.com/dnr41r1lq/image/upload/v1695229025/bronzetexture_cc3urf.webp';
-//background asset
-const characterCreationBg = "https://i.ibb.co/gyfRfm1/pirate-min.png"
+// background asset
+const fantasyBG = 'https://i.ibb.co/5r2KVVz/cave-min.png';
+const forestBG = 'https://i.ibb.co/HdrwtLm/forest-min.png';
+const pirateBG = 'https://i.ibb.co/0j5zyGz/pirate-min.png';
+const steampunkBG = '';
+const cloudBG = 'https://res.cloudinary.com/dnr41r1lq/image/upload/v1695192325/image_uot0j6.png';
