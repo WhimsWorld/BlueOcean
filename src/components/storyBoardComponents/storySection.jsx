@@ -173,7 +173,7 @@ export default function StorySection() {
                             src={post.narrator_image_url}
                             alt={post.narrator_image_id}
                             className="h-96 object-contain m-0 object-cover"
-                            style={{height: '40vh', width: '100%' }}
+                            style={{height: '40vh', width: '100%', borderRadius: '25px' }}
                           />
                         )
                         : null}
@@ -264,10 +264,6 @@ export default function StorySection() {
                         flexDirection: 'column',
                         paddingTop: '0',
                         marginTop: '0',
-                        // marginLeft: '40%',
-                        // marginBottom: '40%',
-                        // position: 'absolute',
-                        // height: 'auto',
                       }}
                       >
                         {post.gif_url

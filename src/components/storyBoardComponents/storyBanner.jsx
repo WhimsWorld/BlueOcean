@@ -78,7 +78,7 @@ export default function StoryBanner({ storyId }) {
               src={story.image_url}
               alt={story.title}
               className="h-96 object-contain m-0 object-cover"
-              style={{height: '50vh', width: '100%' }}
+              style={{height: '50vh', width: '100%', borderRadius: '25px' }}
             />
           </div>
           <Typography variant="h4" color="blue-gray" className="font-medium">
