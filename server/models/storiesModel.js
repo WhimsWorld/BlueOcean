@@ -203,3 +203,10 @@ export const deleteLikedStory = async (user, story) => {
   }
   return response;
 };
+
+export const getLikes = async (storyId) => {
+  const query = 'SELECT * FROM user_story_likes WHERE story_id = $1';
+  const values = [storyId];
+  const result = await executeQuery(query, values);
+  return result.rows;
+};
