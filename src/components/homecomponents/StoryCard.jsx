@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
@@ -72,37 +72,34 @@ export default function StoryCard({
       </CardHeader>
       <CardBody className="flex flex-col p-2 self-start" style={{ width: '70%' }}>
 
-      <div className="flex items-center justify-between">
-  <Typography style={{ maxWidth: '100%' }} color="blue-gray" className="flex items-center font-normal self-end">
-    <Typography variant="h4" color="blue-gray" className="font-medium font-croissant" style={{ maxWidth: '14em' }}>
-      {story.title}
-    </Typography>
-  </Typography>
-
-  <div className="flex items-center">
-    <IconButton
-      onClick={likeClickHandler}
-      size="sm"
-      style={{ color: likedStories[story.story_id] ? '#F9A03F' : 'white' }}
-      variant="text"
-      className="rounded-full ml-4"  // Adjust margin to your preference
-    >
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        viewBox="0 0 24 24"
-        fill="currentColor"
-        className="h-6 w-6"
-      >
-        <path d="M11.645 20.91l-.007-.003-.022-.012a15.247 15.247 0 01-.383-.218 25.18 25.18 0 01-4.244-3.17C4.688 15.36 2.25 12.174 2.25 8.25 2.25 5.322 4.714 3 7.688 3A5.5 5.5 0 0112 5.052 5.5 5.5 0 0116.313 3c2.973 0 5.437 2.322 5.437 5.25 0 3.925-2.438 7.111-4.739 9.256a25.175 25.175 0 01-4.244 3.17 15.247 15.247 0 01-.383.219l-.022.012-.007.004-.003.001a.752.752 0 01-.704 0l-.003-.001z" />
-      </svg>
-    </IconButton>
-
-    <div className="text-blue-gray">
-      {story.like_count}
-    </div>
-  </div>
-</div>
-
+        <div className="flex items-center justify-between">
+          <Typography style={{ maxWidth: '100%' }} color="blue-gray" className="flex items-center font-normal self-end">
+            <Typography variant="h4" color="blue-gray" className="font-medium font-croissant" style={{ maxWidth: '14em' }}>
+              {story.title}
+            </Typography>
+          </Typography>
+          <div className="flex items-center">
+            <IconButton
+              onClick={likeClickHandler}
+              size="sm"
+              style={{ color: likedStories[story.story_id] ? '#F9A03F' : 'white' }}
+              variant="text"
+              className="rounded-full ml-4"  // Adjust margin to your preference
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+                className="h-6 w-6"
+              >
+                <path d="M11.645 20.91l-.007-.003-.022-.012a15.247 15.247 0 01-.383-.218 25.18 25.18 0 01-4.244-3.17C4.688 15.36 2.25 12.174 2.25 8.25 2.25 5.322 4.714 3 7.688 3A5.5 5.5 0 0112 5.052 5.5 5.5 0 0116.313 3c2.973 0 5.437 2.322 5.437 5.25 0 3.925-2.438 7.111-4.739 9.256a25.175 25.175 0 01-4.244 3.17 15.247 15.247 0 01-.383.219l-.022.012-.007.004-.003.001a.752.752 0 01-.704 0l-.003-.001z" />
+              </svg>
+            </IconButton>
+            <div className="text-blue-gray">
+              {story.like_count}
+            </div>
+          </div>
+        </div>
         <Typography color="gray">
           {dateFormat(story.date_created)}
         </Typography>

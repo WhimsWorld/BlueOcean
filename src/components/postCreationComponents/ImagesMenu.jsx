@@ -1,7 +1,7 @@
 import React from 'react';
 import { Carousel } from '@material-tailwind/react';
 
-export default function ImagesMenu({ setSelectedImage, images }) {
+export default function ImagesMenu({ setSelectedImage, selectedImage, images }) {
   const clickHandler = (imageId) => {
     setSelectedImage(imageId);
   };
@@ -32,8 +32,8 @@ export default function ImagesMenu({ setSelectedImage, images }) {
           <img
             src={image.url}
             alt={image.id}
+            className={`h-full w-full object-cover ${selectedImage === image.id ? 'shadow-2xl shadow-orange-500  box-content border-y-2 border-orange-500 ' : ''}`}
             style={{ objectFit: 'cover', maxHeight: '96%' }}
-            className="h-full w-full object-cover"
           />
         </button>
       ))}

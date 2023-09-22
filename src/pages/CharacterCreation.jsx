@@ -141,19 +141,19 @@ export default function CharacterCreation({ storyBoardURL }) {
   };
 
   const radioHandler = (e) => {
-    if (e.target.value === 'male') {
+    if (e.target.value === 'Male') {
       setRadioCheck1(true);
       setRadioCheck2(false);
       setRadioCheck3(false);
       setRadioCheck4(false);
       setSex(e.target.value);
-    } else if (e.target.value === 'female') {
+    } else if (e.target.value === 'Female') {
       setRadioCheck1(false);
       setRadioCheck2(true);
       setRadioCheck3(false);
       setRadioCheck4(false);
       setSex(e.target.value);
-    } else if (e.target.value === 'non-binary') {
+    } else if (e.target.value === 'Non-binary') {
       setRadioCheck1(false);
       setRadioCheck2(false);
       setRadioCheck3(true);
@@ -440,34 +440,34 @@ export default function CharacterCreation({ storyBoardURL }) {
             </div>
             <div className="flex w-max gap-4" style={{ margin: 'auto' }}>
               <Radio
-                id="male"
-                label="male"
-                value="male"
+                id="Male"
+                label="Male"
+                value="Male"
                 color="indigo"
                 checked={radioCheck1}
                 onClick={(e) => radioHandler(e)}
               />
               <Radio
-                id="female"
-                label="female"
-                value="female"
+                id="Female"
+                label="Female"
+                value="Female"
                 color="indigo"
                 checked={radioCheck2}
                 className="checkmark"
                 onClick={(e) => radioHandler(e)}
               />
               <Radio
-                id="non-binary"
-                label="non-binary"
-                value="non-binary"
+                id="Non-binary"
+                label="Non-binary"
+                value="Non-binary"
                 color="indigo"
                 checked={radioCheck3}
                 onClick={(e) => radioHandler(e)}
               />
               <Radio
-                id="other"
-                label="other"
-                value="other"
+                id="Other"
+                label="Other"
+                value="Other"
                 color="indigo"
                 checked={radioCheck4}
                 onClick={(e) => radioHandler(e)}
