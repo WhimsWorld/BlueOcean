@@ -119,7 +119,8 @@ export default function SelectCharacter({ storyId }) {
       </List>
       <CardFooter className="pt-0">
         <Button
-          fullWidth
+          // fullWidth
+          // variant="text"
           onClick={() => handleCreateCharacter()}
           style={{ backgroundImage: `url(${buttonBG})`, backgroundSize: 'auto' }}
           className="shadow-gray hover-shadow-sm hover:shadow-black hover:text-whimsiorange"

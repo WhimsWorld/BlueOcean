@@ -123,7 +123,7 @@ function CategoryMenu({ setSelectedCategory }) {
       <Typography style={{ fontSize: '20px' }} variant="h6" color="blue-gray" className="mb-4 font-croissant">
         Select Categories
       </Typography>
-      <Select label="Categories..." className="bg-[#f5ede1] ">
+      <Select label="Categories..." color="teal" style={{backgroundColor: '#FFFFFF3A'}}>
         {categories.map((category) => (
           <Option
             key={category}
@@ -217,16 +217,18 @@ export default function StoryCreationForm() {
             size="lg"
             label="Story Title"
             value={title}
-            className="bg-[#f5ede1]"
+            style={{backgroundColor: '#FFFFFF3A'}}
             onChange={(e) => setTitle(e.target.value)}
+            color="teal"
           />
           <Textarea
             id="setSummary"
             variant="outlined"
             label="Summary"
             value={summary}
-            className="bg-[#f5ede1]"
+            style={{backgroundColor: '#FFFFFF3A'}}
             onChange={(e) => setSummary(e.target.value)}
+            color="teal"
           />
           <Input
             id="selectPlayers"
@@ -235,7 +237,9 @@ export default function StoryCreationForm() {
             min="1"
             max="10"
             value={maxPlayers}
-            className="bg-[#f5ede1] w-60"
+            className="w-60"
+            style={{backgroundColor: '#FFFFFF3A'}}
+            color="teal"
             onChange={(e) => setMaxPlayers(e.target.value)}
           />
           <CategoryMenu id="selectCategory" setSelectedCategory={setSelectedCategory} selectedCategory={selectedCategory} />
@@ -256,5 +260,5 @@ export default function StoryCreationForm() {
   );
 }
 
-const StoryBg = 'https://i.ibb.co/89SBfJR/scroll2.png';
+const StoryBg = 'https://i.ibb.co/FJtSp5B/scroll2.png';
 const buttonBG = 'https://res.cloudinary.com/dnr41r1lq/image/upload/v1695320647/button_mljj6c.png';

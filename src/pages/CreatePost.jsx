@@ -33,7 +33,8 @@ export default function CreatePost() {
   const [userID, setUserID] = useState(Cookies.get('userId'));
   const [loggedIn, setLoggedIn] = useState(Cookies.get('userId'));
   const [audio] = useState(new Audio());
-
+  const [backgroundURL, setBackgroundURL] = useState('');
+  const storyID = window.location.href.split('createPost/')[1];
   useEffect(() => {
     setSelectedImage(null);
   }, [isChecked]);
@@ -41,6 +42,29 @@ export default function CreatePost() {
   useEffect(() => {
     setIsChecked(switchState);
   }, [switchState]);
+
+  useEffect(() => {
+    const dataParams = {
+      params: {
+        storyID,
+      },
+    };
+    axios.get('/api/category', dataParams)
+      .then((categoryData) => {
+        if (categoryData.data.category_id === 1) {
+          setBackgroundURL(fantasyBG);
+        } else if (categoryData.data.category_id === 2) {
+          setBackgroundURL(forestBG);
+        } else if (categoryData.data.category_id === 3) {
+          setBackgroundURL(pirateBG);
+        } else if (categoryData.data.category_id === 4) {
+          setBackgroundURL(cloudBG);
+        } else {
+          setBackgroundURL(cloudBG);
+        }
+      })
+      .catch(() => console.log('couldnt fetch category'));
+  }, [storyID]);
 
   useEffect(() => {
     const location = window.location.href.split('Post/');
@@ -110,9 +134,9 @@ export default function CreatePost() {
 
   return (
     <div
-      className="h-100%"
+      className="h-max bg-cover bg-fixed"
       style={{
-        backgroundImage: `url(${right})`,
+        backgroundImage: `url(${backgroundURL})`,
         backgroundSize: 'cover',
         backgroundRepeat: 'no-repeat',
         backgroundPosition: 'center center',
@@ -257,4 +281,8 @@ export default function CreatePost() {
 
 const buttonBG = 'https://res.cloudinary.com/dnr41r1lq/image/upload/v1695320647/button_mljj6c.png';
 const cardBG = 'https://res.cloudinary.com/dnr41r1lq/image/upload/v1695235263/paper2_kag1pb.jpg';
-const right = 'https://i.ibb.co/WD1GS22/cave-min.png';
+const fantasyBG = 'https://i.ibb.co/5r2KVVz/cave-min.png';
+const forestBG = 'https://i.ibb.co/HdrwtLm/forest-min.png';
+const pirateBG = 'https://i.ibb.co/0j5zyGz/pirate-min.png';
+const steampunkBG = 'https://res.cloudinary.com/dnr41r1lq/image/upload/v1695192325/image_uot0j6.png';
+const cloudBG = 'https://res.cloudinary.com/dnr41r1lq/image/upload/v1695192325/image_uot0j6.png';
