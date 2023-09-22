@@ -105,3 +105,13 @@ export const deleteLikedStory = async (req, res) => {
     res.status(500).send('Error retriveiving liked stories');
   }
 };
+
+export const getLikesByStoryId = async (req, res) => {
+  try {
+    const { storyId } = req.params;
+    const likes = await storiesModel.getLikes(storyId);
+    res.status(200).json(likes);
+  } catch (err) {
+    res.status(500).send('Error retrieving likes for the story');
+  }
+};

@@ -56,9 +56,11 @@ async function createServer() {
   app.get('/api/search', storiesController.getSearch);
   app.get('/api/stories/:storyId', storiesController.getStoryById);
   app.get('/api/likes', storiesController.getLikedStories);
+  app.get('/api/storyLikes', storiesController.getLikedStories);
   app.get('/api/category', storiesController.getCategory);
   app.post('/api/postlike', storiesController.postLikedStory);
   app.delete('/api/deletelike', storiesController.deleteLikedStory);
+  app.get('/api/likes/:storyId', storiesController.getLikesByStoryId);
 
   // story posts
   app.get('/api/posts/:storyId', postsController.getPosts);
