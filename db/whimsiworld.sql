@@ -72,8 +72,8 @@ CREATE TABLE characters (
     image_id INTEGER REFERENCES images(image_id),
     sound_id INTEGER REFERENCES sounds(sound_id),
     char_name VARCHAR(32),
-    strength VARCHAR(32),
-    weakness VARCHAR(32),
+    strength TEXT,
+    weakness TEXT,
     char_race VARCHAR(32),
     char_sex VARCHAR(32),
     backstory TEXT
