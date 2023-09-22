@@ -22,13 +22,13 @@ export default function Categories({
 
   return (
     <Card
-      className="rounded-none rounded-l-xl"
+      className="rounded-none rounded-l-xl max-w-sm"
       style={{
-        maxWidth: '250px',
         justifySelf: 'flex-end',
         backgroundImage: `url(${leftPanel})`,
         backgroundSize: 'auto',
         backgroundRepeat: 'round',
+        width: '240px',
       }}
     >
       <span className="self-center pt-5 pb-3">Themes</span>
