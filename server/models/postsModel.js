@@ -59,6 +59,7 @@ export const getAllData = async (storyId) => {
       images.image_url,
       sounds.sound_id,
       sounds.sound_url,
+      sounds.sound_name,
       gifs.gif_id,
       gifs.gif_url
     FROM stories
@@ -84,7 +85,10 @@ export const getAllData = async (storyId) => {
     }
 
     if (row.sound_url) {
-      dataResponse.sounds[row.sound_id] = row.sound_url;
+      dataResponse.sounds[row.sound_id] = {
+        url: row.sound_url,
+        name: row.sound_name, // Include sound_name in the response
+      };
     }
 
     if (row.image_url) {
@@ -103,12 +107,13 @@ export const getAllData = async (storyId) => {
   });
 
   Object.keys(dataResponse.sounds).forEach((id) => {
-    newDataObject.sounds.push({ id, url: dataResponse.sounds[id] });
+    newDataObject.sounds.push({ id, url: dataResponse.sounds[id].url, name: dataResponse.sounds[id].name });
   });
 
   Object.keys(dataResponse.gifs).forEach((id) => {
     newDataObject.gifs.push({ id, url: dataResponse.gifs[id] });
   });
+
   return { newDataObject };
 };
 

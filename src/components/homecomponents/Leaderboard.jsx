@@ -27,13 +27,18 @@ export default function Leaderboard({ leaderboard }) {
 
   const handleMouseEnter = (entry, event) => {
     if (entry.summary) {
-      const summary = entry.summary.length > 200
-        ? entry.summary.slice(0, 200) + '...'
+      const summary = entry.summary.length > 250
+        ? entry.summary.slice(0, entry.summary.lastIndexOf(' ', 250)) + '...'
         : entry.summary;
       const content = (
-        <Typography variant="h6" color="blue-gray">
-          {summary}
-        </Typography>
+        <div>
+          <Typography variant="h6" color="blue-gray" style={{ textDecoration: 'underline' }}>
+            Description:
+          </Typography>
+          <Typography variant="p2" color="blue-gray">
+            {summary}
+          </Typography>
+        </div>
       );
       setPopoverContent(content);
     }
@@ -85,7 +90,7 @@ export default function Leaderboard({ leaderboard }) {
                 variant="ghost"
                 size="sm"
                 className="rounded-full"
-                style={{ color: 'black', backgroundColor: '#7B8CDE' }}
+                style={{ color: 'white', backgroundColor: '#101A4B' }}
               />
             </ListItemSuffix>
           </ListItem>
@@ -94,7 +99,7 @@ export default function Leaderboard({ leaderboard }) {
       {popoverContent && (
         <div
           className="absolute bg-white shadow-lg rounded p-4 z-10"
-          style={{ ...popoverPosition }}
+          style={{ ...popoverPosition, borderRadius: '20px' }}
           onMouseEnter={handleMouseEnter}
           onMouseLeave={handleMouseLeave}
         >

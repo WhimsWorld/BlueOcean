@@ -27,7 +27,7 @@ function StickyNavbar({ loggedIn, setLoggedIn }) {
           WhimsiWorld
         </Typography>
       </div>
-      <div className="flex items-center justify-center flex-grow" style={{ marginLeft: '-155px' }}> {/* Added marginLeft */}
+      <div className="flex items-center justify-center flex-grow" style={{ marginLeft: '-155px' }}>
         <Typography
           style={{ fontSize: '20px', color: 'black' }} // Added color property to set text to black
           as="a"

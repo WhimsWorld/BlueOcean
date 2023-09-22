@@ -34,7 +34,7 @@ export default function StoryCard({
     } else {
       setColor('white');
     }
-  }, []);
+  }, [likedStories]);
 
   const clickHandler = () => {
     dispatch(setStory(storyId));
@@ -124,7 +124,7 @@ export default function StoryCard({
             onClick={clickHandler}
             fullWidth
             style={{ backgroundImage: `url(${buttonBG})`, backgroundSize: 'auto' }}
-            className="shadow-gray hover-shadow-sm hover:shadow-black hover:text-whimsiorange"
+            className="shadow-gray hover-shadow-sm hover:shadow-black hover:text-whimsidarkblue"
           >
             Read Story
           </Button>

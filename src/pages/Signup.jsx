@@ -10,7 +10,7 @@ import {
 
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
+import { createUserWithEmailAndPassword } from 'firebase/auth';
 import axios from 'axios';
 import { auth } from '../utils/firebase';
 import StickyNavbar from '../components/StickyNavbar';
@@ -47,7 +47,7 @@ export default function Signup() {
     <div className="h-screen bg-cover" style={{ backgroundImage: `url(${loginBg})` }}>
       <StickyNavbar />
       <Card
-        className="w-96 m-auto mt-48 "
+        className="w-96 m-auto mt-32 "
         style={{
           backgroundImage: `url(${cardBG})`,
           backgroundSize: 'cover',
@@ -59,11 +59,17 @@ export default function Signup() {
           variant="gradient"
           color="blue"
           className="my-4 grid h-28 place-items-center"
-          style={{ backgroundImage: `url(${buttonBG})`, boxShadow: 'none' }}
+          style={{
+            backgroundImage: `url(${buttonBG})`,
+            backgroundSize: 'cover',
+            backgroundRepeat: 'no-repeat',
+            backgroundPosition: 'center center',
+            boxShadow: 'none',
+          }}
         >
           <Typography
             className="font-logo"
-            style={{ fontSize: '40px' }}
+            style={{ fontSize: '48px' }}
             variant="h3"
             color="white"
           >
@@ -94,9 +100,14 @@ export default function Signup() {
           <Button
             variant="gradient"
             fullWidth
-            className="font-logo text-md"
             onClick={toSubmit}
-            style={{ backgroundImage: `url(${buttonBG})`, boxShadow: 'none' }}
+            className="font-logo text-lg shadow-gray hover-shadow-sm hover:shadow-black hover:text-whimsidarkblue"
+            style={{
+              backgroundImage: `url(${buttonBG})`,
+              backgroundSize: 'cover',
+              backgroundRepeat: 'no-repeat',
+              backgroundPosition: 'center center',
+            }}
           >
             Sign Up
           </Button>
@@ -123,5 +134,5 @@ export default function Signup() {
 }
 
 const loginBg = 'https://i.ibb.co/6bsxsgR/pirate3-min.png';
-const buttonBG = 'https://res.cloudinary.com/dnr41r1lq/image/upload/v1695229025/bronzetexture_cc3urf.webp';
+const buttonBG = 'https://res.cloudinary.com/dnr41r1lq/image/upload/v1695320647/button_mljj6c.png';
 const cardBG = 'https://res.cloudinary.com/dnr41r1lq/image/upload/v1695235263/paper2_kag1pb.jpg';
