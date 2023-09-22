@@ -123,7 +123,7 @@ function CategoryMenu({ setSelectedCategory }) {
       <Typography style={{ fontSize: '20px' }} variant="h6" color="blue-gray" className="mb-4 font-croissant">
         Select Categories
       </Typography>
-      <Select label="Categories..." className="bg-white ">
+      <Select label="Categories..." color="teal" style={{backgroundColor: '#FFFFFF3A'}}>
         {categories.map((category) => (
           <Option
             key={category}
@@ -217,16 +217,18 @@ export default function StoryCreationForm() {
             size="lg"
             label="Story Title"
             value={title}
-            className="bg-white"
+            style={{backgroundColor: '#FFFFFF3A'}}
             onChange={(e) => setTitle(e.target.value)}
+            color="teal"
           />
           <Textarea
             id="setSummary"
             variant="outlined"
             label="Summary"
             value={summary}
-            className="bg-white"
+            style={{backgroundColor: '#FFFFFF3A'}}
             onChange={(e) => setSummary(e.target.value)}
+            color="teal"
           />
           <Input
             id="selectPlayers"
@@ -235,7 +237,9 @@ export default function StoryCreationForm() {
             min="1"
             max="10"
             value={maxPlayers}
-            className="bg-white w-60"
+            className="w-60"
+            style={{backgroundColor: '#FFFFFF3A'}}
+            color="teal"
             onChange={(e) => setMaxPlayers(e.target.value)}
           />
           <CategoryMenu id="selectCategory" setSelectedCategory={setSelectedCategory} selectedCategory={selectedCategory} />

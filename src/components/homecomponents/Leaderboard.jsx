@@ -32,10 +32,10 @@ export default function Leaderboard({ leaderboard }) {
         : entry.summary;
       const content = (
         <div>
-          <Typography variant="h6" color="blue-gray" style={{ textDecoration: 'underline' }}>
+          <Typography className="font-croissant" variant="h6" color="blue-gray" style={{ textDecoration: 'underline' }}>
             Description:
           </Typography>
-          <Typography variant="p2" color="blue-gray">
+          <Typography className="font-Karla" variant="p2" color="blue-gray">
             {summary}
           </Typography>
         </div>
@@ -56,7 +56,7 @@ export default function Leaderboard({ leaderboard }) {
 
   return (
     <Card style={{ maxWidth: '320px', backgroundImage: `url(${rightPanel})`, backgroundRepeat: 'round' }} className="h-full rounded-none rounded-r-xl">
-      <span className="self-center pt-5">All Time Top 10</span>
+      <span style={{fontSize: '20px'}} className="font-semibold font-croissant underline self-center pt-5">All Time Top 10</span>
       <List>
         {leaderboard.map((entry) => (
           <ListItem
@@ -65,22 +65,18 @@ export default function Leaderboard({ leaderboard }) {
             onMouseEnter={(event) => handleMouseEnter(entry, event)}
             onMouseLeave={handleMouseLeave}
             className="relative bg-white transition-colors duration-300 hover:bg-whimsipink"
-
           >
+            <Avatar
+              variant="circular"
+              alt="candice"
+              src={entry.thumbnail_url}
+              style={{ width: 50, height: 50, marginRight: '10px' }}
+            />
             <ListItemPrefix className="relative">
-              <Avatar
-                variant="circular"
-                alt="candice"
-                src={entry.thumbnail_url}
-                // src="https://res.cloudinary.com/dnr41r1lq/image/upload/v1695227750/whimsibubble_ch5qpw.png"
-                // className={`before:bg-${entry.thumbnail_url}`}
-                // className={`after:content-[${entry.thumbnail_url}]`}
-                style={{ width: 50, height: 50, overflow: 'hidden' }}
-              />
               <div className="absolute h-full w-full inset-0 bg-cover" style={{ backgroundImage: `url(${entry.thumbnail_url})` }} />
             </ListItemPrefix>
             <div>
-              <Typography variant="h6" color="blue-gray">
+              <Typography className="font-croissant" variant="h6" color="blue-gray">
                 {entry.title}
               </Typography>
             </div>

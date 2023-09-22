@@ -46,7 +46,7 @@ export default function SelectCharacter({ storyId }) {
         backgroundRepeat: 'round',
       }}
     >
-      <span className="self-center pt-5 pb-3 underline font-body font-2x">Characters</span>
+      <span style={{fontSize: '20px'}} className="font-croissant self-center pt-5 pb-3 underline font-body">Characters</span>
       <List className="p-1 ">
 
         {characters.map((character) => (
@@ -119,7 +119,8 @@ export default function SelectCharacter({ storyId }) {
       </List>
       <CardFooter className="pt-0">
         <Button
-          fullWidth
+          // fullWidth
+          // variant="text"
           onClick={() => handleCreateCharacter()}
           style={{ backgroundImage: `url(${buttonBG})`, backgroundSize: 'auto' }}
           className="shadow-gray hover-shadow-sm hover:shadow-black hover:text-whimsiorange"

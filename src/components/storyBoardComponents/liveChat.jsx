@@ -49,7 +49,7 @@ export default function LiveChat({ storyId }) {
         maxWidth: '320px', backgroundImage: `url(${rightPanel})`, backgroundRepeat: 'round', justifySelf: 'end',
       }}
     >
-      <h1><b>Live Chat</b></h1>
+      <h1 className='font-croissant' style={{textAlign: 'center', textDecoration: 'underline', fontSize: '20px', marginTop: '18px'}}><b>Live Chat</b></h1>
       <div className="chat-messages overflow-y-auto h-96 mt-8" style={{border: '1px solid rgba(131, 105, 83, 0.2)', borderRadius: '25px', background: 'rgba(255, 255, 255, 0.6)'}}>
         {chatMessages.map((msg) => (
           <div key={msg.message_id} className={`${msg.user_id === userId ? 'ml-16' : ''}`}>
@@ -64,7 +64,6 @@ export default function LiveChat({ storyId }) {
           </div>
         ))}
       </div>
-
       <div className="flex w-5/6 flex-row gap-2 my-4 rounded-[99px] border border-gray-900/10 bg-gray-900/5 p-2">
         <Textarea
           value={message}

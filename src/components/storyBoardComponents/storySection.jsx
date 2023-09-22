@@ -137,6 +137,7 @@ export default function StorySection() {
 
         {userLastPosted === false && hasCharInStory === true && userIsNarrator === false ? (
           <Button
+            variant="text"
             size="lg"
             onClick={() => clickHandler(storyId)}
             style={{
@@ -144,6 +145,7 @@ export default function StorySection() {
               backgroundSize: 'cover',
               width: '50%',
               margin: 'auto',
+              height: '100%',
             }}
             className="text-white shadow-gray hover-shadow-sm hover:shadow-black hover:text-whimsiorange"
           >
@@ -165,6 +167,7 @@ export default function StorySection() {
         {userLastPosted === false && userIsNarrator === true && hasCharInStory === true ? (
           <Button
             size="lg"
+            variant="text"
             onClick={() => clickHandler(storyId)}
             style={{
               color: 'black',
@@ -184,6 +187,7 @@ export default function StorySection() {
         || (userLastPosted === false && userIsNarrator === true && hasCharInStory === false) ? (
           <Button
             size="lg"
+            variant="text"
             onClick={() => clickHandler(storyId)}
             style={{
               color: 'black',
@@ -209,7 +213,7 @@ export default function StorySection() {
           ) : null }
           <div key={post.post_id} className="w-full flex-row p-2 mt-4 shadow-lg justify-between items-center justify-self-center bg-cover" style={{ width: '98%', backgroundImage: `url(${cardBG})`, clipPath: 'polygon(100% 2%, 68% 2%, 75% 0, 83% 2%, 90% 2%, 100% 0, 100% 16%, 100% 34%, 99% 53%, 98% 74%, 100% 100%, 83% 99%, 72% 98%, 63% 100%, 54% 98%, 44% 100%, 36% 100%, 30% 98%, 17% 99%, 7% 98%, 0 100%, 1% 71%, 0 43%, 1% 2%, 9% 2%, 18% 0, 31% 2%, 48% 0)' }}>
             <div style={{ display: 'flex', justifyContent: 'center' }}>
-              <Card className="mt-6 w-96" style={{ width: '96%', backgroundImage: `url(${cardBG})` }}>
+              <Card className="flex flex-col p-2 self-start w-5/6 m-0 p-0" style={{ height: 'auto', width: '200%', backgroundImage: `url(${cardBG})`, background: 'no-repeat', clipPath: 'polygon(100% 2%, 68% 2%, 75% 0, 83% 2%, 90% 2%, 100% 0, 100% 16%, 100% 34%, 99% 53%, 98% 74%, 100% 100%, 83% 99%, 72% 98%, 63% 100%, 54% 98%, 44% 100%, 36% 100%, 30% 98%, 17% 99%, 7% 98%, 0 100%, 1% 71%, 0 43%, 1% 2%, 9% 2%, 18% 0, 31% 2%, 48% 0)' }}>
                 {/* This card body is responsible for what is located on an story post card */}
                 <CardBody>
                   {/* controls font color */}
@@ -257,7 +261,6 @@ export default function StorySection() {
                       display: 'flex',
                       flexDirection: 'row',
                       overflowWrap: 'break-word',
-                      // overflowY: 'scroll',
                       gap: '0',
                       margin: '0',
                       padding: '0',
@@ -318,7 +321,8 @@ export default function StorySection() {
                         {post.gif_url
                           ? (
                             <img
-                              onMouseEnter={() => playAudio(`https://docs.google.com/uc?export=open&id=${post.sound_url}`)}
+                              onClick={() => playAudio(`https://docs.google.com/uc?export=open&id=${post.sound_url}`)}
+                              className="hover:cursor-pointer"
                               src={post.gif_url}
                               alt={post.gif_id}
                               style={{

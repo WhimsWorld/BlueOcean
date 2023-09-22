@@ -181,12 +181,17 @@ export default function CreatePost() {
           }}
         >
           <div style={{ marginTop: '2em', display: 'flex', gap: '10em' }}>
-            <Typography variant="h4" color="blue-gray" className="self-center" style={{ marginLeft: checkNarrator ? '20rem' : 'none' }}>
+            <Typography variant="h4" color="blue-gray" className="self-center font-croissant mt-4" style={{ marginLeft: checkNarrator ? '20rem' : 'none' }}>
               Create Post
             </Typography>
             {checkNarrator ? (
               <div className="flex w-max gap-4">
-                <Switch label="Narrator Post" style={{ backgroundColor: switchState ? '#101A4B' : 'white' }} checked={switchState} onChange={handleSwitchToggle} />
+                <Switch
+                  label={<span style={{ fontFamily: 'corissant', fontWeight: 'bold' }}>Narrator Post</span>}
+                  style={{ fontWeight: 'bold', backgroundColor: switchState ? '#101A4B' : 'white' }}
+                  checked={switchState}
+                  onChange={handleSwitchToggle}
+                />
               </div>
             ) : null}
           </div>
@@ -195,6 +200,7 @@ export default function CreatePost() {
               label="Content"
               value={content}
               onChange={(e) => setContent(e.target.value)}
+              className="font-croissant"
               style={{ backgroundColor: 'white' }}
             />
           </div>
@@ -204,7 +210,7 @@ export default function CreatePost() {
                 width: '60%', display: 'flex', flexDirection: 'column', alignItems: 'center',
               }}
               >
-                <Typography style={{ fontSize: '20px' }} variant="h6" color="blue-gray" className="mb-4">
+                <Typography style={{ fontSize: '20px' }} variant="h6" color="blue-gray" className="mb-4 font-croissant">
                   Select Sticker
                 </Typography>
                 <GifsMenu gifs={gifs} selectedGif={selectedGif} setSelectedGif={setSelectedGif} />
@@ -230,7 +236,7 @@ export default function CreatePost() {
                         <path d="M73 39c-14.8-9.1-33.4-9.4-48.5-.9S0 62.6 0 80V432c0 17.4 9.4 33.4 24.5 41.9s33.7 8.1 48.5-.9L361 297c14.3-8.7 23-24.2 23-41s-8.7-32.2-23-41L73 39z" />
                       </svg>
                     </button>
-                    <span>Play Sound</span>
+                    <span className="font-croissant">Play Sound</span>
                   </div>
                 ) : null}
               </div>
@@ -244,7 +250,7 @@ export default function CreatePost() {
           >
             {switchState ? (
               <div style={{ display: 'flex', marginTop: '2em' }}>
-                <Typography style={{ fontSize: '20px' }} variant="h6" color="blue-gray" className="mb-4">
+                <Typography style={{ fontSize: '20px' }} variant="h6" className=" mb-4 font-croissant" color="blue-gray" c>
                   Select Image
                 </Typography>
                 <div style={{ marginTop: '-6px', marginLeft: '10px' }}>
@@ -267,14 +273,15 @@ export default function CreatePost() {
               style={{
                 marginBottom: '80px',
                 backgroundImage: `url(${buttonBG})`,
-                backgroundSize: 'auto',
+                backgroundSize: 'cover',
+                backgroundRepeat: 'no-repeat',
+                backgroundPosition: 'center center',
                 opacity: 0.8,
                 fontSize: '18px',
-                color: 'white',
                 width: '350px',
               }}
               type="submit"
-              className="mt-6 mb-12 w-1/2 self-center"
+              className="mt-6 mb-12 w-1/2 self center font-croissant text-lg shadow-gray hover-shadow-sm hover:shadow-black hover:text-whimsiorange"
               onClick={handleSubmit}
             >
               Continue the Story
@@ -288,7 +295,7 @@ export default function CreatePost() {
   );
 }
 
-const buttonBG = 'https://res.cloudinary.com/dnr41r1lq/image/upload/v1695229025/bronzetexture_cc3urf.webp';
+const buttonBG = 'https://res.cloudinary.com/dnr41r1lq/image/upload/v1695320647/button_mljj6c.png';
 const cardBG = 'https://res.cloudinary.com/dnr41r1lq/image/upload/v1695235263/paper2_kag1pb.jpg';
 const fantasyBG = 'https://i.ibb.co/5r2KVVz/cave-min.png';
 const forestBG = 'https://i.ibb.co/HdrwtLm/forest-min.png';

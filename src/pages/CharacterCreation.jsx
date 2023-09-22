@@ -132,7 +132,6 @@ export default function CharacterCreation({ storyBoardURL }) {
     }
   }
 
-
   const clickHandler = (imageId) => {
     setCharacterIcon(imageId === characterIcon ? null : imageId);
   };
@@ -420,7 +419,7 @@ export default function CharacterCreation({ storyBoardURL }) {
           }}
           shadow={false}
         >
-          <Typography variant="h4" color="blue-gray" className="font-logo" style={{ marginTop: '2em', fontSize: '32px' }}>
+          <Typography variant="h4" color="blue-gray" className="font-croissant " style={{ marginTop: '2em', fontSize: '32px' }}>
 
             Character Creation
           </Typography>
@@ -475,7 +474,7 @@ export default function CharacterCreation({ storyBoardURL }) {
               />
             </div>
             <div>
-              <Typography color="gray" className="mt-1 font-bold">
+              <Typography color="gray" className="mt-1 font-bold font-croissant">
                 Choose your Strengths
                 {' '}
                 <em>(Select 2)</em>
@@ -592,7 +591,7 @@ export default function CharacterCreation({ storyBoardURL }) {
               </Tooltip>
             </div>
             <div>
-              <Typography color="gray" className="mt-1 font-bold">
+              <Typography color="gray" className="mt-1 font-bold font-croissant">
                 Choose your Weaknesses
                 {' '}
                 <em>(Select 2)</em>
@@ -727,7 +726,11 @@ export default function CharacterCreation({ storyBoardURL }) {
               ))}
             </div>
             <div style={{ display: 'flex', flexDirection: 'column', margin: 'auto', width: '50%', height: '150px' }}>
-              <SoundsMenu style={{ marginLeft: '30px' }} sounds={sounds} setSelectedSound={setSelectedSound} />
+              <SoundsMenu
+                style={{ marginLeft: '30px' }}
+                sounds={sounds}
+                setSelectedSound={setSelectedSound}
+              />
               {selectedSound ? (
                 <div style={{ display: 'flex', gap: '1em', marginTop: '1.5em', justifyContent: 'center', alignItems: 'center' }}>
                   <button
@@ -760,7 +763,7 @@ export default function CharacterCreation({ storyBoardURL }) {
             <div style={{ display: 'flex', justifyContent: 'center', margin: 'auto', marginBottom: '5em' }}>
 
               <Button
-                className="text-lg shadow-gray hover-shadow-sm hover:shadow-black hover:text-whimsidarkblue"
+                className="text-lg font-croissant shadow-gray hover-shadow-sm hover:shadow-black hover:text-whimsiorange"
                 style={{
                   backgroundImage: `url(${buttonBG})`,
                   backgroundSize: 'cover',

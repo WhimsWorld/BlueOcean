@@ -151,8 +151,8 @@ export const addPost = async (
     VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
     RETURNING *;
   `;
-
   const values = [storyId, userId, gifId, soundId, imageId, narratorPost, content, charId];
+
   const response = await executeQuery(query, values);
 
   return response.rows[0];
