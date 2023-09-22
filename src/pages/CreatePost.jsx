@@ -55,8 +55,9 @@ export default function CreatePost() {
       .then((characterData) => {
         setCharID(characterData.data.char_id);
       })
-      .catch(() => console.log('couldnt fetch user'));
+      .catch(() => console.log('couldnt fetch characters'));
   }, [storyID, userID]);
+
   useEffect(() => {
     const dataParams = {
       params: {
