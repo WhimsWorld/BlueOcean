@@ -440,34 +440,34 @@ export default function CharacterCreation({ storyBoardURL }) {
             </div>
             <div className="flex w-max gap-4" style={{ margin: 'auto' }}>
               <Radio
-                id="male"
-                label="male"
-                value="male"
+                id="Male"
+                label="Male"
+                value="Male"
                 color="indigo"
                 checked={radioCheck1}
                 onClick={(e) => radioHandler(e)}
               />
               <Radio
-                id="female"
-                label="female"
-                value="female"
+                id="Female"
+                label="Female"
+                value="Female"
                 color="indigo"
                 checked={radioCheck2}
                 className="checkmark"
                 onClick={(e) => radioHandler(e)}
               />
               <Radio
-                id="non-binary"
-                label="non-binary"
-                value="non-binary"
+                id="Non-binary"
+                label="Non-binary"
+                value="nNon-binary"
                 color="indigo"
                 checked={radioCheck3}
                 onClick={(e) => radioHandler(e)}
               />
               <Radio
-                id="other"
-                label="other"
-                value="other"
+                id="Other"
+                label="Other"
+                value="Other"
                 color="indigo"
                 checked={radioCheck4}
                 onClick={(e) => radioHandler(e)}
