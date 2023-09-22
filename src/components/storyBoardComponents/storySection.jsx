@@ -311,7 +311,7 @@ export default function StorySection() {
                         className="w-5/6 min-w-40"
                       >
                         <div style={{ marginLeft: '2px' }}>
-                          <p id="specialParagraph" className="pt-4 -mt-8 w-full overflow-y-auto">{post.content}</p>
+                          <p id="specialParagraph" className="pt-4 -mt-8 w-full">{post.content}</p>
                         </div>
                       </div>
                       <br />
