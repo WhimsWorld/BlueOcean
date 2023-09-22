@@ -13,6 +13,7 @@ import {
 import axios from 'axios';
 import { fetchPostsById } from '../../app/slices/postsSlice';
 import { fetchStoryById } from '../../app/slices/storySlice';
+import dateFormat from '../../utils/dateFormat';
 
 export default function StorySection() {
   const location = useLocation();
@@ -123,7 +124,7 @@ export default function StorySection() {
       <div style={{ display: 'flex', justifyContent: 'center' }}>
 
         {hasCharInStory === false && userIsNarrator === false ? (
-          <p>
+          <p style={{marginLeft: '20px', marginRight: '10px', marginTop: '20px'}} className='font-croissant'>
             Please create a character to join this story.
           </p>
         ) : (
@@ -137,28 +138,27 @@ export default function StorySection() {
 
         {userLastPosted === false && hasCharInStory === true && userIsNarrator === false ? (
           <Button
-            variant="text"
-            size="lg"
-            onClick={() => clickHandler(storyId)}
-            style={{
-              backgroundImage: `url(${buttonBG})`,
-              backgroundSize: 'cover',
-              width: '50%',
-              margin: 'auto',
-              height: '100%',
-            }}
-            className="text-white shadow-gray hover-shadow-sm hover:shadow-black hover:text-whimsiorange"
-          >
-            Create Character Post
-          </Button>
+          onClick={() => clickHandler(storyId)}
+          style={{
+            backgroundImage: `url(${buttonBG})`,
+            backgroundSize: 'cover',
+            backgroundRepeat: 'no-repeat',
+            backgroundPosition: 'center center',
+            opacity: '0.8',
+            width: '200px',
+          }}
+          className="mt-4 mb-4 w-1/2 self center font-croissant text-md shadow-gray hover-shadow-sm hover:shadow-black hover:text-whimsiorange"
+        >
+          Create Post
+        </Button>
         ) : (
           null
         )}
 
         {userLastPosted === true && hasCharInStory === true && userIsNarrator === false ? (
-          <p>
-            Your character just went on an adventure.
-            Please wait until the next round to post as a character.
+          <p style={{marginLeft: '20px', marginRight: '10px', marginTop: '20px'}} className='font-croissant'>
+              Your character just went on an adventure.
+              Please wait until the next round to post again.
           </p>
         ) : (
           null
@@ -166,19 +166,19 @@ export default function StorySection() {
 
         {userLastPosted === false && userIsNarrator === true && hasCharInStory === true ? (
           <Button
-            size="lg"
-            variant="text"
-            onClick={() => clickHandler(storyId)}
-            style={{
-              color: 'black',
-              backgroundImage: `url(${buttonBG})`,
-              backgroundSize: '150%',
-              opacity: '0.8',
-              width: '90',
-            }}
-          >
-            Create Narrator or Character Post
-          </Button>
+          onClick={() => clickHandler(storyId)}
+          style={{
+            backgroundImage: `url(${buttonBG})`,
+            backgroundSize: 'cover',
+            backgroundRepeat: 'no-repeat',
+            backgroundPosition: 'center center',
+            opacity: '0.8',
+            width: '200px',
+          }}
+          className="mt-4 mb-4 w-1/2 self center font-croissant text-md shadow-gray hover-shadow-sm hover:shadow-black hover:text-whimsiorange"
+        >
+          Create Post
+        </Button>
         )
           : (
             null
@@ -186,18 +186,18 @@ export default function StorySection() {
         {(userLastPosted === true && userIsNarrator === true)
         || (userLastPosted === false && userIsNarrator === true && hasCharInStory === false) ? (
           <Button
-            size="lg"
-            variant="text"
             onClick={() => clickHandler(storyId)}
             style={{
-              color: 'black',
               backgroundImage: `url(${buttonBG})`,
-              backgroundSize: '150%',
+              backgroundSize: 'cover',
+              backgroundRepeat: 'no-repeat',
+              backgroundPosition: 'center center',
               opacity: '0.8',
-              width: '90%',
+              width: '200px',
             }}
+            className="mt-4 mb-4 w-1/2 self center font-croissant text-md shadow-gray hover-shadow-sm hover:shadow-black hover:text-whimsiorange"
           >
-            Create Narrator Post
+            Create Post
           </Button>
           )
           : (
@@ -345,8 +345,7 @@ export default function StorySection() {
                           {' '}
                           on
                           {' '}
-
-                          {new Date(post.date_created).toLocaleString()}
+                          {dateFormat(post.date_created)}
                         </p>
                       </div>
                     </div>
