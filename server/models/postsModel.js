@@ -6,6 +6,7 @@ export const getPosts = async (storyId) => {
   const query = `
   SELECT
   posts.*,
+  users.username,
   images.image_url AS narrator_image_url,
   sounds.sound_url,
   gifs.gif_url,
@@ -15,6 +16,10 @@ export const getPosts = async (storyId) => {
   char_images.image_url AS char_image_url
 FROM
   posts
+LEFT JOIN
+  users
+ON
+  posts.created_by_user_id = users.user_id
 LEFT JOIN
   images
 ON
@@ -145,7 +150,7 @@ export const addPost = async (
   content,
   charId,
 ) => {
-  console.log("what is char_id", charId);
+  console.log('what is char_id', charId);
   const query = `
     INSERT INTO posts (story_id, created_by_user_id, gif_id, sound_id, narrator_image_id, narrator_post, content, char_id)
     VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
