@@ -32,6 +32,17 @@ export const getCharactersByStoryId = async (req, res) => {
   }
 };
 
+export const getCharactersByStoryIdUserId = async (req, res) => {
+  try {
+    console.log('am i here');
+    const characters = await characterModel.getCharactersByStoryIdUserId(req.query.storyID, req.query.userID);
+    console.log('characters', characters);
+    res.json(characters);
+  } catch (err) {
+    res.status(500).send('Error retrieving characters.');
+  }
+};
+
 export const addUser = async (req, res) => {
   const userId = req.body.user_id;
   const username = req.body.display_name;

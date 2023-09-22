@@ -64,6 +64,7 @@ export default function StorySection() {
     setTimeout(() => {
       fetchPosts();
     }, 100);
+    console.log("these are posts", posts)
   }, [storyId, dispatch, posts.length]);
 
   useEffect(() => {
