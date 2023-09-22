@@ -21,17 +21,18 @@ export default function StorySection() {
   const storyId = location.pathname.split('/').pop();
   const posts = useSelector((state) => state.posts);
   const [audio] = useState(new Audio());
+  const [audio2] = useState(new Audio());
   const [userLastPosted, setUserLastPosted] = useState(false);
   const [userIsNarrator, setUserIsNarrator] = useState(false);
   const storyData = useSelector((state) => state.story.storyData);
   const [loggedIn, setLoggedIn] = useState(Cookies.get('userId'));
   const [username, setUsername] = useState([]);
-  console.log('posts', posts);
+  const [userID, setUserID] = useState(Cookies.get('userId'));
+  const [hasCharInStory, setHasCharInStory] = useState(false);
 
   const findUsername = async (userID) => {
     axios.get(`/api/users/${userID}`)
       .then((results) => {
-        // console.log('username found', results.data.username);
         setUsername([...username, results.data.username]);
       })
       .catch((err) => console.log('err', err));
@@ -42,7 +43,6 @@ export default function StorySection() {
       findUsername(posts[i].created_by_user_id);
     }
   }, [posts]);
-  console.log('all usernames', username);
 
   const clickHandler = (id) => {
     if (loggedIn) {
@@ -55,6 +55,11 @@ export default function StorySection() {
   const playAudio = (soundUrl) => {
     audio.src = soundUrl;
     audio.play();
+  };
+
+  const playAudio2 = (soundUrl) => {
+    audio2.src = soundUrl;
+    audio2.play();
   };
 
   useEffect(() => {
@@ -73,11 +78,34 @@ export default function StorySection() {
   }, [dispatch, storyId]);
 
   useEffect(() => {
-    if (posts.lengh > 0) {
+    const dataParams = {
+      params: {
+        storyID: storyId,
+        userID,
+      },
+    };
+    axios.get('/api/characters/story/user', dataParams)
+      .then((characterData) => {
+        if (characterData.data.char_id === undefined) {
+          setHasCharInStory(false);
+        } else {
+          setHasCharInStory(true);
+        }
+      })
+      .catch(() => console.log('couldnt fetch characters'));
+  }, [storyId, userID]);
+
+  useEffect(() => {
+    console.log('hello');
+    console.log(posts);
+    if (posts.length > 0) {
+      console.log('in posts length greater than zero');
       // if last post was posted by logged in user, set userLastPosted to true
       if (posts[posts.length - 1]?.created_by_user_id === Cookies.get('userId')) {
+        console.log('user last posted is true');
         setUserLastPosted(true);
       } else {
+        console.log('user last posted is false');
         setUserLastPosted(false);
       }
     } else {
@@ -88,12 +116,26 @@ export default function StorySection() {
     } else {
       setUserIsNarrator(false);
     }
-  }, [posts]);
+  }, [posts.length, posts]);
 
   return (
     <>
       <div style={{ display: 'flex', justifyContent: 'center' }}>
-        {userLastPosted === false && userIsNarrator === false ? (
+
+        {hasCharInStory === false && userIsNarrator === false ? (
+          <p>
+            Please create a character to join this story.
+          </p>
+        ) : (
+          null
+        )}
+
+        {/* <p>
+            Your character just went on an adventure.
+            Please wait until the next round to post as a character.
+          </p> */}
+
+        {userLastPosted === false && hasCharInStory === true && userIsNarrator === false ? (
           <Button
             variant="text"
             size="lg"
@@ -109,14 +151,20 @@ export default function StorySection() {
           >
             Create Character Post
           </Button>
-        )
-          : (
-            <p>
-              Your character just went on an adventure.
-              Please wait until the next round to post again.
-            </p>
-          ) }
-        {userLastPosted === false && userIsNarrator === true ? (
+        ) : (
+          null
+        )}
+
+        {userLastPosted === true && hasCharInStory === true && userIsNarrator === false ? (
+          <p>
+            Your character just went on an adventure.
+            Please wait until the next round to post as a character.
+          </p>
+        ) : (
+          null
+        )}
+
+        {userLastPosted === false && userIsNarrator === true && hasCharInStory === true ? (
           <Button
             size="lg"
             variant="text"
@@ -134,8 +182,9 @@ export default function StorySection() {
         )
           : (
             null
-          ) }
-        {userLastPosted === true && userIsNarrator === true ? (
+          )}
+        {(userLastPosted === true && userIsNarrator === true)
+        || (userLastPosted === false && userIsNarrator === true && hasCharInStory === false) ? (
           <Button
             size="lg"
             variant="text"
@@ -150,10 +199,10 @@ export default function StorySection() {
           >
             Create Narrator Post
           </Button>
-        )
+          )
           : (
             null
-          ) }
+          )}
       </div>
       {posts.map((post, index) => (
         <>
@@ -176,7 +225,7 @@ export default function StorySection() {
                             src={post.narrator_image_url}
                             alt={post.narrator_image_id}
                             className="h-96 object-contain m-0 object-cover"
-                            style={{height: '40vh', width: '100%', borderRadius: '25px' }}
+                            style={{ height: '40vh', width: '100%', borderRadius: '25px' }}
                           />
                         )
                         : null}
@@ -198,6 +247,7 @@ export default function StorySection() {
                                   alt={post.char_id}
                                   style={{ maxWidth: '100px', maxHeight: '100px' }}
                                   size="l"
+                                  onClick={() => playAudio2(`https://docs.google.com/uc?export=open&id=${post.char_sound_url}`)}
                                 />
                               )
                               : null}
@@ -285,7 +335,10 @@ export default function StorySection() {
                             />
                           )
                           : null}
-                        <p style={{ fontFamily: 'serif', marginBottom: '5px', marginTop: '5px', marginLeft: '10px', maxWidth: '150px' }}>
+                        <p style={{
+                          fontFamily: 'serif', marginBottom: '5px', marginTop: '5px', marginLeft: '10px', maxWidth: '150px',
+                        }}
+                        >
                           by
                           {' '}
                           {username[index]}

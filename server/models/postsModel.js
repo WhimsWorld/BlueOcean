@@ -10,6 +10,8 @@ export const getPosts = async (storyId) => {
   sounds.sound_url,
   gifs.gif_url,
   characters.char_name,
+  characters.sound_id as char_sound_id,
+  char_sounds.sound_url as char_sound_url,
   char_images.image_url AS char_image_url
 FROM
   posts
@@ -29,6 +31,10 @@ LEFT JOIN
   characters
 ON
   posts.char_id = characters.char_id
+LEFT JOIN
+  sounds AS char_sounds
+ON
+  characters.sound_id = char_sounds.sound_id
 LEFT JOIN
   images AS char_images
 ON
@@ -137,13 +143,16 @@ export const addPost = async (
   imageId,
   narratorPost,
   content,
+  charId,
 ) => {
+  console.log("what is char_id", charId);
   const query = `
-  INSERT INTO posts (story_id, created_by_user_id, gif_id, sound_id, narrator_image_id, narrator_post, content)
-  VALUES ($1, $2, $3, $4, $5, $6, $7)
-  RETURNING *;
+    INSERT INTO posts (story_id, created_by_user_id, gif_id, sound_id, narrator_image_id, narrator_post, content, char_id)
+    VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
+    RETURNING *;
   `;
-  const values = [storyId, userId, gifId, soundId, imageId, narratorPost, content];
+  const values = [storyId, userId, gifId, soundId, imageId, narratorPost, content, charId];
+
   const response = await executeQuery(query, values);
 
   return response.rows[0];

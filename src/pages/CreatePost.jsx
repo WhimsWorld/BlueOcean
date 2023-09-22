@@ -24,6 +24,7 @@ export default function CreatePost() {
   const [gifs, setGifs] = useState([]);
   const [sounds, setSounds] = useState([]);
   const [content, setContent] = useState('');
+  const [charID, setCharID] = useState('');
   const [selectedImage, setSelectedImage] = useState('');
   const [selectedSound, setSelectedSound] = useState('');
   const [selectedGif, setSelectedGif] = useState('');
@@ -42,6 +43,20 @@ export default function CreatePost() {
   useEffect(() => {
     setIsChecked(switchState);
   }, [switchState]);
+
+  useEffect(() => {
+    const dataParams = {
+      params: {
+        storyID,
+        userID,
+      },
+    };
+    axios.get('/api/characters/story/user', dataParams)
+      .then((characterData) => {
+        setCharID(characterData.data.char_id);
+      })
+      .catch(() => console.log('couldnt fetch characters'));
+  }, [storyID, userID]);
 
   useEffect(() => {
     const dataParams = {
@@ -108,6 +123,7 @@ export default function CreatePost() {
         gifId: selectedGif || null,
         narratorPost: switchState,
         content,
+        char_id: charID,
       })
         .then((response) => {
           if (response.status === 201) {

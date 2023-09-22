@@ -46,7 +46,7 @@ export const getNarrator = async (req, res) => {
 
 export const addPost = async (req, res) => {
   const {
-    story_id, created_by_user_id, imageId, gifId, soundId, narratorPost, content,
+    story_id, created_by_user_id, imageId, gifId, soundId, narratorPost, content, char_id,
   } = req.body;
   try {
     await postsModel.addPost(
@@ -57,6 +57,7 @@ export const addPost = async (req, res) => {
       imageId,
       narratorPost,
       content,
+      char_id,
     );
     res.sendStatus(201);
   } catch (err) {

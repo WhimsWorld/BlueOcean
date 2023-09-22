@@ -26,6 +26,20 @@ export const getCharactersByStoryId = async (storyId) => {
   return result.rows;
 };
 
+export const getCharactersByStoryIdUserId = async (storyId, userId) => {
+  const query = `
+    SELECT characters.*, images.image_url, sounds.sound_url
+    FROM characters
+    LEFT JOIN images ON characters.image_id = images.image_id
+    LEFT JOIN sounds ON characters.sound_id = sounds.sound_id
+    WHERE characters.story_id = $1
+    AND characters.user_id = $2;
+  `;
+  const values = [storyId, userId];
+  const result = await executeQuery(query, values);
+  return result.rows[0];
+};
+
 export const addCharacter = async (characterData) => {
   // console.log('charcter data', characterData);
   const {
