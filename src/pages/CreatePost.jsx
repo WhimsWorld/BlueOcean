@@ -265,7 +265,11 @@ export default function CreatePost() {
             {switchState ? (
               <div style={{ height: isChecked ? '300px' : null }}>
                 {isChecked ? (
-                  <ImagesMenu images={images} setSelectedImage={setSelectedImage} />
+                  <ImagesMenu
+                    images={images}
+                    selectedImage={selectedImage}
+                    setSelectedImage={setSelectedImage}
+                  />
                 ) : null}
               </div>
             ) : null}
