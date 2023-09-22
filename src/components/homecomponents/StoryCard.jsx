@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import Cookies from 'js-cookie';
 
 import {
   Card,
@@ -27,11 +26,11 @@ export default function StoryCard({
   const storyId = story.story_id;
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const [color, setColor] = useState(likedStories[story.story_id] ? 'red' : 'white');
+  const [color, setColor] = useState(likedStories[story.story_id] ? '#F9A03F' : 'white');
 
   useEffect(() => {
     if (likedStories[story.story_id]) {
-      setColor('red');
+      setColor('#F9A03F');
     } else {
       setColor('white');
     }
@@ -44,11 +43,11 @@ export default function StoryCard({
 
   const likeClickHandler = () => {
     if (loggedIn) {
-      const isLiked = color === 'red';
+      const isLiked = color === '#F9A03F';
 
       const data = {
         storyId: story.story_id,
-        userId: loggedIn, // logged in contains info of user currently logged in
+        userId: loggedIn,
       };
 
       if (isLiked) {
@@ -57,16 +56,16 @@ export default function StoryCard({
           .delete('api/deletelike', { data })
           .then((response) => {
             setLikedStories(response.data);
-            setLikeUpdate((prev) => !prev); // Toggle the state
+            setLikeUpdate((prev) => !prev);
           })
           .catch(() => {});
       } else {
-        setColor('red');
+        setColor('#F9A03F');
         axios
           .post('api/postlike', data)
           .then((response) => {
             setLikedStories(response.data);
-            setLikeUpdate((prev) => !prev); // Toggle the state
+            setLikeUpdate((prev) => !prev);
           })
           .catch(() => {});
       }
@@ -97,7 +96,7 @@ export default function StoryCard({
             <IconButton
               onClick={likeClickHandler}
               size="sm"
-              color={color}
+              style={{color: color}}
               variant="text"
               className="!absolute top-4 right-4 rounded-full"
             >
