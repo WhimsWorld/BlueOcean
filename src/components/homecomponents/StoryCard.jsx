@@ -103,10 +103,6 @@ export default function StoryCard({
   </div>
 </div>
 
-
-
-
-        <div className="text-blue-gray" style={{ position: 'absolute', top: '20px', left: story.like_count > 10 ? '655px' : '665px' }}>{story.like_count}</div>
         <Typography color="gray">
           {dateFormat(story.date_created)}
         </Typography>
