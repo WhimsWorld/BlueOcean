@@ -213,7 +213,12 @@ export default function StorySection() {
           ) : null }
           <div key={post.post_id} className="w-full flex-row p-2 mt-4 shadow-lg justify-between items-center justify-self-center bg-cover" style={{ width: '98%', backgroundImage: `url(${cardBG})`, clipPath: 'polygon(100% 2%, 68% 2%, 75% 0, 83% 2%, 90% 2%, 100% 0, 100% 16%, 100% 34%, 99% 53%, 98% 74%, 100% 100%, 83% 99%, 72% 98%, 63% 100%, 54% 98%, 44% 100%, 36% 100%, 30% 98%, 17% 99%, 7% 98%, 0 100%, 1% 71%, 0 43%, 1% 2%, 9% 2%, 18% 0, 31% 2%, 48% 0)' }}>
             <div style={{ display: 'flex', justifyContent: 'center' }}>
-              <Card className="flex flex-col p-2 self-start w-5/6 m-0 p-0" style={{ height: 'auto', width: '200%', backgroundImage: `url(${cardBG})`, background: 'no-repeat', clipPath: 'polygon(100% 2%, 68% 2%, 75% 0, 83% 2%, 90% 2%, 100% 0, 100% 16%, 100% 34%, 99% 53%, 98% 74%, 100% 100%, 83% 99%, 72% 98%, 63% 100%, 54% 98%, 44% 100%, 36% 100%, 30% 98%, 17% 99%, 7% 98%, 0 100%, 1% 71%, 0 43%, 1% 2%, 9% 2%, 18% 0, 31% 2%, 48% 0)' }}>
+              <Card
+                className="flex flex-col p-2 self-start w-5/6 m-0 p-0"
+                style={{
+                  height: 'auto', width: '200%', backgroundImage: `url(${cardBG})`, background: 'no-repeat', clipPath: 'polygon(100% 2%, 68% 2%, 75% 0, 83% 2%, 90% 2%, 100% 0, 100% 16%, 100% 34%, 99% 53%, 98% 74%, 100% 100%, 83% 99%, 72% 98%, 63% 100%, 54% 98%, 44% 100%, 36% 100%, 30% 98%, 17% 99%, 7% 98%, 0 100%, 1% 71%, 0 43%, 1% 2%, 9% 2%, 18% 0, 31% 2%, 48% 0)',
+                }}
+              >
                 {/* This card body is responsible for what is located on an story post card */}
                 <CardBody>
                   {/* controls font color */}
@@ -230,15 +235,39 @@ export default function StorySection() {
                         )
                         : null}
                     </div>
+                    {post.narrator_post && (
+                    <div
+                      style={{ display: 'flex', justifyContent: 'left', fontFamily: 'serif' }}
+                      className="mt-4"
+                    >
+                      The Narrator Continued the Story...
+                    </div>
+                    )}
+
                     {post.narrator_post === false
                       ? (
                         <>
-                          <div style={{ display: 'flex', justifyContent: 'center' }}>
+                          <div style={{ display: 'flex', justifyContent: 'left' }}>
                             <p style={{ fontFamily: 'serif', marginBottom: '5px' }}>
                               {post.char_name}
                             </p>
                           </div>
-                          <div style={{ display: 'flex', justifyContent: 'center' }}>
+                          <div
+                            style={{
+                              fontFamily: 'serif', maxWidth: '150px',
+                            }}
+                            className="text-sm text-[#666]"
+                          >
+                            by
+                            {' '}
+                            {post.username}
+                            {' '}
+                            on
+                            {' '}
+
+                            {new Date(post.date_created).toLocaleString()}
+                          </div>
+                          <div style={{ display: 'flex', justifyContent: 'left' }}>
                             <br />
                             {post.char_image_url
                               ? (
@@ -247,13 +276,18 @@ export default function StorySection() {
                                   alt={post.char_id}
                                   style={{ maxWidth: '100px', maxHeight: '100px' }}
                                   size="l"
+                                  className="hover:cursor-pointer mt-4"
                                   onClick={() => playAudio2(`https://docs.google.com/uc?export=open&id=${post.char_sound_url}`)}
                                 />
                               )
-                              : null}
+                              : (
+                                null
+                              )}
                           </div>
                         </>
-                      ) : null }
+                      ) : (
+                        null
+                      )}
 
                     <br />
                     {/* parent container for the character image and username */}
@@ -335,20 +369,13 @@ export default function StorySection() {
                             />
                           )
                           : null}
-                        <p style={{
-                          fontFamily: 'serif', marginBottom: '5px', marginTop: '5px', marginLeft: '10px', maxWidth: '150px',
-                        }}
-                        >
-                          on
-                          {' '}
-                          {dateFormat(post.date_created)}
-                        </p>
                       </div>
                     </div>
                     <Button
                       size="md"
                       onClick={() => playAudio(`https://docs.google.com/uc?export=open&id=${post.sound_url}`)}
                       style={{ backgroundImage: `url(${buttonBG})`, backgroundSize: 'auto', opacity: 0.8 }}
+                      className="mt-4"
                     >
                       Play Sound
                     </Button>
