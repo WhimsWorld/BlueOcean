@@ -271,7 +271,8 @@ export default function StorySection() {
                         {post.gif_url
                           ? (
                             <img
-                              onMouseEnter={() => playAudio(`https://docs.google.com/uc?export=open&id=${post.sound_url}`)}
+                              onClick={() => playAudio(`https://docs.google.com/uc?export=open&id=${post.sound_url}`)}
+                              className="hover:cursor-pointer"
                               src={post.gif_url}
                               alt={post.gif_id}
                               style={{
