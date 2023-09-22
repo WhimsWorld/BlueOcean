@@ -199,6 +199,7 @@ export default function CreatePost() {
             <Textarea
               label="Content"
               value={content}
+              color="teal"
               onChange={(e) => setContent(e.target.value)}
               className="font-croissant"
               style={{ backgroundColor: 'white' }}
