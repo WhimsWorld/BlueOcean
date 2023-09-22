@@ -46,7 +46,7 @@ export default function SelectCharacter({ storyId }) {
         backgroundRepeat: 'round',
       }}
     >
-      <span className="self-center pt-5 pb-3 underline font-body font-2x">Characters</span>
+      <span style={{fontSize: '20px'}} className="font-croissant self-center pt-5 pb-3 underline font-body">Characters</span>
       <List className="p-1 ">
 
         {characters.map((character) => (
