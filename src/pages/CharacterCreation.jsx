@@ -31,6 +31,7 @@ export default function CharacterCreation({ storyBoardURL }) {
   const [images, setImages] = useState(['https://previews.123rf.com/images/aalbedouin/aalbedouin1801/aalbedouin180100599/93976760-personality-traits-icon-symbol-premium-quality-isolated-personal-character-element-in-trendy-style.jpg', 'https://previews.123rf.com/images/aalbedouin/aalbedouin1801/aalbedouin180100599/93976760-personality-traits-icon-symbol-premium-quality-isolated-personal-character-element-in-trendy-style.jpg', 'https://previews.123rf.com/images/aalbedouin/aalbedouin1801/aalbedouin180100599/93976760-personality-traits-icon-symbol-premium-quality-isolated-personal-character-element-in-trendy-style.jpg', 'https://previews.123rf.com/images/aalbedouin/aalbedouin1801/aalbedouin180100599/93976760-personality-traits-icon-symbol-premium-quality-isolated-personal-character-element-in-trendy-style.jpg', 'https://previews.123rf.com/images/aalbedouin/aalbedouin1801/aalbedouin180100599/93976760-personality-traits-icon-symbol-premium-quality-isolated-personal-character-element-in-trendy-style.jpg', 'https://previews.123rf.com/images/aalbedouin/aalbedouin1801/aalbedouin180100599/93976760-personality-traits-icon-symbol-premium-quality-isolated-personal-character-element-in-trendy-style.jpg', 'https://previews.123rf.com/images/aalbedouin/aalbedouin1801/aalbedouin180100599/93976760-personality-traits-icon-symbol-premium-quality-isolated-personal-character-element-in-trendy-style.jpg', 'https://previews.123rf.com/images/aalbedouin/aalbedouin1801/aalbedouin180100599/93976760-personality-traits-icon-symbol-premium-quality-isolated-personal-character-element-in-trendy-style.jpg', 'https://previews.123rf.com/images/aalbedouin/aalbedouin1801/aalbedouin180100599/93976760-personality-traits-icon-symbol-premium-quality-isolated-personal-character-element-in-trendy-style.jpg', 'https://previews.123rf.com/images/aalbedouin/aalbedouin1801/aalbedouin180100599/93976760-personality-traits-icon-symbol-premium-quality-isolated-personal-character-element-in-trendy-style.jpg', 'https://previews.123rf.com/images/aalbedouin/aalbedouin1801/aalbedouin180100599/93976760-personality-traits-icon-symbol-premium-quality-isolated-personal-character-element-in-trendy-style.jpg', 'https://previews.123rf.com/images/aalbedouin/aalbedouin1801/aalbedouin180100599/93976760-personality-traits-icon-symbol-premium-quality-isolated-personal-character-element-in-trendy-style.jpg']);
   const [sounds, setSounds] = useState([]);
   const [selectedSound, setSelectedSound] = useState(false);
+
   const [audio] = useState(new Audio());
   const [loggedIn, setLoggedIn] = useState(Cookies.get('userId'));
 
@@ -72,6 +73,32 @@ export default function CharacterCreation({ storyBoardURL }) {
   }, []);
 
   useEffect(() => {
+    const dataParams = {
+      params: {
+        storyID,
+      },
+    };
+    axios.get('/api/category', dataParams)
+      .then((categoryData) => {
+        if (categoryData.data.category_id === 1) {
+          setBackgroundURL(fantasyBG);
+        } else if (categoryData.data.category_id === 2) {
+          setBackgroundURL(forestBG);
+        } else if (categoryData.data.category_id === 3) {
+          setBackgroundURL(pirateBG);
+        } else if (categoryData.data.category_id === 4) {
+          setBackgroundURL(cloudBG);
+        } else {
+          setBackgroundURL(cloudBG);
+        }
+      })
+      .catch(() => console.log('couldnt fetch category'));
+  }, [storyID]);
+
+  useEffect(() => {
+  }, [backgroundURL]);
+
+  useEffect(() => {
     axios.get('/api/sounds')
       .then((soundData) => {
         setSounds(soundData.data);
@@ -104,6 +131,7 @@ export default function CharacterCreation({ storyBoardURL }) {
       alert('Please create selections for all fields. Sounds are optional!');
     }
   }
+
 
   const clickHandler = (imageId) => {
     setCharacterIcon(imageId === characterIcon ? null : imageId);
@@ -235,6 +263,7 @@ export default function CharacterCreation({ storyBoardURL }) {
       setStr((str) => [...str, e.target.value]);
     }
   };
+
 
   const chooseStrength10 = (e) => {
     isCheckedS10 ? setIsCheckedS10(false) : setIsCheckedS10(true);
@@ -368,6 +397,7 @@ export default function CharacterCreation({ storyBoardURL }) {
   };
 
   return (
+
     <div className="h-max bg-cover bg-fixed" style={{ backgroundImage: `url(${characterCreationBg})`}}>
       <StickyNavbar loggedIn={loggedIn} setLoggedIn={setLoggedIn} />
       <div
@@ -391,6 +421,7 @@ export default function CharacterCreation({ storyBoardURL }) {
           shadow={false}
         >
           <Typography variant="h4" color="blue-gray" className="font-logo" style={{ marginTop: '2em', fontSize: '32px' }}>
+
             Character Creation
           </Typography>
           <form className="mt-4 mb-2 max-w-screen-2xl sm:w-full lg:w-3/4 xl:w-2/3 mx-auto">
@@ -727,6 +758,7 @@ export default function CharacterCreation({ storyBoardURL }) {
             </div>
 
             <div style={{ display: 'flex', justifyContent: 'center', margin: 'auto', marginBottom: '5em' }}>
+
               <Button
                 className="text-lg shadow-gray hover-shadow-sm hover:shadow-black hover:text-whimsidarkblue"
                 style={{
@@ -753,3 +785,4 @@ export default function CharacterCreation({ storyBoardURL }) {
 const buttonBG = 'https://res.cloudinary.com/dnr41r1lq/image/upload/v1695320647/button_mljj6c.png';
 const characterCreationBg = 'https://i.ibb.co/gyfRfm1/pirate-min.png'
 const cardBG = 'https://res.cloudinary.com/dnr41r1lq/image/upload/v1695235263/paper2_kag1pb.jpg';
+

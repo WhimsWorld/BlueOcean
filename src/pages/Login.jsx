@@ -61,15 +61,26 @@ export default function Login() {
           }}
         >
           <Typography variant="h3" color="white" className="font-logo" style={{ fontSize: '48px' }}>
+
             Login
           </Typography>
         </CardHeader>
-        <CardBody className="flex flex-col gap-4">
-          <Input label="Email" size="lg" onChange={(e) => setEmail(e.target.value)} />
-          <Input label="Password" size="lg" onChange={(e) => setPassword(e.target.value)} />
-          {/* <div className="-ml-2.5">
-            <Checkbox label="Remember Me" />
-          </div> */}
+        <CardBody
+          className="flex flex-col gap-4"
+        >
+          <Input
+            label="Email"
+            size="lg"
+            onChange={
+              (e) => setEmail(e.target.value)}
+          />
+          <Input
+            type="password"
+            label="Password"
+            size="lg"
+            onChange={
+              (e) => setPassword(e.target.value)}
+          />
         </CardBody>
         <CardFooter className="pt-0">
           <Button
@@ -82,11 +93,15 @@ export default function Login() {
               backgroundSize: 'cover',
               backgroundRepeat: 'no-repeat',
               backgroundPosition: 'center center',
+
             }}
           >
             Sign in
           </Button>
-          <Typography variant="small" className="mt-6 flex justify-center">
+          <Typography
+            variant="small"
+            className="mt-6 flex justify-center"
+          >
             Don&#39;t have an account?
             <Typography
               as="a"

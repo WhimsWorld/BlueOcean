@@ -7,8 +7,10 @@ import {
   CardBody,
   Typography,
   Button,
+  Avatar,
 
 } from '@material-tailwind/react';
+import axios from 'axios';
 import { fetchPostsById } from '../../app/slices/postsSlice';
 import { fetchStoryById } from '../../app/slices/storySlice';
 
@@ -23,6 +25,24 @@ export default function StorySection() {
   const [userIsNarrator, setUserIsNarrator] = useState(false);
   const storyData = useSelector((state) => state.story.storyData);
   const [loggedIn, setLoggedIn] = useState(Cookies.get('userId'));
+  const [username, setUsername] = useState([]);
+  console.log('posts', posts);
+
+  const findUsername = async (userID) => {
+    axios.get(`/api/users/${userID}`)
+      .then((results) => {
+        // console.log('username found', results.data.username);
+        setUsername([...username, results.data.username]);
+      })
+      .catch((err) => console.log('err', err));
+  };
+  useEffect(() => {
+    console.log('post length', posts.length);
+    for (let i = 0; i < posts.length; i += 1) {
+      findUsername(posts[i].created_by_user_id);
+    }
+  }, [posts]);
+  console.log('all usernames', username);
 
   const clickHandler = (id) => {
     if (loggedIn) {
@@ -82,7 +102,8 @@ export default function StorySection() {
               backgroundImage: `url(${buttonBG})`,
               backgroundSize: '150%',
               opacity: '0.8',
-              width: '90%',
+              width: '50%',
+              margin: 'auto',
             }}
           >
             Create Character Post
@@ -90,7 +111,8 @@ export default function StorySection() {
         )
           : (
             <p>
-              Your character just went on an adventure.  Please wait until the next round to post again.
+              Your character just went on an adventure.
+              Please wait until the next round to post again.
             </p>
           ) }
         {userLastPosted === false && userIsNarrator === true ? (
@@ -132,16 +154,17 @@ export default function StorySection() {
       </div>
       {posts.map((post, index) => (
         <>
-
           {posts.length - 1 === index ? (
             <div>
-              <h1 id="recent"> </h1>
+              {/* <h1 id="recent"> </h1> // what does this do? */}
             </div>
           ) : null }
           <div key={post.post_id} className="w-full flex-row p-2 mt-4 shadow-lg justify-between items-center justify-self-center bg-cover" style={{ width: '98%', backgroundImage: `url(${cardBG})`, clipPath: 'polygon(100% 2%, 68% 2%, 75% 0, 83% 2%, 90% 2%, 100% 0, 100% 16%, 100% 34%, 99% 53%, 98% 74%, 100% 100%, 83% 99%, 72% 98%, 63% 100%, 54% 98%, 44% 100%, 36% 100%, 30% 98%, 17% 99%, 7% 98%, 0 100%, 1% 71%, 0 43%, 1% 2%, 9% 2%, 18% 0, 31% 2%, 48% 0)' }}>
             <div style={{ display: 'flex', justifyContent: 'center' }}>
               <Card className="mt-6 w-96" style={{ width: '96%', backgroundImage: `url(${cardBG})` }}>
+                {/* This card body is responsible for what is located on an story post card */}
                 <CardBody>
+                  {/* controls font color */}
                   <Typography variant="h5" color="blue-gray" className="mb-2">
                     <div style={{ display: 'flex', justifyContent: 'center' }}>
                       {post.narrator_image_url
@@ -149,6 +172,8 @@ export default function StorySection() {
                           <img
                             src={post.narrator_image_url}
                             alt={post.narrator_image_id}
+                            className="h-96 object-contain m-0 object-cover"
+                            style={{height: '40vh', width: '100%', borderRadius: '25px' }}
                           />
                         )
                         : null}
@@ -165,11 +190,12 @@ export default function StorySection() {
                             <br />
                             {post.char_image_url
                               ? (
-                              <img
-                                src={post.char_image_url}
-                                alt={post.char_id}
-                                style={{ maxWidth: '100px', maxHeight: '100px' }}
-                              />
+                                <img
+                                  src={post.char_image_url}
+                                  alt={post.char_id}
+                                  style={{ maxWidth: '100px', maxHeight: '100px' }}
+                                  size="l"
+                                />
                               )
                               : null}
                           </div>
@@ -177,44 +203,96 @@ export default function StorySection() {
                       ) : null }
 
                     <br />
+                    {/* parent container for the character image and username */}
                     <div style={{
-                      fontFamily: 'serif',
-                      fontSize: '18px',
                       display: 'flex',
+                      flexDirection: 'row',
+                      overflowWrap: 'break-word',
+                      // overflowY: 'scroll',
+                      gap: '0',
+                      margin: '0',
+                      padding: '0',
+                      position: 'relative',
                       alignItems: 'flex-start',
                     }}
                     >
-                      <div style={{ marginLeft: '10px' }}>
-                        <div style={{
-                          fontSize: '36px',
-                          marginRight: '10px',
-                          padding: '5px',
-                          backgroundImage: `url(${initialLetter})`,
-                          backgroundSize: '55px',
-                          color: '#2A0134',
-                          border: '2px solid #2A0134',
-                          float: 'left',
+                      {/* This div is responsible for the text of the title/body of post */}
+                      <div
+                        style={{
+                          fontFamily: 'serif',
+                          fontSize: '18px',
+                          display: 'flex',
+                          alignItems: 'flex-start',
+                          maxWidth: '60%',
+                          width: '100%',
+                          maxHeight: '50vh',
+                          height: 'auto',
+                          margin: '0',
+                          padding: '0',
+                          textWrap: 'wrap',
+                          overflowY: 'scroll',
+                          wordBreak: 'break-all',
                         }}
-                        >
-                          {post.content.charAt(0)}
+                      >
+                        <div style={{ marginLeft: '10px' }}>
+                          <div style={{
+                            fontSize: '36px',
+                            marginRight: '0',
+                            padding: '0',
+                            backgroundImage: `url(${initialLetter})`,
+                            backgroundSize: '55px',
+                            color: '#2A0134',
+                            border: '2px solid #2A0134',
+                            float: 'left',
+                          }}
+                          >
+                            {post.content.charAt(0)}
+                          </div>
+                          <p style={{ display: 'inline' }}>{post.content.slice(1)}</p>
                         </div>
-                        <p style={{ display: 'inline' }}>{post.content.slice(1)}</p>
                       </div>
-                    </div>
-                    <br />
-                    {/* <audio className="player" controls preload="none">
-                  <source src={`https://docs.google.com/uc?export=open&id=${post.sound_url}`} type="audio/mp3" />
-                </audio> */}
-                    <div style={{ display: 'flex', justifyContent: 'center' }}>
-                      {post.gif_url
-                        ? (
-                          <img
-                            onMouseEnter={() => playAudio(`https://docs.google.com/uc?export=open&id=${post.sound_url}`)}
-                            src={post.gif_url}
-                            alt={post.gif_id}
-                          />
-                        )
-                        : null}
+                      <br />
+                      {/* <audio className="player" controls preload="none">
+                    <source src={`https://docs.google.com/uc?export=open&id=${post.sound_url}`} type="audio/mp3" />
+                  </audio> */}
+
+                      {/* This div is responsible for the character icon  */}
+                      <div style={{
+                        display: 'flex',
+                        justifyContent: 'flex-end',
+                        alignItems: 'flex-end',
+                        flexDirection: 'column',
+                        paddingTop: '0',
+                        marginTop: '0',
+                      }}
+                      >
+                        {post.gif_url
+                          ? (
+                            <img
+                              onMouseEnter={() => playAudio(`https://docs.google.com/uc?export=open&id=${post.sound_url}`)}
+                              src={post.gif_url}
+                              alt={post.gif_id}
+                              style={{
+                                height: 'auto',
+                                width: '40%',
+                                maxWidth: '40%',
+                                margin: '0',
+                                padding: '0',
+                              }}
+                            />
+                          )
+                          : null}
+                        <p style={{ fontFamily: 'serif', marginBottom: '5px', marginTop: '5px', marginLeft: '10px', maxWidth: '150px' }}>
+                          by
+                          {' '}
+                          {username[index]}
+                          {' '}
+                          on
+                          {' '}
+
+                          {new Date(post.date_created).toLocaleString()}
+                        </p>
+                      </div>
                     </div>
                     <Button
                       size="md"
@@ -223,16 +301,7 @@ export default function StorySection() {
                     >
                       Play Sound
                     </Button>
-                    <p style={{ fontFamily: 'serif', marginBottom: '5px', marginTop: '5px' }}>
-                      by
-                      {' '}
-                      {post.created_by_user_id}
-                      {' '}
-                      on
-                      {' '}
 
-                      {new Date(post.date_created).toLocaleString()}
-                    </p>
                   </Typography>
                 </CardBody>
               </Card>

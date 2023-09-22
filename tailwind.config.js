@@ -21,6 +21,8 @@ export default withMT({
       fontFamily: {
         norican: ['Norican', 'cursive'],
         poiret: ['Poiret One', 'cursive'],
+        croissant: ['Croissant One', 'cursive'],
+        merienda: ['Merienda', 'cursive'],
       },
       colors: {
         whimsipink: '#F4E3ED',
@@ -28,6 +30,9 @@ export default withMT({
         whimsihotpink: '#DE369D',
         whimsilightblue: '#7B8CDE',
         whimsiorange: '#F9A03F',
+      },
+      backgroundColor: {
+        papercolor: '#faf4e3',
       },
     },
   },

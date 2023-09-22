@@ -15,9 +15,10 @@ export const getCharactersByUserId = async (userId) => {
 
 export const getCharactersByStoryId = async (storyId) => {
   const query = `
-    SELECT characters.*, images.image_url
+    SELECT characters.*, images.image_url, sounds.sound_url
     FROM characters
     LEFT JOIN images ON characters.image_id = images.image_id
+    LEFT JOIN sounds ON characters.sound_id = sounds.sound_id
     WHERE characters.story_id = $1;
   `;
   const values = [storyId];

@@ -77,7 +77,7 @@ export default function Leaderboard({ leaderboard }) {
                 // className={`after:content-[${entry.thumbnail_url}]`}
                 style={{ width: 50, height: 50, overflow: 'hidden' }}
               />
-              <div className="absolute h-full w-full inset-0" style={{ backgroundImage: `url(${entry.thumbnail_url})` }} />
+              <div className="absolute h-full w-full inset-0 bg-cover" style={{ backgroundImage: `url(${entry.thumbnail_url})` }} />
             </ListItemPrefix>
             <div>
               <Typography variant="h6" color="blue-gray">

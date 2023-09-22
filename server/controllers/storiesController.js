@@ -44,6 +44,16 @@ export const getCategories = async (req, res) => {
   }
 };
 
+export const getCategory = async (req, res) => {
+  const { storyID } = req.query;
+  try {
+    const category = await storiesModel.getCategory(storyID);
+    res.json(category);
+  } catch (err) {
+    res.status(500).send('Error retrieving stories');
+  }
+};
+
 export const getLeaderboard = async (req, res) => {
   try {
     const leaderboard = await storiesModel.getLeaderboard();

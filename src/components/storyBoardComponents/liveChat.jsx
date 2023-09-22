@@ -49,7 +49,8 @@ export default function LiveChat({ storyId }) {
         maxWidth: '320px', backgroundImage: `url(${rightPanel})`, backgroundRepeat: 'round', justifySelf: 'end',
       }}
     >
-      <div className="chat-messages overflow-y-auto h-96 mt-8">
+      <h1><b>Live Chat</b></h1>
+      <div className="chat-messages overflow-y-auto h-96 mt-8" style={{border: '1px solid rgba(131, 105, 83, 0.2)', borderRadius: '25px', background: 'rgba(255, 255, 255, 0.6)'}}>
         {chatMessages.map((msg) => (
           <div key={msg.message_id} className={`${msg.user_id === userId ? 'ml-16' : ''}`}>
             <div className="user text-sm ml-2">
@@ -71,13 +72,14 @@ export default function LiveChat({ storyId }) {
           rows={1}
           resize
           placeholder="Share your thoughts..."
-          className="min-h-full !border-0 focus:border-transparent "
+          className="min-h-full !border-0 focus:border-transparent"
           containerProps={{
             className: 'grid h-full',
           }}
           labelProps={{
             className: 'before:content-none after:content-none',
           }}
+          style={{resize: 'none'}}
         />
         <div>
           <IconButton variant="text" className="rounded-full" onClick={handleSendMessage}>
