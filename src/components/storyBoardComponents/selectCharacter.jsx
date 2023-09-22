@@ -72,7 +72,7 @@ export default function SelectCharacter({ storyId }) {
                   <b>Race:</b>
                 </Typography>
                 <Typography variant="small" color="gray" className="font-normal">
-                  {character.char_race ? character.char_race : 'none listed'}
+                  {character.char_race ? character.char_race : 'unknown'}
                 </Typography>
               </div>
 
@@ -81,7 +81,7 @@ export default function SelectCharacter({ storyId }) {
                   <b>Gender:</b>
                 </Typography>
                 <Typography variant="small" color="gray" className="font-normal">
-                  {character.char_sex ? character.char_sex : 'none listed'}
+                  {character.char_sex ? character.char_sex : 'unknown'}
                 </Typography>
               </div>
 
@@ -90,7 +90,7 @@ export default function SelectCharacter({ storyId }) {
                   <b>Strength:</b>
                 </Typography>
                 <Typography variant="small" color="gray" className="font-normal">
-                  {character.strength && character.strength !== '{}' ? parseSWString(character.strength).join(', ') : 'none listed'}
+                  {character.strength && character.strength !== '{}' ? parseSWString(character.strength).join(', ') : 'unknown'}
                 </Typography>
               </div>
 
@@ -99,7 +99,7 @@ export default function SelectCharacter({ storyId }) {
                   <b>Weakness:</b>
                 </Typography>
                 <Typography variant="small" color="gray" className="font-normal">
-                  {character.weakness && character.weakness !== '{}' ? parseSWString(character.weakness).join(', ') : 'none listed'}
+                  {character.weakness && character.weakness !== '{}' ? parseSWString(character.weakness).join(', ') : 'unknown'}
                 </Typography>
               </div>
 
