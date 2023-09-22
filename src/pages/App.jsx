@@ -50,7 +50,6 @@ export default function App() {
 
   // used to fetch all likes based on user. This prevents additional liking?
   useEffect(() => {
-    console.log(userID);
     const dataParams = {
       params: {
         userId: userID,
@@ -61,7 +60,7 @@ export default function App() {
         setLikedStories(response.data);
       })
       .catch(() => {});
-  }, [userID]);
+  }, [userID, likeUpdate, stories]);
 
   useEffect(() => {
     const dataParams = {
@@ -69,7 +68,7 @@ export default function App() {
         category,
         filter,
         myStoriesFilter,
-        userId: userID, // need to update this later
+        userId: userID,
       },
     };
     axios.get('/api/stories', dataParams)

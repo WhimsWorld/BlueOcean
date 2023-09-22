@@ -139,11 +139,19 @@ export const addPost = async (
   content,
 ) => {
   const query = `
-    INSERT INTO posts (story_id, created_by_user_id, gif_id, sound_id, narrator_image_id, narrator_post, content)
-    VALUES ($1, $2, $3, $4, $5, $6, $7)
-    RETURNING *;
-  `;
+  INSERT INTO posts (story_id, created_by_user_id, gif_id, sound_id, narrator_image_id, narrator_post, content, char_id)
+  SELECT $1, $2, $3, $4, $5, $6, $7,
+         CASE
+             WHEN $6 = false THEN characters.char_id
+             ELSE NULL
+         END
+  FROM characters
+  WHERE characters.user_id = $2
+    AND characters.story_id = $1
+    AND $6 = false
+  RETURNING *;
 
+  `;
   const values = [storyId, userId, gifId, soundId, imageId, narratorPost, content];
   const response = await executeQuery(query, values);
 

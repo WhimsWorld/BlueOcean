@@ -48,7 +48,7 @@ export default function Search({
         size="sm"
         disabled={!search}
         onClick={submitHandler}
-        className="!absolute right-1 top-1 rounded"
+        className="!absolute right-1 top-1 rounded font-croissant"
         style={{ backgroundColor: '#101A4B', color: 'white', fontWeight: 'bold', opacity: 1 }}
       >
         Search

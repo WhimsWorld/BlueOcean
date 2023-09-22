@@ -32,10 +32,10 @@ export default function Leaderboard({ leaderboard }) {
         : entry.summary;
       const content = (
         <div>
-          <Typography variant="h6" color="blue-gray" style={{ textDecoration: 'underline' }}>
+          <Typography className="font-croissant" variant="h6" color="blue-gray" style={{ textDecoration: 'underline' }}>
             Description:
           </Typography>
-          <Typography variant="p2" color="blue-gray">
+          <Typography className="font-Karla" variant="p2" color="blue-gray">
             {summary}
           </Typography>
         </div>
@@ -56,7 +56,7 @@ export default function Leaderboard({ leaderboard }) {
 
   return (
     <Card style={{ maxWidth: '320px', backgroundImage: `url(${rightPanel})`, backgroundRepeat: 'round' }} className="h-full rounded-none rounded-r-xl">
-      <span className="self-center pt-5">All Time Top 10</span>
+      <span className="font-semibold font-croissant underline self-center pt-5">All Time Top 10</span>
       <List>
         {leaderboard.map((entry) => (
           <ListItem
@@ -80,7 +80,7 @@ export default function Leaderboard({ leaderboard }) {
               <div className="absolute h-full w-full inset-0 bg-cover" style={{ backgroundImage: `url(${entry.thumbnail_url})` }} />
             </ListItemPrefix>
             <div>
-              <Typography variant="h6" color="blue-gray">
+              <Typography className="font-croissant" variant="h6" color="blue-gray">
                 {entry.title}
               </Typography>
             </div>

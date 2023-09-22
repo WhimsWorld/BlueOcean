@@ -16,9 +16,18 @@ export default function SoundsMenu({ sounds, setSelectedSound }) {
   return (
     <Menu>
       <MenuHandler>
-        <Button style={{
-          backgroundImage: `url(${buttonBG})`, backgroundSize: 'auto', fontSize: '14px', color: 'white', width: '260px', marginLeft: '20px',
-        }}
+        <Button
+          className="w-1/2 self center font-croissant shadow-gray hover-shadow-sm hover:shadow-black"
+          style={{
+            backgroundImage: `url(${buttonBG})`,
+            backgroundSize: 'cover',
+            backgroundRepeat: 'no-repeat',
+            backgroundPosition: 'center center',
+            fontSize: '14px',
+            color: 'white',
+            width: '260px',
+            marginLeft: '20px',
+          }}
         >
           Select a Sound
         </Button>

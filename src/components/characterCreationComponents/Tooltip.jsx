@@ -12,7 +12,8 @@ export default function Tooltip({ text, children }) {
         {children}
       </div>
       {isVisible && (
-        <div style={{ position: 'absolute', width: '300px', top: '100%', left: 0, background: 'white', color: '#696969', padding: '5px', borderRadius: '10px', zIndex: 1 }}>
+        <div className='font-Merriweather'
+        style={{ position: 'absolute', width: '300px', top: '100%', left: 0, background: 'white', color: '#696969', padding: '5px', borderRadius: '10px', zIndex: 1 }}>
           {text}
         </div>
       )}

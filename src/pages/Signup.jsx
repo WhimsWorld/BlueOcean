@@ -101,7 +101,7 @@ export default function Signup() {
             variant="gradient"
             fullWidth
             onClick={toSubmit}
-            className="font-logo text-lg shadow-gray hover-shadow-sm hover:shadow-black hover:text-whimsidarkblue"
+            className="font-logo text-lg shadow-gray hover-shadow-sm hover:shadow-black hover:text-whimsiorange"
             style={{
               backgroundImage: `url(${buttonBG})`,
               backgroundSize: 'cover',

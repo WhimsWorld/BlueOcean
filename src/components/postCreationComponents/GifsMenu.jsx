@@ -13,7 +13,8 @@ export default function GifsMenu({ gifs, selectedGif, setSelectedGif }) {
           key={gif.id}
           src={gif.url}
           style={{
-            border: selectedGif === gif.id ? 'solid 2px #779ecb' : 'solid 2px transparent',
+            border: selectedGif === gif.id ? 'solid 3px #101A4B' : 'solid 3px transparent',
+            cursor: 'pointer',
           }}
           size="lg"
           onClick={() => clickHandler(gif.id)}
