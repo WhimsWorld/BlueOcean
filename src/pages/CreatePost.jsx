@@ -32,6 +32,7 @@ export default function CreatePost() {
   const storyId = useSelector((state) => state.story.storyId);
   const [userID, setUserID] = useState(Cookies.get('userId'));
   const [loggedIn, setLoggedIn] = useState(Cookies.get('userId'));
+  const [audio] = useState(new Audio());
 
   useEffect(() => {
     setSelectedImage(null);
@@ -102,8 +103,21 @@ export default function CreatePost() {
     isChecked ? setIsChecked(false) : setIsChecked(true);
   };
 
+  const playAudio = (soundUrl) => {
+    audio.src = soundUrl;
+    audio.play();
+  };
+
   return (
-    <div className="h-100%" style={{ backgroundImage: `url(${right})` }}>
+    <div
+      className="h-100%"
+      style={{
+        backgroundImage: `url(${right})`,
+        backgroundSize: 'cover',
+        backgroundRepeat: 'no-repeat',
+        backgroundPosition: 'center center',
+      }}
+    >
       <StickyNavbar loggedIn={loggedIn} setLoggedIn={setLoggedIn} />
       <div
         className="min-h-screen"
@@ -132,7 +146,7 @@ export default function CreatePost() {
             </Typography>
             {checkNarrator ? (
               <div className="flex w-max gap-4">
-                <Switch label="Narrator Post" style={{ backgroundColor: switchState ? '#98BAD5' : 'white' }} checked={switchState} onChange={handleSwitchToggle} />
+                <Switch label="Narrator Post" style={{ backgroundColor: switchState ? '#101A4B' : 'white' }} checked={switchState} onChange={handleSwitchToggle} />
               </div>
             ) : null}
           </div>
@@ -155,12 +169,29 @@ export default function CreatePost() {
                 </Typography>
                 <GifsMenu gifs={gifs} selectedGif={selectedGif} setSelectedGif={setSelectedGif} />
               </div>
-              <div style={{ display: 'flex', flexDirection: 'column', width: '400px' }}>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '30px', width: '400px', alignItems: 'center' }}>
                 <SoundsMenu style={{ marginLeft: '30px' }} sounds={sounds} setSelectedSound={setSelectedSound} />
-                {selectedSound.url !== undefined ? (
-                  <audio className="player" controls preload="none">
-                    <source src={`https://docs.google.com/uc?export=open&id=${selectedSound.url}`} type="audio/mp3" />
-                  </audio>
+                {selectedSound ? (
+                  <div style={{ display: 'flex', alignItems: 'center' }}>
+                    <button
+                      onClick={() => playAudio(`https://docs.google.com/uc?export=open&id=${selectedSound.url}`)}
+                      type="button"
+                      style={{
+                        background: 'transparent',
+                        border: 'none',
+                        cursor: 'pointer',
+                      }}
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 384 512"
+                        style={{ width: '30px', height: '30px', marginRight: '5px', fill: '#101A4B' }} // Add fill property here
+                      >
+                        <path d="M73 39c-14.8-9.1-33.4-9.4-48.5-.9S0 62.6 0 80V432c0 17.4 9.4 33.4 24.5 41.9s33.7 8.1 48.5-.9L361 297c14.3-8.7 23-24.2 23-41s-8.7-32.2-23-41L73 39z" />
+                      </svg>
+                    </button>
+                    <span>Play Sound</span>
+                  </div>
                 ) : null}
               </div>
             </div>
@@ -178,11 +209,9 @@ export default function CreatePost() {
                 </Typography>
                 <div style={{ marginTop: '-6px', marginLeft: '10px' }}>
                   <Checkbox
-                    label="Include Image"
-                    color="indigo"
                     checked={isChecked}
                     onClick={clickHandler}
-                    style={{ backgroundColor: isChecked ? '#98BAD5' : 'white' }}
+                    style={{ backgroundColor: isChecked ? '#101A4B' : 'white', border: isChecked ? 'none' : '' }}
                   />
                 </div>
               </div>
@@ -221,4 +250,4 @@ export default function CreatePost() {
 
 const buttonBG = 'https://res.cloudinary.com/dnr41r1lq/image/upload/v1695229025/bronzetexture_cc3urf.webp';
 const cardBG = 'https://res.cloudinary.com/dnr41r1lq/image/upload/v1695235263/paper2_kag1pb.jpg';
-const right = 'https://res.cloudinary.com/dnr41r1lq/image/upload/v1695192325/image_uot0j6.png';
+const right = 'https://i.ibb.co/WD1GS22/cave-min.png';

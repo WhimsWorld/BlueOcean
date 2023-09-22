@@ -26,10 +26,10 @@ export default function SoundsMenu({ sounds, setSelectedSound }) {
       <MenuList className="max-h-96">
         {sounds.map((sound) => (
           <MenuItem
-            key={sound.id}
+            key={sound.name}
             onClick={() => clickHandler(sound)}
           >
-            {sound.id}
+            {sound.name}
           </MenuItem>
         ))}
       </MenuList>
