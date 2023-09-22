@@ -84,7 +84,7 @@ export default function Landing() {
       <div className="relative flex items-center h-full w-5/6 mx-auto">
         <div className="max-w-2xl mb-8">
           <h1 className="text-4xl font-norican leading-snug tracking-tight text-white lg:text-4xl lg:leading-tight xl:text-6xl xl:leading-tight">
-            WhimsWorld
+            WhimsiWorld
           </h1>
           <p className="py-5 text-xl font-poiret leading-normal text-gray-300 lg:text-xl xl:text-2xl dark:text-gray-300">
             A web application that brings the magic of interactive storytelling to life.
@@ -94,7 +94,7 @@ export default function Landing() {
             onClick={navtoHome}
             className="flex flex-col bg-whimsidarkblue items-start space-y-3 sm:space-x-4 sm:space-y-0 sm:items-center sm:flex-row"
           >
-            Enter WhimsWorld
+            Enter WhimsiWorld
           </Button>
         </div>
       </div>

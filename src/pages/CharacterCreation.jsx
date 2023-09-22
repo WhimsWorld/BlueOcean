@@ -71,8 +71,7 @@ export default function CharacterCreation({ storyBoardURL }) {
       .catch((err) => console.log(err));
   }
 
-  function mouseOver(e) {
-    e.target.style.background = 'blue';
+  function avatarClickHandler(e) {
     setCharacterIcon(e.target.id);
   }
 
@@ -101,10 +100,16 @@ export default function CharacterCreation({ storyBoardURL }) {
   };
 
   return (
-    <div className="h-max bg-cover bg-fixed" style={{backgroundImage: `url(${characterCreationBg})`}}>
+    <div className="h-max bg-cover bg-fixed" style={{ backgroundImage: `url(${characterCreationBg})` }}>
       <StickyNavbar />
       <div className="" style={{ display: 'flex', justifyContent: 'center', height: '100%' }}>
-        <Card style={{ alignItems: 'center', width: '50%', margin: 'auto', height: 'max-content' }} color="transparent" shadow={false}>
+        <Card
+          style={{
+            alignItems: 'center', width: '50%', margin: 'auto', height: 'max-content',
+          }}
+          color="transparent"
+          shadow={false}
+        >
           <Typography variant="h4" color="blue-gray">
             Character Creation
           </Typography>
@@ -166,13 +171,15 @@ export default function CharacterCreation({ storyBoardURL }) {
             <div>
               {images && images.map((image, index) => (
                 <>
-                  {index % 6 === 0 && <br />}
-                  <Avatar src={image.image_url} id={image.image_id} alt="avatar" size="lg" onClick={(e) => mouseOver(e)} key={index} />
+                  {index % 5 === 0 && <br />}
+                  {characterIcon == image.image_id
+                    ? <Avatar src={image.image_url} id={image.image_id} alt="avatar" className="border border-green-500 shadow-xl shadow-green-900/20 ring-4 ring-green-500/30"size="xl" style={{ cursor: 'pointer' }} onClick={(e) => avatarClickHandler(e)} key={image.image_id} />
+                    : <Avatar src={image.image_url} id={image.image_id} alt="avatar" size="xl" style={{ cursor: 'pointer' }} onClick={(e) => avatarClickHandler(e)} key={image.image_id} /> }
                 </>
               ))}
             </div>
             <div style={{ display: 'flex', flexDirection: 'column', width: '400px' }}>
-              <SoundsMenu style={{ marginLeft: '30px'}} sounds={sounds} setSelectedSound={setSelectedSound} />
+              <SoundsMenu style={{ marginLeft: '30px' }} sounds={sounds} setSelectedSound={setSelectedSound} />
               <Button
                 size="md"
                 onClick={() => playAudio(`https://docs.google.com/uc?export=open&id=${selectedSound.sound_url}`)}
@@ -195,7 +202,7 @@ export default function CharacterCreation({ storyBoardURL }) {
   );
 }
 
-//button bg
+// button bg
 const buttonBG = 'https://res.cloudinary.com/dnr41r1lq/image/upload/v1695229025/bronzetexture_cc3urf.webp';
-//background asset
-const characterCreationBg = "https://i.ibb.co/gyfRfm1/pirate-min.png"
+// background asset
+const characterCreationBg = 'https://i.ibb.co/gyfRfm1/pirate-min.png';
