@@ -67,16 +67,16 @@ export default function Leaderboard({ leaderboard }) {
             className="relative bg-white transition-colors duration-300 hover:bg-whimsipink"
 
           >
-            <ListItemPrefix className="relative">
-              <Avatar
+            <Avatar
                 variant="circular"
                 alt="candice"
                 src={entry.thumbnail_url}
                 // src="https://res.cloudinary.com/dnr41r1lq/image/upload/v1695227750/whimsibubble_ch5qpw.png"
                 // className={`before:bg-${entry.thumbnail_url}`}
                 // className={`after:content-[${entry.thumbnail_url}]`}
-                style={{ width: 50, height: 50, overflow: 'hidden' }}
+                style={{ width: 50, height: 50, marginRight:'10px' }}
               />
+            <ListItemPrefix className="relative">
               <div className="absolute h-full w-full inset-0 bg-cover" style={{ backgroundImage: `url(${entry.thumbnail_url})` }} />
             </ListItemPrefix>
             <div>
