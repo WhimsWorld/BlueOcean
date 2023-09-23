@@ -99,7 +99,7 @@ export default function SelectCharacter({ storyId }) {
         backgroundRepeat: 'round',
       }}
     >
-      <span style={{ fontSize: '20px' }} className="font-croissant self-center pt-5 pb-3 underline font-body">Characters</span>
+      <span style={{ fontSize: '20px' }} className="font-croissant self-center pt-5 pb-3 underline font-body"><b>Characters</b></span>
       <List className="p-1 ">
 
         {characters.map((character) => (
@@ -118,43 +118,44 @@ export default function SelectCharacter({ storyId }) {
                 }}
                 variant="h6"
                 color="blue-gray"
+                className="font-croissant"
               >
                 {character.char_name}
 
               </Typography>
 
               <div className="">
-                <Typography variant="small" color="gray" className="font-normal">
+                <Typography variant="small" color="gray" className="font-croissant">
                   <b>Race:</b>
                 </Typography>
-                <Typography variant="small" color="gray" className="font-normal">
+                <Typography variant="small" color="gray" className="font-serif">
                   {character.char_race ? character.char_race : 'unknown'}
                 </Typography>
               </div>
 
               <div className="">
-                <Typography variant="small" color="gray" className="font-normal">
+                <Typography variant="small" color="gray" className="font-croissant">
                   <b>Gender:</b>
                 </Typography>
-                <Typography variant="small" color="gray" className="font-normal">
+                <Typography variant="small" color="gray" className="font-serif">
                   {character.char_sex ? character.char_sex : 'unknown'}
                 </Typography>
               </div>
 
               <div className="">
-                <Typography variant="small" color="gray" className="font-normal">
+                <Typography variant="small" color="gray" className="font-croissant">
                   <b>Strength:</b>
                 </Typography>
-                <Typography variant="small" color="gray" className="font-normal">
+                <Typography variant="small" color="gray" className="font-serif">
                   {character.strength && character.strength !== '{}' ? parseSWString(character.strength).join(', ') : 'unknown'}
                 </Typography>
               </div>
 
               <div className="">
-                <Typography variant="small" color="gray" className="font-normal">
+                <Typography variant="small" color="gray" className="font-croissant">
                   <b>Weakness:</b>
                 </Typography>
-                <Typography variant="small" color="gray" className="font-normal">
+                <Typography variant="small" color="gray" className="font-serif">
                   {character.weakness && character.weakness !== '{}' ? parseSWString(character.weakness).join(', ') : 'unknown'}
                 </Typography>
               </div>
@@ -164,7 +165,7 @@ export default function SelectCharacter({ storyId }) {
                 className="w-96 bg-indigo-100 text-black p-4 text-justify border ml-4"
                 content={character.backstory}
               >
-                <Button variant="text" className="text-left">Read Backstory →</Button>
+                <Button variant="text" className="text-left font-croissant text-whimsilightblue">Read Backstory →</Button>
               </Tooltip>
             </div>
           </ListItem>

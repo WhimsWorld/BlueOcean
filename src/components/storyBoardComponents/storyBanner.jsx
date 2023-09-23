@@ -115,17 +115,22 @@ export default function StoryBanner({ storyId }) {
               src={story.image_url}
               alt={story.title}
               className="h-96 object-contain m-0 object-cover relative"
-              style={{ height: '50vh', maxHeight: '400px', width: '100%', borderRadius: '25px' }}
+              style={{
+                height: '50vh', maxHeight: '400px', width: '100%', borderRadius: '25px',
+              }}
             />
           </div>
           <Typography variant="h4" className="text-xxl font-croissant font-bold">
             {story.title}
           </Typography>
         </div>
-        <Typography color="gray">
+        <Typography
+          color="gray"
+          className="font-serif"
+        >
           {moment(story.date_created).format('MMM Do, YYYY')}
         </Typography>
-        <Typography color="gray" className="text-justify mb-12" style={{ font: 'serif' }}>
+        <Typography color="gray" className="text-justify mb-12 font-serif">
           {story.summary}
         </Typography>
       </CardBody>
