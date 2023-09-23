@@ -10,16 +10,16 @@
 
 
 ## Table of Contents
-[Usage](#Usage)
-[Overview](#Overview)
-[Landing Page](#Landing-Page)
-[Home Page](#Home-Page)
-[Story Page](#Story-Page)
-[Login/Sign up Page](#Login/sign-up-page)
-[Character Creation](#Character-Creation)
-[Create Story](#Create-Story)
-[Create Story Post](#Create-Story-Post)
-[Tech Used](#Tech-used-to-build-the-project)
+- [Usage](#Usage)
+- [Overview](#Overview)
+- [Landing Page](#Landing-Page)
+- [Home Page](#Home-Page)
+- [Story Page](#Story-Page)
+- [Login/Sign up Page](#Login/sign-up-page)
+- [Character Creation](#Character-Creation)
+- [Create Story](#Create-Story)
+- [Create Story Post](#Create-Story-Post)
+- [Tech Used](#Tech-used-to-build-the-project)
 
 
 ## Usage
