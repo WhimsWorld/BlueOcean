@@ -19,7 +19,6 @@ export default function SelectCharacter({ storyId }) {
 
   useEffect(() => {
     dispatch(loadCharactersByUserId(storyId));
-    console.log(characters);
   }, [dispatch]);
   useEffect(() => {
     const dataParams = {
@@ -49,7 +48,6 @@ export default function SelectCharacter({ storyId }) {
   };
 
   const handleCreateCharacter = () => {
-    console.log('logged in in selectChar', loggedIn);
     if (loggedIn) {
       navigate(`/characterCreation/${storyId}`);
     } else {
