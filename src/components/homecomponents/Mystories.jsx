@@ -15,7 +15,7 @@ export default function Mystories({
   return (
     <Checkbox
       label="My Stories"
-      color="sky"
+      color="indigo"
       disabled={showCheck}
       checked={isChecked}
       onClick={clickHandler}
