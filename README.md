@@ -1,5 +1,16 @@
 # BlueOcean
 
+
+## Tech used to build the project
+
+## Team members (Should we include this here? at the end? not at all?)
+- [Kimberly Tom](https://github.com/tomki1)
+- [Frank Soto](https://github.com/frankasoto)
+- [Jack Tobin](https://github.com/luckynumberthirteen)
+- [Jiahou Liu](https://github.com/zulliu)
+- [Taryn Wiedrick](https://github.com/TarynCovert)
+
+
 ## Table of Contents
 [Usage](#Usage)
 [Overview](#Overview)
@@ -11,12 +22,6 @@
 [Create Story](#Create-Story)
 [Create Story Post](#Create-Story-Post)
 
-## Team members (Should we include this here? at the end? not at all?)
-- [Kimberly Tom](https://github.com/tomki1)
-- [Frank Soto](https://github.com/frankasoto)
-- [Jack Tobin](https://github.com/luckynumberthirteen)
-- [Jiahou Liu](https://github.com/zulliu)
-- [Taryn Wiedrick](https://github.com/TarynCovert)
 
 ## Usage
 ### 1. Clone the [repo](https://github.com/WhimsWorld/BlueOcean)
@@ -110,6 +115,14 @@ as the overall layout is designed replicate the feeling of character creation th
 ![character creation](https://github.com/WhimsWorld/BlueOcean/assets/129362652/176d4c39-3f3c-433c-af25-06b3907f5229)
 
 ## Create Story Post
-
+The website is based around the idea of people coming together to build their own fantasy world. To begin their story,
+a user needs to create the initial post. Here, a user will create a title for their story, a summary of what their story will, the max
+number of players/creators(up to 10), a theme for their story and a thumbnail for their story that will shown on the home page.
+The current themes a user can select are High Fantasy, Mystical Forest, Pirates Cove Adventures and Steampunk Cityscapes. Upon
+creation of the initial story post, users will be redirected to their story page.
 
 ## Create Post
+Here a user is able to contribute to the story after they have created a character. The user (if not a narrator)
+will be asked to write their section of the story as well as select a sticker that will display on the post and a
+sound that will play if the sticker is clicked on. If the user happens to be a narrator for the story, they are
+given the additonal option of selecting an additional image to set the stage for what is to come.
