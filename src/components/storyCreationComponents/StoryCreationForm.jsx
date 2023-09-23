@@ -210,7 +210,7 @@ export default function StoryCreationForm() {
   };
   return (
     <Card
-      className="w-[66rem] flex p-28 mt-1 shadow-lg justify-between shadow-none items-center justify-self-center bg-cover"
+      className="w-[64rem] flex p-28 mt-1 shadow-lg justify-between shadow-none items-center justify-self-center bg-cover"
       style={{ backgroundImage: `url(${StoryBg})`, backgroundColor: 'transparent' }}
     >
 
