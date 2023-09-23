@@ -43,11 +43,13 @@ export default function Leaderboard({ leaderboard }) {
       setPopoverContent(content);
     }
 
-    const rect = event.target.getBoundingClientRect();
-    setPopoverPosition({
-      top: rect.top + 5 + window.scrollY,
-      left: 0,
-    });
+    const rect = event ? event.target.getBoundingClientRect() : null;
+    if (rect) {
+      setPopoverPosition({
+        top: rect.top + 5 + window.scrollY,
+        left: 0,
+      });
+    }
   };
 
   const handleMouseLeave = () => {
