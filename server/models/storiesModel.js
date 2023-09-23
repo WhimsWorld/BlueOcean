@@ -210,3 +210,17 @@ export const getLikes = async (storyId) => {
   const result = await executeQuery(query, values);
   return result.rows;
 };
+
+export const getMaxCharacters = async (storyId) => {
+  const query = 'SELECT max_characters FROM stories WHERE story_id = $1';
+  const values = [storyId];
+  const result = await executeQuery(query, values);
+  return result.rows[0];
+};
+
+export const getCharactersCount = async (storyId) => {
+  const query = 'SELECT COUNT(*) FROM characters WHERE story_id = $1';
+  const values = [storyId];
+  const result = await executeQuery(query, values);
+  return result.rows[0];
+};

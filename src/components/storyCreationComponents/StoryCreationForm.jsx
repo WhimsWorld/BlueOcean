@@ -66,26 +66,33 @@ function MenuWithScrollingContent({
 
 function ThumbnailMenu({ selectedCategory, setSelectedThumbnail }) {
   const [images, setImages] = useState([]);
+  const [filtedimages, setFilteredImages] = useState([]);
+
   const [selectedImageId, setSelectedImageId] = useState(null);
 
   const catList = {
     1: 'High Fantasy', 2: 'Mystical Forest', 3: 'Pirates Cove Adventure', 4: 'Steampunk Cityscape',
   };
   useEffect(() => {
-    axios.get('/api/storythumbnails')
+    axios.get('/api/gifs')
       .then((res) => {
         setImages(res.data);
       })
       .catch((err) => console.log(err));
   }, []);
 
+  useEffect(() => {
+    const filter = images.filter((image) => image.category_id === selectedCategory);
+    setFilteredImages(filter);
+  }, [selectedCategory, images]);
+
   const handleThumbnailClick = (image) => {
     setSelectedThumbnail({
-      thumbnail_url: image.thumbnail_url,
-      thumbnail_id: image.thumbnail_id,
+      gif_url: image.gif_url,
+      gif_id: image.gif_id,
       category_id: image.category_id,
     });
-    setSelectedImageId(image.thumbnail_id);
+    setSelectedImageId(image.gif_id);
   };
 
   return (
@@ -94,21 +101,19 @@ function ThumbnailMenu({ selectedCategory, setSelectedThumbnail }) {
         Select Thumbnail
       </Typography>
       {' '}
-      <div className="flex gap-4">
-        {images.map((image) => (
-          <div key={image.thumbnail_id + image.thumbnail_url}>
-            <Tooltip content={catList[image.thumbnail_id]}>
-              <Avatar
-                className={`max-h-12 cursor-pointer ${selectedImageId === image.thumbnail_id ? 'bg-gray-500 bg-opacity-50' : ''}`} // Apply border if selected
-                onClick={() => handleThumbnailClick(image)}
-                alt=""
-                src={image.thumbnail_url}
-              />
-
-            </Tooltip>
+      <div className="flex flex-wrap">
+        {filtedimages.map((image) => (
+          <div key={image.gif_id + image.gif_url} className="w-1/6">
+            <Avatar
+              className={`max-h-12 cursor-pointer ${selectedImageId === image.gif_id ? 'bg-gray-500 bg-opacity-50' : ''}`}
+              onClick={() => handleThumbnailClick(image)}
+              alt=""
+              src={image.gif_url}
+            />
           </div>
         ))}
       </div>
+
     </div>
   );
 }
@@ -123,7 +128,7 @@ function CategoryMenu({ setSelectedCategory }) {
       <Typography style={{ fontSize: '20px' }} variant="h6" color="blue-gray" className="mb-4 font-croissant">
         Select Categories
       </Typography>
-      <Select label="Categories..." color="teal" style={{backgroundColor: '#FFFFFF3A'}}>
+      <Select label="Categories..." color="teal" style={{ backgroundColor: '#FFFFFF3A' }}>
         {categories.map((category) => (
           <Option
             key={category}
@@ -143,9 +148,10 @@ export default function StoryCreationForm() {
   const [summary, setSummary] = useState('');
   const [maxPlayers, setMaxPlayers] = useState('');
   const [selectedThumbnail, setSelectedThumbnail] = useState({});
-  const [selectedCategory, setSelectedCategory] = useState('');
+  const [selectedCategory, setSelectedCategory] = useState(1);
   const [images, setImages] = useState([]);
   const [selectedImage, setSelectedImage] = useState({});
+  const [errorMessage, setErrorMessage] = useState('');
 
   useEffect(() => {
     axios.get('/api/storyimages')
@@ -171,6 +177,9 @@ export default function StoryCreationForm() {
     e.preventDefault();
     e.stopPropagation();
     fetchUser();
+
+    setErrorMessage('');
+
     if (title === '') {
       document.getElementById('setTitle').focus();
     } else if (summary === '') {
@@ -178,6 +187,7 @@ export default function StoryCreationForm() {
     } else if (maxPlayers === '') {
       document.getElementById('selectPlayers').focus();
     } else if (selectedImage.image_id === undefined) {
+      setErrorMessage('Please select an image before submitting.');
       document.getElementById('selectImage').focus();
     } else if (selectedThumbnail.thumbnail_id === undefined) {
       document.getElementById('selectThumbnail').focus();
@@ -200,7 +210,7 @@ export default function StoryCreationForm() {
   };
   return (
     <Card
-      className="w-[60rem] flex p-28 mt-1 shadow-lg justify-between shadow-none items-center justify-self-center bg-cover"
+      className="w-[64rem] flex p-28 mt-1 shadow-lg justify-between shadow-none items-center justify-self-center bg-cover"
       style={{ backgroundImage: `url(${StoryBg})`, backgroundColor: 'transparent' }}
     >
 
@@ -214,7 +224,7 @@ export default function StoryCreationForm() {
             size="lg"
             label="Story Title"
             value={title}
-            style={{backgroundColor: '#FFFFFF3A'}}
+            style={{ backgroundColor: '#FFFFFF3A' }}
             onChange={(e) => setTitle(e.target.value)}
             color="teal"
           />
@@ -223,7 +233,7 @@ export default function StoryCreationForm() {
             variant="outlined"
             label="Summary"
             value={summary}
-            style={{backgroundColor: '#FFFFFF3A'}}
+            style={{ backgroundColor: '#FFFFFF3A' }}
             onChange={(e) => setSummary(e.target.value)}
             color="teal"
           />
@@ -235,7 +245,7 @@ export default function StoryCreationForm() {
             max="10"
             value={maxPlayers}
             className="w-60"
-            style={{backgroundColor: '#FFFFFF3A'}}
+            style={{ backgroundColor: '#FFFFFF3A' }}
             color="teal"
             onChange={(e) => setMaxPlayers(e.target.value)}
           />
@@ -246,13 +256,18 @@ export default function StoryCreationForm() {
         <Button
           size="md"
           style={{ backgroundImage: `url(${buttonBG})`, backgroundSize: 'auto' }}
-          className="shadow-gray hover-shadow-sm hover:shadow-black hover:text-whimsiorange"
+          className="shadow-gray hover-shadow-sm hover:shadow-black hover:text-whimsiorange mb-12 mt-4"
           type="submit"
           onClick={handleSubmit}
         >
           Create
         </Button>
       </form>
+      { errorMessage && (
+        <Typography color="red" className="mb-4 font-serif">
+          {errorMessage}
+        </Typography>
+      )}
     </Card>
   );
 }

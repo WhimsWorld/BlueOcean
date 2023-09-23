@@ -76,12 +76,12 @@ export default function LiveChat({ storyId }) {
       >
         {chatMessages.map((msg) => (
           <div key={msg.message_id} className={`${msg.user_id === userId ? 'ml-16' : ''}`}>
-            <div className="user text-sm ml-2">
+            <div className="user text-sm ml-2 font-croissant text-gray-500">
               {msg.username}
               {' '}
               {new Date(msg.date_created).toLocaleTimeString()}
             </div>
-            <div className={`${msg.user_id === userId ? 'bg-whimsipink ' : 'bg-white'} border rounded-md m-1 p-2 px-4 w-44 text-black`}>
+            <div className={`${msg.user_id === userId ? 'bg-whimsipink ' : 'bg-white'} border rounded-md m-1 p-2 px-4 w-44 text-black font-serif`}>
               {msg.data}
             </div>
           </div>
@@ -94,7 +94,7 @@ export default function LiveChat({ storyId }) {
           rows={1}
           resize
           placeholder="Share your thoughts..."
-          className="min-h-full !border-0 focus:border-transparent mx-auto"
+          className="min-h-full !border-0 focus:border-transparent font-croissant mx-auto"
           containerProps={{
             className: 'grid h-full',
           }}

@@ -48,6 +48,7 @@ async function createServer() {
   // story creation
   app.get('/api/storyimages', createStoryController.getAllThemeImages);
   app.get('/api/storythumbnails', createStoryController.getAllThumbnailImages);
+  app.get('/api/gifs', createStoryController.getAllGifs);
   app.post('/api/stories', createStoryController.addStory);
 
   // select stories
@@ -62,6 +63,8 @@ async function createServer() {
   app.post('/api/postlike', storiesController.postLikedStory);
   app.delete('/api/deletelike', storiesController.deleteLikedStory);
   app.get('/api/likes/:storyId', storiesController.getLikesByStoryId);
+  app.get('/api/storiescharmax', storiesController.getMaxCharacters);
+  app.get('/api/storiescharcount', storiesController.getCharactersCount);
 
   // story posts
   app.get('/api/posts/:storyId', postsController.getPosts);
