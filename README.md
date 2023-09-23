@@ -1,7 +1,8 @@
 # BlueOcean
 
 ## Table of Contents
-
+* TOC
+{:toc}
 - [Usage](#Usage)
 - [Overview](#Overview)
 - [Landing Page](#Landing-Page)
