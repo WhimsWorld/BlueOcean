@@ -7,7 +7,7 @@ export default function CreateStory() {
   const [loggedIn, setLoggedIn] = useState(Cookies.get('userId'));
 
   return (
-    <div className="h-screen bg-cover min-h-[80rem]" style={{ backgroundImage: `url(${storyCreationBg})` }}>
+    <div className="h-screen bg-cover min-h-[86rem]" style={{ backgroundImage: `url(${storyCreationBg})` }}>
       <StickyNavbar
         loggedIn={loggedIn}
         setLoggedIn={setLoggedIn}

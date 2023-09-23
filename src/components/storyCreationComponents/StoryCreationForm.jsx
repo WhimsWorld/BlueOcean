@@ -105,7 +105,7 @@ function ThumbnailMenu({ selectedCategory, setSelectedThumbnail }) {
         {filtedimages.map((image) => (
           <div key={image.gif_id + image.gif_url} className="w-1/6">
             <Avatar
-              className={`max-h-12 cursor-pointer ${selectedImageId === image.gif_id ? 'bg-gray-500 bg-opacity-50' : ''}`}
+              className={`max-h-12 cursor-pointer shadow-md hover:shadow-black ${selectedImageId === image.gif_id ? 'bg-gray-500 bg-opacity-50 shadow-black' : ''}`}
               onClick={() => handleThumbnailClick(image)}
               alt=""
               src={image.gif_url}
@@ -119,20 +119,25 @@ function ThumbnailMenu({ selectedCategory, setSelectedThumbnail }) {
 }
 
 function CategoryMenu({ setSelectedCategory }) {
-  const categories = ['High Fantasy', 'Mystic Forest', 'Pirates Cove', 'Steampunk Cityscape'];
+  const categories = ['High Fantasy', 'Mystical Forest', 'Pirates Cove Adventure', 'Steampunk Cityscape'];
   const categoryKey = {
-    'High Fantasy': 1, 'Mystic Forest': 2, 'Pirates Cove': 3, 'Steampunk Cityscape': 4,
+    'High Fantasy': 1, 'Mystical Forest': 2, 'Pirates Cove Adventure': 3, 'Steampunk Cityscape': 4,
   };
+  const [selectedValue, setSelectedValue] = useState('High Fantasy');
   return (
     <div className="w-60">
       <Typography style={{ fontSize: '20px' }} variant="h6" color="blue-gray" className="mb-4 font-croissant">
         Select Categories
       </Typography>
-      <Select label="Categories..." color="teal" style={{ backgroundColor: '#FFFFFF3A' }}>
+      <Select label="Categories..." color="teal" style={{ backgroundColor: '#FFFFFF3A' }} value={selectedValue}>
         {categories.map((category) => (
           <Option
             key={category}
-            onClick={() => setSelectedCategory(categoryKey[category])}
+            value={category}
+            onClick={() => {
+              setSelectedCategory(categoryKey[category]);
+              setSelectedValue(category);
+            }}
             className="font-merienda"
           >
             {category}
@@ -151,7 +156,7 @@ export default function StoryCreationForm() {
   const [selectedCategory, setSelectedCategory] = useState(1);
   const [images, setImages] = useState([]);
   const [selectedImage, setSelectedImage] = useState({});
-  const [errorMessage, setErrorMessage] = useState('');
+  const [errorMessage, setErrorMessage] = useState(false);
 
   useEffect(() => {
     axios.get('/api/storyimages')
@@ -177,8 +182,7 @@ export default function StoryCreationForm() {
     e.preventDefault();
     e.stopPropagation();
     fetchUser();
-
-    setErrorMessage('');
+    setErrorMessage(false);
 
     if (title === '') {
       document.getElementById('setTitle').focus();
@@ -187,9 +191,8 @@ export default function StoryCreationForm() {
     } else if (maxPlayers === '') {
       document.getElementById('selectPlayers').focus();
     } else if (selectedImage.image_id === undefined) {
-      setErrorMessage('Please select an image before submitting.');
-      document.getElementById('selectImage').focus();
-    } else if (selectedThumbnail.thumbnail_id === undefined) {
+      setErrorMessage(true);
+    } else if (selectedThumbnail.gif_id === undefined) {
       document.getElementById('selectThumbnail').focus();
     } else if (selectedCategory === '') {
       document.getElementById('selectCategory').focus();
@@ -211,7 +214,7 @@ export default function StoryCreationForm() {
   };
   return (
     <Card
-      className="w-[64rem] flex p-28 mt-1 shadow-lg justify-between shadow-none items-center justify-self-center bg-cover"
+      className="w-[66rem] flex p-28 mt-1 shadow-lg justify-between shadow-none items-center justify-self-center bg-cover"
       style={{ backgroundImage: `url(${StoryBg})`, backgroundColor: 'transparent' }}
     >
 
@@ -254,6 +257,10 @@ export default function StoryCreationForm() {
           <MenuWithScrollingContent id="selectImage" images={images} selectedCategory={selectedCategory} selectedImage={selectedImage} setSelectedImage={setSelectedImage} />
           <ThumbnailMenu id="selectThumbnail" selectedCategory={selectedCategory} setSelectedThumbnail={setSelectedThumbnail} />
         </div>
+        <Typography color="red" className="font-serif" style={{ minHeight: '16px', height: '16px' }}>
+          {errorMessage ? 'Please select an image before submitting.' : ''}
+        </Typography>
+
         <Button
           size="md"
           style={{ backgroundImage: `url(${buttonBG})`, backgroundSize: 'auto' }}
@@ -263,12 +270,8 @@ export default function StoryCreationForm() {
         >
           Create
         </Button>
+
       </form>
-      { errorMessage && (
-        <Typography color="red" className="mb-4 font-serif">
-          {errorMessage}
-        </Typography>
-      )}
     </Card>
   );
 }
