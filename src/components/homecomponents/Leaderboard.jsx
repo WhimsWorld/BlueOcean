@@ -35,7 +35,7 @@ export default function Leaderboard({ leaderboard }) {
           <Typography className="font-croissant" variant="h6" color="blue-gray" style={{ textDecoration: 'underline' }}>
             Description:
           </Typography>
-          <Typography className="font-Karla" variant="p2" color="blue-gray">
+          <Typography className="font-Karla" color="blue-gray">
             {summary}
           </Typography>
         </div>
