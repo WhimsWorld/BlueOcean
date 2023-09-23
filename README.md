@@ -1,8 +1,6 @@
 # BlueOcean
 
 
-## Tech used to build the project
-
 ## Team members (Should we include this here? at the end? not at all?)
 - [Kimberly Tom](https://github.com/tomki1)
 - [Frank Soto](https://github.com/frankasoto)
@@ -21,6 +19,7 @@
 [Character Creation](#Character-Creation)
 [Create Story](#Create-Story)
 [Create Story Post](#Create-Story-Post)
+[Tech Used](#Tech-used-to-build-the-project)
 
 
 ## Usage
@@ -137,3 +136,12 @@ given the additonal option of selecting an additional image to set the stage for
 
 ![story post as narrator](https://github.com/WhimsWorld/BlueOcean/assets/129362652/f3014461-e588-48a1-b9ce-dec5fc7671de)
 
+
+## Tech used to build the project
+![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E)
+![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
+![Vite](https://img.shields.io/badge/Vite-646CFF.svg?style=for-the-badge&logo=Vite&logoColor=white)
+![FireBase](https://img.shields.io/badge/Firebase-FFCA28.svg?style=for-the-badge&logo=Firebase&logoColor=black)
+![NodeJS](https://img.shields.io/badge/node.js-6DA55F?style=for-the-badge&logo=node.js&logoColor=white)
+![Express.js](https://img.shields.io/badge/express.js-%23404d59.svg?style=for-the-badge&logo=express&logoColor=%2361DAFB)
+![Axios](https://img.shields.io/badge/Axios-5A29E4.svg?style=for-the-badge&logo=Axios&logoColor=white)
