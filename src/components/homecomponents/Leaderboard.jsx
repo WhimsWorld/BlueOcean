@@ -20,6 +20,7 @@ export default function Leaderboard({ leaderboard }) {
   const clickHandler = (id) => {
     dispatch(setStory(id));
     navigate(`/storyBoard/${id}`);
+    window.scrollTo(0, 0);
   };
 
   const [popoverContent, setPopoverContent] = useState(null);
