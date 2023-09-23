@@ -87,7 +87,7 @@ export default function CharacterCreation({ storyBoardURL }) {
         } else if (categoryData.data.category_id === 3) {
           setBackgroundURL(pirateBG);
         } else if (categoryData.data.category_id === 4) {
-          setBackgroundURL(cloudBG);
+          setBackgroundURL(steampunkBG);
         } else {
           setBackgroundURL(cloudBG);
         }
@@ -804,5 +804,5 @@ const cardBG = 'https://res.cloudinary.com/dnr41r1lq/image/upload/v1695235263/pa
 const fantasyBG = 'https://i.ibb.co/5r2KVVz/cave-min.png';
 const forestBG = 'https://i.ibb.co/HdrwtLm/forest-min.png';
 const pirateBG = 'https://i.ibb.co/0j5zyGz/pirate-min.png';
-const steampunkBG = 'https://res.cloudinary.com/dnr41r1lq/image/upload/v1695192325/image_uot0j6.png';
+const steampunkBG = 'https://i.ibb.co/cc8Z860/steampunk.png';
 const cloudBG = 'https://res.cloudinary.com/dnr41r1lq/image/upload/v1695192325/image_uot0j6.png';
