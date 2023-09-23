@@ -8,6 +8,9 @@
 ## Usage
 
 ### 1. Clone the [repo](https://github.com/WhimsWorld/BlueOcean)
+```bash
+git clone https://github.com/WhimsWorld/BlueOcean.git
+```
 ### 2. CD into the file directory
 ```bash
 cd BlueOcean/
