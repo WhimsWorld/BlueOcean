@@ -18,6 +18,15 @@ export const getAllThumbnailImages = async (req, res) => {
   }
 };
 
+export const getAllGifs = async (req, res) => {
+  try {
+    const images = await createStoryModel.getGifs();
+    res.json(images);
+  } catch (err) {
+    res.status(500).send('Error retrieving thumbnail images.');
+  }
+};
+
 export const addStory = async (req, res) => {
   try {
     const story = await createStoryModel.createStory(req.body);

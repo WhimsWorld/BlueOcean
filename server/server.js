@@ -48,6 +48,7 @@ async function createServer() {
   // story creation
   app.get('/api/storyimages', createStoryController.getAllThemeImages);
   app.get('/api/storythumbnails', createStoryController.getAllThumbnailImages);
+  app.get('/api/gifs', createStoryController.getAllGifs);
   app.post('/api/stories', createStoryController.addStory);
 
   // select stories
