@@ -31,7 +31,7 @@ export default function Categories({
         width: '240px',
       }}
     >
-      <span style={{fontSize: '20px'}} className="font-croissant self-center pt-5 pb-3 underline font-body font-2x">Themes</span>
+      <span style={{ fontSize: '20px' }} className="font-croissant self-center pt-5 pb-3 underline font-body font-2x"><b>Themes</b></span>
       <List className="min-w-[0] gap-3 font-poiret font-semibold">
         {categories.map((categoryEntry, i) => (
           <ListItem
