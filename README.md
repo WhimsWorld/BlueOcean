@@ -1,4 +1,4 @@
-# BlueOcean
+# WhimsiWorld Blue Ocean Project
 
 
 ## Team members (Should we include this here? at the end? not at all?)
