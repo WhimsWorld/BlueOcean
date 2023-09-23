@@ -11,9 +11,9 @@ import {
 
 } from '@material-tailwind/react';
 import axios from 'axios';
+import moment from 'moment';
 import { fetchPostsById } from '../../app/slices/postsSlice';
 import { fetchStoryById } from '../../app/slices/storySlice';
-import moment from 'moment';
 
 export default function StorySection() {
   const location = useLocation();
@@ -191,7 +191,7 @@ export default function StorySection() {
           )}
       </div>
       {posts.map((post, index) => (
-        <div key={post.post_id}>
+        <>
           {posts.length - 1 === index ? (
             <div>
               {/* <h1 id="recent"> </h1> // what does this do? */}
@@ -215,7 +215,7 @@ export default function StorySection() {
                             src={post.narrator_image_url}
                             alt={post.narrator_image_id}
                             className="mb-6 h-96 object-contain m-0 object-cover"
-                            style={{ height: '40vh', maxHeight: '00px', width: '100%', borderRadius: '25px' }}
+                            style={{ height: '40vh', maxHeight: '300px', width: '100%', borderRadius: '25px' }}
                           />
                         )
                         : null}
@@ -238,18 +238,18 @@ export default function StorySection() {
                     )}
                     {post.narrator_post === false
                       ? (
-                        <div className="flex items-center gap-4 justify-between">
-                          <div className="flex items-center">
-                            {post.char_image_url && (
-                              <Avatar
-                                src={post.char_image_url}
-                                alt={post.char_id}
-                                size="xxl"
-                                className={post.char_sound_url ? 'hover:cursor-pointer' : 'none'}
-                                onClick={() => playAudio2(`https://docs.google.com/uc?export=open&id=${post.char_sound_url}`)}
-                              />
-                            )}
-                            <div className="flex flex-col ml-4">
+                        <div className="flex items-center gap-4">
+                          {post.char_image_url && (
+                            <Avatar
+                              src={post.char_image_url}
+                              alt={post.char_id}
+                              size="xxl"
+                              className={post.char_sound_url ? 'hover:cursor-pointer' : 'none'}
+                              onClick={() => playAudio2(`https://docs.google.com/uc?export=open&id=${post.char_sound_url}`)}
+                            />
+                          )}
+                          <div className="flex items-center justify-between">
+                            <div className="flex flex-col">
                               <Typography style={{ fontSize: '28px' }} className="mb-2 text-lg font-croissant font-medium">
                                 {post.char_name}
                               </Typography>
@@ -265,8 +265,6 @@ export default function StorySection() {
                                 on {moment(post.date_created).format('MMM Do, YYYY')}
                               </div>
                             </div>
-                          </div>
-                          <div className="flex items-center">
                             {post.gif_url && post.sound_url ? (
                               <Avatar
                                 onClick={() => playAudio(`https://docs.google.com/uc?export=open&id=${post.sound_url}`)}
@@ -278,8 +276,9 @@ export default function StorySection() {
                             ) : null}
                           </div>
                         </div>
-                      )
-                      : null}
+                      ) : (
+                        null
+                      )}
                     <br />
                   </Typography>
                   <div
@@ -297,7 +296,7 @@ export default function StorySection() {
               </Card>
             </div>
           </div>
-        </div>
+        </>
       ))}
     </>
   );
