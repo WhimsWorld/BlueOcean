@@ -41,7 +41,6 @@ export const getCharactersByStoryIdUserId = async (storyId, userId) => {
 };
 
 export const addCharacter = async (characterData) => {
-  // console.log('charcter data', characterData);
   const {
     story_id, user_id, image_id, sound_id, char_name, strength,
     weakness, backstory, characterRace, characterSex,
