@@ -62,7 +62,12 @@ export default function LiveChat({ storyId }) {
         justifySelf: 'end',
       }}
     >
-      <h1 className="font-croissant text-center underline text-2xl mt-6 mb-4">
+      <h1
+        className="font-croissant"
+        style={{
+          textAlign: 'center', textDecoration: 'underline', fontSize: '20px', marginTop: '18px',
+        }}
+      >
         <b>Live Chat</b>
       </h1>
       <div

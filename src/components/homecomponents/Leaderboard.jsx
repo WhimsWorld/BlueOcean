@@ -32,10 +32,10 @@ export default function Leaderboard({ leaderboard }) {
         : entry.summary;
       const content = (
         <div>
-          <Typography className="font-croissant" variant="h6" color="blue-gray" style={{ textDecoration: 'underline' }}>
+          <Typography className="font-croissant" variant="h6" color="gray" style={{ textDecoration: 'underline' }}>
             Description:
           </Typography>
-          <Typography className="font-Karla" color="blue-gray">
+          <Typography className="font-serif" color="gray">
             {summary}
           </Typography>
         </div>
@@ -78,7 +78,7 @@ export default function Leaderboard({ leaderboard }) {
               <div className="absolute h-full w-full inset-0 bg-cover" style={{ backgroundImage: `url(${entry.thumbnail_url})` }} />
             </ListItemPrefix>
             <div>
-              <Typography className="font-croissant" variant="h6" color="blue-gray">
+              <Typography className="font-croissant" variant="h6" color="gray">
                 {entry.title}
               </Typography>
             </div>

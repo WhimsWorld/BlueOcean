@@ -236,49 +236,46 @@ export default function StorySection() {
                         />
                       </div>
                     )}
-                    {post.narrator_post === false
-                      ? (
-                        <div className="flex items-center gap-4">
-                          {post.char_image_url && (
-                            <Avatar
-                              src={post.char_image_url}
-                              alt={post.char_id}
-                              size="xxl"
-                              className={post.char_sound_url ? 'hover:cursor-pointer' : 'none'}
-                              onClick={() => playAudio2(`https://docs.google.com/uc?export=open&id=${post.char_sound_url}`)}
-                            />
-                          )}
-                          <div className="flex items-center justify-between">
-                            <div className="flex flex-col">
-                              <Typography style={{ fontSize: '28px' }} className="mb-2 text-lg font-croissant font-medium">
-                                {post.char_name}
-                              </Typography>
-                              <div
-                                style={{
-                                  fontFamily: 'serif',
-                                  maxWidth: '150px',
-                                }}
-                                className="text-sm text-[#666]"
-                              >
-                                by {post.username}
-                                <br />
-                                on {moment(post.date_created).format('MMM Do, YYYY')}
-                              </div>
+                    {post.narrator_post === false ? (
+                      <div className="flex items-center gap-4">
+                        {post.char_image_url && (
+                          <Avatar
+                            src={post.char_image_url}
+                            alt={post.char_id}
+                            size="xxl"
+                            className={post.char_sound_url ? 'hover:cursor-pointer' : 'none'}
+                            onClick={() => playAudio2(`https://docs.google.com/uc?export=open&id=${post.char_sound_url}`)}
+                          />
+                        )}
+                        <div className="flex items-center justify-between flex-grow">
+                          <div className="flex flex-col">
+                            <Typography style={{ fontSize: '28px' }} className="mb-2 text-lg font-croissant font-medium">
+                              {post.char_name}
+                            </Typography>
+                            <div
+                              style={{
+                                fontFamily: 'serif',
+                                maxWidth: '150px',
+                              }}
+                              className="text-sm text-[#666]"
+                            >
+                              by {post.username}
+                              <br />
+                              on {moment(post.date_created).format('MMM Do, YYYY')}
                             </div>
-                            {post.gif_url && post.sound_url ? (
-                              <Avatar
-                                onClick={() => playAudio(`https://docs.google.com/uc?export=open&id=${post.sound_url}`)}
-                                className="hover:cursor-pointer"
-                                src={post.gif_url}
-                                alt={post.gif_id}
-                                size="md"
-                              />
-                            ) : null}
                           </div>
+                          {post.gif_url && post.sound_url ? (
+                            <Avatar
+                              onClick={() => playAudio(`https://docs.google.com/uc?export=open&id=${post.sound_url}`)}
+                              className="hover:cursor-pointer"
+                              src={post.gif_url}
+                              alt={post.gif_id}
+                              size="md"
+                            />
+                          ) : null}
                         </div>
-                      ) : (
-                        null
-                      )}
+                      </div>
+                    ) : null}
                     <br />
                   </Typography>
                   <div
