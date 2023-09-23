@@ -35,7 +35,8 @@ of their choosing.
 Upon first visiting the website, users are greeted with a fantasy page that gives users a glimpse of what
 the website will provide.
 
-[img goes here]
+![landing page](https://github.com/WhimsWorld/BlueOcean/assets/129362652/9ac0aac0-9589-44e8-9b7d-a394326f2a59)
+
 
 ## Home Page
 Upon entering the website, users will have a chance to view the different stories that groups of other users have written.
@@ -46,7 +47,8 @@ in a redirect to a login page.
 If users are logged in, they will be able to interact further with the homepage by liking stories or even creating their own story,
 which will be discussed further down.
 
-[img of home page goes here]
+![home page](https://github.com/WhimsWorld/BlueOcean/assets/129362652/7265edc6-c5b8-45b7-8a60-9749cc6a2cbb)
+
 
 ## Story page
 Users are able to view any individual story. Here they will be greeted with a list of all
@@ -54,7 +56,8 @@ current characters in the story as well as a live chat bar that refreshes every 
 If a user wants to participate in the chat about the story or wants to help write the story
 by creating their own character, they will be redirected to a login page.
 
-(image of story page goes here)
+![story page](https://github.com/WhimsWorld/BlueOcean/assets/129362652/8e5ee5ff-7a1c-4709-9378-b9f63857f91d)
+
 
 ## Login/sign-up page
 On the sign up page, users sign up by choosing a username and a valid email/password. Upon
@@ -64,7 +67,8 @@ to login from somewhere besides the home page, the user will be redirected back 
 they were on previously to help improve the user experience. As the owner of the site, a list of
 all of the users that have created an account can be viewed in the firebase console.
 
-(image of login page goes here)
+![signup](https://github.com/WhimsWorld/BlueOcean/assets/129362652/33454be2-de72-4c2f-8343-1efe272780c6)
+
 
 ## Character Creation
 At this point, the user is logged in and is engaged and wants to contribute to a story
@@ -74,3 +78,5 @@ change accordingly. The user can select from different races, a character origin
 weaknesses, a character icon as well as a sound that will play when clicking on the character icon
 or on the character portrait that is located on the side of the story page. All of the customization options as well
 as the overall layout is designed replicate the feeling of character creation that can be found in games.
+
+![character creation](https://github.com/WhimsWorld/BlueOcean/assets/129362652/176d4c39-3f3c-433c-af25-06b3907f5229)
