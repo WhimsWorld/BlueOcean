@@ -89,7 +89,10 @@ current characters in the story as well as a live chat bar that refreshes every 
 If a user wants to participate in the chat about the story or wants to help write the story
 by creating their own character, they will be redirected to a login page.
 
-![story page](https://github.com/WhimsWorld/BlueOcean/assets/129362652/8e5ee5ff-7a1c-4709-9378-b9f63857f91d)
+![story page](https://github.com/WhimsWorld/BlueOcean/assets/129362652/8e5ee5ff-7a1c-4709-9378-b9f63857f91d)  
+
+![story page posts](https://github.com/WhimsWorld/BlueOcean/assets/129362652/6c3cf149-9828-4c8a-8a87-a821c4405cda)
+
 
 
 ## Login/sign-up page
@@ -126,3 +129,7 @@ Here a user is able to contribute to the story after they have created a charact
 will be asked to write their section of the story as well as select a sticker that will display on the post and a
 sound that will play if the sticker is clicked on. If the user happens to be a narrator for the story, they are
 given the additonal option of selecting an additional image to set the stage for what is to come.
+![story post as narrator](https://github.com/WhimsWorld/BlueOcean/assets/129362652/043f02c8-ef71-4da3-933b-1f03b1a5c9aa)
+![story post not narrator](https://github.com/WhimsWorld/BlueOcean/assets/129362652/8b2d3771-a927-44d4-82da-ff9c44f7964b)
+
+
