@@ -15,6 +15,9 @@ export default function SelectCharacter({ storyId }) {
   const [audio] = useState(new Audio());
   const [loggedIn, setLoggedIn] = useState(Cookies.get('userId'));
   const [hasCharInStory, setHasCharInStory] = useState(false);
+  const [storyCharLimit, setStoryCharLimit] = useState(1);
+  const [storyCharCount, setStoryCharCount] = useState(0);
+  const [maxCharsReached, setMaxCharsReached] = useState(false);
   const [userID, setUserID] = useState(Cookies.get('userId'));
 
   useEffect(() => {
@@ -37,6 +40,37 @@ export default function SelectCharacter({ storyId }) {
       })
       .catch(() => console.log('couldnt fetch characters'));
   }, [storyId, userID]);
+
+  useEffect(() => {
+    const dataParams = {
+      params: {
+        storyID: storyId,
+      },
+    };
+    axios.get('/api/storiescharmax', dataParams)
+      .then((characterData) => {
+        setStoryCharLimit(characterData.data.max_characters);
+      })
+      .catch(() => console.log('couldnt fetch character limit'));
+  }, [storyId]);
+
+  useEffect(() => {
+    const dataParams = {
+      params: {
+        storyID: storyId,
+      },
+    };
+    axios.get('/api/storiescharcount', dataParams)
+      .then((characterData) => {
+        setStoryCharCount(characterData.data.count);
+        if (characterData.data.count < storyCharLimit) {
+          setMaxCharsReached(false);
+        } else {
+          setMaxCharsReached(true);
+        }
+      })
+      .catch(() => console.log('couldnt fetch character count'));
+  }, [storyId, storyCharLimit]);
 
   function parseSWString(s) {
     return s.replace(/^{|}$/g, '').split(',').map((item) => item.trim().replace(/^"|"$/g, ''));
@@ -136,20 +170,28 @@ export default function SelectCharacter({ storyId }) {
           </ListItem>
         ))}
       </List>
+      <span style={{ fontSize: '15px' }} className="font-croissant pb-3 pt-3 self-center font-body">
+        {storyCharCount}
+        /
+        {storyCharLimit}
+        {' '}
+        characters
+        {' '}
+      </span>
       <CardFooter className="pt-0">
-        {hasCharInStory ? null : (
-          <Button
+        {hasCharInStory || maxCharsReached ? null : (
+          <div className="flex justify-center items-center">
+            <Button
           // fullWidth
           // variant="text"
-            onClick={() => handleCreateCharacter()}
-            style={{ backgroundImage: `url(${buttonBG})`, backgroundSize: 'auto' }}
-            className="shadow-gray hover-shadow-sm hover:shadow-black hover:text-whimsiorange"
-          >
-            Create Character
-
-          </Button>
+              onClick={() => handleCreateCharacter()}
+              style={{ backgroundImage: `url(${buttonBG})`, backgroundSize: 'auto' }}
+              className="shadow-gray hover-shadow-sm hover:shadow-black hover:text-whimsiorange"
+            >
+              Create Character
+            </Button>
+          </div>
         )}
-
       </CardFooter>
     </Card>
   );

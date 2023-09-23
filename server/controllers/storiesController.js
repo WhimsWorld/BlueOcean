@@ -115,3 +115,23 @@ export const getLikesByStoryId = async (req, res) => {
     res.status(500).send('Error retrieving likes for the story');
   }
 };
+
+export const getMaxCharacters = async (req, res) => {
+  try {
+    const { storyID } = req.query;
+    const maxCharCount = await storiesModel.getMaxCharacters(storyID);
+    res.status(200).json(maxCharCount);
+  } catch (err) {
+    res.status(500).send('Error retrieving max character limit for the story');
+  }
+};
+
+export const getCharactersCount = async (req, res) => {
+  try {
+    const { storyID } = req.query;
+    const charCount = await storiesModel.getCharactersCount(storyID);
+    res.status(200).json(charCount);
+  } catch (err) {
+    res.status(500).send('Error retrieving char count for the story');
+  }
+};
