@@ -75,7 +75,7 @@ export default function StoryCard({
       </CardHeader>
       <CardBody className="flex flex-col p-2 self-start" style={{ width: '70%' }}>
         <div className="flex items-center justify-between">
-          <Typography variant="h4" color="gray" className="font-medium font-croissant" style={{ maxWidth: '50vh' }}>
+          <Typography variant="h4" color="blue-gray" className="font-medium font-blue-gray font-croissant" style={{ maxWidth: '50vh' }}>
             {story.title}
           </Typography>
           <div className="flex items-center">
