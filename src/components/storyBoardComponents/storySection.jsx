@@ -11,9 +11,9 @@ import {
 
 } from '@material-tailwind/react';
 import axios from 'axios';
+import moment from 'moment';
 import { fetchPostsById } from '../../app/slices/postsSlice';
 import { fetchStoryById } from '../../app/slices/storySlice';
-import dateFormat from '../../utils/dateFormat';
 
 export default function StorySection() {
   const location = useLocation();
@@ -39,7 +39,6 @@ export default function StorySection() {
       .catch((err) => console.log('err', err));
   };
   useEffect(() => {
-    console.log('post length', posts.length);
     for (let i = 0; i < posts.length; i += 1) {
       findUsername(posts[i].created_by_user_id);
     }
@@ -97,8 +96,6 @@ export default function StorySection() {
   }, [storyId, userID]);
 
   useEffect(() => {
-    console.log('hello');
-    console.log(posts);
     if (posts.length > 0) {
       console.log('in posts length greater than zero');
       // if last post was posted by logged in user, set userLastPosted to true
@@ -122,7 +119,6 @@ export default function StorySection() {
   return (
     <>
       <div style={{ display: 'flex', justifyContent: 'center' }}>
-
         {hasCharInStory === false && userIsNarrator === false ? (
           <p style={{marginLeft: '20px', marginRight: '10px', marginTop: '20px'}} className='font-croissant'>
             Please create a character to join this story.
@@ -130,35 +126,28 @@ export default function StorySection() {
         ) : (
           null
         )}
-
-        {/* <p>
-            Your character just went on an adventure.
-            Please wait until the next round to post as a character.
-          </p> */}
-
         {userLastPosted === false && hasCharInStory === true && userIsNarrator === false ? (
           <Button
-          onClick={() => clickHandler(storyId)}
-          style={{
-            backgroundImage: `url(${buttonBG})`,
-            backgroundSize: 'cover',
-            backgroundRepeat: 'no-repeat',
-            backgroundPosition: 'center center',
-            opacity: '0.8',
-            width: '200px',
-          }}
-          className="mt-4 mb-4 w-1/2 self center font-croissant text-md shadow-gray hover-shadow-sm hover:shadow-black hover:text-whimsiorange"
-        >
-          Create Post
-        </Button>
+            onClick={() => clickHandler(storyId)}
+            style={{
+              backgroundImage: `url(${buttonBG})`,
+              backgroundSize: 'cover',
+              backgroundRepeat: 'no-repeat',
+              backgroundPosition: 'center center',
+              opacity: '0.8',
+              width: '200px',
+            }}
+            className="mt-4 mb-4 w-1/2 self center font-croissant text-md shadow-gray hover-shadow-sm hover:shadow-black hover:text-whimsiorange"
+          >
+            Create Post
+          </Button>
         ) : (
           null
         )}
-
         {userLastPosted === true && hasCharInStory === true && userIsNarrator === false ? (
           <p style={{marginLeft: '20px', marginRight: '10px', marginTop: '20px'}} className='font-croissant'>
-              Your character just went on an adventure.
-              Please wait until the next round to post again.
+            Your character just went on an adventure.
+            Please wait until the next round to post again.
           </p>
         ) : (
           null
@@ -166,19 +155,19 @@ export default function StorySection() {
 
         {userLastPosted === false && userIsNarrator === true && hasCharInStory === true ? (
           <Button
-          onClick={() => clickHandler(storyId)}
-          style={{
-            backgroundImage: `url(${buttonBG})`,
-            backgroundSize: 'cover',
-            backgroundRepeat: 'no-repeat',
-            backgroundPosition: 'center center',
-            opacity: '0.8',
-            width: '200px',
-          }}
-          className="mt-4 mb-4 w-1/2 self center font-croissant text-md shadow-gray hover-shadow-sm hover:shadow-black hover:text-whimsiorange"
-        >
-          Create Post
-        </Button>
+            onClick={() => clickHandler(storyId)}
+            style={{
+              backgroundImage: `url(${buttonBG})`,
+              backgroundSize: 'cover',
+              backgroundRepeat: 'no-repeat',
+              backgroundPosition: 'center center',
+              opacity: '0.8',
+              width: '200px',
+            }}
+            className="mt-4 mb-4 w-1/2 self center font-croissant text-md shadow-gray hover-shadow-sm hover:shadow-black hover:text-whimsiorange"
+          >
+            Create Post
+          </Button>
         )
           : (
             null
@@ -220,8 +209,7 @@ export default function StorySection() {
                 }}
               >
                 {/* This card body is responsible for what is located on an story post card */}
-                <CardBody>
-                  {/* controls font color */}
+                <CardBody className="flex flex-col p-2 self-start w-5/6 mx-auto mt-4">
                   <Typography variant="h5" color="blue-gray" className="mb-2">
                     <div style={{ display: 'flex', justifyContent: 'center' }}>
                       {post.narrator_image_url
@@ -229,137 +217,84 @@ export default function StorySection() {
                           <img
                             src={post.narrator_image_url}
                             alt={post.narrator_image_id}
-                            className="h-96 object-contain m-0 object-cover"
-                            style={{ height: '40vh', width: '100%', borderRadius: '25px' }}
+                            className="mb-6 h-96 object-contain m-0 object-cover"
+                            style={{ height: '40vh', maxHeight: '300px', width: '100%', borderRadius: '25px' }}
                           />
                         )
                         : null}
                     </div>
                     {post.narrator_post && (
-                    <div
-                      style={{ display: 'flex', justifyContent: 'left', fontFamily: 'serif' }}
-                      className="mt-4"
-                    >
-                      The Narrator Continued the Story...
-                    </div>
+                      <div className="flex items-center justify-between">
+                        <div className="flex-grow">
+                          <Typography variant="h4" color="blue-gray" className="text-xxl font-croissant font-medium">
+                            The Narrator Continued the Story...
+                          </Typography>
+                        </div>
+                        <Avatar
+                          onClick={() => playAudio(`https://docs.google.com/uc?export=open&id=${post.sound_url}`)}
+                          className={post.sound_url ? 'hover:cursor-pointer' : 'none'}
+                          src={post.gif_url}
+                          alt={post.gif_id}
+                          size="md"
+                        />
+                      </div>
                     )}
-
                     {post.narrator_post === false
                       ? (
-                        <>
-                          <div style={{ display: 'flex', justifyContent: 'left' }}>
-                            <p style={{ fontFamily: 'serif', marginBottom: '5px' }}>
-                              {post.char_name}
-                            </p>
+                        <div className="flex items-center gap-4">
+                          {post.char_image_url && (
+                            <Avatar
+                              src={post.char_image_url}
+                              alt={post.char_id}
+                              size="xxl"
+                              className={post.char_sound_url ? 'hover:cursor-pointer' : 'none'}
+                              onClick={() => playAudio2(`https://docs.google.com/uc?export=open&id=${post.char_sound_url}`)}
+                            />
+                          )}
+                          <div className="flex items-center justify-between">
+                            <div className="flex flex-col">
+                              <Typography style={{ fontSize: '28px' }} className="mb-2 text-lg font-croissant font-medium">
+                                {post.char_name}
+                              </Typography>
+                              <div
+                                style={{
+                                  fontFamily: 'serif',
+                                  maxWidth: '150px',
+                                }}
+                                className="text-sm text-[#666]"
+                              >
+                                by {post.username}
+                                <br />
+                                on {moment(post.date_created).format('MMM Do, YYYY')}
+                              </div>
+                            </div>
+                            {post.gif_url && post.sound_url ? (
+                              <Avatar
+                                onClick={() => playAudio(`https://docs.google.com/uc?export=open&id=${post.sound_url}`)}
+                                className="hover:cursor-pointer"
+                                src={post.gif_url}
+                                alt={post.gif_id}
+                                size="md"
+                              />
+                            ) : null}
                           </div>
-                          <div
-                            style={{
-                              fontFamily: 'serif', maxWidth: '150px',
-                            }}
-                            className="text-sm text-[#666]"
-                          >
-                            by
-                            {' '}
-                            {post.username}
-                            {' '}
-                            on
-                            {' '}
-
-                            {new Date(post.date_created).toLocaleString()}
-                          </div>
-                          <div style={{ display: 'flex', justifyContent: 'left' }}>
-                            <br />
-                            {post.char_image_url
-                              ? (
-                                <img
-                                  src={post.char_image_url}
-                                  alt={post.char_id}
-                                  style={{ maxWidth: '100px', maxHeight: '100px' }}
-                                  size="l"
-                                  className="hover:cursor-pointer mt-4"
-                                  onClick={() => playAudio2(`https://docs.google.com/uc?export=open&id=${post.char_sound_url}`)}
-                                />
-                              )
-                              : (
-                                null
-                              )}
-                          </div>
-                        </>
+                        </div>
                       ) : (
                         null
                       )}
-
                     <br />
-                    {/* parent container for the character image and username */}
-                    <div style={{
-                      display: 'flex',
-                      flexDirection: 'row',
-                      overflowWrap: 'break-word',
-                      gap: '0',
-                      margin: '0',
-                      padding: '0',
-                      position: 'relative',
-                      alignItems: 'flex-start',
-                    }}
-                    >
-                      {/* This div is responsible for the text of the title/body of post */}
-                      <div
-                        style={{
-                          fontFamily: 'serif',
-                          fontSize: '18px',
-                        }}
-                        className="w-5/6 min-w-40"
-                      >
-                        <div style={{ marginLeft: '2px' }}>
-                          <p id="specialParagraph" className="pt-4 -mt-8 w-full">{post.content}</p>
-                        </div>
-                      </div>
-                      <br />
-                      {/* <audio className="player" controls preload="none">
-                    <source src={`https://docs.google.com/uc?export=open&id=${post.sound_url}`} type="audio/mp3" />
-                  </audio> */}
-
-                      {/* This div is responsible for the character icon  */}
-                      <div
-                        style={{
-                          display: 'flex',
-                          justifyContent: 'flex-end',
-                          alignItems: 'flex-end',
-                          flexDirection: 'column',
-                          paddingTop: '0',
-                          marginTop: '0',
-                        }}
-                        className="w-40"
-                      >
-                        {post.gif_url
-                          ? (
-                            <img
-                              onClick={() => playAudio(`https://docs.google.com/uc?export=open&id=${post.sound_url}`)}
-                              className="hover:cursor-pointer"
-                              src={post.gif_url}
-                              alt={post.gif_id}
-                              style={{
-                                height: 'auto',
-                                width: '40%',
-                                maxWidth: '40%',
-                                margin: '0',
-                                padding: '0',
-                              }}
-                            />
-                          )
-                          : null}
-                      </div>
-                    </div>
-                    <Button
-                      size="md"
-                      onClick={() => playAudio(`https://docs.google.com/uc?export=open&id=${post.sound_url}`)}
-                      style={{ backgroundImage: `url(${buttonBG})`, backgroundSize: 'auto', opacity: 0.8 }}
-                      className="mt-4"
-                    >
-                      Play Sound
-                    </Button>
-
                   </Typography>
+                  <div
+                    style={{
+                      fontFamily: 'serif',
+                      fontSize: '18px',
+                    }}
+                    className="min-w-40"
+                  >
+                    <div style={{ marginLeft: '2px' }}>
+                      <Typography id="specialParagraph" className="pt-4 -mt-8 mb-4 font-karla text-lg w-full">{post.content}</Typography>
+                    </div>
+                  </div>
                 </CardBody>
               </Card>
             </div>

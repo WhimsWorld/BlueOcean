@@ -87,52 +87,49 @@ export default function StoryBanner({ storyId }) {
 
       <CardBody className="flex flex-col p-2 self-start w-5/6 mx-auto mt-4">
         <div className="flex flex-col">
-          <div className="flex items-center">
+          <div style={{ position: 'relative', display: 'inline-block' }}>
             <IconButton
               onClick={likeClickHandler}
               size="sm"
               variant="text"
-              className="!absolute top-16 right-20 rounded-full items-center "
+              className="!absolute top-2 right-5 rounded-full items-center bg-transparent z-10"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 24 24"
                 fill={likedByUser ? '#F9A03F' : 'white'}
-                className="h-6 w-6 drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)"
+                className="h-6 w-6 drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)]"
               >
                 <path d="M11.645 20.91l-.007-.003-.022-.012a15.247 15.247 0 01-.383-.218 25.18 25.18 0 01-4.244-3.17C4.688 15.36 2.25 12.174 2.25 8.25 2.25 5.322 4.714 3 7.688 3A5.5 5.5 0 0112 5.052 5.5 5.5 0 0116.313 3c2.973 0 5.437 2.322 5.437 5.25 0 3.925-2.438 7.111-4.739 9.256a25.175 25.175 0 01-4.244 3.17 15.247 15.247 0 01-.383.219l-.022.012-.007.004-.003.001a.752.752 0 01-.704 0l-.003-.001z" />
               </svg>
             </IconButton>
             <div
-              className="!absolute text-gray-200 right-20 top-16 pt-[3px] drop-shadow-[0_2px_2px_rgba(0,0,0,0.8)]
-"
+              className="!absolute text-gray-200 top-0 right-0 pt-[3px] pr-[10px] drop-shadow-[0_2px_2px_rgba(0,0,0,0.8)]"
               style={{ marginRight: likeCount > 10 ? '40px' : '30px' }}
             >
               {likeCount}
-
             </div>
           </div>
-          <div className="pb-10">
+          <div className="pb-6">
             <img
               src={story.image_url}
               alt={story.title}
-              className="h-96 object-contain m-0 object-cover"
-              style={{ height: '50vh', width: '100%', borderRadius: '25px' }}
+              className="h-96 object-contain m-0 object-cover relative"
+              style={{ height: '50vh', maxHeight: '400px', width: '100%', borderRadius: '25px' }}
             />
           </div>
-          <Typography variant="h4" color="blue-gray" className="font-medium" style={{ fontFamily: 'serif' }}>
+          <Typography variant="h4" className="text-xxl font-croissant font-bold">
             {story.title}
           </Typography>
         </div>
         <Typography color="gray">
           {moment(story.date_created).format('MMM Do, YYYY')}
         </Typography>
-        <Typography color="gray" className="text-justify mb-8" style={{ fontFamily: 'serif' }}>
+        <Typography color="gray" className="text-justify mb-12" style={{ font: 'serif' }}>
           {story.summary}
         </Typography>
       </CardBody>
     </Card>
   );
 }
-const buttonBG = 'https://res.cloudinary.com/dnr41r1lq/image/upload/v1695320647/button_mljj6c.png';
 const cardBG = 'https://res.cloudinary.com/dnr41r1lq/image/upload/v1695235263/paper2_kag1pb.jpg';
