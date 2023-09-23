@@ -14,7 +14,7 @@ export default function ImagesMenu({ setSelectedImage, selectedImage, images }) 
 
   return (
     <Carousel
-      className="rounded-xl"
+      className="rounded-xl overflow-hidden"
       style={{
         width: '60%',
         // height: '50%',
@@ -33,7 +33,7 @@ export default function ImagesMenu({ setSelectedImage, selectedImage, images }) 
             src={image.url}
             alt={image.id}
             className={`h-full w-full object-cover ${selectedImage === image.id ? 'shadow-2xl shadow-orange-500  box-content border-y-2 border-orange-500 ' : ''}`}
-            style={{ objectFit: 'cover', maxHeight: '96%' }}
+            style={{ objectFit: 'cover', maxHeight: '98%' }}
           />
         </button>
       ))}

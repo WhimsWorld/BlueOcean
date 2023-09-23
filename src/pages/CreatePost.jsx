@@ -73,7 +73,9 @@ export default function CreatePost() {
         } else if (categoryData.data.category_id === 3) {
           setBackgroundURL(pirateBG);
         } else if (categoryData.data.category_id === 4) {
-          setBackgroundURL(cloudBG);
+          setBackgroundURL(steampunkBG);
+        } else if (categoryData.data.category_id === 5) {
+          setBackgroundURL(steampunkBG);
         } else {
           setBackgroundURL(cloudBG);
         }
@@ -257,7 +259,7 @@ export default function CreatePost() {
                 <div style={{ marginTop: '-6px', marginLeft: '10px' }}>
                   <Checkbox
                     checked={isChecked}
-                    onClick={clickHandler}
+                    onChange={clickHandler}
                     style={{ backgroundColor: isChecked ? '#101A4B' : 'white', border: isChecked ? 'none' : '' }}
                   />
                 </div>

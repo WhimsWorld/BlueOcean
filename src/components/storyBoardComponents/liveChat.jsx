@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import {
   Textarea, IconButton, Card,
 } from '@material-tailwind/react';
@@ -12,6 +12,7 @@ export default function LiveChat({ storyId }) {
   const userId = Cookies.get('userId');
   const chatMessages = useSelector((state) => state.chat.messages);
   const navigate = useNavigate();
+  const chatRef = useRef(null);
 
   const dispatch = useDispatch();
 
@@ -19,6 +20,7 @@ export default function LiveChat({ storyId }) {
     if (storyId) {
       dispatch(fetchChat(storyId));
     }
+
     // Set an interval to refresh chat messages every 15 seconds
     const intervalId = setInterval(() => {
       dispatch(fetchChat(storyId));
@@ -26,6 +28,14 @@ export default function LiveChat({ storyId }) {
 
     return () => clearInterval(intervalId);
   }, [dispatch, storyId]);
+
+  useEffect(() => {
+    if (chatRef.current) {
+      setTimeout(() => {
+        chatRef.current.scrollTop = chatRef.current.scrollHeight;
+      }, 0);
+    }
+  }, [chatMessages]);
 
   const handleMessageChange = (e) => {
     setMessage(e.target.value);
@@ -50,7 +60,7 @@ export default function LiveChat({ storyId }) {
       }}
     >
       <h1 className='font-croissant' style={{textAlign: 'center', textDecoration: 'underline', fontSize: '20px', marginTop: '18px'}}><b>Live Chat</b></h1>
-      <div className="chat-messages overflow-y-auto h-96 mt-4" style={{border: '1px solid rgba(131, 105, 83, 0.2)', borderRadius: '25px', background: 'rgba(255, 255, 255, 0.6)'}}>
+      <div className="chat-messages overflow-y-auto h-96 mt-4" ref={chatRef} style={{border: '1px solid rgba(131, 105, 83, 0.2)', borderRadius: '25px', background: 'rgba(255, 255, 255, 0.6)'}}>
         {chatMessages.map((msg) => (
           <div key={msg.message_id} className={`${msg.user_id === userId ? 'ml-16' : ''}`}>
             <div className="user text-sm ml-2">
