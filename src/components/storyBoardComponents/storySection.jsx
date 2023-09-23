@@ -307,34 +307,11 @@ export default function StorySection() {
                         style={{
                           fontFamily: 'serif',
                           fontSize: '18px',
-                          display: 'flex',
-                          alignItems: 'flex-start',
-                          maxWidth: '60%',
-                          width: '100%',
-                          maxHeight: '50vh',
-                          height: 'auto',
-                          margin: '0',
-                          padding: '0',
-                          textWrap: 'wrap',
-                          overflowY: 'scroll',
-                          wordBreak: 'break-all',
                         }}
+                        className="w-5/6 min-w-40"
                       >
-                        <div style={{ marginLeft: '10px' }}>
-                          <div style={{
-                            fontSize: '36px',
-                            marginRight: '0',
-                            padding: '0',
-                            backgroundImage: `url(${initialLetter})`,
-                            backgroundSize: '55px',
-                            color: '#2A0134',
-                            border: '2px solid #2A0134',
-                            float: 'left',
-                          }}
-                          >
-                            {post.content.charAt(0)}
-                          </div>
-                          <p style={{ display: 'inline' }}>{post.content.slice(1)}</p>
+                        <div style={{ marginLeft: '2px' }}>
+                          <p id="specialParagraph" className="pt-4 -mt-8 w-full">{post.content}</p>
                         </div>
                       </div>
                       <br />
@@ -343,14 +320,16 @@ export default function StorySection() {
                   </audio> */}
 
                       {/* This div is responsible for the character icon  */}
-                      <div style={{
-                        display: 'flex',
-                        justifyContent: 'flex-end',
-                        alignItems: 'flex-end',
-                        flexDirection: 'column',
-                        paddingTop: '0',
-                        marginTop: '0',
-                      }}
+                      <div
+                        style={{
+                          display: 'flex',
+                          justifyContent: 'flex-end',
+                          alignItems: 'flex-end',
+                          flexDirection: 'column',
+                          paddingTop: '0',
+                          marginTop: '0',
+                        }}
+                        className="w-40"
                       >
                         {post.gif_url
                           ? (
@@ -393,4 +372,3 @@ export default function StorySection() {
 
 const buttonBG = 'https://res.cloudinary.com/dnr41r1lq/image/upload/v1695320647/button_mljj6c.png';
 const cardBG = 'https://res.cloudinary.com/dnr41r1lq/image/upload/v1695235263/paper2_kag1pb.jpg';
-const initialLetter = 'https://i.ibb.co/zsQsC1y/floral.png';
