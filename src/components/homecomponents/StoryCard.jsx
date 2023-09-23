@@ -13,7 +13,7 @@ import {
   IconButton,
 } from '@material-tailwind/react';
 import { setStory } from '../../app/slices/storySlice';
-import dateFormat from '../../utils/dateFormat';
+import moment from 'moment';
 
 export default function StoryCard({
   story, likeUpdate,
@@ -82,7 +82,7 @@ export default function StoryCard({
               size="sm"
               style={{ color: likedStories[story.story_id] ? '#F9A03F' : 'white' }}
               variant="text"
-              className="rounded-full ml-4"  // Adjust margin to your preference
+              className="rounded-full ml-4"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -99,7 +99,7 @@ export default function StoryCard({
           </div>
         </div>
         <Typography color="gray">
-          {dateFormat(story.date_created)}
+          {moment(story.date_created).format('MMM Do, YYYY')}
         </Typography>
         <Typography color="gray" className="font-Merriweather" style={{ marginRight: '40px', marginBottom: story.summary.length > 425 ? '50px' : '25px' }}>
           {story.summary.length > 425 ? `${story.summary.slice(0, story.summary.lastIndexOf(' ', 400))} ...` : story.summary}

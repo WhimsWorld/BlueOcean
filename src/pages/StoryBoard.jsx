@@ -14,7 +14,7 @@ export default function StoryBoard() {
   return (
     <div>
       <StickyNavbar loggedIn={loggedIn} setLoggedIn={setLoggedIn} />
-      <div className="grid grid-cols-[25%_50%_25%]">
+      <div className="grid grid-cols-[25%_50%_25%]" style={{ minHeight: '100vh' }}>
         <div className="item1 border-solid border-2 bg-auto grid" style={{ backgroundImage: `url(${left})` }}>
           <SelectCharacter storyId={storyId} />
           {/* <ActNavigation /> */}
