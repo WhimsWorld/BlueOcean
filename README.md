@@ -1,7 +1,7 @@
 # WhimsiWorld Blue Ocean Project
 
 
-## Team members (Should we include this here? at the end? not at all?)
+## Team members
 - [Kimberly Tom](https://github.com/tomki1)
 - [Frank Soto](https://github.com/frankasoto)
 - [Jack Tobin](https://github.com/luckynumberthirteen)
