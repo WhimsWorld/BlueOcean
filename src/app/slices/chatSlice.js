@@ -15,7 +15,6 @@ export const postMessage = createAsyncThunk(
   'chat/postMessage',
   async ({ storyId, userId, data }) => {
     try {
-      console.log(storyId, userId, data);
       const response = await postNewMessage({ storyId, userId, data });
       return response;
     } catch (error) {

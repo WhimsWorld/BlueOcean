@@ -34,9 +34,7 @@ export const getCharactersByStoryId = async (req, res) => {
 
 export const getCharactersByStoryIdUserId = async (req, res) => {
   try {
-    console.log('am i here');
     const characters = await characterModel.getCharactersByStoryIdUserId(req.query.storyID, req.query.userID);
-    console.log('characters', characters);
     res.json(characters);
   } catch (err) {
     res.status(500).send('Error retrieving characters.');
@@ -70,7 +68,6 @@ export const getCharactersByUserId = async (req, res) => {
 };
 
 export const addCharacter = async (req, res) => {
-  console.log('reqs are', req.body);
   try {
     const character = await characterModel.addCharacter(req.body);
     res.status(201).json(character);

@@ -1,14 +1,4 @@
--- INSERT INTO users with premium values
-INSERT INTO users (user_id, username, premium)
-VALUES
-    ('user1_id', 'user1', FALSE),
-    ('user2_id', 'user2', FALSE),
-    ('user3_id', 'user3', FALSE),
-    ('user4_id', 'user4', FALSE),
-    ('user5_id', 'user5', TRUE),
-    ('user6_id', 'user6', TRUE),
-    ('user7_id', 'user7', TRUE),
-    ('user8_id', 'user8', TRUE);
+-- fill database with images and sounds
 
 -- Insert data into the categories table
 INSERT INTO categories (cat_name) VALUES
@@ -29,11 +19,11 @@ VALUES
 
 -- Insert data into the images table for High Fantasy
 INSERT INTO images (category_id, image_url, premium) VALUES
-    (1, 'https://i.ibb.co/jhsTf3f/MF1.png', TRUE),
-    (1, 'https://i.ibb.co/sHKxLpF/MF2.png', FALSE),
-    (1, 'https://i.ibb.co/4tt08Gq/MF3.png', FALSE),
-    (1, 'https://i.ibb.co/rw6J13t/MF4.png', FALSE),
-    (1, 'https://i.ibb.co/NVnhsKY/MF5.png', FALSE);
+    (1, 'https://i.ibb.co/3sycDTZ/HF1.png', TRUE),
+    (1, 'https://i.ibb.co/4RGwv7t/HF2.png', FALSE),
+    (1, 'https://i.ibb.co/tqRD5hw/HF3.png', FALSE),
+    (1, 'https://i.ibb.co/3rZGmKt/HF4.png', FALSE),
+    (1, 'https://i.ibb.co/x2R8ZQZ/HF5.png', FALSE);
 
 -- Insert data into the gifs table for High Fantasy
 INSERT INTO gifs (category_id, gif_url, premium) VALUES
@@ -188,7 +178,43 @@ INSERT INTO images (category_id, image_url, premium) VALUES
     (5, 'https://i.ibb.co/R9hm19m/033.png', FALSE),
     (5, 'https://i.ibb.co/J74NDdQ/034.png', FALSE);
 
-  -- Insert data into the stories table with matching thumbnail URLs
+-- Insert data into the sounds table for Other. (Character Sounds)
+INSERT INTO sounds (category_id, sound_name, sound_url, premium) VALUES
+    (5, 'Spell', '15Osan_4KD17eXrpmvamTGf5n45E1b_IO', TRUE),
+    (5, 'Wind Call', '1L_thXSaEM5rfhXEj4ioc_l_1_By0uZYq', TRUE),
+    (5, 'Flute Call', '1IeSFAfeQTYqUDbICpbxMgQurdVVTXCdx', TRUE),
+    (5, 'Laugh 1', '1sOMjz4zbXKlAfKB3ffjN36M8zrN6aXZv', TRUE),
+    (5, 'Laugh 2', '1iKfSnWNt5usaiua32qZOSK7yjmz3hRoV', FALSE),
+    (5, 'Growl 1', '1UkMoFvV9sZwCvkcC8EGklVGarNAn--Qv', TRUE),
+    (5, 'Growl 2', '1EbvftPAo3fY3maXptM6jG4wJF9XJ8QMM', TRUE),
+    (5, 'Mechanical Gears', '1BBZ5O3kfVJyaCNpcEcq61MnSB4wUZZg1', TRUE),
+    (5, 'Mechanical Clicks', '12-COZfV6nHZGKBD7jAAaCk4lIz6aAcDl', TRUE),
+    (5, 'Roar', '1SQ78_R4kLgUIf2bQCNqxlt7RUMrpyTb4', TRUE),
+    (5, 'Twinkle', '1QN9wwIj0wes6W0OtJdMhTLRIcjZ_ItlE', FALSE),
+    (5, 'Hand Drum', '1ZgbPUBgmC6v3dNwEb_9Lz5fiGBx5hC0h', FALSE),
+    (5, 'Axe', '1WRgJ-60CxCZy841EMgSzjJOfj3uUEKuV', FALSE),
+    (5, 'Magical Glissando', '16H-QIILowpbPmtWyW5shSTUCtvddDP2V', FALSE),
+    (5, 'Shiver Me Timbers', '1E9zHOQsH1rkKJcWJBssGCx3rMgQrbRoE', FALSE),
+    (5, 'Oh Arrrr', '1GOMT1L5c8r97FYoHe6JJQWlOblhxX-b0', FALSE),
+    (5, 'Whistled Tune', '1v-eRovTK689xAd8hQ0PdQLeK7r4lNvMJ', FALSE),
+    (5, 'Harp', '1RvLTzoCMhOB6aNEStdw9vT19mfKTVUwG', FALSE);
+
+
+-- sample data
+
+-- INSERT INTO users with premium values
+INSERT INTO users (user_id, username, premium)
+VALUES
+    ('user1_id', 'user1', FALSE),
+    ('user2_id', 'user2', FALSE),
+    ('user3_id', 'user3', FALSE),
+    ('user4_id', 'user4', FALSE),
+    ('user5_id', 'user5', TRUE),
+    ('user6_id', 'user6', TRUE),
+    ('user7_id', 'user7', TRUE),
+    ('user8_id', 'user8', TRUE);
+
+-- Insert data into the stories table with matching thumbnail URLs
 INSERT INTO stories (created_by_user_id, category_id, narrator_id, main_image_id, thumbnail_id, title, summary, max_characters, date_created, date_updated)
 VALUES
   ('user1_id', 1, 'user1_id', (SELECT image_id FROM images WHERE category_id = 1 AND premium = FALSE ORDER BY RANDOM() LIMIT 1),
@@ -229,16 +255,16 @@ As they venture through enchanted forests, face mythical beasts, and decipher cr
       (SELECT thumbnail_id FROM thumbnail_images WHERE category_id = 4),  'Steampunk Story 5 and how bout this for a title???', 'This is another story.', 8, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
 
 -- Insert data into the characters table
-INSERT INTO characters (story_id, user_id, image_id, char_name, strength, weakness, backstory)
+INSERT INTO characters (story_id, user_id, image_id, sound_id, char_name, strength, weakness, char_race, char_sex, backstory)
 VALUES
-    (1, 'user1_id', (SELECT image_id FROM images WHERE category_id = 5 AND premium = FALSE LIMIT 1), 'Character 1', 'Strength 1', 'Weakness 1', 'Backstory 1'),
-    (2, 'user2_id', (SELECT image_id FROM images WHERE category_id = 5 AND premium = FALSE LIMIT 1), 'Character 2', 'Strength 2', 'Weakness 2', 'Backstory 2'),
-    (3, 'user3_id', (SELECT image_id FROM images WHERE category_id = 5 AND premium = FALSE LIMIT 1), 'Character 3', 'Strength 3', 'Weakness 3', 'Backstory 3'),
-    (4, 'user4_id', (SELECT image_id FROM images WHERE category_id = 5 AND premium = FALSE LIMIT 1), 'Character 4', 'Strength 4', 'Weakness 4', 'Backstory 4'),
-    (1, 'user5_id', (SELECT image_id FROM images WHERE category_id = 5 AND premium = TRUE LIMIT 1), 'Character 5', 'Strength 5', 'Weakness 5', 'Backstory 5'),
-    (2, 'user6_id', (SELECT image_id FROM images WHERE category_id = 5 AND premium = TRUE LIMIT 1), 'Character 6', 'Strength 6', 'Weakness 6', 'Backstory 6'),
-    (3, 'user7_id', (SELECT image_id FROM images WHERE category_id = 5 AND premium = TRUE LIMIT 1), 'Character 7', 'Strength 7', 'Weakness 7', 'Backstory 7'),
-    (4, 'user8_id', (SELECT image_id FROM images WHERE category_id = 5 AND premium = TRUE LIMIT 1), 'Character 8', 'Strength 8', 'Weakness 8', 'Backstory 8');
+    (1, 'user1_id', (SELECT image_id FROM images WHERE category_id = 5 AND premium = FALSE LIMIT 1), (SELECT sound_id FROM sounds WHERE category_id = 5 ORDER BY RANDOM() LIMIT 1), 'Character 1', 'Strength 1', 'Weakness 1', 'Human', 'Female', 'Backstory 1'),
+    (2, 'user2_id', (SELECT image_id FROM images WHERE category_id = 5 AND premium = FALSE LIMIT 1), (SELECT sound_id FROM sounds WHERE category_id = 5 ORDER BY RANDOM() LIMIT 1), 'Character 2', 'Strength 2', 'Weakness 2', 'Elf', 'Male', 'Backstory 2'),
+    (3, 'user3_id', (SELECT image_id FROM images WHERE category_id = 5 AND premium = FALSE LIMIT 1), (SELECT sound_id FROM sounds WHERE category_id = 5 ORDER BY RANDOM() LIMIT 1), 'Character 3', 'Strength 3', 'Weakness 3', 'Orc', 'Non-binary', 'Backstory 3'),
+    (4, 'user4_id', (SELECT image_id FROM images WHERE category_id = 5 AND premium = FALSE LIMIT 1), (SELECT sound_id FROM sounds WHERE category_id = 5 ORDER BY RANDOM() LIMIT 1), 'Character 4', 'Strength 4', 'Weakness 4', 'Dwarf', 'Other', 'Backstory 4'),
+    (1, 'user5_id', (SELECT image_id FROM images WHERE category_id = 5 AND premium = TRUE LIMIT 1), (SELECT sound_id FROM sounds WHERE category_id = 5 ORDER BY RANDOM() LIMIT 1), 'Character 5', 'Strength 5', 'Weakness 5', 'Tiefling', 'Male', 'Backstory 5'),
+    (2, 'user6_id', (SELECT image_id FROM images WHERE category_id = 5 AND premium = TRUE LIMIT 1), (SELECT sound_id FROM sounds WHERE category_id = 5 ORDER BY RANDOM() LIMIT 1), 'Character 6', 'Strength 6', 'Weakness 6', 'Orc', 'Female', 'Backstory 6'),
+    (3, 'user7_id', (SELECT image_id FROM images WHERE category_id = 5 AND premium = TRUE LIMIT 1), (SELECT sound_id FROM sounds WHERE category_id = 5 ORDER BY RANDOM() LIMIT 1), 'Character 7', 'Strength 7', 'Weakness 7', 'Dwarf', 'Non-binary', 'Backstory 7'),
+    (4, 'user8_id', (SELECT image_id FROM images WHERE category_id = 5 AND premium = TRUE LIMIT 1), (SELECT sound_id FROM sounds WHERE category_id = 5 ORDER BY RANDOM() LIMIT 1), 'Character 8', 'Strength 8', 'Weakness 8', 'Dragonborn', 'Other', 'Backstory 8');
 
 -- Insert data into the posts table
 INSERT INTO posts (story_id, created_by_user_id, char_id, gif_id, sound_id, narrator_image_id, narrator_post, content)
@@ -291,27 +317,3 @@ VALUES
     The prophecy had been fulfilled, and Eldoria rejoiced. The land flourished once more, and peace returned to its inhabitants. Elara and her companions were celebrated as heroes, their names etched into the annals of Eldoria''s history.
 
     But as the heroes basked in their victory, they knew that the world was vast, and new adventures awaited. With the amulet in hand, Elara gazed toward the horizon, ready to embark on new journeys and face new challenges, for the world was a place of endless wonder, and the hero''s journey never truly ended.');
-
-
-
-
--- Insert data into the sounds table for Other. (Character Sounds)
-INSERT INTO sounds (category_id, sound_name, sound_url, premium) VALUES
-    (5, 'Spell', '15Osan_4KD17eXrpmvamTGf5n45E1b_IO', TRUE),
-    (5, 'Wind Call', '1L_thXSaEM5rfhXEj4ioc_l_1_By0uZYq', TRUE),
-    (5, 'Flute Call', '1IeSFAfeQTYqUDbICpbxMgQurdVVTXCdx', TRUE),
-    (5, 'Laugh 1', '1sOMjz4zbXKlAfKB3ffjN36M8zrN6aXZv', TRUE),
-    (5, 'Laugh 2', '1iKfSnWNt5usaiua32qZOSK7yjmz3hRoV', FALSE),
-    (5, 'Growl 1', '1UkMoFvV9sZwCvkcC8EGklVGarNAn--Qv', TRUE),
-    (5, 'Growl 2', '1EbvftPAo3fY3maXptM6jG4wJF9XJ8QMM', TRUE),
-    (5, 'Mechanical Gears', '1BBZ5O3kfVJyaCNpcEcq61MnSB4wUZZg1', TRUE),
-    (5, 'Mechanical Clicks', '12-COZfV6nHZGKBD7jAAaCk4lIz6aAcDl', TRUE),
-    (5, 'Roar', '1SQ78_R4kLgUIf2bQCNqxlt7RUMrpyTb4', TRUE),
-    (5, 'Twinkle', '1QN9wwIj0wes6W0OtJdMhTLRIcjZ_ItlE', FALSE),
-    (5, 'Hand Drum', '1ZgbPUBgmC6v3dNwEb_9Lz5fiGBx5hC0h', FALSE),
-    (5, 'Axe', '1WRgJ-60CxCZy841EMgSzjJOfj3uUEKuV', FALSE),
-    (5, 'Magical Glissando', '16H-QIILowpbPmtWyW5shSTUCtvddDP2V', FALSE),
-    (5, 'Shiver Me Timbers', '1E9zHOQsH1rkKJcWJBssGCx3rMgQrbRoE', FALSE),
-    (5, 'Oh Arrrr', '1GOMT1L5c8r97FYoHe6JJQWlOblhxX-b0', FALSE),
-    (5, 'Whistled Tune', '1iKfSnWNt5usaiua32qZOSK7yjmz3hRoV', FALSE),
-    (5, 'Harp', '1v-eRovTK689xAd8hQ0PdQLeK7r4lNvMJ', FALSE);

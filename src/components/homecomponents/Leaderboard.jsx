@@ -35,7 +35,7 @@ export default function Leaderboard({ leaderboard }) {
           <Typography className="font-croissant" variant="h6" color="blue-gray" style={{ textDecoration: 'underline' }}>
             Description:
           </Typography>
-          <Typography className="font-Karla" variant="p2" color="blue-gray">
+          <Typography className="font-Karla" color="blue-gray">
             {summary}
           </Typography>
         </div>
@@ -43,11 +43,13 @@ export default function Leaderboard({ leaderboard }) {
       setPopoverContent(content);
     }
 
-    const rect = event.target.getBoundingClientRect();
-    setPopoverPosition({
-      top: rect.top + 5 + window.scrollY,
-      left: 0,
-    });
+    const rect = event ? event.target.getBoundingClientRect() : null;
+    if (rect) {
+      setPopoverPosition({
+        top: rect.top + 5 + window.scrollY,
+        left: 0,
+      });
+    }
   };
 
   const handleMouseLeave = () => {

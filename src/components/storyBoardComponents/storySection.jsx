@@ -97,13 +97,10 @@ export default function StorySection() {
 
   useEffect(() => {
     if (posts.length > 0) {
-      console.log('in posts length greater than zero');
       // if last post was posted by logged in user, set userLastPosted to true
       if (posts[posts.length - 1]?.created_by_user_id === Cookies.get('userId')) {
-        console.log('user last posted is true');
         setUserLastPosted(true);
       } else {
-        console.log('user last posted is false');
         setUserLastPosted(false);
       }
     } else {

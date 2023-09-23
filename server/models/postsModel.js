@@ -150,7 +150,6 @@ export const addPost = async (
   content,
   charId,
 ) => {
-  console.log('what is char_id', charId);
   const query = `
     INSERT INTO posts (story_id, created_by_user_id, gif_id, sound_id, narrator_image_id, narrator_post, content, char_id)
     VALUES ($1, $2, $3, $4, $5, $6, $7, $8)

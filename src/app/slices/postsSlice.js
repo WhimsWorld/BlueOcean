@@ -22,7 +22,6 @@ export const postMessage = createAsyncThunk(
   'post/addPost',
   async ({ storyId, userId, data }) => {
     try {
-      console.log(storyId, userId, data);
       const response = await addPost({ storyId, userId, data });
       return response;
     } catch (error) {

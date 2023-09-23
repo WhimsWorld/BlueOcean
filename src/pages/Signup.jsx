@@ -26,7 +26,6 @@ export default function Signup() {
       user_id: userID,
       display_name: username,
     })
-      .then(() => console.log('successful post'))
       .catch((err) => console.log(err));
   };
 
