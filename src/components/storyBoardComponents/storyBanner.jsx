@@ -85,7 +85,7 @@ export default function StoryBanner({ storyId }) {
   return (
     <Card className="w-full flex-row p-2 mt-4 shadow-lg justify-between items-center justify-self-center bg-cover mx-3 mt-5" style={{ width: '96%', backgroundImage: `url(${cardBG})`, clipPath: 'polygon(59% 2%, 68% 3%, 75% 0, 83% 2%, 90% 3%, 100% 0, 100% 16%, 100% 34%, 99% 53%, 98% 74%, 100% 100%, 83% 99%, 72% 96%, 63% 100%, 54% 96%, 44% 100%, 36% 100%, 30% 96%, 17% 98%, 7% 96%, 0 100%, 1% 71%, 0 43%, 1% 0, 9% 2%, 18% 0, 31% 3%, 48% 0)' }}>
 
-      <CardBody className="flex flex-col p-2 self-start w-5/6 mx-auto mt-4">
+      <CardBody className="flex flex-col p-2 self-start w-5/6 mx-auto mt-4 pt-8">
         <div className="flex flex-col">
           <div style={{ position: 'relative', display: 'inline-block' }}>
             <IconButton
@@ -120,17 +120,28 @@ export default function StoryBanner({ storyId }) {
               }}
             />
           </div>
-          <Typography variant="h4" className="text-xxl font-croissant font-gray font-bold">
+          <Typography variant="h4" className="text-xxl font-croissant font-medium text-blue-gray-900">
             {story.title}
           </Typography>
         </div>
         <Typography
+          style={{
+            fontFamily: 'serif',
+            fontSize: '18px',
+          }}
           color="gray"
-          className="font-serif"
+          className="font-serif pt-1 pb-5"
         >
           {moment(story.date_created).format('MMM Do, YYYY')}
         </Typography>
-        <Typography color="gray" className="text-justify mb-12 font-serif">
+        <Typography
+          style={{
+            fontFamily: 'serif',
+            fontSize: '18px',
+          }}
+          color="gray"
+          className="pt-4 -mt-8 mb-4 pb-8 font-serif text-18 w-full"
+        >
           {story.summary}
         </Typography>
       </CardBody>
