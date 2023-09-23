@@ -162,8 +162,6 @@ export default function StoryCreationForm() {
       if (user) {
         uid = user.uid;
         displayName = user.displayName;
-        console.log('uid', uid);
-        console.log('display name:', displayName);
       } else {
         navigate('/login');
       }
@@ -196,7 +194,6 @@ export default function StoryCreationForm() {
         summary,
         max_characters: maxPlayers,
       }).then((res) => {
-        console.log(res);
         navigate(`/storyBoard/${res.data.story_id}`);
       });
     }
