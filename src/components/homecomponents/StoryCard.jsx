@@ -64,17 +64,18 @@ export default function StoryCard({
 
   return (
     <Card className="w-full flex-row p-2 mt-4 shadow-lg justify-between items-center justify-self-center bg-cover" style={{ width: '96%', backgroundImage: `url(${cardBG})`, clipPath: 'polygon(59% 2%, 68% 3%, 74% 0, 83% 2%, 90% 3%, 100% 0, 99% 16%, 100% 37%, 99% 53%, 98% 68%, 100% 100%, 83% 97%, 74% 97%, 63% 100%, 54% 96%, 44% 100%, 37% 98%, 28% 100%, 17% 100%, 7% 96%, 0 100%, 1% 71%, 0 43%, 1% 0, 4% 2%, 18% 0, 31% 3%, 48% 0)' }}>
-      <CardHeader floated={false} style={{ height: '30%', width: '30%', margin: '2%' }}>
+      <CardHeader floated={false} style={{ margin: '2%' }}>
         <img
+          className="h-96 object-contain m-0 object-cover relative"
+          style={{ maxHeight: '25vh' }}
           src={story.image_url}
           alt={story.title}
         />
         <div className="to-bg-black-10 absolute inset-0 h-full w-full bg-gradient-to-tr from-transparent via-transparent to-black/60 " />
       </CardHeader>
       <CardBody className="flex flex-col p-2 self-start" style={{ width: '70%' }}>
-
         <div className="flex items-center justify-between">
-          <Typography variant="h4" color="blue-gray" className="font-medium font-croissant" style={{ maxWidth: '50vh' }}>
+          <Typography variant="h4" color="gray" className="font-medium font-croissant" style={{ maxWidth: '50vh' }}>
             {story.title}
           </Typography>
           <div className="flex items-center">
@@ -102,10 +103,10 @@ export default function StoryCard({
         <Typography color="gray">
           {moment(story.date_created).format('MMM Do, YYYY')}
         </Typography>
-        <Typography color="gray" className="font-Merriweather" style={{ marginRight: '40px', marginBottom: story.summary.length > 425 ? '50px' : '25px' }}>
-          {story.summary.length > 425 ? `${story.summary.slice(0, story.summary.lastIndexOf(' ', 400))} ...` : story.summary}
+        <Typography color="gray" className="font-serif" style={{ marginRight: '40px', marginBottom: story.summary.length > 500 ? '55px' : '25px' }}>
+          {story.summary.length > 500 ? `${story.summary.slice(0, story.summary.lastIndexOf(' ', 480))} ...` : story.summary}
         </Typography>
-        <CardFooter className="p-2 self-end absolute" style={{ bottom: '5%' }}>
+        <CardFooter className="p-2 self-end absolute" style={{ bottom: '2vh' }}>
           <Button
             size="md"
             onClick={clickHandler}

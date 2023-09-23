@@ -120,7 +120,7 @@ export default function StoryBanner({ storyId }) {
               }}
             />
           </div>
-          <Typography variant="h4" className="text-xxl font-croissant font-bold">
+          <Typography variant="h4" className="text-xxl font-croissant font-gray font-bold">
             {story.title}
           </Typography>
         </div>

@@ -74,8 +74,6 @@ export default function CreatePost() {
           setBackgroundURL(pirateBG);
         } else if (categoryData.data.category_id === 4) {
           setBackgroundURL(steampunkBG);
-        } else if (categoryData.data.category_id === 5) {
-          setBackgroundURL(steampunkBG);
         } else {
           setBackgroundURL(cloudBG);
         }
