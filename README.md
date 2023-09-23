@@ -1,9 +1,9 @@
 # BlueOcean
 
 ## Table of Contents
-[Usage](##Usage)
-[Overview](##Overview)
-[Landing Page](##Landing-Page)
+- [Usage](#Usage)
+- [Overview](#Overview)
+- [Landing Page](#Landing-Page)
 [Home Page](##Home-Page)
 [Story Page](##Story-Page)
 [Login/Sign up Page](##Login/sign-up-page)
