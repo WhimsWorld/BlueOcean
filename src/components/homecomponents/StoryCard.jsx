@@ -73,10 +73,8 @@ export default function StoryCard({
       <CardBody className="flex flex-col p-2 self-start" style={{ width: '70%' }}>
 
         <div className="flex items-center justify-between">
-          <Typography style={{ maxWidth: '100%' }} color="blue-gray" className="flex items-center font-normal self-end">
-            <Typography variant="h4" color="blue-gray" className="font-medium font-croissant" style={{ maxWidth: '14em' }}>
-              {story.title}
-            </Typography>
+          <Typography variant="h4" color="blue-gray" className="font-medium font-croissant" style={{ maxWidth: '14em' }}>
+            {story.title}
           </Typography>
           <div className="flex items-center">
             <IconButton

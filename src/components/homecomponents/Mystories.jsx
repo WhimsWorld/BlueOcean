@@ -15,10 +15,10 @@ export default function Mystories({
   return (
     <Checkbox
       label="My Stories"
-      color="sky"
+      color="indigo"
       disabled={showCheck}
       checked={isChecked}
-      onClick={clickHandler}
+      onChange={clickHandler}
       className="font-croissant"
       style={{ backgroundColor: isChecked ? '#101A4B  ' : 'white', border: isChecked ? 'none' : '' }}
     />
