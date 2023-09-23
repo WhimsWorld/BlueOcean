@@ -37,7 +37,7 @@ function MenuWithScrollingContent({
       </Typography>
       {filteredImages.length > 0 && (
         <Carousel
-          className="rounded-xl mx-auto h-60"
+          className="rounded-xl mx-auto h-60 overflow-hidden"
           prevArrow={() => (<></>)}
           nextArrow={() => (<></>)}
         >
@@ -157,6 +157,7 @@ export default function StoryCreationForm() {
   const [images, setImages] = useState([]);
   const [selectedImage, setSelectedImage] = useState({});
   const [errorMessage, setErrorMessage] = useState(false);
+  const [maxError, setMaxError] = useState(false);
 
   useEffect(() => {
     axios.get('/api/storyimages')
@@ -178,6 +179,12 @@ export default function StoryCreationForm() {
       }
     });
   }
+  const handleChange = (e) => {
+    if (e.target.value < 11) {
+      setMaxPlayers(e.target.value);
+    }
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     e.stopPropagation();
@@ -251,7 +258,7 @@ export default function StoryCreationForm() {
             className="w-60"
             style={{ backgroundColor: '#FFFFFF3A' }}
             color="teal"
-            onChange={(e) => setMaxPlayers(e.target.value)}
+            onChange={handleChange}
           />
           <CategoryMenu id="selectCategory" setSelectedCategory={setSelectedCategory} selectedCategory={selectedCategory} />
           <MenuWithScrollingContent id="selectImage" images={images} selectedCategory={selectedCategory} selectedImage={selectedImage} setSelectedImage={setSelectedImage} />
@@ -260,7 +267,6 @@ export default function StoryCreationForm() {
         <Typography color="red" className="font-serif" style={{ minHeight: '16px', height: '16px' }}>
           {errorMessage ? 'Please select an image before submitting.' : ''}
         </Typography>
-
         <Button
           size="md"
           style={{ backgroundImage: `url(${buttonBG})`, backgroundSize: 'auto' }}
