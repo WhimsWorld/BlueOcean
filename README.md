@@ -1,12 +1,24 @@
 # BlueOcean
 
 ## Table of Contents
-
+[Usage](##Usage)
+[Overview](##Overview)
+[Landing Page](##Landing-Page)
+[Home Page](##Home-Page)
+[Story Page](##Story-Page)
+[Login/Sign up Page](##Login/sign-up-page)
+[Character Creation](##Character-Creation)
+[Create Story](##Create-Story)
+[Create Story Post](##Create-Story-Post)
 
 ## Team members (Should we include this here? at the end? not at all?)
+- [Kimberly Tom](https://github.com/tomki1)
+- [Frank Soto](https://github.com/frankasoto)
+- [Jack Tobin](https://github.com/luckynumberthirteen)
+- [Jiahou Liu](https://github.com/zulliu)
+- [Taryn Wiedrick](https://github.com/TarynCovert)
 
 ## Usage
-
 ### 1. Clone the [repo](https://github.com/WhimsWorld/BlueOcean)
 ```bash
 git clone https://github.com/WhimsWorld/BlueOcean.git
@@ -96,3 +108,8 @@ or on the character portrait that is located on the side of the story page. All 
 as the overall layout is designed replicate the feeling of character creation that can be found in games.
 
 ![character creation](https://github.com/WhimsWorld/BlueOcean/assets/129362652/176d4c39-3f3c-433c-af25-06b3907f5229)
+
+## Create Story Post
+
+
+## Create Post
