@@ -134,7 +134,10 @@ function CategoryMenu({ setSelectedCategory }) {
           <Option
             key={category}
             value={category}
-            onClick={() => handleCategoryChange(category)}
+            onClick={() => {
+              setSelectedCategory(categoryKey[category]);
+              setSelectedValue(category);
+            }}
             className="font-merienda"
           >
             {category}
