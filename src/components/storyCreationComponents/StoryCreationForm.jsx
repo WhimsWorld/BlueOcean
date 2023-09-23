@@ -119,20 +119,22 @@ function ThumbnailMenu({ selectedCategory, setSelectedThumbnail }) {
 }
 
 function CategoryMenu({ setSelectedCategory }) {
-  const categories = ['High Fantasy', 'Mystic Forest', 'Pirates Cove', 'Steampunk Cityscape'];
+  const categories = ['High Fantasy', 'Mystical Forest', 'Pirates Cove Adventure', 'Steampunk Cityscape'];
   const categoryKey = {
-    'High Fantasy': 1, 'Mystic Forest': 2, 'Pirates Cove': 3, 'Steampunk Cityscape': 4,
+    'High Fantasy': 1, 'Mystical Forest': 2, 'Pirates Cove Adventure': 3, 'Steampunk Cityscape': 4,
   };
+  const [selectedValue, setSelectedValue] = useState('High Fantasy');
   return (
     <div className="w-60">
       <Typography style={{ fontSize: '20px' }} variant="h6" color="blue-gray" className="mb-4 font-croissant">
         Select Categories
       </Typography>
-      <Select label="Categories..." color="teal" style={{ backgroundColor: '#FFFFFF3A' }}>
+      <Select label="Categories..." color="teal" style={{ backgroundColor: '#FFFFFF3A' }} value={selectedValue}>
         {categories.map((category) => (
           <Option
             key={category}
-            onClick={() => setSelectedCategory(categoryKey[category])}
+            value={category}
+            onClick={() => handleCategoryChange(category)}
             className="font-merienda"
           >
             {category}
