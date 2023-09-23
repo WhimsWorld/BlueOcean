@@ -49,16 +49,23 @@ export default function LiveChat({ storyId }) {
         maxWidth: '320px', backgroundImage: `url(${rightPanel})`, backgroundRepeat: 'round', justifySelf: 'end',
       }}
     >
-      <h1 className='font-croissant' style={{textAlign: 'center', textDecoration: 'underline', fontSize: '20px', marginTop: '18px'}}><b>Live Chat</b></h1>
-      <div className="chat-messages overflow-y-auto h-96 mt-4" style={{border: '1px solid rgba(131, 105, 83, 0.2)', borderRadius: '25px', background: 'rgba(255, 255, 255, 0.6)'}}>
+      <h1
+        className="font-croissant"
+        style={{
+          textAlign: 'center', textDecoration: 'underline', fontSize: '20px', marginTop: '18px',
+        }}
+      >
+        <b>Live Chat</b>
+      </h1>
+      <div className="chat-messages overflow-y-auto h-96 mt-4" style={{ border: '1px solid rgba(131, 105, 83, 0.2)', borderRadius: '25px', background: 'rgba(255, 255, 255, 0.6)' }}>
         {chatMessages.map((msg) => (
           <div key={msg.message_id} className={`${msg.user_id === userId ? 'ml-16' : ''}`}>
-            <div className="user text-sm ml-2">
+            <div className="user text-sm ml-2 font-croissant text-gray-500">
               {msg.username}
               {' '}
               {new Date(msg.date_created).toLocaleTimeString()}
             </div>
-            <div className={`${msg.user_id === userId ? 'bg-whimsipink ' : 'bg-white'} border rounded-md m-1 p-2 px-4 w-44 text-black`}>
+            <div className={`${msg.user_id === userId ? 'bg-whimsipink ' : 'bg-white'} border rounded-md m-1 p-2 px-4 w-44 text-black font-serif`}>
               {msg.data}
             </div>
           </div>
@@ -71,14 +78,14 @@ export default function LiveChat({ storyId }) {
           rows={1}
           resize
           placeholder="Share your thoughts..."
-          className="min-h-full !border-0 focus:border-transparent"
+          className="min-h-full !border-0 focus:border-transparent font-croissant"
           containerProps={{
             className: 'grid h-full',
           }}
           labelProps={{
             className: 'before:content-none after:content-none',
           }}
-          style={{resize: 'none'}}
+          style={{ resize: 'none' }}
         />
         <div>
           <IconButton variant="text" className="rounded-full" onClick={handleSendMessage}>
