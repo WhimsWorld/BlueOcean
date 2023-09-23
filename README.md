@@ -124,12 +124,16 @@ number of players/creators(up to 10), a theme for their story and a thumbnail fo
 The current themes a user can select are High Fantasy, Mystical Forest, Pirates Cove Adventures and Steampunk Cityscapes. Upon
 creation of the initial story post, users will be redirected to their story page.
 
+![Create story](https://github.com/WhimsWorld/BlueOcean/assets/129362652/5bd14501-31f3-42ba-8f21-67d716fdcc02)
+
+
 ## Create Post
 Here a user is able to contribute to the story after they have created a character. The user (if not a narrator)
 will be asked to write their section of the story as well as select a sticker that will display on the post and a
 sound that will play if the sticker is clicked on. If the user happens to be a narrator for the story, they are
 given the additonal option of selecting an additional image to set the stage for what is to come.
-![story post as narrator](https://github.com/WhimsWorld/BlueOcean/assets/129362652/043f02c8-ef71-4da3-933b-1f03b1a5c9aa)
-![story post not narrator](https://github.com/WhimsWorld/BlueOcean/assets/129362652/8b2d3771-a927-44d4-82da-ff9c44f7964b)
 
+![story post not narrator](https://github.com/WhimsWorld/BlueOcean/assets/129362652/504e2835-761d-4ff3-a808-a7ca12f201f8)
+
+![story post as narrator](https://github.com/WhimsWorld/BlueOcean/assets/129362652/f3014461-e588-48a1-b9ce-dec5fc7671de)
 
