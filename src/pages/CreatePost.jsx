@@ -74,8 +74,6 @@ export default function CreatePost() {
           setBackgroundURL(pirateBG);
         } else if (categoryData.data.category_id === 4) {
           setBackgroundURL(steampunkBG);
-        } else if (categoryData.data.category_id === 5) {
-          setBackgroundURL(steampunkBG);
         } else {
           setBackgroundURL(cloudBG);
         }
@@ -218,7 +216,10 @@ export default function CreatePost() {
                 </Typography>
                 <GifsMenu gifs={gifs} selectedGif={selectedGif} setSelectedGif={setSelectedGif} />
               </div>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '30px', width: '400px', alignItems: 'center' }}>
+              <div style={{
+                display: 'flex', flexDirection: 'column', gap: '30px', width: '400px', alignItems: 'center',
+              }}
+              >
                 <SoundsMenu style={{ marginLeft: '30px' }} sounds={sounds} setSelectedSound={setSelectedSound} />
                 {selectedSound ? (
                   <div style={{ display: 'flex', alignItems: 'center' }}>
@@ -234,7 +235,9 @@ export default function CreatePost() {
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 384 512"
-                        style={{ width: '30px', height: '30px', marginRight: '5px', fill: '#101A4B' }} // Add fill property here
+                        style={{
+                          width: '30px', height: '30px', marginRight: '5px', fill: '#101A4B',
+                        }} // Add fill property here
                       >
                         <path d="M73 39c-14.8-9.1-33.4-9.4-48.5-.9S0 62.6 0 80V432c0 17.4 9.4 33.4 24.5 41.9s33.7 8.1 48.5-.9L361 297c14.3-8.7 23-24.2 23-41s-8.7-32.2-23-41L73 39z" />
                       </svg>
@@ -307,5 +310,5 @@ const cardBG = 'https://res.cloudinary.com/dnr41r1lq/image/upload/v1695235263/pa
 const fantasyBG = 'https://i.ibb.co/5r2KVVz/cave-min.png';
 const forestBG = 'https://i.ibb.co/HdrwtLm/forest-min.png';
 const pirateBG = 'https://i.ibb.co/0j5zyGz/pirate-min.png';
-const steampunkBG = 'https://res.cloudinary.com/dnr41r1lq/image/upload/v1695192325/image_uot0j6.png';
+const steampunkBG = 'https://i.ibb.co/cc8Z860/steampunk.png';
 const cloudBG = 'https://res.cloudinary.com/dnr41r1lq/image/upload/v1695192325/image_uot0j6.png';
