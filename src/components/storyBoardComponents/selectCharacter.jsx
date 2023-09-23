@@ -84,9 +84,11 @@ export default function SelectCharacter({ storyId }) {
   const handleCreateCharacter = () => {
     if (loggedIn) {
       navigate(`/characterCreation/${storyId}`);
+      window.scrollTo(0, 0);
     } else {
       console.log('select character not logged in');
       navigate(`/login/storyBoard/${storyId}`);
+      window.scrollTo(0, 0);
     }
   };
   return (

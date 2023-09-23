@@ -30,6 +30,7 @@ export default function StoryCard({
   const clickHandler = () => {
     dispatch(setStory(storyId));
     navigate(`/storyBoard/${storyId}`);
+    window.scrollTo(0, 0);
   };
 
   const likeClickHandler = () => {

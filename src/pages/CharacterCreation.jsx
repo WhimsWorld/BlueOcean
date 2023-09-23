@@ -125,7 +125,10 @@ export default function CharacterCreation({ storyBoardURL }) {
         strength: str,
         weakness: weak,
       })
-        .then(() => navigate(`/storyBoard/${storyID}`))
+        .then(() => {
+          navigate(`/storyBoard/${storyID}`);
+          window.scrollTo(0, 0);
+        })
         .catch((err) => {});
     } else {
       alert('Please create selections for all fields. Sounds are optional!');
@@ -263,7 +266,6 @@ export default function CharacterCreation({ storyBoardURL }) {
     }
   };
 
-
   const chooseStrength10 = (e) => {
     isCheckedS10 ? setIsCheckedS10(false) : setIsCheckedS10(true);
     isCheckedS10
@@ -397,7 +399,7 @@ export default function CharacterCreation({ storyBoardURL }) {
 
   return (
 
-    <div className="h-max bg-cover bg-fixed" style={{ backgroundImage: `url(${backgroundURL})`}}>
+    <div className="h-max bg-cover bg-fixed" style={{ backgroundImage: `url(${backgroundURL})` }}>
       <StickyNavbar loggedIn={loggedIn} setLoggedIn={setLoggedIn} />
       <div
         className="min-h-screen"
@@ -709,7 +711,10 @@ export default function CharacterCreation({ storyBoardURL }) {
               </Tooltip>
 
             </div>
-            <div style={{ margin: 'auto', marginBottom: '2%', marginTop: '3%', display: 'flex', flexWrap: 'wrap', flexDirection: 'row', justifyContent: 'center', gap: '5px' }}>
+            <div style={{
+              margin: 'auto', marginBottom: '2%', marginTop: '3%', display: 'flex', flexWrap: 'wrap', flexDirection: 'row', justifyContent: 'center', gap: '5px',
+            }}
+            >
               {images && images.map((image, index) => (
                 <Avatar
                   src={image.image_url}
@@ -725,14 +730,20 @@ export default function CharacterCreation({ storyBoardURL }) {
                 />
               ))}
             </div>
-            <div style={{ display: 'flex', flexDirection: 'column', margin: 'auto', width: '50%', height: '150px' }}>
+            <div style={{
+              display: 'flex', flexDirection: 'column', margin: 'auto', width: '50%', height: '150px',
+            }}
+            >
               <SoundsMenu
                 style={{ marginLeft: '30px' }}
                 sounds={sounds}
                 setSelectedSound={setSelectedSound}
               />
               {selectedSound ? (
-                <div style={{ display: 'flex', gap: '1em', marginTop: '1.5em', justifyContent: 'center', alignItems: 'center' }}>
+                <div style={{
+                  display: 'flex', gap: '1em', marginTop: '1.5em', justifyContent: 'center', alignItems: 'center',
+                }}
+                >
                   <button
                     onClick={() => playAudio(`https://docs.google.com/uc?export=open&id=${selectedSound.sound_url}`)}
                     type="button"
@@ -750,7 +761,7 @@ export default function CharacterCreation({ storyBoardURL }) {
                       <path d="M73 39c-14.8-9.1-33.4-9.4-48.5-.9S0 62.6 0 80V432c0 17.4 9.4 33.4 24.5 41.9s33.7 8.1 48.5-.9L361 297c14.3-8.7 23-24.2 23-41s-8.7-32.2-23-41L73 39z" />
                     </svg>
                   </button>
-                  <div style={{fontWeight: '500'}}>
+                  <div style={{ fontWeight: '500' }}>
                     Play Sound:
                     <span style={{ marginLeft: '10px' }}>
                       {selectedSound.sound_name}
@@ -760,7 +771,10 @@ export default function CharacterCreation({ storyBoardURL }) {
               ) : null}
             </div>
 
-            <div style={{ display: 'flex', justifyContent: 'center', margin: 'auto', marginBottom: '5em' }}>
+            <div style={{
+              display: 'flex', justifyContent: 'center', margin: 'auto', marginBottom: '5em',
+            }}
+            >
 
               <Button
                 className="text-lg font-croissant shadow-gray hover-shadow-sm hover:shadow-black hover:text-whimsiorange"

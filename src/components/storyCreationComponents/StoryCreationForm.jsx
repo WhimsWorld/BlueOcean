@@ -205,6 +205,7 @@ export default function StoryCreationForm() {
         max_characters: maxPlayers,
       }).then((res) => {
         navigate(`/storyBoard/${res.data.story_id}`);
+        window.scrollTo(0, 0);
       });
     }
   };
