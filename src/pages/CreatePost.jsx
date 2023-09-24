@@ -129,7 +129,6 @@ export default function CreatePost() {
           if (response.status === 201) {
             const link = storyId || loc;
             navigate(`/storyBoard/${link}`);
-            window.scrollTo(0, 0);
           }
         })
         .catch((error) => console.log(error));
