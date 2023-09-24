@@ -69,7 +69,6 @@ function ThumbnailMenu({ selectedCategory, setSelectedThumbnail }) {
   const [filtedimages, setFilteredImages] = useState([]);
 
   const [selectedImageId, setSelectedImageId] = useState(null);
-
   const catList = {
     1: 'High Fantasy', 2: 'Mystical Forest', 3: 'Pirates Cove Adventure', 4: 'Steampunk Cityscape',
   };
@@ -190,6 +189,7 @@ export default function StoryCreationForm() {
     e.stopPropagation();
     fetchUser();
     setErrorMessage(false);
+    console.log(selectedThumbnail);
 
     if (title === '') {
       document.getElementById('setTitle').focus();
@@ -209,7 +209,7 @@ export default function StoryCreationForm() {
         category_id: selectedCategory,
         narrator_id: Cookies.get('userId'),
         main_image_id: selectedImage.image_id,
-        thumbnail_id: selectedThumbnail.thumbnail_id,
+        thumbnail_id: selectedThumbnail.gif_id,
         title,
         summary,
         max_characters: maxPlayers,
