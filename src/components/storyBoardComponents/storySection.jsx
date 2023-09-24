@@ -42,7 +42,6 @@ export default function StorySection() {
     for (let i = 0; i < posts.length; i += 1) {
       findUsername(posts[i].created_by_user_id);
     }
-    console.log(posts);
   }, [posts]);
 
   const clickHandler = (id) => {
