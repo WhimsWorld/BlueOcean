@@ -12,8 +12,8 @@ import {
   Button,
   IconButton,
 } from '@material-tailwind/react';
-import { setStory } from '../../app/slices/storySlice';
 import moment from 'moment';
+import { setStory } from '../../app/slices/storySlice';
 
 export default function StoryCard({
   story, likeUpdate,
@@ -100,7 +100,14 @@ export default function StoryCard({
             </div>
           </div>
         </div>
-        <Typography color="gray">
+        <Typography
+          style={{
+            fontFamily: 'serif',
+            fontSize: '18px',
+          }}
+          color="gray"
+          className="font-serif pt-1"
+        >
           {moment(story.date_created).format('MMM Do, YYYY')}
         </Typography>
         <Typography color="gray" className="font-serif" style={{ marginRight: '40px', marginBottom: story.summary.length > 500 ? '55px' : '25px' }}>

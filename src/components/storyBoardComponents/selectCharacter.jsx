@@ -185,11 +185,9 @@ export default function SelectCharacter({ storyId }) {
         {hasCharInStory || maxCharsReached ? null : (
           <div className="flex justify-center items-center">
             <Button
-          // fullWidth
-          // variant="text"
               onClick={() => handleCreateCharacter()}
               style={{ backgroundImage: `url(${buttonBG})`, backgroundSize: 'auto' }}
-              className="shadow-gray hover-shadow-sm hover:shadow-black hover:text-whimsiorange"
+              className="shadow-gray hover-shadow-sm hover:shadow-black hover:text-whimsiorange font-serif"
             >
               Create Character
             </Button>
