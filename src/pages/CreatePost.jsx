@@ -36,6 +36,8 @@ export default function CreatePost() {
   const [audio] = useState(new Audio());
   const [backgroundURL, setBackgroundURL] = useState('');
   const storyID = window.location.href.split('createPost/')[1];
+  const [errorMessage, setErrorMessage] = useState(false);
+
   useEffect(() => {
     setSelectedImage(null);
   }, [isChecked]);
@@ -114,6 +116,8 @@ export default function CreatePost() {
     e.preventDefault();
     if (content === '') {
       document.getElementById('setContent').focus();
+    } else if (isChecked && !selectedImage) {
+      setErrorMessage(true);
     } else {
       axios.post('/api/posts', {
         created_by_user_id: userID,
@@ -171,6 +175,7 @@ export default function CreatePost() {
           style={{
             width: '100%',
             height: '100%',
+            marginBottom: '10px',
             display: 'flex',
             alignItems: 'center',
             background: `url(${cardBG})`,
@@ -188,7 +193,7 @@ export default function CreatePost() {
               <div className="flex w-max gap-4">
                 <Switch
                   label={<span style={{ fontFamily: 'corissant', fontWeight: 'bold' }}>Narrator Post</span>}
-                  style={{ fontWeight: 'bold', backgroundColor: switchState ? '#101A4B' : 'white' }}
+                  style={{ fontWeight: 'bold', backgroundColor: switchState ? 'teal' : 'white' }}
                   checked={switchState}
                   onChange={handleSwitchToggle}
                 />
@@ -236,7 +241,7 @@ export default function CreatePost() {
                         xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 384 512"
                         style={{
-                          width: '30px', height: '30px', marginRight: '5px', fill: '#101A4B',
+                          width: '30px', height: '30px', marginRight: '5px', fill: 'teal',
                         }} // Add fill property here
                       >
                         <path d="M73 39c-14.8-9.1-33.4-9.4-48.5-.9S0 62.6 0 80V432c0 17.4 9.4 33.4 24.5 41.9s33.7 8.1 48.5-.9L361 297c14.3-8.7 23-24.2 23-41s-8.7-32.2-23-41L73 39z" />
@@ -255,7 +260,7 @@ export default function CreatePost() {
           }}
           >
             {switchState ? (
-              <div style={{ display: 'flex', marginTop: '2em' }}>
+              <div style={{ display: 'flex', marginTop: '1.5em' }}>
                 <Typography style={{ fontSize: '20px' }} variant="h6" className=" mb-4 font-croissant" color="blue-gray" c>
                   Select Image
                 </Typography>
@@ -263,7 +268,7 @@ export default function CreatePost() {
                   <Checkbox
                     checked={isChecked}
                     onChange={clickHandler}
-                    style={{ backgroundColor: isChecked ? '#101A4B' : 'white', border: isChecked ? 'none' : '' }}
+                    style={{ backgroundColor: isChecked ? 'teal' : 'white', border: isChecked ? 'none' : '' }}
                   />
                 </div>
               </div>
@@ -279,6 +284,9 @@ export default function CreatePost() {
                 ) : null}
               </div>
             ) : null}
+            <Typography color="red" className="mb-4 mt-2 font-serif font-bold text-xl" style={{ minHeight: '16px', height: '16px' }}>
+              {errorMessage && isChecked && !selectedImage ? 'Please Select Background Image' : ''}
+            </Typography>
             <Button
               style={{
                 marginBottom: '80px',
@@ -289,9 +297,11 @@ export default function CreatePost() {
                 opacity: 0.8,
                 fontSize: '18px',
                 width: '350px',
+                color: (content && !switchState) || (content && isChecked && selectedImage) || (content && switchState && !isChecked) ? 'gold' : 'white',
+                boxShadow: (content && !switchState) || (content && isChecked && selectedImage) || (content && switchState && !isChecked) ? '0 0 5px 2px teal' : 'none',
               }}
               type="submit"
-              className="mt-6 mb-12 w-1/2 self center font-croissant text-lg shadow-gray hover-shadow-sm hover:shadow-black hover:text-whimsiorange"
+              className="mt-2 mb-5 w-1/2 self center font-croissant text-lg"
               onClick={handleSubmit}
             >
               Continue the Story

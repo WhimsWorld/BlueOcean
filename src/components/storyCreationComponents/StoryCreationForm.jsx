@@ -11,7 +11,6 @@ import {
   Typography,
   Carousel,
   Avatar,
-  Tooltip,
   Select,
   Option,
 } from '@material-tailwind/react';
@@ -47,7 +46,6 @@ function MenuWithScrollingContent({
               key={image.image_id}
               className="h-full w-full p-0 border-none bg-transparent cursor-pointer "
               onClick={() => setSelectedImage(image)}
-              onKeyDown={(e) => handleKeyDown(e, image.id)}
             >
               <img
                 src={image.image_url}
@@ -69,9 +67,6 @@ function ThumbnailMenu({ selectedCategory, setSelectedThumbnail }) {
   const [filtedimages, setFilteredImages] = useState([]);
 
   const [selectedImageId, setSelectedImageId] = useState(null);
-  const catList = {
-    1: 'High Fantasy', 2: 'Mystical Forest', 3: 'Pirates Cove Adventure', 4: 'Steampunk Cityscape',
-  };
   useEffect(() => {
     axios.get('/api/gifs')
       .then((res) => {
@@ -156,7 +151,6 @@ export default function StoryCreationForm() {
   const [images, setImages] = useState([]);
   const [selectedImage, setSelectedImage] = useState({});
   const [errorMessage, setErrorMessage] = useState(false);
-  const [maxError, setMaxError] = useState(false);
 
   useEffect(() => {
     axios.get('/api/storyimages')
@@ -189,7 +183,6 @@ export default function StoryCreationForm() {
     e.stopPropagation();
     fetchUser();
     setErrorMessage(false);
-    console.log(selectedThumbnail);
 
     if (title === '') {
       document.getElementById('setTitle').focus();
@@ -264,19 +257,28 @@ export default function StoryCreationForm() {
           <MenuWithScrollingContent id="selectImage" images={images} selectedCategory={selectedCategory} selectedImage={selectedImage} setSelectedImage={setSelectedImage} />
           <ThumbnailMenu id="selectThumbnail" selectedCategory={selectedCategory} setSelectedThumbnail={setSelectedThumbnail} />
         </div>
-        <Typography color="red" className="font-serif" style={{ minHeight: '16px', height: '16px' }}>
-          {errorMessage ? 'Please select an image before submitting.' : ''}
+        <Typography color="red" className="mb-4 font-serif font-bold text-xl" style={{ minHeight: '16px', height: '16px' }}>
+          {errorMessage && !selectedImage.image_id ? 'Please Select Background Image' : ''}
         </Typography>
         <Button
-          size="md"
-          style={{ backgroundImage: `url(${buttonBG})`, backgroundSize: 'auto' }}
-          className="shadow-gray hover-shadow-sm hover:shadow-black hover:text-whimsiorange mb-12 mt-4"
+          className="mb-16 text-lg font-croissant focus:outline-none"
+          color="teal"
+          style={{
+            backgroundImage: `url(${buttonBG})`,
+            backgroundSize: 'cover',
+            backgroundRepeat: 'no-repeat',
+            backgroundPosition: 'center center',
+            opacity: 0.8,
+            fontSize: '18px',
+            width: '300px',
+            color: selectedImage.image_id && selectedCategory && summary && selectedThumbnail.gif_id && title && maxPlayers ? 'gold' : 'white',
+            boxShadow: selectedImage.image_id && selectedCategory && summary && selectedThumbnail.gif_id && title && maxPlayers ? '0 0 5px 2px teal' : 'none',
+          }}
           type="submit"
           onClick={handleSubmit}
         >
-          Create
+          Create Story
         </Button>
-
       </form>
     </Card>
   );

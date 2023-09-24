@@ -59,7 +59,7 @@ export default function Leaderboard({ leaderboard }) {
 
   return (
     <Card style={{ maxWidth: '320px', backgroundImage: `url(${rightPanel})`, backgroundRepeat: 'round' }} className="h-full rounded-none rounded-r-xl">
-      <span style={{ fontSize: '20px' }} className="font-semibold font-croissant underline self-center pt-5">All Time Top 10</span>
+      <span style={{ fontSize: '20px' }} className="font-semibold font-croissant underline self-center mb-4 pt-5">All Time Top 10</span>
       <List>
         {leaderboard.map((entry) => (
           <ListItem

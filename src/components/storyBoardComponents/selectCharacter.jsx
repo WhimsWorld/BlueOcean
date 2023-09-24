@@ -107,7 +107,8 @@ export default function SelectCharacter({ storyId }) {
         {characters.map((character) => (
           <ListItem
             key={character.char_id}
-            className="bg-white rounded-lg mt-1 ml- bg-opacity-50"
+            className={character.sound_url
+              ? 'hover: cursor-pointer bg-white rounded-lg mt-1 ml- bg-opacity-50' : 'hover: cursor-auto bg-white rounded-lg mt-1 ml- bg-opacity-50'}
             onClick={() => playAudio(`https://docs.google.com/uc?export=open&id=${character.sound_url}`)}
           >
             <ListItemPrefix className="self-top">
@@ -187,7 +188,7 @@ export default function SelectCharacter({ storyId }) {
             <Button
               onClick={() => handleCreateCharacter()}
               style={{ backgroundImage: `url(${buttonBG})`, backgroundSize: 'auto' }}
-              className="shadow-gray hover-shadow-sm hover:shadow-black hover:text-whimsiorange font-serif"
+              className="shadow-gray hover-shadow-sm hover:shadow-black font-serif"
             >
               Create Character
             </Button>
