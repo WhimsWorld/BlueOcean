@@ -1,9 +1,4 @@
-SELECT 'CREATE DATABASE whimsiworlddb'
-WHERE NOT EXISTS (SELECT FROM pg_database WHERE datname = 'whimsiworlddb')\gexec
-
-\c whimsiworlddb;
--- above command automatically connects us to the database upon trying to import with \i
-DROP TABLE IF EXISTS users, gifs, sounds, images, thumbnail_images, categories, stories, user_story_likes, characters, posts, users_in_story, chat, templates CASCADE;
+DROP TABLE IF EXISTS users, gifs, sounds, images, categories, stories, user_story_likes, characters, posts, users_in_story, chat CASCADE;
 
 CREATE TABLE users (
     user_id VARCHAR(64) PRIMARY KEY,
@@ -38,20 +33,13 @@ CREATE TABLE images (
     premium BOOLEAN
 );
 
-CREATE TABLE thumbnail_images (
-    thumbnail_id SERIAL PRIMARY KEY,
-    category_id INTEGER REFERENCES categories(cat_id),
-    thumbnail_url TEXT,
-    premium BOOLEAN
-);
-
 CREATE TABLE stories (
     story_id SERIAL PRIMARY KEY,
     created_by_user_id VARCHAR(64) REFERENCES users(user_id),
     category_id INTEGER REFERENCES categories(cat_id),
     narrator_id VARCHAR(64) REFERENCES users(user_id),
     main_image_id INTEGER REFERENCES images(image_id),
-    thumbnail_id INTEGER REFERENCES thumbnail_images(thumbnail_id),
+    thumbnail_id INTEGER REFERENCES gifs(gif_id),
     like_count INTEGER DEFAULT 0 NOT NULL,
     title VARCHAR(256),
     summary TEXT,
@@ -103,11 +91,4 @@ CREATE TABLE chat (
     story_id INTEGER REFERENCES stories(story_id),
     data TEXT,
     date_created TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);
-
-CREATE TABLE templates (
-    description TEXT,
-    main_image_id INTEGER REFERENCES images(image_id),
-    thumbnail_id INTEGER REFERENCES thumbnail_images(thumbnail_id),
-    category_id INTEGER REFERENCES categories(cat_id)
 );
