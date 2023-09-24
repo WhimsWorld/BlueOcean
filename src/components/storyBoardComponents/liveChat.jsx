@@ -106,7 +106,11 @@ export default function LiveChat({ storyId }) {
           labelProps={{
             className: 'before:content-none after:content-none',
           }}
-          style={{ resize: 'none' }}
+          style={{
+            resize: 'none',
+            fontFamily: 'serif',
+            fontSize: '18px',
+          }}
         />
         <div className="flex items-center justify-center">
           <IconButton
