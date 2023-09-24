@@ -98,7 +98,7 @@ export const getCategory = async (storyId) => {
 };
 
 export const getLeaderboard = async () => {
-  const query = 'SELECT * FROM stories INNER JOIN thumbnail_images on thumbnail_images.thumbnail_id = stories.thumbnail_id ORDER BY like_count DESC';
+  const query = 'SELECT * FROM stories INNER JOIN gifs on gifs.gif_id = stories.thumbnail_id ORDER BY like_count DESC';
   const result = await executeQuery(query);
   const response = [];
   if (result.rows.length < 10) {
