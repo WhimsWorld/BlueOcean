@@ -115,9 +115,24 @@ export default function CreatePost() {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (content === '') {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth',
+      });
       document.getElementById('setContent').focus();
+    } else if (isChecked && !selectedImage && selectedGif && selectedSound) {
+      setErrorMessage(true);
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth',
+      });
     } else if (isChecked && !selectedImage) {
       setErrorMessage(true);
+    } else if (!selectedGif && selectedSound) {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth',
+      });
     } else {
       axios.post('/api/posts', {
         created_by_user_id: userID,
@@ -202,6 +217,7 @@ export default function CreatePost() {
           </div>
           <div style={{ width: '80%', marginTop: '1em' }}>
             <Textarea
+              id="setContent"
               label="Content"
               value={content}
               color="teal"
@@ -217,7 +233,7 @@ export default function CreatePost() {
               }}
               >
                 <Typography style={{ fontSize: '20px' }} variant="h6" color="blue-gray" className="mb-4 font-croissant">
-                  Select Sticker
+                  Select Icon
                 </Typography>
                 <GifsMenu gifs={gifs} selectedGif={selectedGif} setSelectedGif={setSelectedGif} />
               </div>
@@ -247,7 +263,10 @@ export default function CreatePost() {
                         <path d="M73 39c-14.8-9.1-33.4-9.4-48.5-.9S0 62.6 0 80V432c0 17.4 9.4 33.4 24.5 41.9s33.7 8.1 48.5-.9L361 297c14.3-8.7 23-24.2 23-41s-8.7-32.2-23-41L73 39z" />
                       </svg>
                     </button>
-                    <span className="font-croissant">Play Sound</span>
+                    <span className="font-croissant">Play: </span>
+                    <span className="font-croissant" style={{ marginLeft: '10px' }}>
+                      {selectedSound.name}
+                    </span>
                   </div>
                 ) : null}
               </div>
@@ -285,11 +304,11 @@ export default function CreatePost() {
               </div>
             ) : null}
             <Typography color="red" className="mb-4 mt-2 font-serif font-bold text-xl" style={{ minHeight: '16px', height: '16px' }}>
-              {errorMessage && isChecked && !selectedImage ? 'Please Select Background Image' : ''}
+              {errorMessage && isChecked && !selectedImage ? 'Please Select Narrator Image' : ''}
             </Typography>
             <Button
               style={{
-                marginBottom: '80px',
+                marginBottom: '10px',
                 backgroundImage: `url(${buttonBG})`,
                 backgroundSize: 'cover',
                 backgroundRepeat: 'no-repeat',
@@ -297,15 +316,18 @@ export default function CreatePost() {
                 opacity: 0.8,
                 fontSize: '18px',
                 width: '350px',
-                color: (content && !switchState) || (content && isChecked && selectedImage) || (content && switchState && !isChecked) ? 'gold' : 'white',
-                boxShadow: (content && !switchState) || (content && isChecked && selectedImage) || (content && switchState && !isChecked) ? '0 0 5px 2px teal' : 'none',
+                color: (content && !switchState && selectedSound && selectedGif) || (content && !switchState && !selectedSound) || (content && isChecked && selectedImage && selectedGif && selectedSound) || (content && isChecked && selectedImage && !selectedSound) || (content && switchState && !isChecked && selectedGif && selectedSound) || (content && !isChecked && !selectedSound) ? 'gold' : 'white',
+                boxShadow: (content && !switchState && selectedSound && selectedGif) || (content && !switchState && !selectedSound) || (content && isChecked && selectedImage && selectedGif && selectedSound) || (content && isChecked && selectedImage && !selectedSound) || (content && switchState && !isChecked && selectedGif && selectedSound) || (content && !isChecked && !selectedSound) ? '0 0 5px 2px teal' : 'none',
               }}
               type="submit"
-              className="mt-2 mb-5 w-1/2 self center font-croissant text-lg"
+              className="mt-2 w-1/2 self center font-croissant text-lg"
               onClick={handleSubmit}
             >
               Continue the Story
             </Button>
+            <Typography color="red" className="mb-10 font-serif font-bold text-xl">
+              {selectedSound && !selectedGif ? 'Please Select Icon when Using Sounds' : ''}
+            </Typography>
           </div>
         </Card>
 
