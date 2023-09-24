@@ -47,8 +47,10 @@ export default function StorySection() {
   const clickHandler = (id) => {
     if (loggedIn) {
       navigate(`/createPost/${id}`);
+      window.scrollTo(0, 0);
     } else {
       navigate(`/login/storyBoard/${storyId}`);
+      window.scrollTo(0, 0);
     }
   };
 
