@@ -17,7 +17,6 @@ export default function ImagesMenu({ setSelectedImage, selectedImage, images }) 
       className="rounded-xl overflow-hidden"
       style={{
         width: '60%',
-        // height: '50%',
         margin: 'auto',
       }}
     >

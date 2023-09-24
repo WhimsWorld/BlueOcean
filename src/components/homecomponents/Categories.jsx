@@ -28,7 +28,7 @@ export default function Categories({
         backgroundImage: `url(${leftPanel})`,
         backgroundSize: 'auto',
         backgroundRepeat: 'round',
-        width: '240px',
+        width: '294px',
       }}
     >
       <span style={{ fontSize: '20px' }} className="font-croissant self-center pt-5 pb-3 underline font-body font-2x"><b>Themes</b></span>
