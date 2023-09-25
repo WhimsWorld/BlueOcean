@@ -5,42 +5,40 @@ import { executeQuery } from '../db.js';
 export const getStories = async (category, filter, myStories, user) => {
   const buildQuery = (categoryStory, filterStory, myStoriesFilter, userId) => {
     let query = `
-      SELECT *
+      SELECT DISTINCT stories.*, images.image_url
       FROM stories
       INNER JOIN images ON images.image_id = stories.main_image_id
     `;
 
-    if (categoryStory) {
+    if (categoryStory && myStoriesFilter === 'true') {
+      query += `
+        INNER JOIN categories ON categories.cat_id = stories.category_id
+        LEFT JOIN characters ON characters.story_id = stories.story_id
+        WHERE cat_name = '${categoryStory}' AND characters.user_id = '${userId}'
+      `;
+    } else if (categoryStory) {
       query += `
         INNER JOIN categories ON categories.cat_id = stories.category_id
         WHERE cat_name = '${categoryStory}'
       `;
+    } else if (myStoriesFilter === 'true') {
+      query += `
+        LEFT JOIN characters ON characters.story_id = stories.story_id
+        WHERE characters.user_id = '${userId}'
+      `;
     }
 
     if (filterStory === 'Top') {
-      if (myStoriesFilter === 'true') {
-        query += `
-          AND created_by_user_id = '${userId}'
-          ORDER BY like_count DESC
-        `;
-      } else {
-        query += `
-          ORDER BY like_count DESC
-        `;
-      }
+      query += `
+        ORDER BY stories.like_count DESC
+      `;
     } else if (filterStory === 'New') {
-      if (myStoriesFilter === 'true') {
-        query += `
-          AND created_by_user_id = '${userId}'
-          ORDER BY date_created DESC
-        `;
-      } else {
-        query += `
-          ORDER BY date_created DESC
-        `;
-      }
+      query += `
+        ORDER BY stories.date_created DESC
+      `;
     }
-    query += 'LIMIT 10';
+
+    query += ' LIMIT 10';
     return query;
   };
 

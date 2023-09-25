@@ -14,7 +14,7 @@ export default function Mystories({
 
   return (
     <Checkbox
-      label="My Stories"
+      label="My Character Stories"
       color="indigo"
       disabled={showCheck}
       checked={isChecked}

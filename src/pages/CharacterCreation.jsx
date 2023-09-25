@@ -28,7 +28,8 @@ export default function CharacterCreation({ storyBoardURL }) {
   const [race, setRace] = useState('');
   const [sex, setSex] = useState('');
   const [characterIcon, setCharacterIcon] = useState('');
-  const [images, setImages] = useState(['https://previews.123rf.com/images/aalbedouin/aalbedouin1801/aalbedouin180100599/93976760-personality-traits-icon-symbol-premium-quality-isolated-personal-character-element-in-trendy-style.jpg', 'https://previews.123rf.com/images/aalbedouin/aalbedouin1801/aalbedouin180100599/93976760-personality-traits-icon-symbol-premium-quality-isolated-personal-character-element-in-trendy-style.jpg', 'https://previews.123rf.com/images/aalbedouin/aalbedouin1801/aalbedouin180100599/93976760-personality-traits-icon-symbol-premium-quality-isolated-personal-character-element-in-trendy-style.jpg', 'https://previews.123rf.com/images/aalbedouin/aalbedouin1801/aalbedouin180100599/93976760-personality-traits-icon-symbol-premium-quality-isolated-personal-character-element-in-trendy-style.jpg', 'https://previews.123rf.com/images/aalbedouin/aalbedouin1801/aalbedouin180100599/93976760-personality-traits-icon-symbol-premium-quality-isolated-personal-character-element-in-trendy-style.jpg', 'https://previews.123rf.com/images/aalbedouin/aalbedouin1801/aalbedouin180100599/93976760-personality-traits-icon-symbol-premium-quality-isolated-personal-character-element-in-trendy-style.jpg', 'https://previews.123rf.com/images/aalbedouin/aalbedouin1801/aalbedouin180100599/93976760-personality-traits-icon-symbol-premium-quality-isolated-personal-character-element-in-trendy-style.jpg', 'https://previews.123rf.com/images/aalbedouin/aalbedouin1801/aalbedouin180100599/93976760-personality-traits-icon-symbol-premium-quality-isolated-personal-character-element-in-trendy-style.jpg', 'https://previews.123rf.com/images/aalbedouin/aalbedouin1801/aalbedouin180100599/93976760-personality-traits-icon-symbol-premium-quality-isolated-personal-character-element-in-trendy-style.jpg', 'https://previews.123rf.com/images/aalbedouin/aalbedouin1801/aalbedouin180100599/93976760-personality-traits-icon-symbol-premium-quality-isolated-personal-character-element-in-trendy-style.jpg', 'https://previews.123rf.com/images/aalbedouin/aalbedouin1801/aalbedouin180100599/93976760-personality-traits-icon-symbol-premium-quality-isolated-personal-character-element-in-trendy-style.jpg', 'https://previews.123rf.com/images/aalbedouin/aalbedouin1801/aalbedouin180100599/93976760-personality-traits-icon-symbol-premium-quality-isolated-personal-character-element-in-trendy-style.jpg']);
+  const [errorMessage, setErrorMessage] = useState(false);
+  const [images, setImages] = useState([]);
   const [sounds, setSounds] = useState([]);
   const [selectedSound, setSelectedSound] = useState(false);
   const [backgroundURL, setBackgroundURL] = useState('');
@@ -112,7 +113,37 @@ export default function CharacterCreation({ storyBoardURL }) {
   const uid = Cookies.get('userId');
   async function toPost(e) {
     e.preventDefault();
-    if (name && origin && race && sex && characterIcon && str.length > 1 && weak.length > 1) {
+    if (!name) {
+      document.getElementById('setName').focus();
+    } else if (!race) {
+      document.getElementById('setRace').focus();
+    } else if (!origin) {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth',
+      });
+      document.getElementById('setOrigin').focus();
+    } else if (!sex) {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth',
+      });
+      document.getElementById('Male').focus();
+    } else if (str.length < 2) {
+      window.scrollTo({
+        top: -100,
+        behavior: 'smooth',
+      });
+      document.getElementById('Courageous').focus();
+    } else if (weak.length < 2) {
+      window.scrollTo({
+        top: -100,
+        behavior: 'smooth',
+      });
+      document.getElementById('Cowardice').focus();
+    } else if (!characterIcon) {
+      document.getElementById('2').focus();
+    } else {
       axios.post('/api/characters', {
         user_id: uid,
         story_id: storyID,
@@ -130,8 +161,6 @@ export default function CharacterCreation({ storyBoardURL }) {
           window.scrollTo(0, 0);
         })
         .catch((err) => {});
-    } else {
-      alert('Please create selections for all fields. Sounds are optional!');
     }
   }
 
@@ -392,6 +421,16 @@ export default function CharacterCreation({ storyBoardURL }) {
     }
   };
 
+  const nameHandler = (e) => {
+    if (e.target.value.length > 20) {
+      setName('');
+      setErrorMessage(true);
+    } else {
+      setName(e.target.value);
+      setErrorMessage(false);
+    }
+  };
+
   const playAudio = (soundUrl) => {
     audio.src = soundUrl;
     audio.play();
@@ -422,13 +461,15 @@ export default function CharacterCreation({ storyBoardURL }) {
           shadow={false}
         >
           <Typography variant="h4" color="blue-gray" className="font-croissant " style={{ marginTop: '2em', fontSize: '32px' }}>
-
             Character Creation
           </Typography>
           <form className="mt-4 mb-2 max-w-screen-2xl sm:w-full lg:w-3/4 xl:w-2/3 mx-auto">
             <div className="mb-4 flex flex-col gap-6" style={{ margin: 'auto', width: '60%', marginBottom: '1em' }}>
-              <Input color="indigo" size="sm" label="Name" onChange={(e) => setName(e.target.value)} style={{ backgroundColor: 'white' }} />
-              <Select color="indigo" label="Select Race" onChange={changeRace} style={{ backgroundColor: 'white' }}>
+              <Input color="teal" size="sm" label="Name" id="setName" onChange={(e) => nameHandler(e)} style={{ backgroundColor: 'white' }} />
+              <Typography color="red" className="-mt-6 -mb-4 font-serif" style={{ minHeight: '26px' }}>
+                {errorMessage ? 'Character name length is limited to 20 characters.' : ''}
+              </Typography>
+              <Select color="teal" label="Select Race" className="focus:outline-none focus:ring focus:ring-teal-500" id="setRace" onChange={changeRace} style={{ backgroundColor: 'white' }}>
                 <Option value="Human">Human</Option>
                 <Option value="Elf">Elf</Option>
                 <Option value="Orc">Orc</Option>
@@ -438,45 +479,48 @@ export default function CharacterCreation({ storyBoardURL }) {
               </Select>
             </div>
             <div className="mb-4 flex flex-col gap-6">
-              <Textarea color="indigo" style={{ backgroundColor: 'white' }} size="lg" label="Character Origin Story" type="text" onChange={(e) => setOrigin(e.target.value)} />
+              <Textarea color="teal" id="setOrigin" style={{ backgroundColor: 'white' }} size="lg" label="Character Origin Story" type="text" onChange={(e) => setOrigin(e.target.value)} />
             </div>
             <div className="flex w-max gap-4" style={{ margin: 'auto' }}>
               <Radio
                 id="Male"
                 label="Male"
                 value="Male"
-                color="indigo"
+                color="teal"
                 checked={radioCheck1}
                 onClick={(e) => radioHandler(e)}
+                className="focus:outline-none focus:ring focus:ring-teal-100"
               />
               <Radio
                 id="Female"
                 label="Female"
                 value="Female"
-                color="indigo"
+                color="teal"
                 checked={radioCheck2}
-                className="checkmark"
+                className="focus:outline-none focus:ring focus:ring-teal-100"
                 onClick={(e) => radioHandler(e)}
               />
               <Radio
                 id="Non-binary"
                 label="Non-binary"
                 value="Non-binary"
-                color="indigo"
+                color="teal"
                 checked={radioCheck3}
                 onClick={(e) => radioHandler(e)}
+                className="focus:outline-none focus:ring focus:ring-teal-100"
               />
               <Radio
                 id="Other"
                 label="Other"
                 value="Other"
-                color="indigo"
+                color="teal"
                 checked={radioCheck4}
                 onClick={(e) => radioHandler(e)}
+                className="focus:outline-none focus:ring focus:ring-teal-100"
               />
             </div>
             <div>
-              <Typography color="gray" className="mt-1 font-bold font-croissant">
+              <Typography id="str" color="gray" className="mt-1 font-bold font-croissant">
                 Choose your Strengths
                 {' '}
                 <em>(Select 2)</em>
@@ -489,7 +533,8 @@ export default function CharacterCreation({ storyBoardURL }) {
                   onClick={chooseStrength1}
                   checked={isCheckedS1}
                   disabled={!isCheckedS1 && strCount === 2}
-                  style={{ backgroundColor: isCheckedS1 ? '#101A4B' : null, border: isCheckedS1 ? 'none' : ' ' }}
+                  style={{ backgroundColor: isCheckedS1 ? 'teal' : null, border: isCheckedS1 ? 'none' : ' ' }}
+                  className="focus:outline-none focus:ring focus:ring-teal-500"
                 />
               </Tooltip>
               <Tooltip text="This character has a vast pool of knowledge, be it from books, experiences, or teachings. They always have a piece of information that can help the group.">
@@ -500,7 +545,8 @@ export default function CharacterCreation({ storyBoardURL }) {
                   onClick={chooseStrength2}
                   disabled={!isCheckedS2 && strCount === 2}
                   checked={isCheckedS2}
-                  style={{ backgroundColor: isCheckedS2 ? '#101A4B' : null, border: isCheckedS2 ? 'none' : ' ' }}
+                  style={{ backgroundColor: isCheckedS2 ? 'teal' : null, border: isCheckedS2 ? 'none' : ' ' }}
+                  className="focus:outline-none focus:ring focus:ring-teal-500"
                 />
               </Tooltip>
               <Tooltip text="With just a smile or a few words, they can win over even the toughest of crowds. Their charm is their strength, allowing them to negotiate, inspire, and lead with ease.">
@@ -511,7 +557,8 @@ export default function CharacterCreation({ storyBoardURL }) {
                   onClick={chooseStrength3}
                   disabled={!isCheckedS3 && strCount === 2}
                   checked={isCheckedS3}
-                  style={{ backgroundColor: isCheckedS3 ? '#101A4B' : null, border: isCheckedS3 ? 'none' : ' ' }}
+                  style={{ backgroundColor: isCheckedS3 ? 'teal' : null, border: isCheckedS3 ? 'none' : ' ' }}
+                  className="focus:outline-none focus:ring focus:ring-teal-500"
                 />
               </Tooltip>
               <Tooltip text="Their words, actions, or mere presence can lift the spirits of those around them. They’re a beacon of hope and strength for their group.">
@@ -522,7 +569,8 @@ export default function CharacterCreation({ storyBoardURL }) {
                   onClick={chooseStrength4}
                   disabled={!isCheckedS4 && strCount === 2}
                   checked={isCheckedS4}
-                  style={{ backgroundColor: isCheckedS4 ? '#101A4B' : null, border: isCheckedS4 ? 'none' : ' ' }}
+                  style={{ backgroundColor: isCheckedS4 ? 'teal' : null, border: isCheckedS4 ? 'none' : ' ' }}
+                  className="focus:outline-none focus:ring focus:ring-teal-500"
                 />
               </Tooltip>
               <Tooltip text="No matter the odds, this character can make do with what they have. They can often find unconventional solutions to problems.">
@@ -533,7 +581,8 @@ export default function CharacterCreation({ storyBoardURL }) {
                   onClick={chooseStrength5}
                   disabled={!isCheckedS5 && strCount === 2}
                   checked={isCheckedS5}
-                  style={{ backgroundColor: isCheckedS5 ? '#101A4B' : null, border: isCheckedS5 ? 'none' : ' ' }}
+                  style={{ backgroundColor: isCheckedS5 ? 'teal' : null, border: isCheckedS5 ? 'none' : ' ' }}
+                  className="focus:outline-none focus:ring focus:ring-teal-500"
                 />
               </Tooltip>
               <Tooltip text="Physically and mentally tough, this character can endure hardships that would break most. They recover quickly from setbacks, always ready for the next challenge.">
@@ -544,7 +593,8 @@ export default function CharacterCreation({ storyBoardURL }) {
                   onClick={chooseStrength6}
                   checked={isCheckedS6}
                   disabled={!isCheckedS6 && strCount === 2}
-                  style={{ backgroundColor: isCheckedS6 ? '#101A4B' : null, border: isCheckedS6 ? 'none' : ' ' }}
+                  style={{ backgroundColor: isCheckedS6 ? 'teal' : null, border: isCheckedS6 ? 'none' : ' ' }}
+                  className="focus:outline-none focus:ring focus:ring-teal-500"
                 />
               </Tooltip>
               <Tooltip text="Fiercely loyal and protective, they’ll go to great lengths to ensure the safety of their loved ones and allies.">
@@ -555,7 +605,8 @@ export default function CharacterCreation({ storyBoardURL }) {
                   onClick={chooseStrength7}
                   checked={isCheckedS7}
                   disabled={!isCheckedS7 && strCount === 2}
-                  style={{ backgroundColor: isCheckedS7 ? '#101A4B' : null, border: isCheckedS7 ? 'none' : ' ' }}
+                  style={{ backgroundColor: isCheckedS7 ? 'teal' : null, border: isCheckedS7 ? 'none' : ' ' }}
+                  className="focus:outline-none focus:ring focus:ring-teal-500"
                 />
               </Tooltip>
               <Tooltip text="No matter the situation, this character can adjust and make the best out of it. They’re quick on their feet, thinking of solutions on the go.">
@@ -566,7 +617,8 @@ export default function CharacterCreation({ storyBoardURL }) {
                   onClick={chooseStrength8}
                   checked={isCheckedS8}
                   disabled={!isCheckedS8 && strCount === 2}
-                  style={{ backgroundColor: isCheckedS8 ? '#101A4B' : null, border: isCheckedS8 ? 'none' : ' ' }}
+                  style={{ backgroundColor: isCheckedS8 ? 'teal' : null, border: isCheckedS8 ? 'none' : ' ' }}
+                  className="focus:outline-none focus:ring focus:ring-teal-500"
                 />
               </Tooltip>
               <Tooltip text="This character can intuitively understand and feel what others are going through. Their ability to connect with others on a deeper level can help in negotiations or understanding hidden motives.">
@@ -577,7 +629,8 @@ export default function CharacterCreation({ storyBoardURL }) {
                   onClick={chooseStrength9}
                   checked={isCheckedS9}
                   disabled={!isCheckedS9 && strCount === 2}
-                  style={{ backgroundColor: isCheckedS9 ? '#101A4B' : null, border: isCheckedS9 ? 'none' : ' ' }}
+                  style={{ backgroundColor: isCheckedS9 ? 'teal' : null, border: isCheckedS9 ? 'none' : ' ' }}
+                  className="focus:outline-none focus:ring focus:ring-teal-500"
                 />
               </Tooltip>
               <Tooltip text="Always three steps ahead, this character is excellent at planning and strategizing, making sure the group is always in a favorable position.">
@@ -588,7 +641,8 @@ export default function CharacterCreation({ storyBoardURL }) {
                   onClick={chooseStrength10}
                   checked={isCheckedS10}
                   disabled={!isCheckedS10 && strCount === 2}
-                  style={{ backgroundColor: isCheckedS10 ? '#101A4B' : null, border: isCheckedS10 ? 'none' : ' ' }}
+                  style={{ backgroundColor: isCheckedS10 ? 'teal' : null, border: isCheckedS10 ? 'none' : ' ' }}
+                  className="focus:outline-none focus:ring focus:ring-teal-500"
                 />
               </Tooltip>
             </div>
@@ -606,7 +660,8 @@ export default function CharacterCreation({ storyBoardURL }) {
                   onClick={chooseWeakness1}
                   checked={isCheckedW1}
                   disabled={!isCheckedW1 && weakCount === 2}
-                  style={{ backgroundColor: isCheckedW1 ? '#101A4B' : null, border: isCheckedW1 ? 'none' : ' ' }}
+                  style={{ backgroundColor: isCheckedW1 ? 'teal' : null, border: isCheckedW1 ? 'none' : ' ' }}
+                  className="focus:outline-none focus:ring focus:ring-teal-500"
                 />
               </Tooltip>
               <Tooltip text="Incompetence is an outstanding flaw for a character, just because it stirs up some chaos into the campaigns because failed rolls might create not only funny moments but also dramatic moments. And depending on an incompetent character in a time of need is a tremendous opportunity for great story moments.">
@@ -617,7 +672,8 @@ export default function CharacterCreation({ storyBoardURL }) {
                   onClick={chooseWeakness2}
                   checked={isCheckedW2}
                   disabled={!isCheckedW2 && weakCount === 2}
-                  style={{ backgroundColor: isCheckedW2 ? '#101A4B' : null, border: isCheckedW2 ? 'none' : ' ' }}
+                  style={{ backgroundColor: isCheckedW2 ? 'teal' : null, border: isCheckedW2 ? 'none' : ' ' }}
+                  className="focus:outline-none focus:ring focus:ring-teal-500"
                 />
               </Tooltip>
               <Tooltip text="Being lazy might be a bit whiny trait for a character to have, but simply a bard that will not do any physical labor could provide more roleplaying opportunities for others to interact with these lazy tendencies and provide more challenge to the party in the process.">
@@ -628,10 +684,10 @@ export default function CharacterCreation({ storyBoardURL }) {
                   onClick={chooseWeakness3}
                   checked={isCheckedW3}
                   disabled={!isCheckedW3 && weakCount === 2}
-                  style={{ backgroundColor: isCheckedW3 ? '#101A4B' : null, border: isCheckedW3 ? 'none' : ' ' }}
+                  style={{ backgroundColor: isCheckedW3 ? 'teal' : null, border: isCheckedW3 ? 'none' : ' ' }}
+                  className="focus:outline-none focus:ring focus:ring-teal-500"
                 />
               </Tooltip>
-
               <Tooltip text="Rebellious and Rogish characters are loveable by all. This trait is excellent to roleplay in your party since this trait creates tremendous opportunities to deviate from the DM structure due to the character’s beliefs and ideals in a fun way.">
                 <Checkbox
                   label="Rebellious"
@@ -640,7 +696,8 @@ export default function CharacterCreation({ storyBoardURL }) {
                   onClick={chooseWeakness4}
                   checked={isCheckedW4}
                   disabled={!isCheckedW4 && weakCount === 2}
-                  style={{ backgroundColor: isCheckedW4 ? '#101A4B' : null, border: isCheckedW4 ? 'none' : ' ' }}
+                  style={{ backgroundColor: isCheckedW4 ? 'teal' : null, border: isCheckedW4 ? 'none' : ' ' }}
+                  className="focus:outline-none focus:ring focus:ring-teal-500"
                 />
               </Tooltip>
               <Tooltip text="This trait is better than some of the characteristics like being “secretive” or “manipulative.” These two traits might be roleplayed in a more passive way, where coming up with new lies are a great character development tool. Think of Saul Goodman from Breaking Bad as an example.">
@@ -651,7 +708,8 @@ export default function CharacterCreation({ storyBoardURL }) {
                   onClick={chooseWeakness5}
                   checked={isCheckedW5}
                   disabled={!isCheckedW5 && weakCount === 2}
-                  style={{ backgroundColor: isCheckedW5 ? '#101A4B' : null, border: isCheckedW5 ? 'none' : ' ' }}
+                  style={{ backgroundColor: isCheckedW5 ? 'teal' : null, border: isCheckedW5 ? 'none' : ' ' }}
+                  className="focus:outline-none focus:ring focus:ring-teal-500"
                 />
               </Tooltip>
               <Tooltip text="Being Vengeful could be an interesting character trait to have since this provides an opportunity to find some of the wrongdoings that might seem small to others but show to other players and DM what this character values for its ideals and create conflict. Think Gladiator as an example to draw inspiration from.">
@@ -662,7 +720,8 @@ export default function CharacterCreation({ storyBoardURL }) {
                   onClick={chooseWeakness6}
                   checked={isCheckedW6}
                   disabled={!isCheckedW6 && weakCount === 2}
-                  style={{ backgroundColor: isCheckedW6 ? '#101A4B' : null, border: isCheckedW6 ? 'none' : ' ' }}
+                  style={{ backgroundColor: isCheckedW6 ? 'teal' : null, border: isCheckedW6 ? 'none' : ' ' }}
+                  className="focus:outline-none focus:ring focus:ring-teal-500"
                 />
               </Tooltip>
               <Tooltip text="This trait is basically bards. However, exploring vanity’s themes is an excellent trait since it provides a significant character development opportunity to care about somebody other than your character in the story.">
@@ -673,7 +732,8 @@ export default function CharacterCreation({ storyBoardURL }) {
                   onClick={chooseWeakness7}
                   checked={isCheckedW7}
                   disabled={!isCheckedW7 && weakCount === 2}
-                  style={{ backgroundColor: isCheckedW7 ? '#101A4B' : null, border: isCheckedW7 ? 'none' : ' ' }}
+                  style={{ backgroundColor: isCheckedW7 ? 'teal' : null, border: isCheckedW7 ? 'none' : ' ' }}
+                  className="focus:outline-none focus:ring focus:ring-teal-500"
                 />
               </Tooltip>
               <Tooltip text="Being dependent on something is a great character trait for players to tie some of the players together in an exciting way. Whatever happens to the entity the character is dependent on will impact the character in some meaningful way creating great stories on the way.">
@@ -684,7 +744,8 @@ export default function CharacterCreation({ storyBoardURL }) {
                   onClick={chooseWeakness8}
                   checked={isCheckedW8}
                   disabled={!isCheckedW8 && weakCount === 2}
-                  style={{ backgroundColor: isCheckedW8 ? '#101A4B' : null, border: isCheckedW8 ? 'none' : ' ' }}
+                  style={{ backgroundColor: isCheckedW8 ? 'teal' : null, border: isCheckedW8 ? 'none' : ' ' }}
+                  className="focus:outline-none focus:ring focus:ring-teal-500"
                 />
               </Tooltip>
               <Tooltip text="One of the better flaws to have for any character is a flaw that lets the DM take advantage of the character to create either more conflict at the table. A gullible cleric, righteous, might even follow an evil entity without knowing. Or a proud nobleman might not be street smart at all, falling for every parlor trick made on him.">
@@ -695,7 +756,8 @@ export default function CharacterCreation({ storyBoardURL }) {
                   onClick={chooseWeakness9}
                   checked={isCheckedW9}
                   disabled={!isCheckedW9 && weakCount === 2}
-                  style={{ backgroundColor: isCheckedW9 ? '#101A4B' : null, border: isCheckedW9 ? 'none' : ' ' }}
+                  style={{ backgroundColor: isCheckedW9 ? 'teal' : null, border: isCheckedW9 ? 'none' : ' ' }}
+                  className="focus:outline-none focus:ring focus:ring-teal-500"
                 />
               </Tooltip>
               <Tooltip text="This is an excellent trait for any character, a bounty or artifact hunter, annoying cleric worshiping a deity, or merely an artificer being enthusiastic about small magical details creating more roleplaying opportunities for others at the table to interact with.">
@@ -706,7 +768,8 @@ export default function CharacterCreation({ storyBoardURL }) {
                   onClick={chooseWeakness10}
                   checked={isCheckedW10}
                   disabled={!isCheckedW10 && weakCount === 2}
-                  style={{ backgroundColor: isCheckedW10 ? '#101A4B' : null, border: isCheckedW10 ? 'none' : ' ' }}
+                  style={{ backgroundColor: isCheckedW10 ? 'teal' : null, border: isCheckedW10 ? 'none' : ' ' }}
+                  className="focus:outline-none focus:ring focus:ring-teal-500"
                 />
               </Tooltip>
 
@@ -723,9 +786,10 @@ export default function CharacterCreation({ storyBoardURL }) {
                   size="lg"
                   onClick={() => clickHandler(image.image_id)}
                   style={{
-                    border: `solid 4px ${characterIcon === image.image_id ? '#101A4B' : 'transparent'}`,
+                    border: `solid 4px ${characterIcon === image.image_id ? 'teal' : 'transparent'}`,
                     cursor: 'pointer',
                   }}
+                  className="focus:outline-none focus:ring focus:ring-teal-500"
                   key={index}
                 />
               ))}
@@ -735,13 +799,13 @@ export default function CharacterCreation({ storyBoardURL }) {
             }}
             >
               <SoundsMenu
-                style={{ marginLeft: '30px' }}
+                style={{ marginLeft: '30px'}}
                 sounds={sounds}
                 setSelectedSound={setSelectedSound}
               />
               {selectedSound ? (
                 <div style={{
-                  display: 'flex', gap: '1em', marginTop: '1.5em', justifyContent: 'center', alignItems: 'center',
+                  display: 'flex', gap: '0.5em', marginTop: '0.5em', justifyContent: 'center', alignItems: 'center',
                 }}
                 >
                   <button
@@ -756,28 +820,27 @@ export default function CharacterCreation({ storyBoardURL }) {
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       viewBox="0 0 384 512"
-                      style={{ width: '30px', height: '30px', fill: '#101A4B' }}
+                      style={{ width: '30px', height: '20px', fill: 'teal' }}
                     >
                       <path d="M73 39c-14.8-9.1-33.4-9.4-48.5-.9S0 62.6 0 80V432c0 17.4 9.4 33.4 24.5 41.9s33.7 8.1 48.5-.9L361 297c14.3-8.7 23-24.2 23-41s-8.7-32.2-23-41L73 39z" />
                     </svg>
                   </button>
-                  <div style={{ fontWeight: '500' }}>
-                    Play Sound:
-                    <span style={{ marginLeft: '10px' }}>
+                  <div className="font-croissant" style={{ fontWeight: '500' }}>
+                    Play:
+                    <span className="font-croissant" style={{ marginLeft: '10px' }}>
                       {selectedSound.sound_name}
                     </span>
                   </div>
                 </div>
               ) : null}
             </div>
-
             <div style={{
-              display: 'flex', justifyContent: 'center', margin: 'auto', marginBottom: '5em',
+              display: 'flex', justifyContent: 'center', margin: 'auto', marginBottom: '4em',
             }}
             >
-
               <Button
-                className="text-lg font-croissant shadow-gray hover-shadow-sm hover:shadow-black hover:text-whimsiorange"
+                className="-mt-8 text-lg font-croissant shadow-gray focus:outline-none"
+                color="teal"
                 style={{
                   backgroundImage: `url(${buttonBG})`,
                   backgroundSize: 'cover',
@@ -786,6 +849,8 @@ export default function CharacterCreation({ storyBoardURL }) {
                   opacity: 0.8,
                   fontSize: '18px',
                   width: '350px',
+                  color: sex && race && name && origin && characterIcon && str.length > 1 && weak.length > 1 ? 'gold' : 'white',
+                  boxShadow: sex && race && name && origin && characterIcon && str.length > 1 && weak.length > 1 ? '0 0 5px 2px teal' : 'none', // Set the box shadow for focus
                 }}
                 onClick={(e) => toPost(e)}
               >

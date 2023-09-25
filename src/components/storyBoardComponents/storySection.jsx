@@ -136,7 +136,7 @@ export default function StorySection() {
               opacity: '0.8',
               width: '200px',
             }}
-            className="mt-4 mb-4 w-1/2 self center font-croissant text-md shadow-gray hover-shadow-sm hover:shadow-black hover:text-whimsiorange"
+            className="mt-4 mb-4 w-1/2 self center font-croissant text-md shadow-gray hover-shadow-sm hover:shadow-black"
           >
             Create Post
           </Button>
@@ -163,7 +163,7 @@ export default function StorySection() {
               opacity: '0.8',
               width: '200px',
             }}
-            className="mt-4 mb-4 w-1/2 self center font-croissant text-md shadow-gray hover-shadow-sm hover:shadow-black hover:text-whimsiorange"
+            className="mt-4 mb-4 w-1/2 self center font-croissant text-md shadow-gray hover-shadow-sm hover:shadow-black"
           >
             Create Post
           </Button>
@@ -183,7 +183,7 @@ export default function StorySection() {
               opacity: '0.8',
               width: '200px',
             }}
-            className="mt-4 mb-4 w-1/2 self center font-croissant text-md shadow-gray hover-shadow-sm hover:shadow-black hover:text-whimsiorange"
+            className="mt-4 mb-4 w-1/2 self center font-croissant text-md shadow-gray hover-shadow-sm hover:shadow-black"
           >
             Create Post
           </Button>
@@ -266,10 +266,10 @@ export default function StorySection() {
                               on {moment(post.date_created).format('MMM Do, YYYY')}
                             </div>
                           </div>
-                          {post.gif_url && post.sound_url ? (
+                          {post.gif_url ? (
                             <Avatar
                               onClick={() => playAudio(`https://docs.google.com/uc?export=open&id=${post.sound_url}`)}
-                              className="hover:cursor-pointer"
+                              className={post.sound_url ? 'hover:cursor-pointer' : 'none'}
                               src={post.gif_url}
                               alt={post.gif_id}
                               size="md"
