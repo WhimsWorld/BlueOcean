@@ -7,9 +7,11 @@
 - [Jack Tobin](https://github.com/luckynumberthirteen)
 - [Jiahou Liu](https://github.com/zulliu)
 - [Taryn Wiedrick](https://github.com/TarynCovert)
+- [Rachel Miller](https://github.com/rkmiller131)
 
 
 ## Table of Contents
+- [Tech Used](#Tech-used-to-build-the-project)
 - [Usage](#Usage)
 - [Overview](#Overview)
 - [Landing Page](#Landing-Page)
@@ -19,7 +21,16 @@
 - [Character Creation](#Character-Creation)
 - [Create Story](#Create-Story)
 - [Create Story Post](#Create-Story-Post)
-- [Tech Used](#Tech-used-to-build-the-project)
+
+
+## Tech used to build the project
+![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E)
+![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
+![Vite](https://img.shields.io/badge/Vite-646CFF.svg?style=for-the-badge&logo=Vite&logoColor=white)
+![FireBase](https://img.shields.io/badge/Firebase-FFCA28.svg?style=for-the-badge&logo=Firebase&logoColor=black)
+![NodeJS](https://img.shields.io/badge/node.js-6DA55F?style=for-the-badge&logo=node.js&logoColor=white)
+![Express.js](https://img.shields.io/badge/express.js-%23404d59.svg?style=for-the-badge&logo=express&logoColor=%2361DAFB)
+![Axios](https://img.shields.io/badge/Axios-5A29E4.svg?style=for-the-badge&logo=Axios&logoColor=white)
 
 
 ## Usage
@@ -79,7 +90,7 @@ in a redirect to a login page.
 If users are logged in, they will be able to interact further with the homepage by liking stories or even creating their own story,
 which will be discussed further down.
 
-![home page](https://github.com/WhimsWorld/BlueOcean/assets/129362652/7265edc6-c5b8-45b7-8a60-9749cc6a2cbb)
+![homepage](https://github.com/WhimsWorld/BlueOcean/assets/38170380/2ed36f10-9199-4800-8913-c1baa15d8ce3)
 
 
 ## Story page
@@ -88,10 +99,9 @@ current characters in the story as well as a live chat bar that refreshes every 
 If a user wants to participate in the chat about the story or wants to help write the story
 by creating their own character, they will be redirected to a login page.
 
-![story page](https://github.com/WhimsWorld/BlueOcean/assets/129362652/8e5ee5ff-7a1c-4709-9378-b9f63857f91d)  
+![storyboard](https://github.com/WhimsWorld/BlueOcean/assets/38170380/c4157b59-5b27-4dff-8577-b42790a37f29)
 
-![story page posts](https://github.com/WhimsWorld/BlueOcean/assets/129362652/6c3cf149-9828-4c8a-8a87-a821c4405cda)
-
+![story](https://github.com/WhimsWorld/BlueOcean/assets/38170380/f095f587-93cd-4d65-99ef-49f7bb80baad)
 
 
 ## Login/sign-up page
@@ -132,16 +142,7 @@ will be asked to write their section of the story as well as select a sticker th
 sound that will play if the sticker is clicked on. If the user happens to be a narrator for the story, they are
 given the additonal option of selecting an additional image to set the stage for what is to come.
 
-![story post not narrator](https://github.com/WhimsWorld/BlueOcean/assets/129362652/504e2835-761d-4ff3-a808-a7ca12f201f8)
+![post_not_narrator](https://github.com/WhimsWorld/BlueOcean/assets/38170380/0f5f85b1-6930-4865-b8a9-a12301a542ac)
 
-![story post as narrator](https://github.com/WhimsWorld/BlueOcean/assets/129362652/f3014461-e588-48a1-b9ce-dec5fc7671de)
+![post_narrator](https://github.com/WhimsWorld/BlueOcean/assets/38170380/3c1ed6ee-801a-4ffe-86d5-5eca58936f4b)
 
-
-## Tech used to build the project
-![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E)
-![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
-![Vite](https://img.shields.io/badge/Vite-646CFF.svg?style=for-the-badge&logo=Vite&logoColor=white)
-![FireBase](https://img.shields.io/badge/Firebase-FFCA28.svg?style=for-the-badge&logo=Firebase&logoColor=black)
-![NodeJS](https://img.shields.io/badge/node.js-6DA55F?style=for-the-badge&logo=node.js&logoColor=white)
-![Express.js](https://img.shields.io/badge/express.js-%23404d59.svg?style=for-the-badge&logo=express&logoColor=%2361DAFB)
-![Axios](https://img.shields.io/badge/Axios-5A29E4.svg?style=for-the-badge&logo=Axios&logoColor=white)
